@@ -126,6 +126,26 @@
   }
 }
 
+/* Accordion panel height animation (base-ui uses --accordion-panel-height CSS var) */
+@keyframes accordion-down {
+  from { height: 0; opacity: 0; }
+  to   { height: var(--accordion-panel-height); opacity: 1; }
+}
+@keyframes accordion-up {
+  from { height: var(--accordion-panel-height); opacity: 1; }
+  to   { height: 0; opacity: 0; }
+}
+
+/* Border beam — animated glowing border for featured cards */
+@property --beam-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes border-beam {
+  to { --beam-angle: 360deg; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

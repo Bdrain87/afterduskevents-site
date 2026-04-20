@@ -16,7 +16,7 @@ const schema = z.object({
   details: z.string().max(500).optional(),
   referral: z.string().optional(),
   consent: z.string().min(1, "Consent is required"),
-  privateConfirm: z.string().min(1, "You must confirm this is a private, non-ticketed event"),
+  privateConfirm: z.literal("yes", { message: "You must confirm this is a private, non-ticketed event" }),
 });
 
 export type InquiryState = {

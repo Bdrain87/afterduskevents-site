@@ -23,7 +23,7 @@ export default function ThanksPage() {
           <p className="text-steel text-lg leading-relaxed mb-10">
             We will respond within 24 hours with availability and a tailored quote.
             <br />
-            <span className="text-projector font-medium">-- Blake</span>
+            <span className="text-projector font-medium">- Blake</span>
           </p>
           <Link
             href="/"

@@ -4,37 +4,33 @@ import { cn } from "@/lib/utils";
 
 interface BorderBeamProps {
   className?: string;
-  size?: number;
   duration?: number;
   colorFrom?: string;
   colorTo?: string;
-  delay?: number;
 }
 
 export function BorderBeam({
   className,
-  size = 200,
-  duration = 15,
+  duration = 12,
   colorFrom = "#6B1F1F",
-  colorTo = "#4A0E0E",
-  delay = 0,
+  colorTo = "transparent",
 }: BorderBeamProps) {
   return (
     <div
-      style={{
-        "--size": size,
-        "--duration": duration,
-        "--color-from": colorFrom,
-        "--color-to": colorTo,
-        "--delay": `-${delay}s`,
-      } as React.CSSProperties}
-      className={cn(
-        "pointer-events-none absolute inset-0 rounded-[inherit] [border:calc(var(--border-width,1px)*1px)_solid_transparent]",
-        "[background:linear-gradient(var(--angle,0deg),transparent,transparent)_border-box]",
-        "animate-border-beam",
-        className
-      )}
       aria-hidden="true"
-    />
+      className={cn("pointer-events-none absolute inset-[-1px] rounded-[inherit] overflow-hidden", className)}
+    >
+      <div
+        className="absolute inset-0 rounded-[inherit]"
+        style={{
+          background: `conic-gradient(from var(--beam-angle, 0deg), ${colorTo}, ${colorFrom} 15%, ${colorTo} 30%)`,
+          animation: `border-beam ${duration}s linear infinite`,
+          mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          maskComposite: "exclude",
+          WebkitMaskComposite: "xor",
+          padding: "1px",
+        }}
+      />
+    </div>
   );
 }

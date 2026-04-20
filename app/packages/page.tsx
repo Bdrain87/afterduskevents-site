@@ -3,7 +3,7 @@ import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import { Check } from "lucide-react";
-import FadeIn, { FadeInItem } from "@/components/fade-in";
+import FadeIn from "@/components/fade-in";
 import AnimatedCard from "@/components/animated-card";
 import MagneticButton from "@/components/magnetic-button";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
