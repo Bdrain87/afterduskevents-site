@@ -49,7 +49,7 @@ const jsonLd = {
     reviewCount: "1",
   },
   priceRange: "$$$",
-  image: "https://afterduskevents.com/og-image.jpg",
+  image: "https://afterduskevents.com/og-image.png",
 };
 
 const steps = [

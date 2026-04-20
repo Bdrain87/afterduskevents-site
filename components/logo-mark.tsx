@@ -1,46 +1,29 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-
-interface LogoMarkProps {
-  size?: number;
-}
-
-export default function LogoMark({ size = 36 }: LogoMarkProps) {
-  const [error, setError] = useState(false);
-
-  if (error) {
-    return (
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 36 36"
-        fill="none"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect width="36" height="36" rx="4" fill="#1A1A1A" />
-        <circle cx="22" cy="16" r="6" stroke="#E63946" strokeWidth="2" fill="none" />
-        <rect x="6" y="13" width="10" height="6" rx="1" stroke="#E63946" strokeWidth="2" fill="none" />
-        <line x1="16" y1="16" x2="16" y2="16" stroke="#E63946" strokeWidth="2" />
-        <line x1="21" y1="6" x2="21" y2="8" stroke="#E63946" strokeWidth="2" strokeLinecap="round" />
-        <line x1="27" y1="8" x2="25.5" y2="9.5" stroke="#E63946" strokeWidth="2" strokeLinecap="round" />
-        <line x1="29" y1="14" x2="27" y2="14" stroke="#E63946" strokeWidth="2" strokeLinecap="round" />
-      </svg>
-    );
-  }
-
+export default function LogoMark({ size = 36 }: { size?: number }) {
   return (
-    <div style={{ position: "relative", width: size, height: size, flexShrink: 0 }}>
-      <Image
-        src="/logo.png"
-        alt=""
-        fill
-        className="object-contain"
-        onError={() => setError(true)}
-        priority
-      />
-    </div>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 64 64"
+      fill="none"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Projector body */}
+      <rect x="6" y="26" width="30" height="18" rx="3" stroke="#E63946" strokeWidth="3" />
+      {/* Screen slot on body */}
+      <rect x="11" y="32" width="14" height="5" rx="1.5" stroke="#E63946" strokeWidth="2.5" />
+      {/* Lens housing (circle) */}
+      <circle cx="46" cy="35" r="12" stroke="#E63946" strokeWidth="3" />
+      {/* Inner lens */}
+      <circle cx="46" cy="35" r="5" stroke="#E63946" strokeWidth="2.5" />
+      {/* Connector between body and lens */}
+      <line x1="36" y1="35" x2="34" y2="35" stroke="#E63946" strokeWidth="3" strokeLinecap="round" />
+      {/* Light rays */}
+      <line x1="46" y1="18" x2="46" y2="14" stroke="#E63946" strokeWidth="3" strokeLinecap="round" />
+      <line x1="56" y1="22" x2="59" y2="19" stroke="#E63946" strokeWidth="3" strokeLinecap="round" />
+      <line x1="61" y1="32" x2="65" y2="32" stroke="#E63946" strokeWidth="3" strokeLinecap="round" />
+    </svg>
   );
 }
