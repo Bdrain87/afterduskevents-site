@@ -1,15 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import { Spotlight } from "@/components/ui/spotlight";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { Card3D } from "@/components/ui/card-3d";
 import { BorderBeam } from "@/components/ui/border-beam";
-import { ArrowRight, Monitor, Volume2, Zap, Wifi, Shield } from "lucide-react";
+import { ArrowRight, Monitor, Volume2, Zap, Wifi, Shield, CheckCircle } from "lucide-react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -28,7 +26,7 @@ const differentiators = [
     num: "02",
     icon: <Volume2 size={20} className="text-oxblood" aria-hidden="true" />,
     title: "Soundboks Wireless Audio",
-    body: "Up to 6 Soundboks speakers across multiple zones. 50-meter wireless range. Ceremony zone, dance floor zone, tailgate zone, all from one rental.",
+    body: "Up to 6 Soundboks speakers across multiple zones. 50-meter wireless range. Ceremony, dance floor, tailgate, all from one rental.",
   },
   {
     num: "03",
@@ -54,16 +52,19 @@ const packages = [
   {
     name: "Community 30 ft",
     tag: "Most popular",
-    desc: "30-foot inflatable screen, 4K laser projector, 4 Soundboks speakers across two zones, DFB MK2 subwoofer. Up to 250 people.",
+    specs: ["30 ft inflatable screen", "4K laser projector", "4 Soundboks speakers, 2 zones", "DFB MK2 subwoofer", "Coverage up to 250 people"],
+    desc: "The anchor package for HOA nights, block parties, and large private events.",
     featured: true,
   },
   {
     name: "Intimate 20 ft",
-    desc: "20-foot screen, 4K laser projector, 2 Soundboks speakers. Water ballast setup. Backyards, small gatherings, family nights.",
+    specs: ["20 ft inflatable screen", "4K laser projector", "2 Soundboks speakers", "Water ballast, no staking"],
+    desc: "Backyards, small gatherings, and family movie nights.",
   },
   {
     name: "Indoor Winter",
-    desc: "120-inch Da-Lite fast-fold screen, 4K laser projector, Soundboks audio. Year-round, weather-proof. Halls, gyms, barns.",
+    specs: ["120 in Da-Lite fast-fold screen", "4K laser projector", "2 Soundboks speakers"],
+    desc: "Year-round, weather-proof. Works in halls, gyms, barns, and large living rooms.",
   },
 ];
 
@@ -71,6 +72,7 @@ export default function HomePage() {
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const heroSubRef = useRef<HTMLParagraphElement>(null);
   const heroCtaRef = useRef<HTMLDivElement>(null);
+  const heroMetaRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -81,12 +83,14 @@ export default function HomePage() {
       gsap.set(split.chars, { y: 80, opacity: 0 });
       tl.to(split.chars, { y: 0, opacity: 1, duration: 0.7, stagger: 0.02, delay: 0.15 });
     }
-
     if (heroSubRef.current) {
-      tl.fromTo(heroSubRef.current, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, "-=0.3");
+      tl.fromTo(heroSubRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, "-=0.3");
+    }
+    if (heroMetaRef.current) {
+      tl.fromTo(heroMetaRef.current, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, "-=0.3");
     }
     if (heroCtaRef.current) {
-      tl.fromTo(heroCtaRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, "-=0.35");
+      tl.fromTo(heroCtaRef.current, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, "-=0.25");
     }
   }, []);
 
@@ -110,7 +114,7 @@ export default function HomePage() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "After Dusk Events LLC",
-    description: "Veteran-owned outdoor cinema and event rentals for private events in Southeast Michigan.",
+    description: "Veteran-owned portable outdoor cinema and event rental for private events in Southeast Michigan. 30-foot inflatable screen, 4K laser projector, wireless Soundboks audio.",
     url: "https://afterduskevents.com",
     email: "hello@afterduskevents.com",
     address: { "@type": "PostalAddress", addressLocality: "Canton", addressRegion: "MI", postalCode: "48188", addressCountry: "US" },
@@ -124,66 +128,161 @@ export default function HomePage() {
       <Nav />
 
       <main className="flex-1">
-        {/* Hero */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-          <Image
-            src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=2000&q=80&auto=format"
-            alt="Outdoor cinema at night"
-            fill
-            className="object-cover object-center scale-105"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-screening/60 via-screening/40 to-screening" />
-          <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="rgba(107,31,31,0.25)" />
 
-          <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center pt-16">
+        {/* ─── HERO: typographic, no stock photo ─────────────────── */}
+        <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-screening">
+
+          {/* Subtle radial glow suggesting projector beam */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(107,31,31,0.18) 0%, transparent 70%)",
+            }}
+          />
+
+          {/* Horizontal scan line texture */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none opacity-[0.03]"
+            style={{
+              backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.5) 3px, rgba(255,255,255,0.5) 4px)",
+            }}
+          />
+
+          <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+
+            {/* Eyebrow */}
+            <p className="text-steel text-xs tracking-[0.3em] uppercase mb-8">
+              Canton, MI — Private outdoor cinema
+            </p>
+
+            {/* Hero headline */}
             <h1
               ref={heroTitleRef}
-              className="font-display text-[clamp(3.5rem,11vw,9rem)] tracking-[0.04em] text-projector leading-[0.9] mb-8"
+              className="font-display text-[clamp(4rem,12vw,10rem)] tracking-[0.03em] text-projector leading-[0.88] mb-8"
               aria-label="Big screen. Bigger nights."
             >
               BIG SCREEN.<br />BIGGER NIGHTS.
             </h1>
+
+            {/* Subtext */}
             <p
               ref={heroSubRef}
-              className="text-projector/75 text-lg sm:text-xl max-w-[55ch] mx-auto mb-10 leading-relaxed"
+              className="text-steel text-lg sm:text-xl leading-relaxed max-w-[52ch] mb-6"
             >
-              Veteran-owned outdoor cinema for private events across Southeast Michigan.
-              30-foot screen. Concert-grade sound. Full power independence.
+              We show up to your backyard, venue, or field with a 30-foot inflatable screen,
+              4K laser projector, and concert-grade wireless audio. You supply the guest list.
             </p>
-            <div ref={heroCtaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <ShimmerButton onClick={() => window.location.href = "/contact"} className="w-full sm:w-auto">
+
+            {/* Spec strip */}
+            <div ref={heroMetaRef} className="flex flex-wrap gap-x-6 gap-y-2 mb-10">
+              {[
+                "30 ft inflatable screen",
+                "4K laser projector",
+                "Soundboks wireless audio",
+                "Starlink included",
+                "Generator backup",
+                "60-mile radius, Canton MI",
+              ].map((s) => (
+                <span key={s} className="flex items-center gap-1.5 text-steel text-sm">
+                  <CheckCircle size={13} className="text-oxblood shrink-0" aria-hidden="true" />
+                  {s}
+                </span>
+              ))}
+            </div>
+
+            {/* CTAs */}
+            <div ref={heroCtaRef} className="flex flex-col sm:flex-row items-start gap-4">
+              <ShimmerButton onClick={() => window.location.href = "/contact"}>
                 Get a Quote
               </ShimmerButton>
               <Link
                 href="/packages"
-                className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector border-2 border-projector/20 hover:border-oxblood hover:text-oxblood transition-all duration-300 min-h-[56px] w-full sm:w-auto"
+                className="inline-flex items-center gap-2 text-steel hover:text-projector text-sm font-medium transition-colors py-4 group"
               >
-                See Packages
+                See packages
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true" />
               </Link>
             </div>
           </div>
 
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40" aria-hidden="true">
-            <span className="text-projector text-[10px] tracking-[0.3em] uppercase font-light">Scroll</span>
-            <div className="w-px h-8 bg-projector" style={{ animation: "scrollHint 2s ease-in-out infinite" }} />
+          {/* Bottom oxblood rule */}
+          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-oxblood/20" aria-hidden="true" />
+        </section>
+
+        {/* ─── WHAT WE BRING ─────────────────────────────────────── */}
+        <section className="py-28 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="equipment-heading">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-16">
+              <p className="text-steel text-xs tracking-[0.2em] uppercase mb-3">The equipment</p>
+              <h2 id="equipment-heading" className="font-display text-[clamp(2.5rem,6vw,5rem)] tracking-wider text-projector leading-none">
+                WHAT WE BRING<br />TO YOUR EVENT
+              </h2>
+              <span className="oxblood-rule" />
+            </div>
+
+            {/* Equipment list — two columns */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+              {[
+                {
+                  label: "Screen",
+                  items: [
+                    "30 ft airtight inflatable screen (Community package)",
+                    "20 ft airtight inflatable screen (Intimate package)",
+                    "120 in Da-Lite fast-fold (Indoor Winter)",
+                    "Water ballast setup — no staking, works anywhere",
+                  ],
+                },
+                {
+                  label: "Projection",
+                  items: [
+                    "BenQ LU930 4K laser projector",
+                    "7,000 ANSI lumens — visible even at dusk",
+                    "HDMI, streaming, Blu-ray, laptop input",
+                    "BYO Content — no licensing required for private events",
+                  ],
+                },
+                {
+                  label: "Audio",
+                  items: [
+                    "Soundboks 4 wireless speakers (up to 6)",
+                    "Death From Below MK2 subwoofer",
+                    "50-meter wireless range",
+                    "Multi-zone: viewing zone, dance floor, ceremony zone",
+                  ],
+                },
+                {
+                  label: "Power and Connectivity",
+                  items: [
+                    "Honda generator — venue power not required",
+                    "EcoFlow silent battery backup",
+                    "Starlink Mini satellite internet — included on every event",
+                    "No wifi needed, no extension cords from your house",
+                  ],
+                },
+              ].map((col) => (
+                <div key={col.label}>
+                  <h3 className="font-heading text-sm text-oxblood uppercase tracking-[0.12em] mb-3">{col.label}</h3>
+                  <ul className="space-y-2">
+                    {col.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-steel text-sm leading-relaxed">
+                        <span className="text-oxblood mt-1.5 shrink-0 text-xs">&#9632;</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-steel text-xs tracking-[0.15em] uppercase border-t border-white/8 pt-6">
+              We show up 3 hours early. We do the setup, the sound check, and the systems test. You show up and watch the movie.
+            </p>
           </div>
         </section>
 
-        {/* Strip */}
-        <div className="border-y border-white/8 bg-charcoal/60">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-center gap-4 flex-wrap text-center">
-            {["Private events only", "60 miles of Canton, MI", "BYO Content", "Veteran Owned"].map((t, i, arr) => (
-              <span key={t} className="flex items-center gap-4">
-                <span className="text-steel text-xs tracking-[0.15em] uppercase">{t}</span>
-                {i < arr.length - 1 && <span className="text-silver/20 text-xs hidden sm:inline">|</span>}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Why section */}
+        {/* ─── WHY AFTER DUSK ────────────────────────────────────── */}
         <section className="py-28 px-4 sm:px-6 lg:px-8" aria-labelledby="why-heading">
           <div className="mx-auto max-w-7xl">
             <div className="mb-16">
@@ -197,18 +296,18 @@ export default function HomePage() {
               {differentiators.map((d) => (
                 <Card3D key={d.num} className="bg-charcoal p-8 group cursor-default">
                   <div className="flex items-start gap-4 mb-4">
-                    <span className="font-display text-4xl text-oxblood/40 leading-none select-none">{d.num}</span>
+                    <span className="font-display text-4xl text-oxblood/30 leading-none select-none">{d.num}</span>
                     <div className="mt-1">{d.icon}</div>
                   </div>
                   <h3 className="font-heading text-lg text-projector mb-3 group-hover:text-oxblood transition-colors duration-300">{d.title}</h3>
-                  <p className="text-steel text-sm leading-relaxed max-w-[45ch]">{d.body}</p>
+                  <p className="text-steel text-sm leading-relaxed">{d.body}</p>
                 </Card3D>
               ))}
             </div>
           </div>
         </section>
 
-        {/* How it works */}
+        {/* ─── HOW IT WORKS ──────────────────────────────────────── */}
         <section className="py-28 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="how-heading">
           <div className="mx-auto max-w-7xl">
             <div className="mb-16">
@@ -222,11 +321,11 @@ export default function HomePage() {
               <div className="timeline-line absolute left-[19px] top-3 bottom-3 w-[2px] bg-oxblood/30 origin-top" aria-hidden="true" />
               <div className="space-y-10">
                 {[
-                  { n: "01", title: "Tell us about your event", body: "Date, location, guest count, vibe. A quick form or an email." },
-                  { n: "02", title: "We send a custom quote", body: "Custom to your event. No templates, no automated calculator." },
-                  { n: "03", title: "Lock it with a deposit", body: "Card, tap, or invoice. Your date is held the moment it lands." },
-                  { n: "04", title: "We arrive 3 hours early", body: "Setup, sound check, full systems test before your first guest arrives." },
-                  { n: "05", title: "You enjoy the night", body: "We run everything and handle teardown. You just show up." },
+                  { n: "01", title: "Tell us about your event", body: "Date, location, guest count, event type. A quick form or an email." },
+                  { n: "02", title: "Blake sends a custom quote", body: "Custom to your event, your location, your duration. No templates, no automated calculator." },
+                  { n: "03", title: "Lock it with a deposit", body: "Card, tap, or invoice. Your date is held the moment the deposit clears." },
+                  { n: "04", title: "We arrive 3 hours early", body: "Full setup, sound check, and systems test before your first guest sets foot on the lawn." },
+                  { n: "05", title: "You enjoy the night", body: "We run the equipment. We handle teardown. You just show up." },
                 ].map((step) => (
                   <div key={step.n} className="timeline-step flex items-start gap-6">
                     <div className="relative z-10 flex items-center justify-center w-10 h-10 shrink-0 rounded-full border-2 border-oxblood bg-screening">
@@ -243,7 +342,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Packages */}
+        {/* ─── PACKAGES ──────────────────────────────────────────── */}
         <section className="py-28 px-4 sm:px-6 lg:px-8" aria-labelledby="packages-heading">
           <div className="mx-auto max-w-7xl">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12 gap-4">
@@ -272,8 +371,16 @@ export default function HomePage() {
                       {pkg.tag}
                     </span>
                   )}
-                  <h3 className="font-display text-2xl tracking-wider text-projector leading-none mb-4">{pkg.name}</h3>
-                  <p className="text-steel text-sm leading-relaxed flex-1 mb-6">{pkg.desc}</p>
+                  <h3 className="font-display text-2xl tracking-wider text-projector leading-none mb-3">{pkg.name}</h3>
+                  <p className="text-steel text-sm leading-relaxed mb-5">{pkg.desc}</p>
+                  <ul className="space-y-1.5 flex-1 mb-6">
+                    {pkg.specs.map((s) => (
+                      <li key={s} className="flex items-start gap-2 text-steel text-xs">
+                        <span className="text-oxblood mt-1 shrink-0 text-[10px]">&#9632;</span>
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
                   <Link
                     href={`/contact?package=${encodeURIComponent(pkg.name)}`}
                     className={`inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-all duration-300 min-h-[44px] ${
@@ -290,10 +397,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Oxblood pull quote */}
+        {/* ─── OXBLOOD QUOTE ─────────────────────────────────────── */}
         <section className="relative bg-oxblood py-28 px-4 sm:px-6 lg:px-8 overflow-hidden noise-bg">
-          <div className="absolute inset-0 bg-gradient-to-br from-oxblood via-oxblood to-oxblood-deep" aria-hidden="true" />
-          <div className="relative z-10 mx-auto max-w-3xl text-center">
+          <div className="absolute inset-0 bg-gradient-to-br from-oxblood to-oxblood-deep" aria-hidden="true" />
+          <div className="relative z-10 mx-auto max-w-3xl">
             <p className="font-display text-[clamp(1.8rem,5vw,3.5rem)] tracking-wider text-projector leading-snug mb-6">
               "EVERY PIECE OF GEAR HAS A BACKUP. EVERY ARRIVAL IS 3 HOURS BEFORE YOUR FIRST GUEST."
             </p>
@@ -301,36 +408,43 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Weddings teaser */}
-        <section className="py-28 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="wedding-teaser-heading">
-          <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-steel text-xs tracking-[0.2em] uppercase mb-3">Weddings</p>
-              <h2 id="wedding-teaser-heading" className="font-display text-[clamp(2.5rem,6vw,5rem)] tracking-wider text-projector leading-none mb-2">
-                A WEDDING THAT LOOKS AS GOOD AS IT FEELS.
+        {/* ─── WHO WE SERVE ──────────────────────────────────────── */}
+        <section className="py-28 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="serve-heading">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-12">
+              <p className="text-steel text-xs tracking-[0.2em] uppercase mb-3">Private events only</p>
+              <h2 id="serve-heading" className="font-display text-[clamp(2.5rem,6vw,5rem)] tracking-wider text-projector leading-none">
+                WHO WE SERVE
               </h2>
               <span className="oxblood-rule" />
-              <p className="text-steel text-base leading-relaxed mt-6 mb-8 max-w-[55ch]">
-                Elopement, reception cinema, or full-day ceremony through reception. Three tiers, one operator, ceremony audio through the dance floor.
-              </p>
-              <Link href="/packages/weddings" className="inline-flex items-center gap-2 text-oxblood font-medium hover:text-projector transition-colors group">
-                See wedding packages <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true" />
-              </Link>
             </div>
-            <div className="aspect-[4/3] bg-screening rounded-lg overflow-hidden border border-white/8 relative">
-              <Image
-                src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=800&q=80&auto=format"
-                alt="Wedding outdoor cinema setup"
-                fill
-                className="object-cover opacity-70"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-screening/60 to-transparent" />
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+              {[
+                "Backyard movie nights",
+                "HOA and neighborhood events",
+                "Block parties",
+                "Birthday and graduation parties",
+                "Sports watch parties",
+                "Gaming nights",
+                "Karaoke nights",
+                "Corporate events",
+                "Non-profits and church events",
+                "Elopements",
+                "Wedding receptions",
+                "Indoor winter events",
+              ].map((s) => (
+                <div key={s} className="bg-screening rounded-lg p-4 border border-white/8">
+                  <p className="text-steel text-sm leading-tight">{s}</p>
+                </div>
+              ))}
             </div>
+            <p className="text-steel text-xs mt-8 tracking-[0.1em] uppercase">
+              All bookings are for private, non-ticketed gatherings within 60 miles of Canton, MI.
+            </p>
           </div>
         </section>
 
-        {/* CTA */}
+        {/* ─── FINAL CTA ─────────────────────────────────────────── */}
         <section className="py-28 px-4 sm:px-6 lg:px-8" aria-labelledby="cta-heading">
           <div className="mx-auto max-w-2xl text-center">
             <h2 id="cta-heading" className="font-display text-[clamp(3rem,8vw,7rem)] tracking-wider text-projector leading-none mb-4">
@@ -348,13 +462,6 @@ export default function HomePage() {
       </main>
 
       <Footer />
-
-      <style>{`
-        @keyframes scrollHint {
-          0%, 100% { opacity: 0.4; transform: scaleY(1); transform-origin: top; }
-          50% { opacity: 1; transform: scaleY(0.4); transform-origin: top; }
-        }
-      `}</style>
     </>
   );
 }
