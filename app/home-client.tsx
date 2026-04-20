@@ -53,12 +53,13 @@ const packages = [
 ];
 
 export default function HomeClient() {
-  const { containerRef: nameRef, fontSize } = useFitText("AFTER DUSK EVENTS");
+  const { containerRef: nameRef, measureRef, fontSize } = useFitText();
   const heroRestRef    = useRef<HTMLDivElement>(null);
   const statementsRef  = useRef<HTMLDivElement>(null);
 
+  // Only animate once fontSize is calculated from the real font
   useGSAP(() => {
-    if (!nameRef.current) return;
+    if (!fontSize || !nameRef.current) return;
     const el = nameRef.current.querySelector(".wordmark");
     if (!el) return;
     const split = new SplitText(el, { type: "chars" });
@@ -67,7 +68,7 @@ export default function HomeClient() {
       duration: 0.75, stagger: 0.018,
       ease: "power3.out", delay: 0.1,
     });
-  }, [fontSize]);
+  }, { dependencies: [fontSize] });
 
   useGSAP(() => {
     if (!heroRestRef.current) return;
@@ -123,9 +124,18 @@ export default function HomeClient() {
 
           {/* Full-width company name */}
           <div ref={nameRef} className="relative z-10 w-full overflow-hidden pt-24 pb-2">
+            {/* Hidden measuring span — uses the real loaded font, not canvas */}
+            <span
+              ref={measureRef}
+              aria-hidden="true"
+              className="font-display absolute opacity-0 pointer-events-none whitespace-nowrap leading-none tracking-[0.01em] select-none"
+              style={{ fontSize: "100px", top: 0, left: 0 }}
+            >
+              AFTER DUSK EVENTS
+            </span>
             <h1
               className="wordmark font-display text-projector leading-none tracking-[0.01em] whitespace-nowrap"
-              style={{ fontSize: fontSize > 0 ? `${fontSize}px` : "clamp(4rem,14vw,11rem)" }}
+              style={{ fontSize: fontSize > 0 ? `${fontSize}px` : "clamp(4rem,12vw,10rem)" }}
               aria-label="After Dusk Events"
             >
               AFTER DUSK EVENTS

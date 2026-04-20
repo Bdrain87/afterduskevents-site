@@ -2,36 +2,35 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 
-function measureTextWidth(text: string, fontFamily: string, fontSizePx: number): number {
-  if (typeof document === "undefined") return 0;
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return 0;
-  ctx.font = `${fontSizePx}px ${fontFamily}`;
-  return ctx.measureText(text).width;
-}
-
-export function useFitText(text: string, fontFamily = "Bebas Neue, cursive") {
+export function useFitText() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [fontSize, setFontSize] = useState(120);
+  const measureRef   = useRef<HTMLSpanElement>(null);
+  const [fontSize, setFontSize] = useState(0);
 
   const calculate = useCallback(() => {
-    if (!containerRef.current) return;
-    const containerWidth = containerRef.current.offsetWidth;
+    const container = containerRef.current;
+    const measure   = measureRef.current;
+    if (!container || !measure) return;
+
+    const containerWidth = container.offsetWidth;
     if (containerWidth === 0) return;
-    const basePx = 200;
-    const measured = measureTextWidth(text, fontFamily, basePx);
-    if (measured === 0) return;
-    const scale = containerWidth / measured;
-    setFontSize(Math.floor(basePx * scale));
-  }, [text, fontFamily]);
+
+    // Measure at 100px using the real DOM (actual loaded font)
+    measure.style.fontSize = "100px";
+    const textWidth = measure.offsetWidth;
+    if (textWidth === 0) return;
+
+    // Scale proportionally, subtract 2px so it never exceeds container
+    setFontSize(Math.floor((containerWidth / textWidth) * 100) - 2);
+  }, []);
 
   useEffect(() => {
     calculate();
-    const observer = new ResizeObserver(calculate);
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
+    document.fonts.ready.then(calculate);
+    const ro = new ResizeObserver(calculate);
+    if (containerRef.current) ro.observe(containerRef.current);
+    return () => ro.disconnect();
   }, [calculate]);
 
-  return { containerRef, fontSize };
+  return { containerRef, measureRef, fontSize };
 }
