@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import ContactForm from "./contact-form";
@@ -29,7 +30,9 @@ export default function ContactPage() {
 
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl">
-            <ContactForm />
+            <Suspense fallback={<div className="text-brand-gray text-sm">Loading form...</div>}>
+              <ContactForm />
+            </Suspense>
           </div>
         </section>
       </main>
