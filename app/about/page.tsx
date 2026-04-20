@@ -38,7 +38,7 @@ export default function AboutPage() {
                 <p>
                   After Dusk Events was built on one idea: outdoor events deserve the same attention
                   to detail as any indoor production. A good movie night is not just a projector on
-                  a sheet -- it is audio you can hear clearly in the back row, a screen big enough
+                  a sheet. it is audio you can hear clearly in the back row, a screen big enough
                   that no one strains, lighting that holds the mood without blowing out the picture,
                   and an operator who has already tested everything before you arrive.
                 </p>
@@ -77,7 +77,7 @@ export default function AboutPage() {
                       {
                         icon: <FileCheck size={16} className="text-oxblood shrink-0 mt-0.5" aria-hidden="true" />,
                         label: "Coverage",
-                        value: "Insured -- COI on request",
+                        value: "Insured. COI on request",
                       },
                     ].map((item) => (
                       <li key={item.label} className="flex items-start gap-3">

@@ -58,7 +58,7 @@ const faqs = [
   },
   {
     q: "Do you handle weddings?",
-    a: "Yes. Three tiers: Elopement starting at $1,400, Wedding Reception Cinema starting at $2,200, and Wedding Full Day starting at $3,200. See the Weddings page for full details.",
+    a: "Yes. Three tiers: Elopement Contact for quote Wedding Reception Cinema Contact for quote and Wedding Full Day Contact for quote. See the Weddings page for full details.",
   },
 ];
 

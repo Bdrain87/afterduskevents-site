@@ -6,20 +6,19 @@ import { Check } from "lucide-react";
 import FadeIn, { FadeInGroup, FadeInItem } from "@/components/fade-in";
 import AnimatedCard from "@/components/animated-card";
 import MagneticButton from "@/components/magnetic-button";
-import { EstimateNote } from "@/components/estimate-note";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
 
 export const metadata: Metadata = {
   title: "Packages & Pricing",
   description:
-    "Outdoor cinema packages for private events in Southeast Michigan. Movie nights, sports parties, gaming, weddings, corporate. Starting at $600. Canton, MI.",
+    "Outdoor cinema packages for private events in Southeast Michigan. Movie nights, sports parties, gaming, weddings, corporate. Contact for quote. Canton, MI.",
   alternates: { canonical: "/packages" },
 };
 
 const corePackages = [
   {
     name: "Intimate 20 ft",
-    price: "Starting at $750",
+    price: "Contact for quote",
     popular: false,
     highlights: [
       "3 hour event",
@@ -33,7 +32,7 @@ const corePackages = [
   },
   {
     name: "Community 30 ft",
-    price: "Starting at $1,250",
+    price: "Contact for quote",
     popular: true,
     highlights: [
       "4 hour event",
@@ -48,7 +47,7 @@ const corePackages = [
   },
   {
     name: "Indoor Winter",
-    price: "Starting at $600",
+    price: "Contact for quote",
     popular: false,
     highlights: [
       "3 hour event",
@@ -65,7 +64,7 @@ const corePackages = [
 const eventPackages = [
   {
     name: "Sports Watch Party",
-    price: "Starting at $1,500",
+    price: "Contact for quote",
     highlights: [
       "4 hour event, 30 ft screen",
       "Multi-zone Soundboks audio",
@@ -76,7 +75,7 @@ const eventPackages = [
   },
   {
     name: "Gaming Night",
-    price: "Starting at $1,400",
+    price: "Contact for quote",
     highlights: [
       "4 hour event, 20 ft screen",
       "Nintendo Switch OLED + Retroid Pocket 4 Pro",
@@ -87,7 +86,7 @@ const eventPackages = [
   },
   {
     name: "Karaoke Night",
-    price: "Starting at $900",
+    price: "Contact for quote",
     highlights: [
       "3 hour event, 20 ft screen",
       "2 professional wireless microphones",
@@ -98,7 +97,7 @@ const eventPackages = [
   },
   {
     name: "Birthday or Graduation",
-    price: "Starting at $1,200",
+    price: "Contact for quote",
     highlights: [
       "3 to 4 hour event",
       "20 ft or 30 ft screen",
@@ -109,7 +108,7 @@ const eventPackages = [
   },
   {
     name: "Corporate or Community Org",
-    price: "Starting at $2,200",
+    price: "Contact for quote",
     highlights: [
       "4 to 6 hour event, 30 ft screen",
       "Multi-zone Soundboks audio",
@@ -177,7 +176,6 @@ export default function PackagesPage() {
                   )}
                   <h3 className="font-heading text-xl text-projector mb-1">{pkg.name}</h3>
                   <p className="text-oxblood font-semibold text-lg mb-1">{pkg.price}</p>
-                  <EstimateNote />
                   <p className="text-steel text-xs mt-3 mb-4 italic">Best for: {pkg.best}</p>
                   <ul className="space-y-2 flex-1 mb-6">
                     {pkg.highlights.map((item) => (
@@ -210,7 +208,7 @@ export default function PackagesPage() {
               <div>
                 <h2 className="font-heading text-2xl text-projector mb-1">Weddings</h2>
                 <p className="text-steel text-sm">Elopement, reception cinema, or full ceremony plus reception. Three tiers, one veteran-owned operator.</p>
-                <p className="text-oxblood font-semibold mt-1 text-sm">Starting at $1,400</p>
+                <p className="text-oxblood font-semibold mt-1 text-sm">Contact for quote</p>
               </div>
               <Link
                 href="/packages/weddings"
@@ -239,7 +237,6 @@ export default function PackagesPage() {
                 >
                   <h3 className="font-heading text-xl text-projector mb-1">{pkg.name}</h3>
                   <p className="text-oxblood font-semibold text-lg mb-1">{pkg.price}</p>
-                  <EstimateNote />
                   <p className="text-steel text-xs mt-3 mb-4 italic">Best for: {pkg.best}</p>
                   <ul className="space-y-2 flex-1 mb-6">
                     {pkg.highlights.map((item) => (

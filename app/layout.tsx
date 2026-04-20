@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat, Bebas_Neue } from "next/font/google";
+import { Inter, Montserrat, Bebas_Neue, Playfair_Display } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
@@ -7,6 +7,7 @@ import FilmGrain from "@/components/film-grain";
 import CursorSpotlight from "@/components/cursor-spotlight";
 import ScrollProgress from "@/components/scroll-progress";
 import LoadingScreen from "@/components/loading-screen";
+import LenisProvider from "@/components/lenis-provider";
 import "./globals.css";
 
 const inter = Inter({
@@ -29,13 +30,20 @@ const bebasNeue = Bebas_Neue({
   display: "swap",
 });
 
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
-    default: "Outdoor Movie Rentals & Event Cinema | After Dusk Events | Canton, MI",
+    default: "Outdoor Cinema and Event Rentals | After Dusk Events | Canton, MI",
     template: "%s | After Dusk Events",
   },
   description:
-    "Premium outdoor cinema and event rental. 30-foot screen, concert-grade sound, veteran-owned. Serving Canton, Ann Arbor, Detroit, and Southeast Michigan within 60 miles.",
+    "Premium outdoor cinema and event rentals for private events in Southeast Michigan. 30-foot screen, concert-grade sound, veteran-owned. 60 miles of Canton, MI.",
   keywords: [
     "outdoor movie rental Michigan",
     "backyard movie night Canton",
@@ -43,6 +51,7 @@ export const metadata: Metadata = {
     "wedding outdoor cinema Ann Arbor",
     "corporate outdoor movie Michigan",
     "outdoor cinema rental Southeast Michigan",
+    "private outdoor cinema Michigan",
   ],
   authors: [{ name: "After Dusk Events LLC" }],
   creator: "After Dusk Events LLC",
@@ -54,53 +63,42 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://afterduskevents.com",
     siteName: "After Dusk Events",
-    title: "Outdoor Movie Rentals & Event Cinema | After Dusk Events | Canton, MI",
+    title: "Outdoor Cinema and Event Rentals | After Dusk Events | Canton, MI",
     description:
-      "Premium outdoor cinema and event rental. 30-foot screen, concert-grade sound, veteran-owned. Serving Canton, Ann Arbor, Detroit, and Southeast Michigan within 60 miles.",
-    images: [{ url: "/og-image.png", width: 1282, height: 836, alt: "After Dusk Events - Outdoor Cinema Michigan" }],
+      "Premium outdoor cinema and event rentals for private events in Southeast Michigan. 30-foot screen, concert-grade sound, veteran-owned.",
+    images: [{ url: "/og-image.png", width: 1282, height: 836, alt: "After Dusk Events" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Outdoor Movie Rentals & Event Cinema | After Dusk Events | Canton, MI",
-    description:
-      "Premium outdoor cinema and event rental. 30-foot screen, concert-grade sound, veteran-owned. Serving Canton, Ann Arbor, Detroit, and Southeast Michigan.",
+    title: "Outdoor Cinema and Event Rentals | After Dusk Events | Canton, MI",
+    description: "Premium outdoor cinema and event rentals for private events in Southeast Michigan. Veteran-owned.",
     images: ["/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+    googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 },
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
+      className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-screening text-projector">
         <LoadingScreen />
         <ScrollProgress />
         <CursorSpotlight />
         <FilmGrain />
-        {children}
+        <LenisProvider>
+          {children}
+        </LenisProvider>
         <Toaster
           position="bottom-right"
           toastOptions={{
-            style: {
-              background: "#1A1A1A",
-              border: "1px solid #2a2a2a",
-              color: "#FAFAFA",
-            },
+            style: { background: "#1A1A1A", border: "1px solid #2a2a2a", color: "#FAFAFA" },
           }}
         />
         <Analytics />

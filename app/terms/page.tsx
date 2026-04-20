@@ -56,7 +56,7 @@ export default function TermsPage() {
             <div>
               <h2 className="font-heading text-xl text-projector mb-3">Intellectual property</h2>
               <p>
-                All content on this Site -- including text, images, logo, and design -- is the
+                All content on this Site -- including text, images, logo, and design. is the
                 property of After Dusk Events LLC or its licensors. You may not reproduce, distribute,
                 or create derivative works without written permission.
               </p>

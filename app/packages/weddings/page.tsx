@@ -6,20 +6,18 @@ import { Check } from "lucide-react";
 import FadeIn, { FadeInGroup, FadeInItem } from "@/components/fade-in";
 import AnimatedCard from "@/components/animated-card";
 import MagneticButton from "@/components/magnetic-button";
-import { EstimateNote } from "@/components/estimate-note";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
 
 export const metadata: Metadata = {
   title: "Wedding Cinema Packages",
   description:
-    "Outdoor wedding cinema in Southeast Michigan. Elopement, reception, or full-day ceremony plus reception. Veteran-owned, water ballast setup, wireless audio. Starting at $1,400.",
+    "Outdoor wedding cinema in Southeast Michigan. Elopement, reception, or full-day ceremony plus reception. Veteran-owned, water ballast setup, wireless audio. Contact for quote.",
   alternates: { canonical: "/packages/weddings" },
 };
 
 const tiers = [
   {
     name: "Elopement / Micro-Wedding",
-    price: "Starting at $1,400",
     duration: "3 hour event",
     includes: [
       "20 ft airtight inflatable screen",
@@ -33,7 +31,6 @@ const tiers = [
   },
   {
     name: "Wedding Reception Cinema",
-    price: "Starting at $2,200",
     duration: "4 to 5 hour event",
     popular: true,
     includes: [
@@ -49,7 +46,6 @@ const tiers = [
   },
   {
     name: "Wedding Full Day",
-    price: "Starting at $3,200",
     duration: "Ceremony through reception",
     includes: [
       "Dual audio zones: ceremony and reception",
@@ -65,11 +61,11 @@ const tiers = [
 ];
 
 const weddingAddOns = [
-  { item: "Ceremony sound setup", bestFor: "Clean vows audio and processional music", price: "$299" },
-  { item: "First dance projected film", bestFor: "Love-story reel during first dance", price: "$249" },
-  { item: "Reception dance floor zone", bestFor: "Premium Soundboks and Lightboks dance floor", price: "$349" },
-  { item: "Late night after-party bass drop", bestFor: "After-dinner energy shift", price: "$399" },
-  { item: "Brunch projection loop", bestFor: "Next-day brunch recap loops", price: "$199" },
+  { item: "Ceremony sound setup", bestFor: "Clean vows audio and processional music" },
+  { item: "First dance projected film", bestFor: "Love-story reel during first dance" },
+  { item: "Reception dance floor zone", bestFor: "Premium Soundboks and Lightboks dance floor" },
+  { item: "Late night after-party bass drop", bestFor: "After-dinner energy shift" },
+  { item: "Brunch projection loop", bestFor: "Next-day brunch recap loops" },
 ];
 
 const weddingFaq = [
@@ -153,9 +149,7 @@ export default function WeddingsPage() {
                     </span>
                   )}
                   <h3 className="font-heading text-xl text-projector mb-1">{tier.name}</h3>
-                  <p className="text-steel text-xs mb-2">{tier.duration}</p>
-                  <p className="text-oxblood font-semibold text-xl mb-1">{tier.price}</p>
-                  <EstimateNote />
+                  <p className="text-steel text-xs mb-5">{tier.duration}</p>
                   <ul className="space-y-2.5 flex-1 mt-5 mb-6">
                     {tier.includes.map((item) => (
                       <li key={item} className="flex items-start gap-2.5 text-steel text-sm">
@@ -193,8 +187,7 @@ export default function WeddingsPage() {
                 <thead>
                   <tr className="border-b border-white/10 text-left">
                     <th className="px-5 py-3 text-steel font-semibold">Item</th>
-                    <th className="px-5 py-3 text-steel font-semibold hidden sm:table-cell">Best for</th>
-                    <th className="px-5 py-3 text-steel font-semibold text-right">Price</th>
+                    <th className="px-5 py-3 text-steel font-semibold">Best for</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -204,15 +197,13 @@ export default function WeddingsPage() {
                       className={`border-b border-white/5 ${i % 2 === 1 ? "bg-screening/40" : ""}`}
                     >
                       <td className="px-5 py-3.5 text-projector font-medium">{row.item}</td>
-                      <td className="px-5 py-3.5 text-steel hidden sm:table-cell">{row.bestFor}</td>
-                      <td className="px-5 py-3.5 text-oxblood font-semibold text-right whitespace-nowrap">{row.price}</td>
+                      <td className="px-5 py-3.5 text-steel">{row.bestFor}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
             <div className="mt-4">
-              <EstimateNote />
             </div>
           </div>
         </section>

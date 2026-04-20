@@ -101,7 +101,7 @@ export default function ContactForm() {
         <FieldError errors={state.errors} field="guestCount" />
       </div>
 
-      {/* Event type -- no ticketed option */}
+      {/* Event type. no ticketed option */}
       <div>
         <label htmlFor="eventType" className={labelClass}>
           Event type <span className="text-oxblood" aria-hidden="true">*</span>
@@ -129,17 +129,17 @@ export default function ContactForm() {
         </label>
         <select id="packageInterest" name="packageInterest" defaultValue={prefilledPackage} className={selectClass}>
           <option value="">Not sure</option>
-          <option value="Intimate 20 ft">Intimate 20 ft -- starting at $750</option>
-          <option value="Community 30 ft">Community 30 ft -- starting at $1,250</option>
-          <option value="Indoor Winter">Indoor Winter -- starting at $600</option>
-          <option value="Sports Watch Party">Sports Watch Party -- starting at $1,500</option>
-          <option value="Gaming Night">Gaming Night -- starting at $1,400</option>
-          <option value="Karaoke Night">Karaoke Night -- starting at $900</option>
-          <option value="Birthday or Graduation">Birthday or Graduation -- starting at $1,200</option>
-          <option value="Elopement / Micro-Wedding">Elopement / Micro-Wedding -- starting at $1,400</option>
-          <option value="Wedding Reception Cinema">Wedding Reception Cinema -- starting at $2,200</option>
-          <option value="Wedding Full Day">Wedding Full Day -- starting at $3,200</option>
-          <option value="Corporate or Community Org">Corporate or Community Org -- starting at $2,200</option>
+          <option value="Intimate 20 ft">Intimate 20 ft</option>
+          <option value="Community 30 ft">Community 30 ft</option>
+          <option value="Indoor Winter">Indoor Winter</option>
+          <option value="Sports Watch Party">Sports Watch Party</option>
+          <option value="Gaming Night">Gaming Night</option>
+          <option value="Karaoke Night">Karaoke Night</option>
+          <option value="Birthday or Graduation">Birthday or Graduation</option>
+          <option value="Elopement / Micro-Wedding">Elopement / Micro-Wedding</option>
+          <option value="Wedding Reception Cinema">Wedding Reception Cinema</option>
+          <option value="Wedding Full Day">Wedding Full Day</option>
+          <option value="Corporate or Community Org">Corporate or Community Org</option>
         </select>
       </div>
 

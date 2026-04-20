@@ -4,6 +4,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Animatable CSS custom property for gradient angle */
+@property --ox-angle {
+  syntax: '<angle>';
+  initial-value: 135deg;
+  inherits: false;
+}
+
 @theme inline {
   /* Palette */
   --color-screening: #0A0A0A;
@@ -16,7 +23,7 @@
   --color-cream: #F5F1EC;
   --color-projector: #FAFAFA;
 
-  /* shadcn tokens mapped to palette */
+  /* shadcn tokens */
   --color-background: #0A0A0A;
   --color-foreground: #FAFAFA;
   --color-card: #1A1A1A;
@@ -97,6 +104,25 @@
   }
   .oxblood-rule {
     @apply block w-12 h-[2px] bg-oxblood mt-3;
+  }
+  /* CSS noise texture via pseudo — no JS needed */
+  .noise-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    opacity: 0.025;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  /* Oxblood animated gradient button sheen */
+  .btn-primary {
+    background: linear-gradient(var(--ox-angle), #6B1F1F, #8a2828);
+    animation: ox-spin 6s linear infinite;
+  }
+  @keyframes ox-spin {
+    to { --ox-angle: 495deg; }
   }
 }
 
