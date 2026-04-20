@@ -34,11 +34,11 @@ export default function AboutPage() {
           <div className="mx-auto max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Body copy */}
-              <div className="lg:col-span-2 space-y-6 text-steel leading-relaxed text-base">
+              <div className="lg:col-span-2 space-y-6 text-steel leading-relaxed text-base max-w-prose">
                 <p>
                   After Dusk Events was built on one idea: outdoor events deserve the same attention
                   to detail as any indoor production. A good movie night is not just a projector on
-                  a sheet. it is audio you can hear clearly in the back row, a screen big enough
+                  a sheet. It is audio you can hear clearly in the back row, a screen big enough
                   that no one strains, lighting that holds the mood without blowing out the picture,
                   and an operator who has already tested everything before you arrive.
                 </p>
@@ -47,7 +47,7 @@ export default function AboutPage() {
                   Canton. Military field service teaches you to plan for every failure mode: weather,
                   power, equipment, logistics. That mindset is what you hire when you hire After
                   Dusk Events. Every event runs off a checklist. Every piece of gear has a backup.
-                  Every arrival is 2.5 to 3 hours before the first guest walks in.
+                  Every arrival is 3 hours before the first guest walks in.
                 </p>
                 <p>
                   We serve residential, HOA, school, corporate, and wedding clients across the greater
@@ -56,10 +56,10 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              {/* Sidebar card */}
+              {/* Sidebar */}
               <div className="space-y-4">
                 <div className="bg-charcoal rounded-lg p-6 border border-white/10">
-                  <h2 className="font-heading text-base text-projector mb-4 uppercase tracking-wider text-sm">
+                  <h2 className="font-heading text-sm text-projector mb-4 uppercase tracking-wider">
                     Quick facts
                   </h2>
                   <ul className="space-y-4">
@@ -95,10 +95,10 @@ export default function AboutPage() {
 
                 <div className="bg-charcoal rounded-lg p-6 border border-white/10">
                   <p className="text-steel text-sm leading-relaxed italic">
-                    "Every piece of gear has a backup. Every arrival is 2.5 to 3 hours before
+                    "Every piece of gear has a backup. Every arrival is 3 hours before
                     the first guest walks in."
                   </p>
-                  <p className="text-steel text-xs mt-3 not-italic">-- Blake Drain, Owner</p>
+                  <p className="text-steel text-xs mt-3 not-italic">Blake Drain, Owner</p>
                 </div>
               </div>
             </div>
@@ -112,13 +112,13 @@ export default function AboutPage() {
               Let us run your next event.
             </h2>
             <p className="text-steel mb-8 leading-relaxed">
-              Tell us what you are planning and we will send a tailored quote within 24 hours.
+              Tell us what you are planning and we will put together a real quote within 24 hours.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood/90 transition-colors"
+              className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(107,31,31,0.4)] transition-all duration-300 min-h-[44px]"
             >
-              Request a Quote
+              Get a Quote
             </Link>
           </div>
         </section>

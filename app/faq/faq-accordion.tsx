@@ -58,7 +58,7 @@ const faqs = [
   },
   {
     q: "Do you handle weddings?",
-    a: "Yes. Three tiers: Elopement Contact for quote Wedding Reception Cinema Contact for quote and Wedding Full Day Contact for quote. See the Weddings page for full details.",
+    a: "Yes. Three tiers: Elopement, Wedding Reception Cinema, and Wedding Full Day. See the Weddings page for full details.",
   },
 ];
 

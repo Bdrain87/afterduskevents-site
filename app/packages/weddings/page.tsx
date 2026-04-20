@@ -46,7 +46,7 @@ const tiers = [
   },
   {
     name: "Wedding Full Day",
-    duration: "Ceremony through reception",
+    duration: "6 to 8 hour event (ceremony through reception)",
     includes: [
       "Dual audio zones: ceremony and reception",
       "Wireless mic pair for vows and officiant",

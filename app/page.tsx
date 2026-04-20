@@ -127,7 +127,7 @@ export default function HomePage() {
         {/* Hero */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=2000"
+            src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=2000&q=80&auto=format"
             alt="Outdoor cinema at night"
             fill
             className="object-cover object-center scale-105"
@@ -319,7 +319,7 @@ export default function HomePage() {
             </div>
             <div className="aspect-[4/3] bg-screening rounded-lg overflow-hidden border border-white/8 relative">
               <Image
-                src="https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?w=800"
+                src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=800&q=80&auto=format"
                 alt="Wedding outdoor cinema setup"
                 fill
                 className="object-cover opacity-70"
