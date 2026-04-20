@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import FilmGrain from "@/components/film-grain";
 import CursorSpotlight from "@/components/cursor-spotlight";
 import ScrollProgress from "@/components/scroll-progress";
+import LoadingScreen from "@/components/loading-screen";
 import "./globals.css";
 
 const inter = Inter({
@@ -87,6 +88,7 @@ export default function RootLayout({
       className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-brand-black text-brand-white">
+        <LoadingScreen />
         <ScrollProgress />
         <CursorSpotlight />
         <FilmGrain />
