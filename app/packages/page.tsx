@@ -147,7 +147,7 @@ export default function PackagesPage() {
                   </ul>
                   <Link
                     href={`/contact?package=${encodeURIComponent(pkg.name)}`}
-                    className={`inline-flex items-center justify-center rounded px-5 py-3 text-sm font-semibold transition-colors ${
+                    className={`inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-colors ${
                       pkg.featured
                         ? "bg-brand-red text-brand-white hover:bg-brand-red/90"
                         : "border border-white/20 text-brand-white hover:border-white/50 hover:bg-white/5"
@@ -195,7 +195,7 @@ export default function PackagesPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded px-8 py-4 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors"
+              className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors"
             >
               Request a Quote
             </Link>

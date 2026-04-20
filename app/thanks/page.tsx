@@ -27,7 +27,7 @@ export default function ThanksPage() {
           </p>
           <Link
             href="/"
-            className="inline-flex items-center justify-center rounded px-6 py-3 text-base font-semibold text-brand-white border border-white/30 hover:border-white/60 hover:bg-white/5 transition-colors"
+            className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-brand-white border border-white/30 hover:border-white/60 hover:bg-white/5 transition-colors"
           >
             Back to Home
           </Link>

@@ -50,9 +50,9 @@ export default function FaqAccordion() {
         <AccordionItem
           key={i}
           value={`item-${i}`}
-          className="bg-brand-charcoal border border-white/10 rounded-lg px-6 data-[state=open]:border-brand-red/40"
+          className="bg-brand-charcoal border border-white/10 rounded-lg px-6 data-open:border-brand-red/40"
         >
-          <AccordionTrigger className="text-brand-white font-heading text-base text-left py-5 hover:no-underline hover:text-brand-white [&[data-state=open]]:text-brand-red">
+          <AccordionTrigger className="text-brand-white font-heading text-base text-left py-5 hover:no-underline hover:text-brand-white data-[panel-open]:text-brand-red">
             {faq.q}
           </AccordionTrigger>
           <AccordionContent className="text-brand-gray leading-relaxed pb-5">

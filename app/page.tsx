@@ -132,13 +132,13 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded px-8 py-4 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-red"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-red"
               >
                 Request a Quote
               </Link>
               <Link
                 href="/packages"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded px-8 py-4 text-base font-semibold text-brand-white border border-brand-white/40 hover:border-brand-white/80 hover:bg-brand-white/5 transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-white border border-white/20 hover:border-white/50 hover:bg-white/5 transition-colors"
               >
                 See Packages
               </Link>
@@ -247,7 +247,7 @@ export default function HomePage() {
                   <p className="text-brand-gray text-sm leading-relaxed flex-1">{pkg.desc}</p>
                   <Link
                     href={`/contact?package=${encodeURIComponent(pkg.name)}`}
-                    className="mt-6 inline-flex items-center justify-center rounded px-4 py-2.5 text-sm font-semibold text-brand-white border border-white/20 hover:border-white/50 hover:bg-white/5 transition-colors"
+                    className="mt-6 inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold text-brand-white border border-white/20 hover:border-white/50 hover:bg-white/5 transition-colors"
                   >
                     Request this Package
                   </Link>
@@ -273,7 +273,7 @@ export default function HomePage() {
             </p>
             <Link
               href="/about"
-              className="inline-flex items-center justify-center rounded px-6 py-3 text-base font-semibold text-brand-white border border-white/30 hover:border-white/60 hover:bg-white/5 transition-colors"
+              className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-brand-white border border-white/30 hover:border-white/60 hover:bg-white/5 transition-colors"
             >
               Read the Full Story
             </Link>
@@ -291,7 +291,7 @@ export default function HomePage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded px-8 py-4 text-base font-semibold text-brand-red bg-brand-white hover:bg-brand-white/90 transition-colors"
+              className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-red bg-brand-white hover:bg-brand-white/90 transition-colors"
             >
               Request a Quote
             </Link>

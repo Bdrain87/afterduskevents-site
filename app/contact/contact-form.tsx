@@ -1,28 +1,26 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { submitInquiry, type InquiryState } from "@/app/actions/inquiry";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 const initialState: InquiryState = {};
 
 function FieldError({ errors, field }: { errors?: Record<string, string[]>; field: string }) {
   const msgs = errors?.[field];
   if (!msgs?.length) return null;
-  return <p className="mt-1 text-xs text-brand-red" role="alert">{msgs[0]}</p>;
+  return (
+    <p id={`${field}-error`} className="mt-1 text-xs text-brand-red" role="alert">
+      {msgs[0]}
+    </p>
+  );
 }
 
 const labelClass = "block text-sm font-medium text-brand-white mb-1.5";
 const inputClass =
-  "w-full rounded bg-brand-black border border-white/15 text-brand-white placeholder-brand-gray px-3 py-2.5 text-sm focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors";
+  "w-full rounded-lg bg-brand-black border border-white/15 text-brand-white placeholder-brand-gray px-3 py-2.5 text-sm focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors";
+const selectClass = `${inputClass} appearance-none`;
 
 export default function ContactForm() {
   const searchParams = useSearchParams();
@@ -35,8 +33,6 @@ export default function ContactForm() {
       toast.error(state.message, { duration: 8000 });
     }
   }, [state.message]);
-
-  const packageRef = useRef<HTMLSelectElement>(null);
 
   return (
     <form action={formAction} className="space-y-6" noValidate>
@@ -131,7 +127,7 @@ export default function ContactForm() {
           name="guestCount"
           required
           defaultValue=""
-          className={`${inputClass} appearance-none`}
+          className={selectClass}
           aria-describedby={state.errors?.guestCount ? "guestCount-error" : undefined}
         >
           <option value="" disabled>Select range</option>
@@ -153,7 +149,7 @@ export default function ContactForm() {
           name="eventType"
           required
           defaultValue=""
-          className={`${inputClass} appearance-none`}
+          className={selectClass}
           aria-describedby={state.errors?.eventType ? "eventType-error" : undefined}
         >
           <option value="" disabled>Select type</option>
@@ -170,13 +166,14 @@ export default function ContactForm() {
       {/* Package interest */}
       <div>
         <label htmlFor="packageInterest" className={labelClass}>
-          Package interest <span className="text-brand-gray text-xs font-normal">(optional)</span>
+          Package interest{" "}
+          <span className="text-brand-gray text-xs font-normal">(optional)</span>
         </label>
         <select
           id="packageInterest"
           name="packageInterest"
           defaultValue={prefilledPackage}
-          className={`${inputClass} appearance-none`}
+          className={selectClass}
         >
           <option value="">Not sure</option>
           <option value="Basic Cinema">Basic Cinema</option>
@@ -202,6 +199,7 @@ export default function ContactForm() {
           maxLength={500}
           placeholder="Vibe, venue, any special setup notes..."
           className={`${inputClass} resize-none`}
+          aria-describedby={state.errors?.details ? "details-error" : undefined}
         />
         <FieldError errors={state.errors} field="details" />
       </div>
@@ -221,27 +219,29 @@ export default function ContactForm() {
       </div>
 
       {/* Consent */}
-      <div className="flex items-start gap-3">
-        <input
-          id="consent"
-          name="consent"
-          type="checkbox"
-          required
-          value="yes"
-          className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/15 bg-brand-black accent-brand-red focus:ring-brand-red"
-          aria-describedby={state.errors?.consent ? "consent-error" : undefined}
-        />
-        <label htmlFor="consent" className="text-sm text-brand-gray leading-relaxed cursor-pointer">
-          I agree to receive a reply by email or phone.{" "}
-          <span className="text-brand-red" aria-hidden="true">*</span>
-        </label>
+      <div>
+        <div className="flex items-start gap-3">
+          <input
+            id="consent"
+            name="consent"
+            type="checkbox"
+            required
+            value="yes"
+            className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/15 bg-brand-black accent-brand-red focus:ring-brand-red"
+            aria-describedby={state.errors?.consent ? "consent-error" : undefined}
+          />
+          <label htmlFor="consent" className="text-sm text-brand-gray leading-relaxed cursor-pointer">
+            I agree to receive a reply by email or phone.{" "}
+            <span className="text-brand-red" aria-hidden="true">*</span>
+          </label>
+        </div>
+        <FieldError errors={state.errors} field="consent" />
       </div>
-      <FieldError errors={state.errors} field="consent" />
 
       <button
         type="submit"
         disabled={isPending}
-        className="w-full inline-flex items-center justify-center rounded px-6 py-3.5 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 disabled:opacity-60 disabled:cursor-not-allowed transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-red"
+        className="w-full inline-flex items-center justify-center rounded-lg px-6 py-3.5 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 disabled:opacity-60 disabled:cursor-not-allowed transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-red"
       >
         {isPending ? "Sending..." : "Send Inquiry"}
       </button>

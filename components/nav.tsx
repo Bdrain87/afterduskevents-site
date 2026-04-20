@@ -44,7 +44,7 @@ export default function Nav() {
             ))}
             <Link
               href="/contact"
-              className="ml-2 inline-flex items-center justify-center rounded px-4 py-2 text-sm font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-red"
+              className="ml-2 inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-red"
             >
               Request a Quote
             </Link>
@@ -81,7 +81,7 @@ export default function Nav() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-3 inline-flex items-center justify-center rounded px-4 py-3 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors"
+              className="mt-3 inline-flex items-center justify-center rounded-lg px-4 py-3 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors"
             >
               Request a Quote
             </Link>

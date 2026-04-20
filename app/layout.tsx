@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     title: "Outdoor Movie Rentals & Event Cinema | After Dusk Events | Canton, MI",
     description:
       "Premium outdoor cinema and event rental. 30-foot screen, concert-grade sound, veteran-owned. Serving Canton, Ann Arbor, Detroit, and Southeast Michigan within 60 miles.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "After Dusk Events - Outdoor Cinema Michigan" }],
+    images: [{ url: "/og-image.png", width: 1282, height: 836, alt: "After Dusk Events - Outdoor Cinema Michigan" }],
   },
   twitter: {
     card: "summary_large_image",
