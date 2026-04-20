@@ -5,22 +5,25 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Brand colors */
-  --color-brand-black: #0A0A0A;
-  --color-brand-red: #E63946;
-  --color-brand-white: #FAFAFA;
-  --color-brand-gray: #808891;
-  --color-brand-charcoal: #1A1A1A;
-  --color-brand-green: #4C8A4F;
+  /* Palette */
+  --color-screening: #0A0A0A;
+  --color-charcoal: #1A1A1A;
+  --color-slate: #3A3A3A;
+  --color-steel: #808891;
+  --color-silver: #B8B8B8;
+  --color-oxblood: #6B1F1F;
+  --color-oxblood-deep: #4A0E0E;
+  --color-cream: #F5F1EC;
+  --color-projector: #FAFAFA;
 
-  /* shadcn tokens remapped to brand */
+  /* shadcn tokens mapped to palette */
   --color-background: #0A0A0A;
   --color-foreground: #FAFAFA;
   --color-card: #1A1A1A;
   --color-card-foreground: #FAFAFA;
   --color-popover: #1A1A1A;
   --color-popover-foreground: #FAFAFA;
-  --color-primary: #E63946;
+  --color-primary: #6B1F1F;
   --color-primary-foreground: #FAFAFA;
   --color-secondary: #1A1A1A;
   --color-secondary-foreground: #FAFAFA;
@@ -28,17 +31,16 @@
   --color-muted-foreground: #808891;
   --color-accent: #1A1A1A;
   --color-accent-foreground: #FAFAFA;
-  --color-destructive: #E63946;
+  --color-destructive: #6B1F1F;
   --color-border: #2a2a2a;
   --color-input: #1A1A1A;
-  --color-ring: #E63946;
+  --color-ring: #6B1F1F;
 
   --radius-sm: 0.25rem;
   --radius-md: 0.375rem;
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
 
-  /* Font families */
   --font-sans: var(--font-inter);
   --font-heading: var(--font-montserrat);
   --font-display: var(--font-bebas);
@@ -51,7 +53,7 @@
   --card-foreground: #FAFAFA;
   --popover: #1A1A1A;
   --popover-foreground: #FAFAFA;
-  --primary: #E63946;
+  --primary: #6B1F1F;
   --primary-foreground: #FAFAFA;
   --secondary: #1A1A1A;
   --secondary-foreground: #FAFAFA;
@@ -59,10 +61,10 @@
   --muted-foreground: #808891;
   --accent: #1A1A1A;
   --accent-foreground: #FAFAFA;
-  --destructive: #E63946;
+  --destructive: #6B1F1F;
   --border: #2a2a2a;
   --input: #2a2a2a;
-  --ring: #E63946;
+  --ring: #6B1F1F;
   --radius: 0.5rem;
 }
 
@@ -72,7 +74,7 @@
     box-sizing: border-box;
   }
   body {
-    @apply bg-brand-black text-brand-white;
+    @apply bg-screening text-projector;
     font-family: var(--font-inter), system-ui, sans-serif;
     font-size: 16px;
     line-height: 1.6;
@@ -92,6 +94,9 @@
   .font-heading {
     font-family: var(--font-montserrat), system-ui, sans-serif;
     font-weight: 700;
+  }
+  .oxblood-rule {
+    @apply block w-12 h-[2px] bg-oxblood mt-3;
   }
 }
 

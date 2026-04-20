@@ -8,9 +8,9 @@ import LogoMark from "./logo-mark";
 
 const links = [
   { href: "/packages", label: "Packages" },
+  { href: "/add-ons", label: "Add-Ons" },
   { href: "/faq", label: "FAQ" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function Nav() {
@@ -18,13 +18,13 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-brand-black/95 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-screening/95 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="After Dusk Events home">
             <LogoMark size={36} />
-            <span className="font-display text-2xl tracking-wider text-brand-white leading-none">
+            <span className="font-display text-2xl tracking-wider text-projector leading-none">
               AFTER DUSK EVENTS
             </span>
           </Link>
@@ -35,8 +35,8 @@ export default function Nav() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-brand-white ${
-                  pathname === link.href ? "text-brand-white" : "text-brand-gray"
+                className={`text-sm font-medium transition-colors hover:text-projector ${
+                  pathname === link.href ? "text-projector" : "text-steel"
                 }`}
               >
                 {link.label}
@@ -44,7 +44,7 @@ export default function Nav() {
             ))}
             <Link
               href="/contact"
-              className="ml-2 inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-red"
+              className="ml-2 inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold text-projector bg-oxblood hover:bg-oxblood/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-oxblood"
             >
               Request a Quote
             </Link>
@@ -52,7 +52,7 @@ export default function Nav() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden text-brand-white p-2 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-red"
+            className="md:hidden text-projector p-2 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-oxblood"
             onClick={() => setOpen(!open)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
@@ -64,15 +64,15 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-white/10 bg-brand-black">
+        <div className="md:hidden border-t border-white/10 bg-screening">
           <nav className="flex flex-col px-4 py-4 gap-1" aria-label="Mobile navigation">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={`py-3 px-2 text-base font-medium border-b border-white/5 transition-colors hover:text-brand-white ${
-                  pathname === link.href ? "text-brand-white" : "text-brand-gray"
+                className={`py-3 px-2 text-base font-medium border-b border-white/5 transition-colors hover:text-projector ${
+                  pathname === link.href ? "text-projector" : "text-steel"
                 }`}
               >
                 {link.label}
@@ -81,7 +81,7 @@ export default function Nav() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-3 inline-flex items-center justify-center rounded-lg px-4 py-3 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors"
+              className="mt-3 inline-flex items-center justify-center rounded-lg px-4 py-3 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood/90 transition-colors"
             >
               Request a Quote
             </Link>

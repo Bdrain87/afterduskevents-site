@@ -125,7 +125,7 @@ export default function HomePage() {
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-black/70 via-brand-black/50 to-brand-black/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-screening/70 via-screening/50 to-screening/90" />
 
           <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center pt-16">
             <AnimatedHeroText />
@@ -139,7 +139,7 @@ export default function HomePage() {
                 <MagneticButton>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-red"
+                    className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-oxblood"
                   >
                     Request a Quote
                   </Link>
@@ -147,7 +147,7 @@ export default function HomePage() {
                 <MagneticButton>
                   <Link
                     href="/packages"
-                    className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-white border border-white/20 hover:border-white/50 hover:bg-white/5 transition-colors"
+                    className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector border border-white/20 hover:border-white/50 hover:bg-white/5 transition-colors"
                   >
                     See Packages
                   </Link>
@@ -158,23 +158,23 @@ export default function HomePage() {
 
           {/* Scroll hint */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-            <span className="text-brand-white text-xs tracking-widest uppercase">Scroll</span>
+            <span className="text-projector text-xs tracking-widest uppercase">Scroll</span>
             <div
-              className="w-px h-10 bg-brand-white"
+              className="w-px h-10 bg-projector"
               style={{ animation: "scrollHint 2s ease-in-out infinite" }}
             />
           </div>
         </section>
 
         {/* ── Trust strip ───────────────────────────────────────── */}
-        <div className="bg-brand-charcoal border-b border-white/10">
+        <div className="bg-charcoal border-b border-white/10">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-center gap-3">
-            <div className="flex items-center gap-0.5 text-brand-red shrink-0" aria-label="5 stars">
+            <div className="flex items-center gap-0.5 text-oxblood shrink-0" aria-label="5 stars">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} size={14} fill="currentColor" aria-hidden="true" />
               ))}
             </div>
-            <p className="text-brand-gray text-sm text-center">
+            <p className="text-steel text-sm text-center">
               Serving backyards, weddings, HOAs, schools, and corporate teams within 60 miles of Canton, MI.
             </p>
           </div>
@@ -186,7 +186,7 @@ export default function HomePage() {
             <FadeIn>
               <h2
                 id="why-heading"
-                className="text-center font-heading text-3xl sm:text-4xl text-brand-white mb-16"
+                className="text-center font-heading text-3xl sm:text-4xl text-projector mb-16"
               >
                 Not your average backyard projector
               </h2>
@@ -194,28 +194,28 @@ export default function HomePage() {
             <FadeInGroup className="grid grid-cols-1 md:grid-cols-3 gap-8" stagger={0.12}>
               {[
                 {
-                  icon: <Monitor size={32} className="text-brand-red" aria-hidden="true" />,
+                  icon: <Monitor size={32} className="text-oxblood" aria-hidden="true" />,
                   title: "30-Foot Screen",
                   body: "Our inflatable screen dwarfs typical backyard setups. Every guest gets a front-row seat, whether they are 10 feet away or 100.",
                 },
                 {
-                  icon: <Volume2 size={32} className="text-brand-red" aria-hidden="true" />,
+                  icon: <Volume2 size={32} className="text-oxblood" aria-hidden="true" />,
                   title: "Concert-Grade Sound",
                   body: "QSC speakers and subwoofers. Dialog stays crisp at any volume. Bass hits right. No tinny Bluetooth speaker vibes.",
                 },
                 {
-                  icon: <Zap size={32} className="text-brand-red" aria-hidden="true" />,
+                  icon: <Zap size={32} className="text-oxblood" aria-hidden="true" />,
                   title: "Power Independence",
                   body: "Generator-backed. We show up anywhere inside 60 miles of Canton -- field, farm, park, or parking lot -- outlet or no outlet.",
                 },
               ].map((col) => (
                 <FadeInItem key={col.title}>
-                  <div className="bg-brand-charcoal rounded-lg p-8 h-full group hover:bg-brand-charcoal/80 transition-colors duration-300 border border-transparent hover:border-white/8">
+                  <div className="bg-charcoal rounded-lg p-8 h-full group hover:bg-charcoal/80 transition-colors duration-300 border border-transparent hover:border-white/8">
                     <div className="mb-5 group-hover:scale-110 transition-transform duration-300 inline-block">
                       {col.icon}
                     </div>
-                    <h3 className="font-heading text-xl text-brand-white mb-3">{col.title}</h3>
-                    <p className="text-brand-gray leading-relaxed">{col.body}</p>
+                    <h3 className="font-heading text-xl text-projector mb-3">{col.title}</h3>
+                    <p className="text-steel leading-relaxed">{col.body}</p>
                   </div>
                 </FadeInItem>
               ))}
@@ -224,12 +224,12 @@ export default function HomePage() {
         </section>
 
         {/* ── How it works ──────────────────────────────────────── */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-brand-charcoal" aria-labelledby="how-heading">
+        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="how-heading">
           <div className="mx-auto max-w-7xl">
             <FadeIn>
               <h2
                 id="how-heading"
-                className="text-center font-heading text-3xl sm:text-4xl text-brand-white mb-16"
+                className="text-center font-heading text-3xl sm:text-4xl text-projector mb-16"
               >
                 How it works
               </h2>
@@ -238,11 +238,11 @@ export default function HomePage() {
               {steps.map((step) => (
                 <FadeInItem key={step.n}>
                   <div className="flex flex-col">
-                    <div className="font-display text-5xl text-brand-red leading-none mb-4">
+                    <div className="font-display text-5xl text-oxblood leading-none mb-4">
                       {step.n}
                     </div>
-                    <h3 className="font-heading text-base text-brand-white mb-2">{step.title}</h3>
-                    <p className="text-brand-gray text-sm leading-relaxed">{step.body}</p>
+                    <h3 className="font-heading text-base text-projector mb-2">{step.title}</h3>
+                    <p className="text-steel text-sm leading-relaxed">{step.body}</p>
                   </div>
                 </FadeInItem>
               ))}
@@ -256,13 +256,13 @@ export default function HomePage() {
             <FadeIn className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12 gap-4">
               <h2
                 id="packages-heading"
-                className="font-heading text-3xl sm:text-4xl text-brand-white"
+                className="font-heading text-3xl sm:text-4xl text-projector"
               >
                 Popular packages
               </h2>
               <Link
                 href="/packages"
-                className="flex items-center gap-2 text-brand-red text-sm font-medium hover:text-brand-red/80 transition-colors group"
+                className="flex items-center gap-2 text-oxblood text-sm font-medium hover:text-oxblood/80 transition-colors group"
               >
                 View all packages{" "}
                 <ArrowRight
@@ -277,16 +277,16 @@ export default function HomePage() {
                 <AnimatedCard
                   key={pkg.name}
                   delay={i * 0.1}
-                  className="bg-brand-charcoal rounded-lg p-8 flex flex-col border border-white/8 hover:border-white/20 transition-colors duration-300"
+                  className="bg-charcoal rounded-lg p-8 flex flex-col border border-white/8 hover:border-white/20 transition-colors duration-300"
                 >
-                  <span className="inline-flex mb-4 self-start bg-brand-red/10 text-brand-red text-xs font-semibold px-3 py-1 rounded-full">
+                  <span className="inline-flex mb-4 self-start bg-oxblood/10 text-oxblood text-xs font-semibold px-3 py-1 rounded-full">
                     {pkg.range}
                   </span>
-                  <h3 className="font-heading text-xl text-brand-white mb-3">{pkg.name}</h3>
-                  <p className="text-brand-gray text-sm leading-relaxed flex-1">{pkg.desc}</p>
+                  <h3 className="font-heading text-xl text-projector mb-3">{pkg.name}</h3>
+                  <p className="text-steel text-sm leading-relaxed flex-1">{pkg.desc}</p>
                   <Link
                     href={`/contact?package=${encodeURIComponent(pkg.name)}`}
-                    className="mt-6 inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold text-brand-white border border-white/20 hover:border-white/50 hover:bg-white/5 transition-colors"
+                    className="mt-6 inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold text-projector border border-white/20 hover:border-white/50 hover:bg-white/5 transition-colors"
                   >
                     Request this Package
                   </Link>
@@ -297,18 +297,18 @@ export default function HomePage() {
         </section>
 
         {/* ── About teaser ──────────────────────────────────────── */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-brand-charcoal" aria-labelledby="about-teaser-heading">
+        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="about-teaser-heading">
           <div className="mx-auto max-w-3xl text-center">
             <FadeIn>
               <h2
                 id="about-teaser-heading"
-                className="font-heading text-3xl sm:text-4xl text-brand-white mb-6"
+                className="font-heading text-3xl sm:text-4xl text-projector mb-6"
               >
                 Owner-operated. Mission-ready.
               </h2>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <p className="text-brand-gray text-lg leading-relaxed mb-10">
+              <p className="text-steel text-lg leading-relaxed mb-10">
                 After Dusk Events is owner-operated by Blake Drain, a U.S. Air Force veteran whose
                 field-service background shows up in every load-in. Checklists, backup plans, and
                 disciplined execution are not just marketing -- they are how the business runs.
@@ -318,7 +318,7 @@ export default function HomePage() {
               <MagneticButton className="inline-flex">
                 <Link
                   href="/about"
-                  className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-brand-white border border-white/30 hover:border-white/60 hover:bg-white/5 transition-colors"
+                  className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-projector border border-white/30 hover:border-white/60 hover:bg-white/5 transition-colors"
                 >
                   Read the Full Story
                 </Link>
@@ -328,15 +328,15 @@ export default function HomePage() {
         </section>
 
         {/* ── Final CTA ─────────────────────────────────────────── */}
-        <section className="bg-brand-red py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="cta-heading">
+        <section className="bg-oxblood py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="cta-heading">
           <div className="mx-auto max-w-2xl text-center">
             <FadeIn>
-              <h2 id="cta-heading" className="font-heading text-3xl sm:text-4xl text-brand-white mb-4">
+              <h2 id="cta-heading" className="font-heading text-3xl sm:text-4xl text-projector mb-4">
                 Ready to book?
               </h2>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <p className="text-brand-white/80 mb-8 text-lg">
+              <p className="text-projector/80 mb-8 text-lg">
                 Tell us about your event and we will send availability and a tailored quote within 24 hours.
               </p>
             </FadeIn>
@@ -344,7 +344,7 @@ export default function HomePage() {
               <MagneticButton className="inline-flex">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-red bg-brand-white hover:bg-brand-white/90 transition-colors"
+                  className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-oxblood bg-projector hover:bg-projector/90 transition-colors"
                 >
                   Request a Quote
                 </Link>

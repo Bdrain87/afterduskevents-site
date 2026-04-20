@@ -17,16 +17,16 @@ export default function FaqPage() {
       <Nav />
       <main className="flex-1 pt-16">
         {/* Header */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-charcoal">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-charcoal">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="font-heading text-4xl sm:text-5xl text-brand-white mb-4">
+            <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4">
               Frequently asked questions
             </h1>
-            <p className="text-brand-gray text-lg leading-relaxed">
+            <p className="text-steel text-lg leading-relaxed">
               Everything you need to know before booking. Still have a question?{" "}
               <Link
                 href="/contact"
-                className="text-brand-white underline hover:text-brand-gray transition-colors"
+                className="text-projector underline hover:text-steel transition-colors"
               >
                 Send us a message.
               </Link>
@@ -42,14 +42,14 @@ export default function FaqPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-brand-charcoal">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-heading text-2xl sm:text-3xl text-brand-white mb-4">
+            <h2 className="font-heading text-2xl sm:text-3xl text-projector mb-4">
               Ready to get a quote?
             </h2>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors"
+              className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood/90 transition-colors"
             >
               Request a Quote
             </Link>

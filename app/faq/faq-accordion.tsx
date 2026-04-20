@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   Accordion,
   AccordionContent,
@@ -10,36 +9,56 @@ import {
 
 const faqs = [
   {
+    q: "Why is every price a starting estimate?",
+    a: "Every event is different. Date, distance, duration, venue requirements, and add-ons all change the number. Every booking gets a custom quote from Blake. There is no automated calculator.",
+  },
+  {
+    q: "Can I sell tickets or charge admission?",
+    a: "No. All After Dusk Events bookings are for private, non-ticketed, non-admission-charged gatherings. Selling tickets, charging admission, taking donations tied to entry, or advertising to the general public turns a private screening into a public performance and triggers federal licensing obligations outside the scope of our service. The Service Agreement and Private Event Acknowledgment prohibit ticketed use. Violations void the agreement and shift full liability to the client.",
+  },
+  {
     q: "How far do you travel?",
-    a: "Anywhere inside 60 miles of Canton, MI. Farther on request -- a travel fee applies beyond that radius. If you are in the greater Detroit or Ann Arbor metro area, we can almost certainly make it work.",
+    a: "Anywhere inside 60 miles of Canton, MI. Beyond that, contact Blake for a custom quote with a travel fee.",
+  },
+  {
+    q: "Do we need to provide power?",
+    a: "No. Dual power comes with every event: Honda generator plus EcoFlow silent battery backup. Zero venue dependency.",
+  },
+  {
+    q: "Do we need wifi?",
+    a: "No. Starlink Mini is included on every event. If your venue wifi goes down, we do not.",
+  },
+  {
+    q: "Can we rent without a movie license?",
+    a: "Yes. We are a BYO Content business. You bring your own movie, show, slideshow, stream, or game feed. You supply the content and confirm you have the right to show it privately. We run the equipment.",
   },
   {
     q: "What if it rains?",
-    a: "We watch forecasts closely. Safety and equipment protection come first. If we call the event due to severe weather, you reschedule within 12 months at no extra cost. Our full Weather Policy is spelled out in the Service Agreement so there are no surprises.",
+    a: "We monitor forecasts 72 hours out. If we call the event, you get a free reschedule within 6 months. Our Weather Policy is in the Service Agreement.",
   },
   {
-    q: "Do you bring power?",
-    a: "Yes. Our Premium Cinema and Corporate packages include a generator so we can set up on fields, farms, and parks with no outlets nearby. For venues with reliable power, we can run off your outlets and skip the generator. Just ask when you request a quote.",
+    q: "Can we hook up our own console or laptop?",
+    a: "Yes, with a signed BYO Console Hookup Waiver. It is a $75 add-on.",
   },
   {
-    q: "What movie can we play?",
-    a: "Your choice. You supply the content -- streaming, Blu-ray, or download -- and confirm you have the rights to show it at your event. We are strictly the equipment and operator. We do not supply content or licensing.",
+    q: "Do you do indoor events?",
+    a: "Yes. The Indoor Winter package uses a 120 inch Da-Lite fast-fold screen. Works in community rooms, church halls, gyms, large living rooms, and barns. Year-round, weather-proof.",
   },
   {
-    q: "Are you insured?",
-    a: "Yes. We carry commercial general liability plus equipment coverage. A Certificate of Insurance is provided on request, which is typically needed for school and corporate venues.",
+    q: "Is the audio loud enough for a big crowd?",
+    a: "Yes. Four Soundboks 4 speakers cover up to ~250 people. Add extra Soundboks zones or the DFB MK2 subwoofer for larger crowds or dance floors.",
   },
   {
     q: "Do you need to stake the screen?",
-    a: "Yes. Stakes go 1 to 4 feet into the ground depending on conditions. You must call Miss Dig 811 (just dial 811) at least 3 business days before your event to get underground utilities marked. We will not set up without a ticket number and visible markings. It takes about five minutes and protects everyone.",
+    a: "Most of the time, no. Water ballast setup handles most sites including golf courses, vineyards, barns, hardscape, and private estates. If stakes are required by weather or venue, you call Miss Dig 811 at least 3 business days ahead and provide the ticket number and visible markings.",
   },
   {
-    q: "Can we do sports or gaming?",
-    a: "Absolutely. Sports Watch and Gaming are two of our most popular packages outside movie season. Live-stream support, multi-controller setup, you name it -- tell us what you are planning.",
+    q: "Are you insured?",
+    a: "Yes. Full commercial general liability. We can add venues as additional insured on request. Certificate of Insurance available on request.",
   },
   {
-    q: "How much is the deposit?",
-    a: "50% at signing to hold the date, balance due on event day. We accept card, tap, or invoice. Deposits are non-refundable, but rescheduling is available for weather per our Weather Policy in the Service Agreement.",
+    q: "Do you handle weddings?",
+    a: "Yes. Three tiers: Elopement starting at $1,400, Wedding Reception Cinema starting at $2,200, and Wedding Full Day starting at $3,200. See the Weddings page for full details.",
   },
 ];
 
@@ -50,12 +69,12 @@ export default function FaqAccordion() {
         <AccordionItem
           key={i}
           value={`item-${i}`}
-          className="bg-brand-charcoal border border-white/10 rounded-lg px-6 data-open:border-brand-red/40"
+          className="bg-charcoal border border-white/10 rounded-lg px-6 data-open:border-oxblood/40"
         >
-          <AccordionTrigger className="text-brand-white font-heading text-base text-left py-5 hover:no-underline hover:text-brand-white data-[panel-open]:text-brand-red">
+          <AccordionTrigger className="text-projector font-heading text-base text-left py-5 hover:no-underline hover:text-projector data-[panel-open]:text-oxblood">
             {faq.q}
           </AccordionTrigger>
-          <AccordionContent className="text-brand-gray leading-relaxed pb-5">
+          <AccordionContent className="text-steel leading-relaxed pb-5">
             {faq.a}
           </AccordionContent>
         </AccordionItem>

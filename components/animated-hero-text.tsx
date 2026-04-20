@@ -7,7 +7,7 @@ const WORDS = ["BIG SCREEN.", "BIGGER NIGHTS."];
 export default function AnimatedHeroText() {
   return (
     <h1
-      className="font-display text-7xl sm:text-9xl tracking-wider text-brand-white leading-none mb-6"
+      className="font-display text-7xl sm:text-9xl tracking-wider text-projector leading-none mb-6"
       aria-label="Big screen. Bigger nights."
     >
       {WORDS.map((word, wi) => (
@@ -39,7 +39,7 @@ export default function AnimatedHeroText() {
 export function AnimatedSubtext({ children }: { children: React.ReactNode }) {
   return (
     <motion.p
-      className="text-brand-white/90 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+      className="text-projector/90 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 1.1, ease: [0.25, 0.46, 0.45, 0.94] }}

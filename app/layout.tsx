@@ -87,7 +87,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-brand-black text-brand-white">
+      <body className="min-h-full flex flex-col bg-screening text-projector">
         <LoadingScreen />
         <ScrollProgress />
         <CursorSpotlight />

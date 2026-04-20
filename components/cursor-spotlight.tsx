@@ -48,7 +48,7 @@ export default function CursorSpotlight() {
         height: 400,
         borderRadius: "50%",
         background:
-          "radial-gradient(circle, rgba(230,57,70,0.06) 0%, rgba(230,57,70,0.02) 40%, transparent 70%)",
+          "radial-gradient(circle, rgba(107,31,31,0.06) 0%, rgba(107,31,31,0.02) 40%, transparent 70%)",
         willChange: "transform",
       }}
     />

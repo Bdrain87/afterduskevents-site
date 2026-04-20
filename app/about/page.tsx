@@ -17,12 +17,12 @@ export default function AboutPage() {
       <Nav />
       <main className="flex-1 pt-16">
         {/* Header */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-charcoal">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-charcoal">
           <div className="mx-auto max-w-3xl">
-            <h1 className="font-heading text-4xl sm:text-5xl text-brand-white mb-4">
+            <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4">
               Mission-ready cinema for Michigan nights.
             </h1>
-            <p className="text-brand-gray text-lg leading-relaxed">
+            <p className="text-steel text-lg leading-relaxed">
               Veteran-owned. Canton, MI. Built on the idea that your event deserves the same
               attention to detail as any indoor production.
             </p>
@@ -34,7 +34,7 @@ export default function AboutPage() {
           <div className="mx-auto max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Body copy */}
-              <div className="lg:col-span-2 space-y-6 text-brand-gray leading-relaxed text-base">
+              <div className="lg:col-span-2 space-y-6 text-steel leading-relaxed text-base">
                 <p>
                   After Dusk Events was built on one idea: outdoor events deserve the same attention
                   to detail as any indoor production. A good movie night is not just a projector on
@@ -58,24 +58,24 @@ export default function AboutPage() {
 
               {/* Sidebar card */}
               <div className="space-y-4">
-                <div className="bg-brand-charcoal rounded-lg p-6 border border-white/10">
-                  <h2 className="font-heading text-base text-brand-white mb-4 uppercase tracking-wider text-sm">
+                <div className="bg-charcoal rounded-lg p-6 border border-white/10">
+                  <h2 className="font-heading text-base text-projector mb-4 uppercase tracking-wider text-sm">
                     Quick facts
                   </h2>
                   <ul className="space-y-4">
                     {[
                       {
-                        icon: <MapPin size={16} className="text-brand-red shrink-0 mt-0.5" aria-hidden="true" />,
+                        icon: <MapPin size={16} className="text-oxblood shrink-0 mt-0.5" aria-hidden="true" />,
                         label: "Service area",
                         value: "60 miles of Canton, MI",
                       },
                       {
-                        icon: <Shield size={16} className="text-brand-red shrink-0 mt-0.5" aria-hidden="true" />,
+                        icon: <Shield size={16} className="text-oxblood shrink-0 mt-0.5" aria-hidden="true" />,
                         label: "Ownership",
                         value: "Veteran-owned and operated",
                       },
                       {
-                        icon: <FileCheck size={16} className="text-brand-red shrink-0 mt-0.5" aria-hidden="true" />,
+                        icon: <FileCheck size={16} className="text-oxblood shrink-0 mt-0.5" aria-hidden="true" />,
                         label: "Coverage",
                         value: "Insured -- COI on request",
                       },
@@ -83,22 +83,22 @@ export default function AboutPage() {
                       <li key={item.label} className="flex items-start gap-3">
                         {item.icon}
                         <div>
-                          <div className="text-brand-gray text-xs uppercase tracking-wider mb-0.5">
+                          <div className="text-steel text-xs uppercase tracking-wider mb-0.5">
                             {item.label}
                           </div>
-                          <div className="text-brand-white text-sm font-medium">{item.value}</div>
+                          <div className="text-projector text-sm font-medium">{item.value}</div>
                         </div>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="bg-brand-charcoal rounded-lg p-6 border border-white/10">
-                  <p className="text-brand-gray text-sm leading-relaxed italic">
+                <div className="bg-charcoal rounded-lg p-6 border border-white/10">
+                  <p className="text-steel text-sm leading-relaxed italic">
                     "Every piece of gear has a backup. Every arrival is 2.5 to 3 hours before
                     the first guest walks in."
                   </p>
-                  <p className="text-brand-gray text-xs mt-3 not-italic">-- Blake Drain, Owner</p>
+                  <p className="text-steel text-xs mt-3 not-italic">-- Blake Drain, Owner</p>
                 </div>
               </div>
             </div>
@@ -106,17 +106,17 @@ export default function AboutPage() {
         </section>
 
         {/* CTA */}
-        <section className="bg-brand-charcoal py-20 px-4 sm:px-6 lg:px-8">
+        <section className="bg-charcoal py-20 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-heading text-3xl text-brand-white mb-4">
+            <h2 className="font-heading text-3xl text-projector mb-4">
               Let us run your next event.
             </h2>
-            <p className="text-brand-gray mb-8 leading-relaxed">
+            <p className="text-steel mb-8 leading-relaxed">
               Tell us what you are planning and we will send a tailored quote within 24 hours.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors"
+              className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood/90 transition-colors"
             >
               Request a Quote
             </Link>
