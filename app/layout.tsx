@@ -3,6 +3,9 @@ import { Inter, Montserrat, Bebas_Neue } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
+import FilmGrain from "@/components/film-grain";
+import CursorSpotlight from "@/components/cursor-spotlight";
+import ScrollProgress from "@/components/scroll-progress";
 import "./globals.css";
 
 const inter = Inter({
@@ -84,6 +87,9 @@ export default function RootLayout({
       className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-brand-black text-brand-white">
+        <ScrollProgress />
+        <CursorSpotlight />
+        <FilmGrain />
         {children}
         <Toaster
           position="bottom-right"

@@ -4,6 +4,13 @@ import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import { Monitor, Volume2, Zap, Star, ArrowRight } from "lucide-react";
+import AnimatedHeroText, {
+  AnimatedSubtext,
+  AnimatedCTAs,
+} from "@/components/animated-hero-text";
+import FadeIn, { FadeInGroup, FadeInItem } from "@/components/fade-in";
+import AnimatedCard from "@/components/animated-card";
+import MagneticButton from "@/components/magnetic-button";
 
 export const metadata: Metadata = {
   title: "Outdoor Movie Rentals & Event Cinema | After Dusk Events | Canton, MI",
@@ -108,45 +115,58 @@ export default function HomePage() {
       <Nav />
 
       <main className="flex-1">
-        {/* Hero */}
+        {/* ── Hero ───────────────────────────────────────────────── */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=2000"
             alt="Outdoor cinema at night with a large glowing screen"
             fill
-            className="object-cover object-center"
+            className="object-cover object-center scale-105"
             priority
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-black/70 via-brand-black/50 to-brand-black/90" />
 
           <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center pt-16">
-            <h1 className="font-display text-7xl sm:text-9xl tracking-wider text-brand-white leading-none mb-6">
-              BIG SCREEN.<br />BIGGER NIGHTS.
-            </h1>
-            <p className="text-brand-white/90 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+            <AnimatedHeroText />
+            <AnimatedSubtext>
               Veteran-owned premium outdoor cinema and event rentals for Southeast Michigan.
               30-foot screen. Concert-grade sound. Full power independence.
               One operator, every detail handled.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-red"
-              >
-                Request a Quote
-              </Link>
-              <Link
-                href="/packages"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-white border border-white/20 hover:border-white/50 hover:bg-white/5 transition-colors"
-              >
-                See Packages
-              </Link>
-            </div>
+            </AnimatedSubtext>
+            <AnimatedCTAs>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <MagneticButton>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-red"
+                  >
+                    Request a Quote
+                  </Link>
+                </MagneticButton>
+                <MagneticButton>
+                  <Link
+                    href="/packages"
+                    className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-white border border-white/20 hover:border-white/50 hover:bg-white/5 transition-colors"
+                  >
+                    See Packages
+                  </Link>
+                </MagneticButton>
+              </div>
+            </AnimatedCTAs>
+          </div>
+
+          {/* Scroll hint */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+            <span className="text-brand-white text-xs tracking-widest uppercase">Scroll</span>
+            <div
+              className="w-px h-10 bg-brand-white"
+              style={{ animation: "scrollHint 2s ease-in-out infinite" }}
+            />
           </div>
         </section>
 
-        {/* Trust strip */}
+        {/* ── Trust strip ───────────────────────────────────────── */}
         <div className="bg-brand-charcoal border-b border-white/10">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-center gap-3">
             <div className="flex items-center gap-0.5 text-brand-red shrink-0" aria-label="5 stars">
@@ -160,16 +180,18 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Why section */}
+        {/* ── Why section ───────────────────────────────────────── */}
         <section className="py-24 px-4 sm:px-6 lg:px-8" aria-labelledby="why-heading">
           <div className="mx-auto max-w-7xl">
-            <h2
-              id="why-heading"
-              className="text-center font-heading text-3xl sm:text-4xl text-brand-white mb-16"
-            >
-              Not your average backyard projector
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <FadeIn>
+              <h2
+                id="why-heading"
+                className="text-center font-heading text-3xl sm:text-4xl text-brand-white mb-16"
+              >
+                Not your average backyard projector
+              </h2>
+            </FadeIn>
+            <FadeInGroup className="grid grid-cols-1 md:grid-cols-3 gap-8" stagger={0.12}>
               {[
                 {
                   icon: <Monitor size={32} className="text-brand-red" aria-hidden="true" />,
@@ -187,43 +209,51 @@ export default function HomePage() {
                   body: "Generator-backed. We show up anywhere inside 60 miles of Canton -- field, farm, park, or parking lot -- outlet or no outlet.",
                 },
               ].map((col) => (
-                <div key={col.title} className="bg-brand-charcoal rounded-lg p-8">
-                  <div className="mb-5">{col.icon}</div>
-                  <h3 className="font-heading text-xl text-brand-white mb-3">{col.title}</h3>
-                  <p className="text-brand-gray leading-relaxed">{col.body}</p>
-                </div>
+                <FadeInItem key={col.title}>
+                  <div className="bg-brand-charcoal rounded-lg p-8 h-full group hover:bg-brand-charcoal/80 transition-colors duration-300 border border-transparent hover:border-white/8">
+                    <div className="mb-5 group-hover:scale-110 transition-transform duration-300 inline-block">
+                      {col.icon}
+                    </div>
+                    <h3 className="font-heading text-xl text-brand-white mb-3">{col.title}</h3>
+                    <p className="text-brand-gray leading-relaxed">{col.body}</p>
+                  </div>
+                </FadeInItem>
               ))}
-            </div>
+            </FadeInGroup>
           </div>
         </section>
 
-        {/* How it works */}
+        {/* ── How it works ──────────────────────────────────────── */}
         <section className="py-24 px-4 sm:px-6 lg:px-8 bg-brand-charcoal" aria-labelledby="how-heading">
           <div className="mx-auto max-w-7xl">
-            <h2
-              id="how-heading"
-              className="text-center font-heading text-3xl sm:text-4xl text-brand-white mb-16"
-            >
-              How it works
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+            <FadeIn>
+              <h2
+                id="how-heading"
+                className="text-center font-heading text-3xl sm:text-4xl text-brand-white mb-16"
+              >
+                How it works
+              </h2>
+            </FadeIn>
+            <FadeInGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8" stagger={0.1} delay={0.1}>
               {steps.map((step) => (
-                <div key={step.n} className="flex flex-col">
-                  <div className="font-display text-5xl text-brand-red leading-none mb-4">
-                    {step.n}
+                <FadeInItem key={step.n}>
+                  <div className="flex flex-col">
+                    <div className="font-display text-5xl text-brand-red leading-none mb-4">
+                      {step.n}
+                    </div>
+                    <h3 className="font-heading text-base text-brand-white mb-2">{step.title}</h3>
+                    <p className="text-brand-gray text-sm leading-relaxed">{step.body}</p>
                   </div>
-                  <h3 className="font-heading text-base text-brand-white mb-2">{step.title}</h3>
-                  <p className="text-brand-gray text-sm leading-relaxed">{step.body}</p>
-                </div>
+                </FadeInItem>
               ))}
-            </div>
+            </FadeInGroup>
           </div>
         </section>
 
-        {/* Featured packages teaser */}
+        {/* ── Featured packages ─────────────────────────────────── */}
         <section className="py-24 px-4 sm:px-6 lg:px-8" aria-labelledby="packages-heading">
           <div className="mx-auto max-w-7xl">
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12 gap-4">
+            <FadeIn className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12 gap-4">
               <h2
                 id="packages-heading"
                 className="font-heading text-3xl sm:text-4xl text-brand-white"
@@ -232,14 +262,23 @@ export default function HomePage() {
               </h2>
               <Link
                 href="/packages"
-                className="flex items-center gap-2 text-brand-red text-sm font-medium hover:text-brand-red/80 transition-colors"
+                className="flex items-center gap-2 text-brand-red text-sm font-medium hover:text-brand-red/80 transition-colors group"
               >
-                View all packages <ArrowRight size={16} aria-hidden="true" />
+                View all packages{" "}
+                <ArrowRight
+                  size={16}
+                  aria-hidden="true"
+                  className="group-hover:translate-x-1 transition-transform duration-200"
+                />
               </Link>
-            </div>
+            </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {featuredPackages.map((pkg) => (
-                <div key={pkg.name} className="bg-brand-charcoal rounded-lg p-8 flex flex-col">
+              {featuredPackages.map((pkg, i) => (
+                <AnimatedCard
+                  key={pkg.name}
+                  delay={i * 0.1}
+                  className="bg-brand-charcoal rounded-lg p-8 flex flex-col border border-white/8 hover:border-white/20 transition-colors duration-300"
+                >
                   <span className="inline-flex mb-4 self-start bg-brand-red/10 text-brand-red text-xs font-semibold px-3 py-1 rounded-full">
                     {pkg.range}
                   </span>
@@ -251,55 +290,78 @@ export default function HomePage() {
                   >
                     Request this Package
                   </Link>
-                </div>
+                </AnimatedCard>
               ))}
             </div>
           </div>
         </section>
 
-        {/* About teaser */}
+        {/* ── About teaser ──────────────────────────────────────── */}
         <section className="py-24 px-4 sm:px-6 lg:px-8 bg-brand-charcoal" aria-labelledby="about-teaser-heading">
           <div className="mx-auto max-w-3xl text-center">
-            <h2
-              id="about-teaser-heading"
-              className="font-heading text-3xl sm:text-4xl text-brand-white mb-6"
-            >
-              Owner-operated. Mission-ready.
-            </h2>
-            <p className="text-brand-gray text-lg leading-relaxed mb-10">
-              After Dusk Events is owner-operated by Blake Drain, a U.S. Air Force veteran whose
-              field-service background shows up in every load-in. Checklists, backup plans, and
-              disciplined execution are not just marketing -- they are how the business runs.
-            </p>
-            <Link
-              href="/about"
-              className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-brand-white border border-white/30 hover:border-white/60 hover:bg-white/5 transition-colors"
-            >
-              Read the Full Story
-            </Link>
+            <FadeIn>
+              <h2
+                id="about-teaser-heading"
+                className="font-heading text-3xl sm:text-4xl text-brand-white mb-6"
+              >
+                Owner-operated. Mission-ready.
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="text-brand-gray text-lg leading-relaxed mb-10">
+                After Dusk Events is owner-operated by Blake Drain, a U.S. Air Force veteran whose
+                field-service background shows up in every load-in. Checklists, backup plans, and
+                disciplined execution are not just marketing -- they are how the business runs.
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <MagneticButton className="inline-flex">
+                <Link
+                  href="/about"
+                  className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-brand-white border border-white/30 hover:border-white/60 hover:bg-white/5 transition-colors"
+                >
+                  Read the Full Story
+                </Link>
+              </MagneticButton>
+            </FadeIn>
           </div>
         </section>
 
-        {/* Final CTA */}
+        {/* ── Final CTA ─────────────────────────────────────────── */}
         <section className="bg-brand-red py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="cta-heading">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 id="cta-heading" className="font-heading text-3xl sm:text-4xl text-brand-white mb-4">
-              Ready to book?
-            </h2>
-            <p className="text-brand-white/80 mb-8 text-lg">
-              Tell us about your event and we will send availability and a tailored quote within 24 hours.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-red bg-brand-white hover:bg-brand-white/90 transition-colors"
-            >
-              Request a Quote
-            </Link>
+            <FadeIn>
+              <h2 id="cta-heading" className="font-heading text-3xl sm:text-4xl text-brand-white mb-4">
+                Ready to book?
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="text-brand-white/80 mb-8 text-lg">
+                Tell us about your event and we will send availability and a tailored quote within 24 hours.
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <MagneticButton className="inline-flex">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-red bg-brand-white hover:bg-brand-white/90 transition-colors"
+                >
+                  Request a Quote
+                </Link>
+              </MagneticButton>
+            </FadeIn>
           </div>
         </section>
       </main>
 
       <Footer />
+
+      <style>{`
+        @keyframes scrollHint {
+          0%, 100% { opacity: 0.4; transform: scaleY(1); transform-origin: top; }
+          50% { opacity: 1; transform: scaleY(0.4); transform-origin: top; }
+        }
+      `}</style>
     </>
   );
 }

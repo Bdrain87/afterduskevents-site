@@ -3,6 +3,9 @@ import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import { Check } from "lucide-react";
+import FadeIn, { FadeInGroup, FadeInItem } from "@/components/fade-in";
+import AnimatedCard from "@/components/animated-card";
+import MagneticButton from "@/components/magnetic-button";
 
 export const metadata: Metadata = {
   title: "Packages & Pricing",
@@ -103,13 +106,17 @@ export default function PackagesPage() {
         {/* Header */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-charcoal">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="font-heading text-4xl sm:text-5xl text-brand-white mb-4">
-              Packages and pricing
-            </h1>
-            <p className="text-brand-gray text-lg leading-relaxed">
-              Every package includes professional setup, full systems test before your guests arrive,
-              and teardown when the night is done. Pricing varies by event size and location.
-            </p>
+            <FadeIn>
+              <h1 className="font-heading text-4xl sm:text-5xl text-brand-white mb-4">
+                Packages and pricing
+              </h1>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="text-brand-gray text-lg leading-relaxed">
+                Every package includes professional setup, full systems test before your guests arrive,
+                and teardown when the night is done. Pricing varies by event size and location.
+              </p>
+            </FadeIn>
           </div>
         </section>
 
@@ -117,13 +124,14 @@ export default function PackagesPage() {
         <section className="py-20 px-4 sm:px-6 lg:px-8" aria-label="Package options">
           <div className="mx-auto max-w-7xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {packages.map((pkg) => (
-                <div
+              {packages.map((pkg, i) => (
+                <AnimatedCard
                   key={pkg.name}
+                  delay={(i % 2) * 0.1}
                   className={`rounded-lg p-8 flex flex-col ${
                     pkg.featured
                       ? "bg-brand-charcoal ring-2 ring-brand-red"
-                      : "bg-brand-charcoal border border-white/10"
+                      : "bg-brand-charcoal border border-white/10 hover:border-white/20 transition-colors"
                   }`}
                 >
                   {pkg.featured && (
@@ -155,7 +163,7 @@ export default function PackagesPage() {
                   >
                     Request this Package
                   </Link>
-                </div>
+                </AnimatedCard>
               ))}
             </div>
           </div>
@@ -164,41 +172,55 @@ export default function PackagesPage() {
         {/* Add-ons */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-brand-charcoal" aria-labelledby="addons-heading">
           <div className="mx-auto max-w-7xl">
-            <h2
-              id="addons-heading"
-              className="font-heading text-2xl sm:text-3xl text-brand-white mb-2"
-            >
-              Add-ons
-            </h2>
-            <p className="text-brand-gray mb-10 text-sm">
-              Priced per event and quoted alongside your package.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <FadeIn>
+              <h2
+                id="addons-heading"
+                className="font-heading text-2xl sm:text-3xl text-brand-white mb-2"
+              >
+                Add-ons
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <p className="text-brand-gray mb-10 text-sm">
+                Priced per event and quoted alongside your package.
+              </p>
+            </FadeIn>
+            <FadeInGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" stagger={0.08}>
               {addOns.map((addon) => (
-                <div key={addon.name} className="bg-brand-black rounded-lg p-6 border border-white/10">
-                  <h3 className="font-heading text-base text-brand-white mb-2">{addon.name}</h3>
-                  <p className="text-brand-gray text-sm leading-relaxed">{addon.desc}</p>
-                </div>
+                <FadeInItem key={addon.name}>
+                  <div className="bg-brand-black rounded-lg p-6 border border-white/10 hover:border-white/20 transition-colors h-full">
+                    <h3 className="font-heading text-base text-brand-white mb-2">{addon.name}</h3>
+                    <p className="text-brand-gray text-sm leading-relaxed">{addon.desc}</p>
+                  </div>
+                </FadeInItem>
               ))}
-            </div>
+            </FadeInGroup>
           </div>
         </section>
 
         {/* CTA */}
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-heading text-3xl text-brand-white mb-4">
-              Not sure which package fits?
-            </h2>
-            <p className="text-brand-gray mb-8 leading-relaxed">
-              Tell us about your event and we will recommend the right setup and send a tailored quote.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors"
-            >
-              Request a Quote
-            </Link>
+            <FadeIn>
+              <h2 className="font-heading text-3xl text-brand-white mb-4">
+                Not sure which package fits?
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="text-brand-gray mb-8 leading-relaxed">
+                Tell us about your event and we will recommend the right setup and send a tailored quote.
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <MagneticButton className="inline-flex">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors"
+                >
+                  Request a Quote
+                </Link>
+              </MagneticButton>
+            </FadeIn>
           </div>
         </section>
       </main>
