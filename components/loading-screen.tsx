@@ -4,18 +4,21 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(SplitText);
 
-const IRIS_DURATION = 0.65;
+const IRIS_OPEN_S  = 0.65;
+const IRIS_CLOSE_S = 0.85;
 
 export default function LoadingScreen() {
-  const [show, setShow] = useState(false);
+  const [show,    setShow]    = useState(false);
   const [closing, setClosing] = useState(false);
-  const flashRef = useRef<HTMLDivElement>(null);
-  const wordmarkRef = useRef<HTMLDivElement>(null);
-  const taglineRef = useRef<HTMLParagraphElement>(null);
+
   const containerRef = useRef<HTMLDivElement>(null);
+  const flashRef     = useRef<HTMLDivElement>(null);
+  const wordmarkRef  = useRef<HTMLDivElement>(null);
+  const taglineRef   = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     if (sessionStorage.getItem("ade-loaded")) return;
@@ -24,37 +27,44 @@ export default function LoadingScreen() {
     setShow(true);
   }, []);
 
-  // Run text animations after iris opens
-  const handleIrisComplete = () => {
-    if (!wordmarkRef.current || !taglineRef.current) return;
+  // Text reveal fires after iris finishes opening
+  useGSAP(() => {
+    if (!show || !wordmarkRef.current || !taglineRef.current) return;
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
+    const split = new SplitText(wordmarkRef.current, { type: "chars" });
+    gsap.set(split.chars, { y: 40, opacity: 0 });
+    gsap.set(taglineRef.current, { opacity: 0, y: 10 });
 
-      const split = new SplitText(wordmarkRef.current!, { type: "chars" });
-      gsap.set(split.chars, { y: 30, opacity: 0 });
+    const tl = gsap.timeline({ delay: IRIS_OPEN_S + 0.08 });
 
-      // Projector flash
-      if (flashRef.current) {
-        tl.to(flashRef.current, { opacity: 0.45, duration: 0.08, ease: "none" })
-          .to(flashRef.current, { opacity: 0, duration: 0.2, ease: "power2.out" });
-      }
+    // Projector flash
+    if (flashRef.current) {
+      tl.to(flashRef.current, { opacity: 0.6, duration: 0.06, ease: "none" })
+        .to(flashRef.current, { opacity: 0, duration: 0.28, ease: "power2.out" });
+    }
 
-      tl.to(split.chars, {
-        y: 0, opacity: 1, duration: 0.5, stagger: 0.025, ease: "power2.out",
-      }, "-=0.1")
-        .fromTo(taglineRef.current, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.1")
-        .add(() => {
-          setTimeout(() => setClosing(true), 700);
-        });
-    }, containerRef);
+    // Characters stagger in
+    tl.to(split.chars, {
+      y: 0, opacity: 1,
+      duration: 0.55, stagger: 0.022,
+      ease: "power2.out",
+    }, "-=0.15");
 
-    return () => ctx.revert();
-  };
+    // Tagline
+    tl.to(taglineRef.current, {
+      opacity: 1, y: 0,
+      duration: 0.4, ease: "power2.out",
+    }, "-=0.15");
 
+    // Hold then close
+    tl.add(() => setClosing(true), "+=0.75");
+
+  }, { dependencies: [show], scope: containerRef });
+
+  // Unmount after iris closes
   useEffect(() => {
     if (!closing) return;
-    const t = setTimeout(() => setShow(false), 900);
+    const t = setTimeout(() => setShow(false), IRIS_CLOSE_S * 1000 + 120);
     return () => clearTimeout(t);
   }, [closing]);
 
@@ -65,21 +75,20 @@ export default function LoadingScreen() {
           key="loader"
           ref={containerRef}
           className="fixed inset-0 z-[200] bg-screening flex items-center justify-center overflow-hidden"
-          // Iris opens on mount
+          animate={{
+            clipPath: closing
+              ? "circle(0% at 50% 50%)"
+              : "circle(150% at 50% 50%)",
+          }}
           initial={{ clipPath: "circle(0% at 50% 50%)" }}
-          animate={{ clipPath: closing ? "circle(0% at 50% 50%)" : "circle(150% at 50% 50%)" }}
           transition={{
             clipPath: {
-              duration: closing ? 0.8 : IRIS_DURATION,
+              duration: closing ? IRIS_CLOSE_S : IRIS_OPEN_S,
               ease: closing ? [0.76, 0, 0.24, 1] : [0.16, 1, 0.3, 1],
             },
           }}
-          onAnimationComplete={(def) => {
-            // After iris opens, fire the text animation
-            if (!closing && typeof def === "object") handleIrisComplete();
-          }}
         >
-          {/* Projector flash layer */}
+          {/* Projector flash */}
           <div
             ref={flashRef}
             aria-hidden="true"
@@ -97,18 +106,18 @@ export default function LoadingScreen() {
             }}
           />
 
-          {/* Wordmark + tagline */}
-          <div className="relative z-20 text-center select-none px-4">
+          {/* Content */}
+          <div className="relative z-20 text-center select-none px-6">
             <div
               ref={wordmarkRef}
-              className="font-display text-[clamp(4rem,13vw,9.5rem)] text-projector tracking-[0.06em] leading-[0.88] overflow-hidden"
+              className="font-display text-[clamp(3rem,11vw,9rem)] text-projector tracking-[0.07em] leading-none overflow-hidden"
               aria-label="After Dusk Events"
             >
               AFTER DUSK EVENTS
             </div>
             <p
               ref={taglineRef}
-              className="text-steel text-xs tracking-[0.35em] uppercase mt-4 opacity-0"
+              className="text-steel text-xs tracking-[0.35em] uppercase mt-5"
             >
               Big screen. Bigger nights.
             </p>
