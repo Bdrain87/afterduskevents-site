@@ -1,0 +1,62 @@
+import type { Metadata } from "next";
+import Nav from "@/components/nav";
+import Footer from "@/components/footer";
+import Link from "next/link";
+import FaqAccordion from "./faq-accordion";
+
+export const metadata: Metadata = {
+  title: "FAQ",
+  description:
+    "Answers to common questions about outdoor cinema rentals -- travel distance, weather, power, deposit, insurance, and more. After Dusk Events, Canton, MI.",
+  alternates: { canonical: "/faq" },
+};
+
+export default function FaqPage() {
+  return (
+    <>
+      <Nav />
+      <main className="flex-1 pt-16">
+        {/* Header */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-charcoal">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="font-heading text-4xl sm:text-5xl text-brand-white mb-4">
+              Frequently asked questions
+            </h1>
+            <p className="text-brand-gray text-lg leading-relaxed">
+              Everything you need to know before booking. Still have a question?{" "}
+              <Link
+                href="/contact"
+                className="text-brand-white underline hover:text-brand-gray transition-colors"
+              >
+                Send us a message.
+              </Link>
+            </p>
+          </div>
+        </section>
+
+        {/* Accordion */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl">
+            <FaqAccordion />
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-brand-charcoal">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="font-heading text-2xl sm:text-3xl text-brand-white mb-4">
+              Ready to get a quote?
+            </h2>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded px-8 py-4 text-base font-semibold text-brand-white bg-brand-red hover:bg-brand-red/90 transition-colors"
+            >
+              Request a Quote
+            </Link>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}
