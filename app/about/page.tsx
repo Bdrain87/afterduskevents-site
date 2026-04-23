@@ -10,7 +10,7 @@ import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "After Dusk Events is owner-operated by Blake Drain, a U.S. Air Force veteran based in Canton, MI. Military precision applied to outdoor cinema.",
+    "After Dusk Events is owner-operated by Blake, a U.S. Air Force veteran based in Canton, MI. Military precision applied to outdoor cinema.",
   alternates: { canonical: "/about" },
 };
 
@@ -57,7 +57,7 @@ export default function AboutPage() {
                   and an operator who has already tested everything before you arrive.
                 </p>
                 <p>
-                  The company is owner-operated by Blake Drain, a U.S. Air Force veteran based in
+                  The company is owner-operated by Blake, a U.S. Air Force veteran based in
                   Canton. Military field service teaches you to plan for every failure mode: weather,
                   power, equipment, logistics. That mindset is what you hire when you hire After
                   Dusk Events. Every event runs off a checklist. Every piece of gear has a backup.
@@ -113,7 +113,7 @@ export default function AboutPage() {
                     "Every piece of gear has a backup. Every arrival is 3 hours before
                     the first guest walks in."
                   </p>
-                  <p className="text-steel text-xs mt-3 not-italic">Blake Drain, Owner</p>
+                  <p className="text-steel text-xs mt-3 not-italic">Blake, Owner</p>
                 </div>
               </div>
             </div>

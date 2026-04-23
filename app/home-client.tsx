@@ -365,7 +365,7 @@ export default function HomeClient({ geo }: Props = {}) {
               "EVERY PIECE OF<br />GEAR HAS A BACKUP."
             </p>
             <p className="text-projector/45 text-sm tracking-[0.2em] uppercase text-right max-w-5xl ml-auto">
-              Blake Drain, Owner. USAF Veteran.
+              Blake, Owner. USAF Veteran.
             </p>
           </div>
         </section>

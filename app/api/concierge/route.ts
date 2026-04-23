@@ -19,7 +19,7 @@ import { findNearestCity } from "@/lib/nearest-city";
 export const runtime = "nodejs";
 export const maxDuration = 30;
 
-const systemPrompt = `You are Blake's after-hours concierge for After Dusk Events. a private outdoor cinema service in Southeast Michigan, owned by Blake Drain (USAF veteran, based in Canton, MI).
+const systemPrompt = `You are Blake's after-hours concierge for After Dusk Events. a private outdoor cinema service in Southeast Michigan, owned by Blake (USAF veteran, based in Canton, MI).
 
 REAL OFFERING (the only facts you may use):
 • One screen size: 30 ft inflatable. Water ballast setup, no digging.

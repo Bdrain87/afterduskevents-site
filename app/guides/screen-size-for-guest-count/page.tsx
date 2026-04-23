@@ -78,7 +78,7 @@ export default function GuidePage() {
                 <Balancer>What size outdoor movie screen do I need for my guest count?</Balancer>
               </h1>
               <p className="text-steel text-xs uppercase tracking-wider">
-                By <Link href="/about" className="text-ember hover:text-projector transition-colors">Blake Drain</Link>
+                By <Link href="/about" className="text-ember hover:text-projector transition-colors">Blake</Link>
                 {" · "}
                 Updated <time dateTime={UPDATED}>April 2026</time>
               </p>
