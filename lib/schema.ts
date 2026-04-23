@@ -71,7 +71,6 @@ export function buildLocalBusiness(): SchemaObject {
     logo: LOGO_URL,
     image: OG_IMAGE,
     email: EMAIL,
-    priceRange: "$$",
     foundingDate: FOUNDED,
     founder: { "@id": FOUNDER_ID },
     parentOrganization: { "@id": ORG_ID },
