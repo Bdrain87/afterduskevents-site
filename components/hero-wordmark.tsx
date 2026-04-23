@@ -9,7 +9,7 @@ gsap.registerPlugin(SplitText);
 
 /**
  * Hero wordmark rendered in ember with an outer projection glow (styled via
- * the .wordmark-glow class in globals.css). Sizing is pure CSS clamp — no JS
+ * the .wordmark-glow class in globals.css). Sizing is pure CSS clamp. No JS
  * measurement hook. Reveal + shine animations are driven by GSAP SplitText
  * and skip entirely when prefers-reduced-motion is set.
  */

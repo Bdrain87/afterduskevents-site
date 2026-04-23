@@ -61,12 +61,12 @@ export default function LiveDuskClock() {
     <dl className="text-mono tracking-wider text-steel space-y-1.5 mt-4" aria-live="off">
       <div className="flex items-baseline justify-between gap-4">
         <dt>Right now in Canton, MI</dt>
-        <dd className="text-ember font-semibold">{now || "—"}</dd>
+        <dd className="text-ember font-semibold">{now || "--:--"}</dd>
       </div>
       <div className="flex items-baseline justify-between gap-4">
         <dt>Next dusk</dt>
         <dd className="text-silver">
-          {dusk ? `${dusk.when}, ${dusk.time}` : "—"}
+          {dusk ? `${dusk.when}, ${dusk.time}` : "--:--"}
         </dd>
       </div>
     </dl>

@@ -50,7 +50,7 @@ export default function HomeClient({ geo }: Props = {}) {
     <>
       <Nav />
       <main className="flex-1">
-        {/* 1. HERO — Dusk Horizon */}
+        {/* 1. HERO. Dusk Horizon */}
         <section className="relative min-h-screen flex flex-col justify-center overflow-hidden px-4 sm:px-8 lg:px-12">
           {/* AmbientSky (sky gradient + starfield) renders globally in layout.tsx.
               The hero layers its own ember nebula + cursor-follow spotlight + horizon line. */}
