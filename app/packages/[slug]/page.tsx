@@ -12,6 +12,7 @@ import { audioTiers, useCases, type AudioTier } from "@/lib/packages";
 import { buildService, buildBreadcrumbList } from "@/lib/schema";
 import { Check, ArrowRight } from "lucide-react";
 import Balancer from "react-wrap-balancer";
+import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -95,14 +96,7 @@ export default async function TierPage({ params }: Params) {
       <main className="flex-1 pt-16">
         {/* Hero */}
         <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse 60% 50% at 30% 40%, rgba(107,31,31,0.25) 0%, transparent 70%)",
-            }}
-          />
+          <PageAtmosphere variant={tier.popular ? "ember" : "dusk"} />
           <div className="relative z-10 mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
               <FadeIn>

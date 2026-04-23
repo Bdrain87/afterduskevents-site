@@ -6,6 +6,7 @@ import FadeIn from "@/components/fade-in";
 import MagneticButton from "@/components/magnetic-button";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList } from "@/lib/schema";
+import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
   title: "Add-On Catalog",
@@ -125,6 +126,7 @@ export default function AddOnsPage() {
         {/* Header */}
         <section className="py-24 px-4 sm:px-6 lg:px-8 bg-oxblood relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-oxblood to-oxblood-deep" aria-hidden="true" />
+          <PageAtmosphere variant="ember" className="opacity-60" />
           <div className="relative z-10 mx-auto max-w-3xl">
             <FadeIn>
               <p className="text-projector/60 text-xs tracking-[0.2em] uppercase mb-3">Customize your event</p>

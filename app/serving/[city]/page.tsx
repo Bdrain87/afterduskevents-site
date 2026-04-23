@@ -15,6 +15,7 @@ import {
 import { audioTiers } from "@/lib/packages";
 import { Check, MapPin } from "lucide-react";
 import Balancer from "react-wrap-balancer";
+import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 type Params = { params: Promise<{ city: string }> };
 
@@ -61,8 +62,9 @@ export default async function CityPage({ params }: Params) {
       <Nav />
       <main className="flex-1 pt-16">
         {/* Hero */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-charcoal">
-          <div className="mx-auto max-w-3xl">
+        <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
+          <PageAtmosphere variant="dusk" />
+          <div className="relative z-10 mx-auto max-w-3xl">
             <FadeIn>
               <p className="text-ember text-xs tracking-[0.2em] uppercase mb-3 inline-flex items-center gap-2">
                 <MapPin size={14} aria-hidden="true" />

@@ -7,6 +7,7 @@ import FormSkeleton from "@/components/skeletons/form-skeleton";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList } from "@/lib/schema";
+import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -27,8 +28,9 @@ export default function ContactPage() {
       />
       <Nav />
       <main className="flex-1 pt-16">
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-charcoal">
-          <div className="mx-auto max-w-3xl text-center">
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
+          <PageAtmosphere variant="ember" />
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
             <h1 className="font-display text-5xl sm:text-6xl text-projector tracking-wider mb-2">
               GET A QUOTE
             </h1>

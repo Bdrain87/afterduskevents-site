@@ -10,6 +10,7 @@ import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import BallparkTool from "@/components/packages/ballpark-tool";
 import ComparisonTable from "@/components/packages/comparison-table";
+import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 import { audioTiers, useCases } from "@/lib/packages";
 import {
   buildAllServicesGraph,
@@ -39,8 +40,9 @@ export default function PackagesPage() {
       <Nav />
       <main className="flex-1 pt-16">
         {/* Header */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-charcoal">
-          <div className="mx-auto max-w-3xl text-center">
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
+          <PageAtmosphere variant="dusk" />
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
             <FadeIn>
               <h1 className="font-display text-5xl sm:text-6xl text-projector tracking-wider mb-2">
                 ONE SCREEN. THREE AUDIO TIERS.

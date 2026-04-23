@@ -5,6 +5,7 @@ import Footer from "@/components/footer";
 import { Shield, MapPin, FileCheck } from "lucide-react";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList, buildPerson } from "@/lib/schema";
+import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
   title: "About",
@@ -29,8 +30,9 @@ export default function AboutPage() {
       <Nav />
       <main className="flex-1 pt-16">
         {/* Header */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-charcoal">
-          <div className="mx-auto max-w-3xl">
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
+          <PageAtmosphere variant="space" />
+          <div className="relative z-10 mx-auto max-w-3xl">
             <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4">
               Mission-ready cinema for Michigan nights.
             </h1>
