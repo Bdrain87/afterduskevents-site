@@ -9,7 +9,7 @@ import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "After Dusk Events is owner-operated by Blake, a U.S. Air Force veteran based in Canton, MI. Military precision applied to outdoor cinema.",
+    "After Dusk Events is a one-person, veteran-owned outdoor cinema outfit based in Canton, MI. Blake owns the gear, drives the truck, runs the show.",
   alternates: { canonical: "/about" },
 };
 
@@ -36,10 +36,10 @@ export default function AboutPage() {
               Veteran-owned · Canton, MI
             </p>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl text-projector tracking-wider leading-none mb-6">
-              MISSION-READY CINEMA.
+              WE ARE ONE GUY AND A TRUCK.
             </h1>
-            <p className="text-cream/65 text-lg leading-relaxed max-w-[52ch]">
-              Built on the idea that your event deserves the same attention to detail as any indoor production.
+            <p className="text-silver text-lg leading-relaxed max-w-[52ch]">
+              After Dusk Events is a one-person outfit based in Canton, Michigan. Blake runs it.
             </p>
           </div>
         </section>
@@ -49,26 +49,19 @@ export default function AboutPage() {
           <div className="mx-auto max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Body copy */}
-              <div className="lg:col-span-2 space-y-6 text-cream/60 leading-relaxed text-base max-w-prose">
+              <div className="lg:col-span-2 space-y-6 text-silver leading-relaxed text-base max-w-prose">
                 <p>
-                  After Dusk Events was built on one idea: outdoor events deserve the same attention
-                  to detail as any indoor production. A good movie night is not just a projector on
-                  a sheet. It is audio you can hear clearly in the back row, a screen big enough
-                  that no one strains, lighting that holds the mood without blowing out the picture,
-                  and an operator who has already tested everything before you arrive.
+                  Blake owns the gear, drives the truck, sets up the rig, runs the show, and tears it down.
+                  No subcontractors on your lawn.
                 </p>
                 <p>
-                  The company is owner-operated by Blake, a U.S. Air Force veteran based in
-                  Canton. Military field service teaches you to plan for every failure mode: weather,
-                  power, equipment, logistics. That mindset is what you hire when you hire After
-                  Dusk Events. Every event runs off a checklist. Every piece of gear has a backup.
-                  Every arrival is 3 hours before the first guest walks in.
+                  Most backyard movie setups are a projector on a sheet. This is not that. The screen is
+                  thirty feet of real inflatable cinema. The audio is concert-grade, tuned to the space.
+                  Everything gets a systems test before your first guest arrives.
                 </p>
                 <p>
-                  We serve private residential events, graduation parties, and
-                  get-togethers of all kinds across the greater Detroit and Ann Arbor area. Movie
-                  nights, gaming nights, sports watch parties, fight nights, anywhere within
-                  60 miles of Canton. Proudly veteran-owned.
+                  We run private events only, anywhere inside 60 miles of Canton. If you are outside
+                  that ring and still want to talk, we can usually make it work.
                 </p>
               </div>
 
@@ -91,17 +84,6 @@ export default function AboutPage() {
                     </div>
                   ))}
                 </div>
-
-                {/* Pull quote */}
-                <div className="border-l-2 border-oxblood/50 pl-5 pt-1">
-                  <p className="font-heading font-medium text-cream/70 text-base leading-snug mb-3">
-                    &ldquo;Every piece of gear has a backup. Every arrival is 3 hours before
-                    the first guest walks in.&rdquo;
-                  </p>
-                  <p className="font-display text-steel tracking-[0.2em] text-xs">
-                    BLAKE — OWNER
-                  </p>
-                </div>
               </div>
             </div>
           </div>
@@ -113,7 +95,7 @@ export default function AboutPage() {
             <h2 className="font-display text-4xl sm:text-5xl text-projector tracking-wider leading-none mb-4">
               LET US RUN YOUR NEXT EVENT.
             </h2>
-            <p className="text-cream/55 mb-8 leading-relaxed">
+            <p className="text-silver mb-8 leading-relaxed">
               Tell us what you are planning and we will put together a real quote within 24 hours.
             </p>
             <Link

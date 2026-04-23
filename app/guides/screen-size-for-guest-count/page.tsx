@@ -85,7 +85,7 @@ export default function GuidePage() {
             </FadeIn>
 
             <FadeIn delay={0.05}>
-              <p className="text-steel text-lg leading-relaxed mt-8">
+              <p className="text-silver text-lg leading-relaxed mt-8">
                 Short answer: the 30 ft inflatable screen fits every private event we run, from
                 a 25-guest backyard to a 250-guest community night. What scales instead is
                 audio: we offer three tiers so the sound matches your crowd size and event type.

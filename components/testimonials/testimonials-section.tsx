@@ -31,10 +31,7 @@ export default function TestimonialsSection({ headingId = "testimonials-heading"
         <div className="w-12 h-[2px] bg-oxblood mb-10" aria-hidden="true" />
 
         <blockquote className="relative z-10">
-          <p
-            className="font-heading font-medium text-cream/85 leading-[1.25] mb-10"
-            style={{ fontSize: "clamp(1.5rem, 3vw, 2.8rem)" }}
-          >
+          <p className="font-heading font-medium text-projector leading-[1.25] mb-10 text-display-md">
             &ldquo;{t.quote}&rdquo;
           </p>
 

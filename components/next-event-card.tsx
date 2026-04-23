@@ -38,7 +38,7 @@ export default function NextEventCard() {
                   className="group inline-flex items-center gap-2 rounded-full border border-white/15 hover:border-ember bg-screening/60 hover:bg-oxblood/20 transition-colors px-4 py-2 text-sm"
                 >
                   <span className="text-projector font-medium">{formatOpenDate(d.date)}</span>
-                  {d.note && <span className="text-steel text-xs">— {d.note}</span>}
+                  {d.note && <span className="text-steel text-xs">· {d.note}</span>}
                   <ArrowRight
                     size={13}
                     className="text-ember shrink-0 transition-transform group-hover:translate-x-0.5"

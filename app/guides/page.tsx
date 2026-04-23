@@ -52,7 +52,7 @@ export default function GuidesIndexPage() {
               <span className="oxblood-rule mx-auto" />
             </FadeIn>
             <FadeIn delay={0.1}>
-              <p className="text-steel text-lg leading-relaxed mt-6">
+              <p className="text-silver text-lg leading-relaxed mt-6">
                 Plain-language guides for planning an outdoor cinema event.
               </p>
             </FadeIn>

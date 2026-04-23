@@ -39,7 +39,7 @@ export default function ServingIndexPage() {
               <span className="oxblood-rule mx-auto" />
             </FadeIn>
             <FadeIn delay={0.1}>
-              <p className="text-steel text-lg leading-relaxed mt-6">
+              <p className="text-silver text-lg leading-relaxed mt-6">
                 After Dusk Events serves a 60-mile radius from Canton, MI. Tap a city for
                 location-specific details.
               </p>

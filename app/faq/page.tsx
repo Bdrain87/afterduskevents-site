@@ -38,7 +38,7 @@ export default function FaqPage() {
             <h1 className="font-display tracking-wider text-4xl sm:text-5xl text-projector mb-4">
               Frequently asked questions.
             </h1>
-            <p className="text-steel text-lg leading-relaxed">
+            <p className="text-silver text-lg leading-relaxed">
               Everything you need to know before booking. Still have a question?{" "}
               <Link
                 href="/contact"

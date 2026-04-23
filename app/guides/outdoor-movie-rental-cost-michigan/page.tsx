@@ -91,7 +91,7 @@ export default function GuidePage() {
             </FadeIn>
 
             <FadeIn delay={0.05}>
-              <p className="text-steel text-lg leading-relaxed mt-8">
+              <p className="text-silver text-lg leading-relaxed mt-8">
                 After Dusk Events runs one 30 ft inflatable screen with three audio tiers. The
                 pricing axis is audio, not screen size. Every booking is custom-quoted within
                 24 hours of inquiry. This guide walks through what changes the number.
