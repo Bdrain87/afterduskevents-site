@@ -63,26 +63,25 @@ function Cell({ value }: { value: string | boolean }) {
 
 export default function ComparisonTable() {
   return (
-    <div className="overflow-x-auto rounded-lg border border-white/10">
+    <div className="overflow-x-auto border border-white/10 bg-charcoal/40 backdrop-blur-sm">
       <table className="w-full text-sm">
         <caption className="sr-only">Side-by-side comparison of audio tiers</caption>
         <thead>
-          <tr className="border-b border-white/10 text-left bg-charcoal">
-            <th className="px-5 py-4 text-steel font-semibold w-[28%]">Feature</th>
+          <tr className="border-b border-white/10 text-left">
+            <th className="px-5 py-4 text-caption text-steel w-[28%]">Feature</th>
             {audioTiers.map((tier) => (
               <th
                 key={tier.slug}
                 scope="col"
-                className={[
-                  "px-5 py-4 text-center font-semibold",
-                  tier.popular ? "text-ember" : "text-projector",
-                ].join(" ")}
+                className="px-5 py-4 text-center"
               >
-                <div className="flex flex-col items-center gap-1">
-                  <span>{tier.name}</span>
+                <div className="flex flex-col items-center gap-1.5">
+                  <span className={`font-display text-base tracking-wider ${tier.popular ? "text-ember" : "text-projector"}`}>
+                    {tier.name}
+                  </span>
                   {tier.popular && (
-                    <span className="text-[10px] uppercase tracking-wider bg-oxblood text-projector px-2 py-0.5 rounded-full font-bold">
-                      Most popular
+                    <span className="text-caption text-ember">
+                      Most booked
                     </span>
                   )}
                 </div>
@@ -91,19 +90,16 @@ export default function ComparisonTable() {
           </tr>
         </thead>
         <tbody>
-          {featureRows.map((row, i) => (
-            <tr
-              key={row.label}
-              className={`border-b border-white/5 ${i % 2 === 1 ? "bg-charcoal/40" : ""}`}
-            >
+          {featureRows.map((row) => (
+            <tr key={row.label} className="border-b border-white/5 last:border-b-0">
               <th
                 scope="row"
-                className="px-5 py-3.5 text-steel font-medium text-left align-top"
+                className="px-5 py-4 text-silver font-medium text-left align-top"
               >
                 {row.label}
               </th>
               {row.values.map((v, j) => (
-                <td key={j} className="px-5 py-3.5 text-center align-top">
+                <td key={j} className="px-5 py-4 text-center align-top text-silver">
                   <Cell value={v} />
                 </td>
               ))}
