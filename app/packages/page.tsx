@@ -7,6 +7,12 @@ import FadeIn from "@/components/fade-in";
 import AnimatedCard from "@/components/animated-card";
 import MagneticButton from "@/components/magnetic-button";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
+import SchemaMarkup from "@/components/seo/schema-markup";
+import { corePackages, eventPackages } from "@/lib/packages";
+import {
+  buildAllServicesGraph,
+  buildBreadcrumbList,
+} from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Packages & Pricing",
@@ -15,114 +21,19 @@ export const metadata: Metadata = {
   alternates: { canonical: "/packages" },
 };
 
-const corePackages = [
-  {
-    name: "Intimate 20 ft",
-    price: "Contact for quote",
-    popular: false,
-    highlights: [
-      "3 hour event",
-      "20 ft airtight inflatable screen",
-      "4K laser projector (BenQ LU930)",
-      "2 Soundboks 4 wireless speakers",
-      "BYO Content",
-      "Water ballast, no digging required",
-    ],
-    best: "Backyards, small parties, family movie nights",
-  },
-  {
-    name: "Community 30 ft",
-    price: "Contact for quote",
-    popular: true,
-    highlights: [
-      "4 hour event",
-      "30 ft airtight inflatable screen",
-      "4K laser projector",
-      "4 Soundboks 4 speakers across two zones",
-      "1 Death From Below MK2 subwoofer",
-      "BYO Content",
-      "Coverage up to ~250 people",
-    ],
-    best: "HOA nights, block parties, church events, larger backyards",
-  },
-  {
-    name: "Indoor Winter",
-    price: "Contact for quote",
-    popular: false,
-    highlights: [
-      "3 hour event",
-      "120 inch Da-Lite fast-fold screen",
-      "4K laser projector",
-      "2 Soundboks 4 speakers",
-      "BYO Content",
-      "Works in halls, gyms, barns, large living rooms",
-    ],
-    best: "Year-round events regardless of weather",
-  },
-];
-
-const eventPackages = [
-  {
-    name: "Sports Watch Party",
-    price: "Contact for quote",
-    highlights: [
-      "4 hour event, 30 ft screen",
-      "Multi-zone Soundboks audio",
-      "DFB MK2 subwoofer",
-      "Live TV or streaming via Starlink Mini",
-    ],
-    best: "Fight nights, Super Bowl, Final Four, World Cup",
-  },
-  {
-    name: "Gaming Night",
-    price: "Contact for quote",
-    highlights: [
-      "4 hour event, 20 ft screen",
-      "Nintendo Switch OLED + Retroid Pocket 4 Pro",
-      "Wireless controllers",
-      "2 Soundboks 4 speakers",
-    ],
-    best: "Birthdays, teen events, corporate team building",
-  },
-  {
-    name: "Karaoke Night",
-    price: "Contact for quote",
-    highlights: [
-      "3 hour event, 20 ft screen",
-      "2 professional wireless microphones",
-      "Multi-zone Soundboks audio",
-      "Lightboks audio-reactive LED lighting",
-    ],
-    best: "Birthdays, bachelorette, holiday parties",
-  },
-  {
-    name: "Birthday or Graduation",
-    price: "Contact for quote",
-    highlights: [
-      "3 to 4 hour event",
-      "20 ft or 30 ft screen",
-      "Full Soundboks audio",
-      "Photo slideshow or memory reel on screen",
-    ],
-    best: "Milestone celebrations for all ages",
-  },
-  {
-    name: "Corporate or Community Org",
-    price: "Contact for quote",
-    highlights: [
-      "4 to 6 hour event, 30 ft screen",
-      "Multi-zone Soundboks audio",
-      "Wireless mic pair for speakers",
-      "Starlink Mini for presentations and live streams",
-      "Invoicing and COI support",
-    ],
-    best: "Company events, non-profits, community organizations",
-  },
-];
-
 export default function PackagesPage() {
   return (
     <>
+      <SchemaMarkup
+        id="packages-services"
+        data={[
+          ...buildAllServicesGraph(),
+          buildBreadcrumbList([
+            { name: "Home", href: "/" },
+            { name: "Packages", href: "/packages" },
+          ]),
+        ]}
+      />
       <Nav />
       <main className="flex-1 pt-16">
         {/* Header */}

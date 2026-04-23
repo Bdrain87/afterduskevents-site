@@ -3,6 +3,8 @@ import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import { Shield, MapPin, FileCheck } from "lucide-react";
+import SchemaMarkup from "@/components/seo/schema-markup";
+import { buildBreadcrumbList, buildPerson } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "About",
@@ -14,6 +16,16 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <SchemaMarkup
+        id="about-schema"
+        data={[
+          buildPerson(),
+          buildBreadcrumbList([
+            { name: "Home", href: "/" },
+            { name: "About", href: "/about" },
+          ]),
+        ]}
+      />
       <Nav />
       <main className="flex-1 pt-16">
         {/* Header */}

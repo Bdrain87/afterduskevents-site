@@ -8,6 +8,13 @@ import CursorSpotlight from "@/components/cursor-spotlight";
 import ScrollProgress from "@/components/scroll-progress";
 import LoadingScreen from "@/components/loading-screen";
 import LenisProvider from "@/components/lenis-provider";
+import SchemaMarkup from "@/components/seo/schema-markup";
+import {
+  buildLocalBusiness,
+  buildOrganization,
+  buildPerson,
+  buildWebSite,
+} from "@/lib/schema";
 import "./globals.css";
 
 const inter = Inter({
@@ -82,6 +89,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-screening text-projector">
+        <SchemaMarkup
+          id="site-schema"
+          data={[
+            buildOrganization(),
+            buildLocalBusiness(),
+            buildPerson(),
+            buildWebSite(),
+          ]}
+        />
         <LoadingScreen />
         <ScrollProgress />
         <CursorSpotlight />
