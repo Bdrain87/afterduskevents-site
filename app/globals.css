@@ -213,42 +213,22 @@ html[data-tod="night"] {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero wordmark: red glow sweeps across "AFTER DUSK EVENTS" once after load.
-   mix-blend-mode: color tints the white letters red as the light passes, so
-   the glow reads clearly on top of the words rather than vanishing behind them. */
+/* Hero wordmark: red chrome gradient clipped to the text, matching the
+   vetclaimsupport "second battle" effect. Dark oxblood edges with a bright
+   ember center creates a rolling highlight built into the letters themselves. */
 .wordmark-glow {
-  position: relative;
-  isolation: isolate;
-}
-.wordmark-glow::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
   background: linear-gradient(
-    105deg,
-    transparent 35%,
-    rgba(221, 84, 84, 0.75) 47%,
-    rgba(255, 80, 80, 1) 50%,
-    rgba(221, 84, 84, 0.75) 53%,
-    transparent 65%
+    90deg,
+    #4A0E0E 0%,
+    #6B1F1F 25%,
+    #DD5454 50%,
+    #6B1F1F 75%,
+    #4A0E0E 100%
   );
-  background-size: 220% 100%;
-  background-position: 130% 0;
-  mix-blend-mode: color;
-  z-index: 2;
-  opacity: 0;
-  animation: wordmark-glow-roll 1.8s cubic-bezier(0.55, 0.1, 0.3, 0.95) 1.15s 1 forwards;
-  will-change: background-position, opacity;
-}
-@keyframes wordmark-glow-roll {
-  0%   { background-position: 130% 0; opacity: 0; }
-  12%  { opacity: 1; }
-  88%  { opacity: 1; }
-  100% { background-position: -30% 0; opacity: 0; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .wordmark-glow::before { animation: none; opacity: 0; }
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 /* Atmosphere: spotlight slow drift */
