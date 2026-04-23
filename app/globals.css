@@ -180,10 +180,30 @@
   to   { transform: scale(1.06) translate3d(-1%, -0.5%, 0); }
 }
 
+/* View Transitions API — cinematic curtain-raise between routes */
+::view-transition-old(root) {
+  animation: 240ms cubic-bezier(0.65, 0, 0.35, 1) both ad-curtain-out;
+}
+::view-transition-new(root) {
+  animation: 380ms cubic-bezier(0.32, 0.72, 0, 1) 80ms both ad-curtain-in;
+}
+@keyframes ad-curtain-out {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-2%); }
+}
+@keyframes ad-curtain-in {
+  from { opacity: 0; transform: translateY(4%) scale(0.995); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
   }
 }
