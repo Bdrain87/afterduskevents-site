@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import NeonSign from "@/components/neon-sign";
-import TicketStub from "@/components/ticket-stub";
-import FilmStrip from "@/components/film-strip";
+import { CheckCircle } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Inquiry Received",
@@ -16,39 +14,24 @@ export default function ThanksPage() {
   return (
     <>
       <Nav />
-      <main className="flex-1">
-        <section className="bg-paper px-4 sm:px-10 pt-16 sm:pt-24 pb-12 text-center">
-          <p className="serial text-tail mb-6">Admit One · Ticket Confirmed</p>
-          <h1 className="font-display text-[clamp(3rem,10vw,8rem)] uppercase leading-none">
-            <NeonSign>Got it.</NeonSign>
-          </h1>
-        </section>
-
-        <FilmStrip tone="ink" />
-
-        <section className="bg-paper px-4 sm:px-10 py-14">
-          <div className="mx-auto max-w-md">
-            <TicketStub
-              tone="paper"
-              serial="ADM-001"
-              stamp="Admit One"
-            >
-              <p className="font-display text-2xl uppercase leading-tight mb-4">
-                We&apos;ll respond within 24 hours with availability and a real quote.
-              </p>
-              <p className="serial text-tail">— Blake</p>
-            </TicketStub>
+      <main className="flex-1 pt-16 flex items-center justify-center min-h-[calc(100vh-4rem)]">
+        <div className="px-4 py-20 text-center max-w-xl mx-auto">
+          <div className="flex justify-center mb-6">
+            <CheckCircle size={56} className="text-ember" aria-hidden="true" />
           </div>
-        </section>
-
-        <section className="bg-paper px-4 sm:px-10 pb-20 text-center">
+          <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4">Got it.</h1>
+          <p className="text-steel text-lg leading-relaxed mb-10">
+            We will respond within 24 hours with availability and a tailored quote.
+            <br />
+            <span className="text-projector font-medium">- Blake</span>
+          </p>
           <Link
             href="/"
-            className="serial border-b-2 border-ink pb-0.5 hover:text-tail hover:border-tail transition-colors"
+            className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-projector border border-white/30 hover:border-white/60 hover:bg-white/5 transition-colors"
           >
-            ← Back to Home
+            Back to Home
           </Link>
-        </section>
+        </div>
       </main>
       <Footer />
     </>

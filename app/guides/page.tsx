@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import FilmStrip from "@/components/film-strip";
+import FadeIn from "@/components/fade-in";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList } from "@/lib/schema";
+import { ArrowRight } from "lucide-react";
+import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
   title: "Guides",
@@ -39,48 +41,44 @@ export default function GuidesIndexPage() {
         ])}
       />
       <Nav />
-      <main className="flex-1">
-        <section className="bg-paper px-4 sm:px-10 pt-16 sm:pt-24 pb-14">
-          <div className="mx-auto max-w-5xl">
-            <p className="serial text-tail mb-6">№ 009 · The Reading Room</p>
-            <h1 className="font-display text-[clamp(3rem,9vw,7rem)] uppercase leading-none">
-              Guides.
-            </h1>
-            <p className="mt-8 font-body text-lg max-w-xl">
-              Plain-language answers for planning an outdoor cinema event.
-            </p>
+      <main className="flex-1 pt-16">
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
+          <PageAtmosphere variant="space" />
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
+            <FadeIn>
+              <h1 className="font-display text-5xl sm:text-6xl text-projector tracking-wider mb-2">
+                GUIDES
+              </h1>
+              <span className="oxblood-rule mx-auto" />
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="text-steel text-lg leading-relaxed mt-6">
+                Plain-language guides for planning an outdoor cinema event.
+              </p>
+            </FadeIn>
           </div>
         </section>
 
-        <FilmStrip tone="ink" />
-
-        <section className="bg-paper px-4 sm:px-10 py-16">
-          <div className="mx-auto max-w-3xl">
-            <ul className="divide-y-2 divide-ink border-y-2 border-ink">
-              {guides.map((g, i) => (
-                <li key={g.href}>
-                  <Link
-                    href={g.href}
-                    className="group grid grid-cols-[auto_1fr_auto] gap-5 items-baseline py-6 hover:text-tail transition-colors"
-                  >
-                    <span className="serial text-tail">
-                      №&nbsp;{String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <h2 className="font-display text-2xl uppercase leading-tight mb-2">
-                        {g.title}
-                      </h2>
-                      <p className="font-body text-sm text-concrete max-w-prose">
-                        {g.description}
-                      </p>
-                    </div>
-                    <span className="serial group-hover:translate-x-1 transition-transform">
-                      →
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        <section className="py-16 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl space-y-4">
+            {guides.map((g, i) => (
+              <FadeIn key={g.href} delay={i * 0.06}>
+                <Link
+                  href={g.href}
+                  className="group flex items-start justify-between gap-6 rounded-lg p-6 bg-charcoal border border-white/10 hover:border-oxblood/40 transition-colors"
+                >
+                  <div>
+                    <h2 className="font-heading text-xl text-projector mb-2">{g.title}</h2>
+                    <p className="text-steel text-sm leading-relaxed">{g.description}</p>
+                  </div>
+                  <ArrowRight
+                    size={20}
+                    className="text-ember shrink-0 mt-1 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </Link>
+              </FadeIn>
+            ))}
           </div>
         </section>
       </main>

@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import BulbButton from "@/components/bulb-button";
-import FilmStrip from "@/components/film-strip";
+import FadeIn from "@/components/fade-in";
+import MagneticButton from "@/components/magnetic-button";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildArticle, buildBreadcrumbList, buildFAQPage } from "@/lib/schema";
+import Balancer from "react-wrap-balancer";
 
 const SLUG = "/guides/screen-size-for-guest-count";
 const PUBLISHED = "2026-04-22";
@@ -38,11 +39,11 @@ const guideFaqs = [
 ];
 
 const sizingTable = [
-  { guests: "Under 25", tier: "Single Speaker", note: "Backyard movie nights, family events" },
-  { guests: "25–50", tier: "Two Speakers", note: "Tight backyards, birthdays, smaller gatherings" },
-  { guests: "50–100", tier: "Two Speakers + Sub", note: "Block parties, larger backyards, dance-floor events" },
-  { guests: "100–250", tier: "Two Speakers + Sub", note: "Community events, fight nights, sports watch parties" },
-  { guests: "250+", tier: "Two Speakers + Sub", note: "Custom quote — contact for larger crowds" },
+  { guests: "Under 25", tier: "30 ft + Single Speaker", note: "Backyard movie nights, family events" },
+  { guests: "25–50", tier: "30 ft + Two Speakers", note: "Tight backyards, birthdays, smaller gatherings" },
+  { guests: "50–100", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Block parties, larger backyards, dance-floor events" },
+  { guests: "100–250", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Community events, fight nights, sports watch parties" },
+  { guests: "250+", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Custom quote. Contact for details on larger crowds." },
 ];
 
 export default function GuidePage() {
@@ -68,111 +69,107 @@ export default function GuidePage() {
         ]}
       />
       <Nav />
-      <main className="flex-1">
-        <section className="bg-paper px-4 sm:px-10 pt-16 sm:pt-24 pb-10">
+      <main className="flex-1 pt-16">
+        <article className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl">
-            <p className="serial text-tail mb-6">Guide · Sizing</p>
-            <h1 className="font-display text-[clamp(2.5rem,7vw,5.5rem)] uppercase leading-none">
-              What size outdoor screen do I need?
-            </h1>
-            <p className="serial text-concrete mt-8">
-              By{" "}
-              <Link href="/about" className="text-tail hover:text-ink transition-colors">
-                Blake
-              </Link>
-              {" · Updated "}
-              <time dateTime={UPDATED}>April 2026</time>
-            </p>
-          </div>
-        </section>
+            <FadeIn>
+              <p className="text-ember text-xs tracking-[0.2em] uppercase mb-3">Guide</p>
+              <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4 leading-tight">
+                <Balancer>What size outdoor movie screen do I need for my guest count?</Balancer>
+              </h1>
+              <p className="text-steel text-xs uppercase tracking-wider">
+                By <Link href="/about" className="text-ember hover:text-projector transition-colors">Blake</Link>
+                {" · "}
+                Updated <time dateTime={UPDATED}>April 2026</time>
+              </p>
+            </FadeIn>
 
-        <FilmStrip tone="ink" />
+            <FadeIn delay={0.05}>
+              <p className="text-steel text-lg leading-relaxed mt-8">
+                Short answer: the 30 ft inflatable screen fits every private event we run, from
+                a 25-guest backyard to a 250-guest community night. What scales instead is
+                audio: we offer three tiers so the sound matches your crowd size and event type.
+              </p>
+            </FadeIn>
 
-        <article className="bg-paper px-4 sm:px-10 py-16">
-          <div className="mx-auto max-w-3xl font-body text-lg leading-relaxed">
-            <p>
-              <span className="float-left font-display text-[clamp(5rem,11vw,8rem)] leading-[0.8] mr-3 mt-1 text-tail">
-                S
-              </span>
-              hort answer: the 30 ft inflatable screen fits every private
-              event we run, from a 25-guest backyard to a 250-guest
-              community night. What scales instead is audio — we offer
-              three tiers so the sound matches your crowd size.
-            </p>
+            <FadeIn delay={0.1}>
+              <h2 className="font-heading text-2xl text-projector mt-12 mb-4">Audio tier by guest count</h2>
+              <div className="overflow-x-auto rounded-lg border border-white/10">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-white/10 text-left bg-charcoal">
+                      <th className="px-5 py-3 text-steel font-semibold">Guest count</th>
+                      <th className="px-5 py-3 text-steel font-semibold">Recommended tier</th>
+                      <th className="px-5 py-3 text-steel font-semibold">Best for</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sizingTable.map((row, i) => (
+                      <tr key={row.guests} className={`border-b border-white/5 ${i % 2 === 1 ? "bg-charcoal/40" : ""}`}>
+                        <td className="px-5 py-3.5 text-projector font-medium">{row.guests}</td>
+                        <td className="px-5 py-3.5 text-ember">{row.tier}</td>
+                        <td className="px-5 py-3.5 text-steel">{row.note}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </FadeIn>
 
-            <h2 className="font-display text-[clamp(2rem,4.5vw,3.25rem)] uppercase leading-none mt-14 mb-6">
-              Audio tier by guest count.
-            </h2>
-            <ul className="divide-y-2 divide-ink border-y-2 border-ink">
-              {sizingTable.map((row) => (
-                <li
-                  key={row.guests}
-                  className="grid grid-cols-[auto_1fr_auto] gap-4 sm:gap-8 items-baseline py-4"
-                >
-                  <span className="font-display text-2xl uppercase leading-none text-tail">
-                    {row.guests}
-                  </span>
-                  <span className="font-display text-lg sm:text-xl uppercase leading-none">
-                    {row.tier}
-                  </span>
-                  <span className="font-mono text-xs text-concrete hidden sm:inline">
-                    {row.note}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <FadeIn delay={0.15}>
+              <h2 className="font-heading text-2xl text-projector mt-12 mb-4">
+                Why one screen size works
+              </h2>
+              <p className="text-steel leading-relaxed">
+                A 30 ft inflatable screen is the right visual scale for the entire spectrum of
+                private events we run. Backyard movie nights feel cinematic at that size without
+                overwhelming the space. Larger community events, fight nights, and sports watch parties all
+                benefit from the same screen. The screen is the "wow" that makes a backyard
+                feel like an amphitheater. The variable is sound.
+              </p>
+              <p className="text-steel leading-relaxed mt-4">
+                Pick the single speaker tier for intimate gatherings where dialogue carries best
+                at conversational volume. Pick two speakers for standard outdoor events (most
+                bookings land here). Pick two speakers plus the Death From Below subwoofer for
+                anything bass-driven: fight nights, heavy soundtracks, or any
+                event 100+ guests where you want sound that fills the yard.
+              </p>
+            </FadeIn>
 
-            <h2 className="font-display text-[clamp(2rem,4.5vw,3.25rem)] uppercase leading-none mt-14 mb-6">
-              Why one screen size works.
-            </h2>
-            <p>
-              A 30 ft inflatable screen is the right visual scale for
-              every private event we run. Backyard movie nights feel
-              cinematic at that size without overwhelming the space.
-              Larger community events, fight nights, and sports watch
-              parties all benefit from the same screen. The screen is
-              the &ldquo;wow&rdquo; that makes a backyard feel like an
-              amphitheater. The variable is sound.
-            </p>
-            <p className="mt-4">
-              Pick the single speaker tier for intimate gatherings where
-              dialogue carries best at conversational volume. Pick two
-              speakers for standard outdoor events — most bookings land
-              here. Pick two speakers plus the Death From Below subwoofer
-              for anything bass-driven: fight nights, heavy soundtracks,
-              or any event with 100+ guests where you want sound that
-              fills the yard.
-            </p>
+            <FadeIn delay={0.2}>
+              <h2 className="font-heading text-2xl text-projector mt-12 mb-4">
+                Common questions
+              </h2>
+              <div className="space-y-6">
+                {guideFaqs.map((f) => (
+                  <div key={f.q} className="border-b border-white/10 pb-5">
+                    <h3 className="font-heading text-base text-projector mb-2">{f.q}</h3>
+                    <p className="text-steel text-sm leading-relaxed">{f.a}</p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
 
-            <h2 className="font-display text-[clamp(2rem,4.5vw,3.25rem)] uppercase leading-none mt-14 mb-6">
-              Common questions.
-            </h2>
-            <div className="space-y-6">
-              {guideFaqs.map((f, i) => (
-                <div key={f.q} className="border-t-2 border-ink pt-5">
-                  <p className="serial text-tail mb-2">
-                    Q{String(i + 1).padStart(2, "0")}
-                  </p>
-                  <h3 className="font-display text-xl uppercase leading-tight mb-3">
-                    {f.q}
-                  </h3>
-                  <p className="text-base text-concrete">{f.a}</p>
-                </div>
-              ))}
-            </div>
+            <FadeIn delay={0.25}>
+              <div className="mt-16 text-center">
+                <h2 className="font-heading text-2xl text-projector mb-4">
+                  Not sure which tier fits?
+                </h2>
+                <p className="text-steel mb-8 text-sm leading-relaxed max-w-xl mx-auto">
+                  Tell us your guest count and event type. We will recommend the right audio tier.
+                </p>
+                <MagneticButton className="inline-flex">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
+                  >
+                    Get a Quote
+                  </Link>
+                </MagneticButton>
+              </div>
+            </FadeIn>
           </div>
         </article>
-
-        <section className="bg-ink text-paper px-4 sm:px-10 py-20 text-center">
-          <p className="serial text-bulb mb-4">Need a Recommendation?</p>
-          <h2 className="font-display text-[clamp(2.5rem,7vw,5rem)] uppercase leading-none mb-6">
-            Tell us the crowd.
-          </h2>
-          <p className="font-body text-paper/80 max-w-lg mx-auto mb-10">
-            Guest count + event type — we&apos;ll match the right tier.
-          </p>
-          <BulbButton href="/contact">Get a Quote</BulbButton>
-        </section>
       </main>
       <Footer />
     </>

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import BulbButton from "@/components/bulb-button";
-import FilmStrip from "@/components/film-strip";
+import FadeIn from "@/components/fade-in";
+import MagneticButton from "@/components/magnetic-button";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList } from "@/lib/schema";
+import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
   title: "Add-On Catalog",
@@ -75,6 +77,39 @@ const bundles = [
   },
 ];
 
+function CategoryTable({ category }: { category: typeof categories[0] }) {
+  return (
+    <FadeIn>
+      <div className="mb-12">
+        <h2 className="font-heading text-xl text-projector mb-4 pb-2 border-b border-oxblood/30">
+          {category.name}
+        </h2>
+        <div className="overflow-x-auto rounded-lg border border-white/10">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-white/10 text-left bg-charcoal">
+                <th className="px-5 py-3 text-steel font-semibold">Item</th>
+                <th className="px-5 py-3 text-steel font-semibold">Best for</th>
+              </tr>
+            </thead>
+            <tbody>
+              {category.items.map((row, i) => (
+                <tr
+                  key={row.item}
+                  className={`border-b border-white/5 ${i % 2 === 1 ? "bg-charcoal/50" : ""}`}
+                >
+                  <td className="px-5 py-3.5 text-projector font-medium align-top">{row.item}</td>
+                  <td className="px-5 py-3.5 text-steel align-top">{row.bestFor}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </FadeIn>
+  );
+}
+
 export default function AddOnsPage() {
   return (
     <>
@@ -87,101 +122,79 @@ export default function AddOnsPage() {
         ])}
       />
       <Nav />
-      <main className="flex-1">
+      <main className="flex-1 pt-16">
         {/* Header */}
-        <section className="bg-paper px-4 sm:px-10 pt-16 sm:pt-24 pb-14">
-          <div className="mx-auto max-w-5xl">
-            <p className="serial text-tail mb-6">№ 005 · The Concessions Stand</p>
-            <h1 className="font-display text-[clamp(3rem,9vw,7rem)] uppercase leading-none">
-              Add-on catalog.
-            </h1>
-            <p className="mt-8 font-body text-lg max-w-xl">
-              Every add-on is quoted with your setup. No set prices.
-              Contact us for a real total inside 24 hours.
-            </p>
+        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-oxblood relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-oxblood to-oxblood-deep" aria-hidden="true" />
+          <PageAtmosphere variant="ember" className="opacity-60" />
+          <div className="relative z-10 mx-auto max-w-3xl">
+            <FadeIn>
+              <p className="text-projector/60 text-xs tracking-[0.2em] uppercase mb-3">Customize your event</p>
+              <h1 className="font-display text-[clamp(3rem,8vw,6rem)] text-projector tracking-wider leading-none mb-2">
+                ADD-ON CATALOG
+              </h1>
+              <div className="block w-12 h-[2px] bg-projector/40 mt-3" />
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="text-projector/70 text-lg leading-relaxed mt-6">
+                Every add-on is quoted with your setup. Contact Blake for a real total.
+              </p>
+            </FadeIn>
           </div>
         </section>
 
-        <FilmStrip tone="ink" />
-
-        {/* Menu categories */}
-        <section className="bg-paper px-4 sm:px-10 py-16">
+        {/* Categories */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-5xl">
             {categories.map((cat) => (
-              <div key={cat.name} className="mb-16 last:mb-0">
-                <div className="flex items-baseline justify-between mb-6 pb-2 border-b-2 border-ink">
-                  <h2 className="font-display text-[clamp(2rem,4vw,3rem)] uppercase leading-none">
-                    {cat.name}
-                  </h2>
-                  <p className="serial text-concrete">
-                    {String(cat.items.length).padStart(2, "0")} items
-                  </p>
-                </div>
-                <ul className="divide-y-2 divide-ink/20">
-                  {cat.items.map((row) => (
-                    <li
-                      key={row.item}
-                      className="grid grid-cols-1 sm:grid-cols-[1fr_auto] sm:gap-8 py-4 items-baseline"
-                    >
-                      <p className="font-display text-xl uppercase leading-tight">
-                        {row.item}
-                      </p>
-                      <p className="font-mono text-sm text-concrete mt-1 sm:mt-0 sm:text-right">
-                        {row.bestFor}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex justify-end mt-3">
-                  <span className="stamp">Custom Quote</span>
-                </div>
-              </div>
+              <CategoryTable key={cat.name} category={cat} />
             ))}
           </div>
         </section>
 
         {/* Bundles */}
-        <section
-          className="bg-ink text-paper px-4 sm:px-10 py-20"
-          aria-labelledby="bundles-heading"
-        >
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="bundles-heading">
           <div className="mx-auto max-w-5xl">
-            <p className="serial text-bulb mb-4">Combo Deals</p>
-            <h2
-              id="bundles-heading"
-              className="font-display text-[clamp(2.25rem,5vw,4rem)] uppercase mb-3"
-            >
-              Bundles.
-            </h2>
-            <p className="font-body text-paper/80 mb-10">
-              Pre-built combos, quoted as one line.
-            </p>
-            <ul className="divide-y-2 divide-paper/25 border-y-2 border-paper/25">
-              {bundles.map((b) => (
-                <li key={b.name} className="py-6">
-                  <h3 className="font-display text-2xl sm:text-3xl uppercase leading-none mb-2">
-                    {b.name}
-                  </h3>
-                  <p className="font-body leading-relaxed mb-2">{b.includes}</p>
-                  <p className="font-mono text-sm text-bulb">
-                    Best for: {b.bestFor}
-                  </p>
-                </li>
+            <FadeIn>
+              <h2 id="bundles-heading" className="font-heading text-2xl text-projector mb-2">
+                Bundles
+              </h2>
+              <p className="text-steel text-sm mb-8">
+                Pre-built combos. Ask Blake for bundle pricing.
+              </p>
+            </FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {bundles.map((b, i) => (
+                <FadeIn key={b.name} delay={i * 0.06}>
+                  <div className="bg-screening rounded-lg p-6 border border-white/10 hover:border-oxblood/30 transition-colors h-full">
+                    <h3 className="font-heading text-base text-projector mb-2">{b.name}</h3>
+                    <p className="text-steel text-sm leading-relaxed mb-2">{b.includes}</p>
+                    <p className="text-steel text-xs">Best for: {b.bestFor}</p>
+                  </div>
+                </FadeIn>
               ))}
-            </ul>
+            </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="bg-paper px-4 sm:px-10 py-20 text-center">
-          <p className="serial text-tail mb-4">Ready to Build?</p>
-          <h2 className="font-display text-[clamp(2.5rem,7vw,5rem)] uppercase leading-none mb-6">
-            Tell us what you want.
-          </h2>
-          <p className="font-body text-concrete max-w-xl mx-auto mb-10">
-            Tell us what you&apos;re thinking and we&apos;ll put together a real quote.
-          </p>
-          <BulbButton href="/contact">Get a Quote</BulbButton>
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <FadeIn>
+              <h2 className="font-heading text-2xl text-projector mb-4">Ready to build your event?</h2>
+              <p className="text-steel mb-8 text-sm leading-relaxed">
+                Tell Blake what you are thinking and he will put together a real quote.
+              </p>
+              <MagneticButton className="inline-flex">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(107,31,31,0.4)] transition-all duration-300"
+                >
+                  Get a Quote
+                </Link>
+              </MagneticButton>
+            </FadeIn>
+          </div>
         </section>
       </main>
       <Footer />

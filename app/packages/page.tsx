@@ -2,13 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import BulbButton from "@/components/bulb-button";
-import TicketStub from "@/components/ticket-stub";
-import FilmStrip from "@/components/film-strip";
-import NeonSign from "@/components/neon-sign";
+import { Check } from "lucide-react";
+import FadeIn from "@/components/fade-in";
+import AnimatedCard from "@/components/animated-card";
+import MagneticButton from "@/components/magnetic-button";
+import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
+import BallparkTool from "@/components/packages/ballpark-tool";
+import ComparisonTable from "@/components/packages/comparison-table";
+import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 import { audioTiers, useCases } from "@/lib/packages";
-import { buildAllServicesGraph, buildBreadcrumbList } from "@/lib/schema";
+import {
+  buildAllServicesGraph,
+  buildBreadcrumbList,
+} from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Setup & Audio Tiers",
@@ -31,178 +38,187 @@ export default function PackagesPage() {
         ]}
       />
       <Nav />
-      <main className="flex-1">
+      <main className="flex-1 pt-16">
         {/* Header */}
-        <section className="bg-paper px-4 sm:px-10 pt-16 sm:pt-24 pb-14">
-          <div className="mx-auto max-w-5xl">
-            <p className="serial text-tail mb-6">№ 003 · The Menu</p>
-            <h1 className="font-display text-[clamp(3rem,9vw,7rem)] uppercase leading-none">
-              One screen.
-              <br />
-              Three audio tiers.
-            </h1>
-            <p className="mt-8 font-body text-lg max-w-xl">
-              Every booking is a private, non-ticketed event on a 30 ft
-              inflatable screen. Pick the audio that fits the night.
-              Add what you need. Setup, systems test, and teardown are
-              on the house.
-            </p>
-            <p className="serial text-concrete mt-6">
-              Every event is custom-quoted — contact for a real number inside 24 hours.
-            </p>
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
+          <PageAtmosphere variant="dusk" />
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
+            <FadeIn>
+              <h1 className="font-display text-5xl sm:text-6xl text-projector tracking-wider mb-2">
+                ONE SCREEN. THREE AUDIO TIERS.
+              </h1>
+              <span className="oxblood-rule mx-auto" />
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="text-steel text-lg leading-relaxed mt-6">
+                Every booking is a private, non-ticketed event on a 30 ft inflatable screen.
+                Pick your audio tier. Add what you need. Setup, systems test, and teardown included.
+              </p>
+              <p className="text-steel text-sm mt-2">
+                Every event is custom-quoted. Contact for a real number within 24 hours.
+              </p>
+            </FadeIn>
           </div>
         </section>
 
-        <FilmStrip tone="ink" />
+        {/* Private events notice */}
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+          <PrivateEventsNotice />
+        </div>
 
-        {/* Ticket-stub tier grid */}
-        <section
-          className="bg-ink text-paper px-4 sm:px-10 py-20"
-          aria-labelledby="tiers-heading"
-        >
+        {/* Three audio tiers */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="tiers-heading">
           <div className="mx-auto max-w-7xl">
-            <p className="serial text-bulb mb-4">Now Booking</p>
-            <h2
-              id="tiers-heading"
-              className="font-display text-[clamp(2.25rem,5vw,4rem)] uppercase mb-12"
-            >
-              Pick your reel.
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            <FadeIn>
+              <h2 id="tiers-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-8">
+                Audio tiers.
+              </h2>
+            </FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {audioTiers.map((tier, i) => (
-                <TicketStub
+                <AnimatedCard
                   key={tier.slug}
-                  tone="paper"
-                  serial={`AT-${String(i + 1).padStart(3, "0")}`}
-                  stamp={tier.popular ? "Most Popular" : undefined}
+                  delay={i * 0.08}
+                  className={`rounded-lg p-8 flex flex-col ${
+                    tier.popular
+                      ? "bg-charcoal ring-2 ring-oxblood"
+                      : "bg-charcoal border border-white/10 hover:border-white/20 transition-colors"
+                  }`}
                 >
+                  {tier.popular && (
+                    <span className="inline-flex self-start mb-3 bg-oxblood text-projector text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                      Most popular
+                    </span>
+                  )}
                   <h3
-                    className="font-display text-2xl sm:text-3xl uppercase leading-tight mb-3"
+                    className="font-heading text-xl text-projector mb-1"
                     style={{ viewTransitionName: `tier-name-${tier.slug}` }}
                   >
                     {tier.name}
                   </h3>
-                  <p className="serial text-tail mb-4">Custom quote per event</p>
-                  <p className="font-mono text-sm text-concrete mb-5">
-                    Best for: {tier.best}
-                  </p>
-                  <ul className="space-y-1.5 mb-6 text-sm font-body">
+                  <p className="text-ember font-semibold text-sm mb-1">Custom quote per event</p>
+                  <p className="text-steel text-xs mt-3 mb-4">Best for: {tier.best}</p>
+                  <ul className="space-y-2 flex-1 mb-6">
                     {tier.includes.map((item) => (
-                      <li key={item} className="flex gap-2">
-                        <span className="text-tail">▸</span>
+                      <li key={item} className="flex items-start gap-2 text-steel text-sm">
+                        <Check size={14} className="text-ember mt-0.5 shrink-0" aria-hidden="true" />
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
-                  <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center justify-between gap-3">
                     <Link
                       href={`/packages/${tier.slug}`}
-                      className="serial text-ink border-b-2 border-ink pb-0.5 hover:text-tail hover:border-tail transition-colors"
+                      className="text-ember text-xs font-semibold uppercase tracking-wider hover:text-projector transition-colors"
                     >
-                      Spec Sheet →
+                      Details →
                     </Link>
                     <Link
                       href={`/contact?package=${encodeURIComponent(tier.name)}`}
-                      className="serial bg-tail text-paper px-3 py-2 hover:bg-ink transition-colors"
+                      className={`inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-colors ${
+                        tier.popular
+                          ? "bg-oxblood text-projector hover:bg-oxblood-deep"
+                          : "border border-ember text-ember hover:bg-oxblood hover:border-oxblood hover:text-projector"
+                      }`}
                     >
-                      Quote
+                      Request a Quote
                     </Link>
                   </div>
-                </TicketStub>
+                </AnimatedCard>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Event types — Now Showing board */}
-        <section
-          id="use-cases"
-          className="bg-paper px-4 sm:px-10 py-20"
-          aria-labelledby="use-cases-heading"
-        >
-          <div className="mx-auto max-w-5xl">
-            <p className="serial text-tail mb-4">№ 004 · Now Showing</p>
-            <h2
-              id="use-cases-heading"
-              className="font-display text-[clamp(2.5rem,6vw,5rem)] uppercase mb-4"
-            >
-              Event types.
-            </h2>
-            <p className="font-body text-concrete max-w-xl mb-10">
-              Pick your event. We match the audio tier. Every type
-              below runs on the same 30 ft screen — sound scales with
-              the crowd.
-            </p>
+        {/* Quick ballpark tool */}
+        <section className="py-12 px-4 sm:px-6 lg:px-8" aria-labelledby="ballpark-heading">
+          <div className="mx-auto max-w-3xl">
+            <FadeIn>
+              <h2 id="ballpark-heading" className="sr-only">Quick ballpark</h2>
+              <BallparkTool />
+            </FadeIn>
+          </div>
+        </section>
 
-            <ul
-              className="divide-y-2 divide-ink border-y-2 border-ink"
-              role="list"
-            >
-              {useCases.map((uc) => (
-                <li
+        {/* Side-by-side comparison */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="comparison-heading">
+          <div className="mx-auto max-w-5xl">
+            <FadeIn>
+              <h2 id="comparison-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-3">
+                Compare audio tiers.
+              </h2>
+              <p className="text-steel text-sm mb-6">
+                Same screen. Same BYO Content rule. Sound scales with your event.
+              </p>
+              <ComparisonTable />
+            </FadeIn>
+          </div>
+        </section>
+
+        {/* Event types */}
+        <section id="use-cases" className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="use-cases-heading">
+          <div className="mx-auto max-w-7xl">
+            <FadeIn>
+              <h2 id="use-cases-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-3">
+                Event types.
+              </h2>
+              <p className="text-steel text-sm mb-8">
+                Pick your event. We pick the right audio tier and walk you through add-ons.
+              </p>
+            </FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {useCases.map((uc, i) => (
+                <AnimatedCard
                   key={uc.slug}
-                  id={uc.slug}
-                  className="grid grid-cols-[1fr_auto] gap-6 items-center py-6"
+                  delay={(i % 2) * 0.08}
+                  className="bg-charcoal rounded-lg p-8 flex flex-col border border-white/10 hover:border-white/20 transition-colors"
                 >
-                  <div>
-                    <h3 className="font-display text-2xl sm:text-3xl uppercase leading-none mb-2">
-                      {uc.name}
-                    </h3>
-                    <p className="font-body text-sm text-concrete max-w-xl">
-                      {uc.desc}
-                    </p>
-                  </div>
+                  <h3 id={uc.slug} className="font-heading text-xl text-projector mb-2">{uc.name}</h3>
+                  <p className="text-steel text-sm leading-relaxed mb-5 flex-1">{uc.desc}</p>
                   <Link
                     href={`/contact?package=${encodeURIComponent(uc.name)}`}
-                    className="serial text-tail border-2 border-tail px-3 py-2 hover:bg-tail hover:text-paper transition-colors whitespace-nowrap"
+                    className="inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold border border-ember text-ember hover:bg-oxblood hover:border-oxblood hover:text-projector transition-colors"
                   >
-                    Request Quote
+                    Request a Quote
                   </Link>
-                </li>
+                </AnimatedCard>
               ))}
-            </ul>
+            </div>
           </div>
         </section>
 
-        <FilmStrip tone="ink" />
-
-        {/* Add-ons teaser */}
-        <section className="bg-paper px-4 sm:px-10 py-16">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="serial text-tail mb-4">The Concessions Stand</p>
-            <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] uppercase leading-none mb-5">
-              Need extras?
-            </h2>
-            <p className="font-body text-concrete mb-8">
-              Karaoke, drone, popcorn, cornhole, photo backdrop, string
-              lights, patio heater, bug zapper, and more.
-            </p>
-            <Link
-              href="/add-ons"
-              className="serial border-b-2 border-ink pb-0.5 hover:text-tail hover:border-tail transition-colors"
-            >
-              Browse the Add-On Catalog →
-            </Link>
+        {/* Add-ons link */}
+        <section className="py-12 px-4 sm:px-6 lg:px-8 bg-charcoal">
+          <div className="mx-auto max-w-2xl text-center">
+            <FadeIn>
+              <h2 className="font-heading text-2xl text-projector mb-3">Need extras?</h2>
+              <p className="text-steel mb-6 text-sm leading-relaxed">
+                Karaoke, drone video, popcorn, cornhole, photo backdrop, string lights, patio heater, bug zapper, and more.
+              </p>
+              <Link href="/add-ons" className="text-ember underline-offset-4 hover:underline font-medium">
+                Browse the Add-On Catalog
+              </Link>
+            </FadeIn>
           </div>
         </section>
 
-        {/* Final CTA */}
-        <section
-          aria-labelledby="cta-heading"
-          className="bg-ink text-paper px-4 sm:px-10 py-24 text-center"
-        >
-          <p className="serial text-bulb mb-6">Reserve the Night</p>
-          <h2
-            id="cta-heading"
-            className="font-display text-[clamp(2.5rem,8vw,6rem)] uppercase leading-none"
-          >
-            <NeonSign>Book it.</NeonSign>
-          </h2>
-          <p className="mt-6 font-body text-lg max-w-lg mx-auto">
-            Not sure which tier fits? Tell us the event and we&apos;ll match the rig.
-          </p>
-          <div className="mt-10">
-            <BulbButton href="/contact">Get a Quote</BulbButton>
+        {/* CTA */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <FadeIn>
+              <h2 className="font-heading text-3xl text-projector mb-4">Not sure which fits?</h2>
+              <p className="text-steel mb-8 leading-relaxed">
+                Tell us about your event and we will recommend the right setup.
+              </p>
+              <MagneticButton className="inline-flex">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
+                >
+                  Get a Quote
+                </Link>
+              </MagneticButton>
+            </FadeIn>
           </div>
         </section>
       </main>

@@ -4,11 +4,10 @@ import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import ContactForm from "./contact-form";
 import FormSkeleton from "@/components/skeletons/form-skeleton";
-import FilmStrip from "@/components/film-strip";
-import NeonSign from "@/components/neon-sign";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList } from "@/lib/schema";
+import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -28,22 +27,21 @@ export default function ContactPage() {
         ])}
       />
       <Nav />
-      <main className="flex-1">
-        <section className="bg-paper px-4 sm:px-10 pt-16 sm:pt-24 pb-12">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="serial text-tail mb-6">Admit One · Request a Quote</p>
-            <h1 className="font-display text-[clamp(3rem,9vw,7rem)] uppercase leading-none">
-              <NeonSign>Book it.</NeonSign>
+      <main className="flex-1 pt-16">
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
+          <PageAtmosphere variant="ember" />
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
+            <h1 className="font-display text-5xl sm:text-6xl text-projector tracking-wider mb-2">
+              GET A QUOTE
             </h1>
-            <p className="mt-10 font-body text-lg">
-              Fill out the order below. Real quote back inside 24 hours.
+            <span className="oxblood-rule mx-auto" />
+            <p className="text-steel text-lg leading-relaxed mt-6">
+              Fill out the form and we will respond within 24 hours with availability and a real quote.
             </p>
           </div>
         </section>
 
-        <FilmStrip tone="ink" />
-
-        <section className="bg-paper px-4 sm:px-10 py-14">
+        <section className="py-12 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl space-y-8">
             <PrivateEventsNotice />
             <Suspense fallback={<FormSkeleton />}>
