@@ -213,7 +213,9 @@ html[data-tod="night"] {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero wordmark: slow red glow rolling across "AFTER DUSK EVENTS" */
+/* Hero wordmark: red glow sweeps across "AFTER DUSK EVENTS" once after load.
+   mix-blend-mode: color tints the white letters red as the light passes, so
+   the glow reads clearly on top of the words rather than vanishing behind them. */
 .wordmark-glow {
   position: relative;
   isolation: isolate;
@@ -223,21 +225,30 @@ html[data-tod="night"] {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(
-    ellipse 18% 140% at 50% 50%,
-    rgba(221, 84, 84, 0.95) 0%,
-    rgba(221, 84, 84, 0.4) 40%,
-    transparent 75%
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(221, 84, 84, 0.75) 47%,
+    rgba(255, 80, 80, 1) 50%,
+    rgba(221, 84, 84, 0.75) 53%,
+    transparent 65%
   );
-  mix-blend-mode: overlay;
-  transform: translateX(-80%);
-  animation: wordmark-glow-roll 9s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  will-change: transform;
-  z-index: 1;
+  background-size: 220% 100%;
+  background-position: 130% 0;
+  mix-blend-mode: color;
+  z-index: 2;
+  opacity: 0;
+  animation: wordmark-glow-roll 1.8s cubic-bezier(0.55, 0.1, 0.3, 0.95) 1.15s 1 forwards;
+  will-change: background-position, opacity;
 }
 @keyframes wordmark-glow-roll {
-  0%   { transform: translateX(-80%); }
-  100% { transform: translateX(80%); }
+  0%   { background-position: 130% 0; opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { background-position: -30% 0; opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wordmark-glow::before { animation: none; opacity: 0; }
 }
 
 /* Atmosphere: spotlight slow drift */

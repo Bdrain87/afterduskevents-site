@@ -12,7 +12,6 @@ import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
 import { useFitText } from "@/hooks/use-fit-text";
 import Spotlight from "@/components/atmosphere/spotlight";
@@ -23,7 +22,7 @@ import TestimonialsSection from "@/components/testimonials/testimonials-section"
 import NextEventCard from "@/components/next-event-card";
 import type { NearestCityResult } from "@/lib/nearest-city";
 
-gsap.registerPlugin(SplitText, ScrollTrigger, ScrambleTextPlugin);
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const statements = [
   {
@@ -51,7 +50,6 @@ const eventTypes = [
   { name: "Sports Watch Party", desc: "Game day, bigger than any bar." },
   { name: "Fight Night",        desc: "UFC, boxing, WWE. Built for the bass drop." },
   { name: "Gaming Night",       desc: "8-bit retro with 4 controllers, or your PS/Xbox with staff hookup." },
-  { name: "Wedding Reception",  desc: "Reception entertainment only. 30 ft screen with your content for guests during the reception." },
   { name: "Graduation Party",   desc: "Photo reel and a movie all night." },
   { name: "Get-together",       desc: "Birthdays, holidays, any private gathering." },
 ];
@@ -71,38 +69,19 @@ export default function HomeClient({ geo }: Props = {}) {
   const heroRestRef    = useRef<HTMLDivElement>(null);
   const statementsRef  = useRef<HTMLDivElement>(null);
 
-  // Only animate once fontSize is calculated from the real font.
-  // Sequence: chars slide up + fade in, then the whole line scrambles through
-  // random glyphs and resolves back to "AFTER DUSK EVENTS".
   useGSAP(() => {
     if (!fontSize || !nameRef.current) return;
     const el = nameRef.current.querySelector<HTMLElement>(".wordmark");
     if (!el) return;
     const split = new SplitText(el, { type: "chars" });
-    const tl = gsap.timeline({ delay: 0.1 });
-    tl.from(split.chars, {
-      y: 80,
+    gsap.from(split.chars, {
+      y: 40,
       opacity: 0,
-      duration: 0.75,
-      stagger: 0.018,
-      ease: "power3.out",
+      duration: 0.6,
+      stagger: 0.03,
+      ease: "power2.out",
+      delay: 0.1,
     });
-    // Scramble pass. run after the chars land so the cycle reads clean
-    tl.to(
-      el,
-      {
-        duration: 1.4,
-        scrambleText: {
-          text: "AFTER DUSK EVENTS",
-          chars: "XKWZ30FT█▓▒░MICHIGAN",
-          revealDelay: 0.25,
-          tweenLength: false,
-          speed: 0.55,
-        },
-        ease: "power1.inOut",
-      },
-      "-=0.2",
-    );
   }, { dependencies: [fontSize] });
 
   useGSAP(() => {

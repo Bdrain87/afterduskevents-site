@@ -19,7 +19,7 @@ import { MessageCircle, Send, Sparkles, X } from "lucide-react";
 
 const SUGGESTIONS = [
   "I want a backyard movie night in June for 30 people",
-  "Wedding reception entertainment, 120 guests in Plymouth",
+  "Corporate outdoor movie for 120 guests in Plymouth",
   "Fight night with friends. PPV on the big screen",
   "Graduation party, want a blacklight / glow vibe",
 ];

@@ -64,7 +64,7 @@ export default function AboutPage() {
                   Every arrival is 3 hours before the first guest walks in.
                 </p>
                 <p>
-                  We serve private residential events, wedding receptions, graduation parties, and
+                  We serve private residential events, graduation parties, and
                   get-togethers of all kinds across the greater Detroit and Ann Arbor area. Movie
                   nights, gaming nights, sports watch parties, fight nights, anywhere within
                   60 miles of Canton. Proudly veteran-owned.

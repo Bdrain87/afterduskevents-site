@@ -66,7 +66,7 @@ export const cities: City[] = [
     lat: 42.2808,
     lng: -83.7430,
     blurb:
-      "Ann Arbor private backyards, wedding receptions, and customer-permitted outdoor events. 30 ft screen, three audio tiers, water-ballast setup.",
+      "Ann Arbor private backyards and customer-permitted outdoor events. 30 ft screen, three audio tiers, water-ballast setup.",
   },
   {
     slug: "dearborn",

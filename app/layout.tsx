@@ -63,7 +63,6 @@ export const metadata: Metadata = {
     "outdoor movie rental Michigan",
     "backyard movie night Canton",
     "inflatable screen rental Detroit",
-    "wedding outdoor cinema Ann Arbor",
     "corporate outdoor movie Michigan",
     "outdoor cinema rental Southeast Michigan",
     "private outdoor cinema Michigan",

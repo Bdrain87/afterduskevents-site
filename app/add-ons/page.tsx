@@ -22,7 +22,7 @@ const categories = [
       { item: "8-bit retro system + 4 wireless controllers", bestFor: "Birthdays, family nights, casual gaming" },
       { item: "BYO console hookup (PlayStation / Xbox, staff-connected)", bestFor: "Gamers bringing their own gear" },
       { item: "YouTube karaoke + 2 wireless mics", bestFor: "Any event, any age" },
-      { item: "Drone video and photos (staff-operated only)", bestFor: "Weddings, big events, memories you want recorded" },
+      { item: "Drone video and photos (staff-operated only)", bestFor: "Big events, memories you want recorded" },
       { item: "Cornhole", bestFor: "Daytime / pre-event activation" },
       { item: "Can jam", bestFor: "Daytime / pre-event activation" },
       { item: "Ladder ball", bestFor: "Daytime / pre-event activation" },
@@ -38,10 +38,10 @@ const categories = [
   {
     name: "Atmosphere",
     items: [
-      { item: "Ambient string lighting", bestFor: "Dusk weddings, dinner parties, backyard vibes" },
+      { item: "Ambient string lighting", bestFor: "Dinner parties, backyard vibes" },
       { item: "Blacklights", bestFor: "Teen birthdays, graduations, glow parties. Pairs with the glow bundle." },
-      { item: "Glow sticks, bracelets, necklaces", bestFor: "Teen / tween parties, reception late-night energy" },
-      { item: "Photo area with backdrop", bestFor: "Weddings, graduations, memory-driven events" },
+      { item: "Glow sticks, bracelets, necklaces", bestFor: "Teen / tween parties, late-night energy" },
+      { item: "Photo area with backdrop", bestFor: "Graduations, memory-driven events" },
     ],
   },
   {
@@ -56,14 +56,14 @@ const categories = [
     items: [
       { item: "Folding table, 6 ft", bestFor: "Food service, concessions, gift table" },
       { item: "Folding table, 4 ft", bestFor: "Smaller concessions" },
-      { item: "Folding table, 4 ft round", bestFor: "Wedding / reception seating" },
+      { item: "Folding table, 4 ft round", bestFor: "Dinner service, round-table seating" },
     ],
   },
   {
     name: "Service extensions",
     items: [
-      { item: "Early setup", bestFor: "Weddings, complex venues, tight timelines" },
-      { item: "Late teardown", bestFor: "Late-running events, weddings" },
+      { item: "Early setup", bestFor: "Complex venues, tight timelines" },
+      { item: "Late teardown", bestFor: "Late-running events" },
     ],
   },
 ];

@@ -42,7 +42,7 @@ const sizingTable = [
   { guests: "Under 25", tier: "30 ft + Single Speaker", note: "Backyard movie nights, family events" },
   { guests: "25–50", tier: "30 ft + Two Speakers", note: "Tight backyards, birthdays, smaller gatherings" },
   { guests: "50–100", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Block parties, larger backyards, dance-floor events" },
-  { guests: "100–250", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Community events, weddings, fight nights" },
+  { guests: "100–250", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Community events, fight nights, sports watch parties" },
   { guests: "250+", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Custom quote. Contact for details on larger crowds." },
 ];
 
@@ -55,7 +55,7 @@ export default function GuidePage() {
           buildArticle({
             headline: "What Size Outdoor Movie Screen Do I Need for My Guest Count? (2026)",
             description:
-              "Match guest count to audio tier for outdoor movie nights, weddings, and private events. One screen size, three audio tiers.",
+              "Match guest count to audio tier for outdoor movie nights, sports watch parties, and private events. One screen size, three audio tiers.",
             slug: SLUG,
             datePublished: PUBLISHED,
             dateModified: UPDATED,
@@ -123,7 +123,7 @@ export default function GuidePage() {
               <p className="text-steel leading-relaxed">
                 A 30 ft inflatable screen is the right visual scale for the entire spectrum of
                 private events we run. Backyard movie nights feel cinematic at that size without
-                overwhelming the space. Larger community events, fight nights, and weddings all
+                overwhelming the space. Larger community events, fight nights, and sports watch parties all
                 benefit from the same screen. The screen is the "wow" that makes a backyard
                 feel like an amphitheater. The variable is sound.
               </p>

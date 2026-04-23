@@ -68,7 +68,6 @@ export type UseCase = {
     | "gaming"
     | "sports"
     | "fights"
-    | "wedding"
     | "graduation"
     | "celebration";
   name: string;
@@ -100,12 +99,6 @@ export const useCases: UseCase[] = [
     name: "Fight Night",
     desc: "UFC, boxing, WWE. Built for the bass drop.",
     recommendedTier: "two-speakers-sub",
-  },
-  {
-    slug: "wedding",
-    name: "Wedding Reception",
-    desc: "Reception entertainment only. 30 ft screen with your content for guests during the reception.",
-    recommendedTier: "two-speakers",
   },
   {
     slug: "graduation",

@@ -58,10 +58,6 @@ export const faqs: Faq[] = [
     a: "Yes. Full commercial general liability. We can add venues as additional insured on request. Certificate of Insurance available on request.",
   },
   {
-    q: "Do you handle weddings?",
-    a: "Yes. Wedding receptions run on the same 30 ft screen with your chosen audio tier (most wedding receptions go with two speakers plus the Death From Below subwoofer). Wedding-relevant add-ons include early setup, late teardown, photo area with backdrop, ambient string lighting, and patio heater.",
-  },
-  {
     q: "What if it rains?",
     a: "Contact Blake to confirm the weather policy that applies to your booking. Rain policy specifics are spelled out in the Service Agreement that comes with your quote.",
   },

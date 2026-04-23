@@ -109,7 +109,7 @@ export default async function CityPage({ params }: Params) {
                 set up on site with water ballast and a complete systems test before the first reel rolls.
               </p>
               <p>
-                We run private events only: backyards, weddings, corporate gatherings, HOA
+                We run private events only: backyards, corporate gatherings, HOA
                 nights, school events, and community organization screenings. No ticketed or
                 publicly advertised showings.
               </p>

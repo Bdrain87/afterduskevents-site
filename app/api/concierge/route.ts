@@ -82,14 +82,13 @@ export async function POST(req: Request) {
 
       suggestSetup: tool({
         description:
-          "Given a use-case slug (movie-night / gaming / sports / fights / wedding / graduation / celebration) and optional guest count bucket, return the recommended audio tier. Always use this before recommending a tier by name.",
+          "Given a use-case slug (movie-night / gaming / sports / fights / graduation / celebration) and optional guest count bucket, return the recommended audio tier. Always use this before recommending a tier by name.",
         inputSchema: z.object({
           useCase: z.enum([
             "movie-night",
             "gaming",
             "sports",
             "fights",
-            "wedding",
             "graduation",
             "celebration",
           ]),
@@ -164,7 +163,6 @@ export async function POST(req: Request) {
             "gaming",
             "sports",
             "fights",
-            "wedding",
             "graduation",
             "celebration",
           ]),
@@ -193,14 +191,6 @@ export async function POST(req: Request) {
               "Folding tables",
               "Early setup",
               "Blacklight + Neon Kit (for post-main-event afterparty)",
-            ],
-            wedding: [
-              "Drone video and photos",
-              "Photo area with backdrop",
-              "Ambient string lighting",
-              "Patio heater",
-              "Early setup",
-              "Late teardown",
             ],
             graduation: [
               "YouTube karaoke + 2 wireless mics",

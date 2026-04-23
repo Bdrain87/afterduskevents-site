@@ -11,7 +11,7 @@ export type Testimonial = {
   id: string;
   quote: string;
   author: string;
-  /** Event type, e.g. "Wedding Reception" */
+  /** Event type, e.g. "Fight Night" */
   eventType?: string;
   /** City + state, e.g. "Plymouth, MI" */
   location?: string;

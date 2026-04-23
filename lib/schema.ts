@@ -109,7 +109,6 @@ export function buildLocalBusiness(): SchemaObject {
       "outdoor cinema",
       "30 ft inflatable movie screen rental",
       "backyard movie night",
-      "outdoor wedding cinema",
       "sports watch party outdoor projector",
       "fight night outdoor projection",
       "graduation party outdoor cinema",
