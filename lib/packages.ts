@@ -13,24 +13,17 @@
 export type AudioTier = {
   slug: "single-speaker" | "two-speakers" | "two-speakers-sub";
   name: string;
-  price: string;
-  /** Optional starting price (e.g. "$425"). Set null to keep fully quote-only. Blake to supply. */
-  startsAt: string | null;
   popular?: boolean;
   /** What's in the setup. Only list gear Blake has confirmed. */
   includes: string[];
   /** Use-case fit, shown on cards. */
   best: string;
-  /** Internal range for the ballpark tool. Blake to supply real numbers before this surfaces. */
-  estimateRange?: { min: number; max: number };
 };
 
 export const audioTiers: AudioTier[] = [
   {
     slug: "single-speaker",
     name: "30 ft + Single Speaker",
-    price: "Contact for quote",
-    startsAt: null,
     includes: [
       "30 ft inflatable screen",
       "Single speaker",
@@ -42,8 +35,6 @@ export const audioTiers: AudioTier[] = [
   {
     slug: "two-speakers",
     name: "30 ft + Two Speakers",
-    price: "Contact for quote",
-    startsAt: null,
     popular: true,
     includes: [
       "30 ft inflatable screen",
@@ -56,8 +47,6 @@ export const audioTiers: AudioTier[] = [
   {
     slug: "two-speakers-sub",
     name: "30 ft + Two Speakers + Death From Below Sub",
-    price: "Contact for quote",
-    startsAt: null,
     includes: [
       "30 ft inflatable screen",
       "Two speakers",

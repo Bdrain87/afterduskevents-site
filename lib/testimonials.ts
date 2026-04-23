@@ -1,7 +1,11 @@
 /**
- * Customer testimonials. Replace placeholders with real entries as Blake collects them.
- * Set `featured: true` to surface in the marquee. Optional `videoSrc` for video testimonials
- * (host on Mux when ready).
+ * Customer testimonials. After Dusk Events is pre-launch — this array stays empty
+ * until Blake has real customer quotes to publish. TestimonialsSection renders
+ * nothing when the array is empty, so the homepage stays honest.
+ *
+ * When adding a real testimonial:
+ *   1. Append an entry here with real quote + author + event type + location.
+ *   2. Set `featured: true` on the best 2–3 to surface in the marquee (5+ total = auto marquee).
  */
 export type Testimonial = {
   id: string;
@@ -18,51 +22,17 @@ export type Testimonial = {
   /** Star rating, 1-5 */
   rating?: 1 | 2 | 3 | 4 | 5;
   featured?: boolean;
-  /** Marks placeholder content awaiting Blake's real entries */
-  isPlaceholder?: boolean;
 };
 
 export const testimonials: Testimonial[] = [
-  // Replace these placeholders with real customer quotes.
-  // The site renders testimonials only when isPlaceholder is false OR not set.
-  {
-    id: "placeholder-1",
-    quote: "Placeholder testimonial — Blake to replace with first real customer quote.",
-    author: "First Customer Name",
-    eventType: "Backyard Movie Night",
-    location: "Canton, MI",
-    rating: 5,
-    isPlaceholder: true,
-  },
-  {
-    id: "placeholder-2",
-    quote: "Placeholder testimonial — Blake to replace with second real customer quote.",
-    author: "Second Customer Name",
-    eventType: "HOA Block Party",
-    location: "Plymouth, MI",
-    rating: 5,
-    isPlaceholder: true,
-  },
-  {
-    id: "placeholder-3",
-    quote: "Placeholder testimonial — Blake to replace with third real customer quote.",
-    author: "Third Customer Name",
-    eventType: "Wedding Reception",
-    location: "Northville, MI",
-    rating: 5,
-    isPlaceholder: true,
-  },
+  // Intentionally empty — pre-launch. Add real customer quotes here as they arrive.
 ];
 
-/** Returns only real (non-placeholder) testimonials. */
+/** Returns all published testimonials. Currently empty. */
 export function publishedTestimonials(): Testimonial[] {
-  return testimonials.filter((t) => !t.isPlaceholder);
+  return testimonials;
 }
 
 export function featuredTestimonials(): Testimonial[] {
   return publishedTestimonials().filter((t) => t.featured);
-}
-
-export function testimonialCount(): number {
-  return publishedTestimonials().length;
 }

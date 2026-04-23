@@ -22,8 +22,7 @@ export const cities: City[] = [
     lat: 42.3086,
     lng: -83.482,
     blurb:
-      "Home base. Same-day setup for Canton residents on most dates. Heritage Park, Pheasant Run, and most subdivision common areas all work for outdoor cinema setups.",
-    featuredVenues: ["Heritage Park", "Pheasant Run Golf Club", "Summit on the Park"],
+      "Home base. Same-day setup for Canton residents on most dates. Private backyards and customer-permitted venues within the city.",
   },
   {
     slug: "plymouth",
@@ -34,7 +33,7 @@ export const cities: City[] = [
     lat: 42.3714,
     lng: -83.4702,
     blurb:
-      "Plymouth backyards, Old Village events, and Kellogg Park area gatherings. 4K projection scaled for tight residential lots and larger estate properties alike.",
+      "Plymouth backyards and private gatherings. Outdoor cinema scaled for tight residential lots through larger estate properties.",
   },
   {
     slug: "northville",
@@ -45,7 +44,7 @@ export const cities: City[] = [
     lat: 42.4314,
     lng: -83.483,
     blurb:
-      "Northville and Northville Township private events. Mill Race Historical Village adjacent properties, Maybury Park area homes, and HOA neighborhoods.",
+      "Northville and Northville Township private events. Backyards, driveways, and customer-permitted outdoor venues.",
   },
   {
     slug: "novi",
@@ -56,7 +55,7 @@ export const cities: City[] = [
     lat: 42.4806,
     lng: -83.4755,
     blurb:
-      "Novi corporate parks, residential subdivisions, and HOA community events. Setups scaled for everything from 30-guest birthdays to 250-guest neighborhood block parties.",
+      "Novi private backyards and customer-permitted venues. Setups scale from small backyard parties to larger private gatherings.",
   },
   {
     slug: "ann-arbor",
@@ -67,7 +66,7 @@ export const cities: City[] = [
     lat: 42.2808,
     lng: -83.7430,
     blurb:
-      "Ann Arbor wedding venues, university-adjacent private events, and Burns Park residential gatherings. Outdoor cinema for film grads who notice the difference between a 4K laser and a consumer projector.",
+      "Ann Arbor private backyards, wedding receptions, and customer-permitted outdoor events. 30 ft screen, three audio tiers, water-ballast setup.",
   },
   {
     slug: "dearborn",
@@ -78,7 +77,7 @@ export const cities: City[] = [
     lat: 42.3223,
     lng: -83.1763,
     blurb:
-      "Dearborn private events from family backyards to corporate gatherings. Coverage extends to Dearborn Heights and the broader West Wayne County area.",
+      "Dearborn private events, family backyards, and customer-permitted gatherings. Coverage extends to Dearborn Heights and West Wayne County.",
   },
   {
     slug: "birmingham",
@@ -89,7 +88,7 @@ export const cities: City[] = [
     lat: 42.5467,
     lng: -83.2113,
     blurb:
-      "Birmingham estates, Quarton Lake area homes, and downtown Birmingham private events. Premium audio and 4K projection for events where production quality is non-negotiable.",
+      "Birmingham private estates, residential backyards, and customer-permitted outdoor events. 30 ft screen with full audio-tier options.",
   },
   {
     slug: "royal-oak",
@@ -100,7 +99,7 @@ export const cities: City[] = [
     lat: 42.4895,
     lng: -83.1446,
     blurb:
-      "Royal Oak backyards, Vinsetta Park homes, and downtown-adjacent residential events. Setups built for tight urban lots and larger Beverly Hills / Berkley properties.",
+      "Royal Oak private backyards and customer-permitted residential events. Setups built for tight urban lots through larger suburban properties.",
   },
   {
     slug: "grosse-pointe",
@@ -111,7 +110,7 @@ export const cities: City[] = [
     lat: 42.3861,
     lng: -82.9116,
     blurb:
-      "Grosse Pointe lakefront and private estate events across all five Pointes. Ceremony-grade audio and screens scaled for waterfront and landscaped backyards.",
+      "Grosse Pointe private estate and backyard events across all five Pointes. Customer-permitted waterfront and landscaped venues.",
   },
   {
     slug: "detroit",
@@ -122,7 +121,7 @@ export const cities: City[] = [
     lat: 42.3314,
     lng: -83.0458,
     blurb:
-      "Detroit private events: rooftop gatherings, residential backyards, and corporate setups across the city. Power and audio scaled to handle urban venue acoustics.",
+      "Detroit private events: residential backyards and customer-permitted outdoor venues. Audio tiers that handle urban venue acoustics.",
   },
 ];
 

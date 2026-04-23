@@ -89,14 +89,7 @@ export default function PackagesPage() {
                     </span>
                   )}
                   <h3 className="font-heading text-xl text-projector mb-1">{tier.name}</h3>
-                  {tier.startsAt ? (
-                    <p className="text-ember font-semibold text-lg mb-1">
-                      Starts at {tier.startsAt}{" "}
-                      <span className="text-steel text-xs font-normal italic">· custom quote</span>
-                    </p>
-                  ) : (
-                    <p className="text-ember font-semibold text-lg mb-1">{tier.price}</p>
-                  )}
+                  <p className="text-ember font-semibold text-sm mb-1">Custom quote per event</p>
                   <p className="text-steel text-xs mt-3 mb-4 italic">Best for: {tier.best}</p>
                   <ul className="space-y-2 flex-1 mb-6">
                     {tier.includes.map((item) => (

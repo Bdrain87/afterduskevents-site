@@ -19,7 +19,7 @@ const guides = [
     href: "/guides/outdoor-movie-rental-cost-michigan",
     title: "How much does an outdoor movie rental cost in Michigan? (2026)",
     description:
-      "Typical price ranges by event type, what changes the price, deposit policy, travel fees.",
+      "How we think about pricing, what changes the number, and why every event is quoted custom.",
   },
   {
     href: "/guides/screen-size-for-guest-count",

@@ -10,8 +10,8 @@ export type Faq = {
  */
 export const faqs: Faq[] = [
   {
-    q: "Why is every price a starting estimate?",
-    a: "Every event is different. Date, distance, duration, venue, and add-ons all change the number. Every booking gets a custom quote from Blake. There is no automated calculator.",
+    q: "How does pricing work?",
+    a: "Every event is different. Date, distance, duration, venue, and add-ons all change the number. Every booking gets a custom quote from Blake, delivered within 24 hours of inquiry. No published price list, no automated calculator.",
   },
   {
     q: "Can I sell tickets or charge admission?",
@@ -43,7 +43,15 @@ export const faqs: Faq[] = [
   },
   {
     q: "Do you need to stake the screen?",
-    a: "Most of the time, no. Water ballast setup handles most sites including golf courses, vineyards, barns, hardscape, and private estates. If stakes are required by weather or venue, the client calls Miss Dig 811 at least 3 business days ahead and provides the ticket number and visible markings.",
+    a: "Most of the time, no. Water ballast setup handles most sites including backyards, driveways, barns, hardscape, and private estates. If stakes are required by weather or venue, the client calls Miss Dig 811 at least 3 business days ahead and provides the ticket number and visible markings.",
+  },
+  {
+    q: "Do we need power or wifi?",
+    a: "No. We bring our own generator and battery backup on every event, and Starlink for content streaming when venue wifi is unavailable. Zero venue dependency.",
+  },
+  {
+    q: "Who secures the venue permit if the event is on public or rented property?",
+    a: "The customer. For any non-private-backyard venue — parks, community spaces, HOA common areas, rented properties, etc. — the customer is responsible for obtaining the permit or approval from the property owner or municipality. We show up and set up once that's confirmed.",
   },
   {
     q: "Are you insured?",
