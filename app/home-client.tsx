@@ -7,7 +7,7 @@ import { motion } from "motion/react";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
-import { BorderBeam } from "@/components/ui/border-beam";
+import MagneticButton from "@/components/magnetic-button";
 import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -67,6 +67,7 @@ export default function HomeClient({ geo }: Props = {}) {
   const { containerRef: nameRef, measureRef, fontSize } = useFitText();
   const heroRestRef    = useRef<HTMLDivElement>(null);
   const statementsRef  = useRef<HTMLDivElement>(null);
+  const screenImgRef   = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     if (!fontSize || !nameRef.current) return;
@@ -88,6 +89,16 @@ export default function HomeClient({ geo }: Props = {}) {
     gsap.from(heroRestRef.current, {
       y: 24, opacity: 0,
       duration: 0.7, ease: "power2.out", delay: 0.5,
+    });
+  }, []);
+
+  useGSAP(() => {
+    if (!screenImgRef.current) return;
+    gsap.from(screenImgRef.current, {
+      clipPath: "inset(100% 0 0 0)",
+      duration: 1.2,
+      ease: "power3.inOut",
+      scrollTrigger: { trigger: screenImgRef.current, start: "top 82%" },
     });
   }, []);
 
@@ -165,7 +176,7 @@ export default function HomeClient({ geo }: Props = {}) {
               <div className="w-12 h-[2px] bg-oxblood" aria-hidden="true" />
               <span className="text-steel text-xs tracking-[0.28em] uppercase">Big screen. Bigger nights.</span>
             </div>
-            <p className="text-steel text-lg leading-relaxed mb-9">
+            <p className="text-cream/65 text-lg leading-relaxed mb-9">
               {geo?.inRadius && geo.city.slug !== "canton"
                 ? `Serving ${geo.city.name} from Canton, MI. Private outdoor cinema, 30 ft screen, three audio tiers.`
                 : geo?.travelZone
@@ -173,9 +184,11 @@ export default function HomeClient({ geo }: Props = {}) {
                   : "We turn your outdoor space into a cinema. You bring the guests. We bring everything else."}
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4 mb-10">
-              <ShimmerButton href={geo?.inRadius ? `/contact?location=${encodeURIComponent(geo.city.name)}` : "/contact"}>
-                {geo?.inRadius && geo.city.slug !== "canton" ? `Get a ${geo.city.name} Quote` : "Get a Quote"}
-              </ShimmerButton>
+              <MagneticButton>
+                <ShimmerButton href={geo?.inRadius ? `/contact?location=${encodeURIComponent(geo.city.name)}` : "/contact"}>
+                  {geo?.inRadius && geo.city.slug !== "canton" ? `Get a ${geo.city.name} Quote` : "Get a Quote"}
+                </ShimmerButton>
+              </MagneticButton>
               <Link href="/packages" className="inline-flex items-center gap-2 text-steel hover:text-projector text-sm font-medium transition-colors py-4 group">
                 See setup <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </Link>
@@ -240,7 +253,7 @@ export default function HomeClient({ geo }: Props = {}) {
               </Link>
             </div>
             <div className="lg:col-span-3 order-1 lg:order-2 relative">
-              <div className="relative aspect-[4/5] sm:aspect-[5/6] rounded-xl overflow-hidden bg-screening">
+              <div ref={screenImgRef} className="relative aspect-[4/5] sm:aspect-[5/6] overflow-hidden bg-screening">
                 <Image
                   src="/images/setup/30ft-screen-studio.avif"
                   alt="After Dusk Events 30 foot inflatable outdoor cinema screen, studio render with a person at the base for scale"
@@ -358,13 +371,13 @@ export default function HomeClient({ geo }: Props = {}) {
           <div className="absolute inset-0 bg-gradient-to-br from-oxblood to-oxblood-deep" aria-hidden="true" />
           <div className="relative z-10">
             <p
-              className="font-display text-projector leading-[0.9] tracking-wider mb-8"
-              style={{ fontSize: "clamp(2.2rem, 6.5vw, 6rem)" }}
+              className="font-serif italic text-projector leading-[1.1] mb-8"
+              style={{ fontSize: "clamp(2.4rem, 6.5vw, 6.5rem)" }}
             >
-              "EVERY PIECE OF<br />GEAR HAS A BACKUP."
+              &ldquo;Every piece of gear<br />has a backup.&rdquo;
             </p>
-            <p className="text-projector/45 text-sm tracking-[0.2em] uppercase text-right max-w-5xl ml-auto">
-              Blake, Owner. USAF Veteran.
+            <p className="font-display text-projector/40 text-sm tracking-[0.28em] uppercase text-right max-w-5xl ml-auto">
+              Blake — Owner — USAF Veteran
             </p>
           </div>
         </section>
@@ -416,9 +429,11 @@ export default function HomeClient({ geo }: Props = {}) {
           >
             BOOK YOUR<br />NIGHT.
           </h2>
-          <ShimmerButton onClick={() => window.location.href = "/contact"}>
-            Get a Quote
-          </ShimmerButton>
+          <MagneticButton>
+            <ShimmerButton onClick={() => window.location.href = "/contact"}>
+              Get a Quote
+            </ShimmerButton>
+          </MagneticButton>
         </section>
 
       </main>

@@ -24,7 +24,7 @@ export default function Nav() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0 min-w-0" aria-label="After Dusk Events home">
             <LogoMark size={32} />
-            <span className="font-display text-xl tracking-wider text-projector leading-none hidden md:block whitespace-nowrap">
+            <span className="font-display text-base md:text-xl tracking-wider text-projector leading-none whitespace-nowrap">
               AFTER DUSK EVENTS
             </span>
           </Link>

@@ -18,7 +18,7 @@ export default function BallparkTool() {
     "w-full rounded-lg bg-screening border border-white/15 text-projector placeholder-steel px-3 py-2.5 text-sm focus:outline-none focus:border-oxblood focus:ring-1 focus:ring-oxblood transition-colors";
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-charcoal p-6 sm:p-8 shadow-[0_24px_48px_rgba(0,0,0,0.4)]">
+    <div className="border border-white/10 bg-charcoal p-6 sm:p-8 shadow-[0_24px_48px_rgba(0,0,0,0.4)]">
       <div className="flex items-center gap-2 mb-1">
         <Sparkles size={16} className="text-ember" aria-hidden="true" />
         <h3 className="font-heading text-lg text-projector">Quick ballpark</h3>
@@ -68,7 +68,7 @@ export default function BallparkTool() {
 
       <div className="mt-6">
         {result ? (
-          <div className="rounded-lg border border-oxblood/40 bg-screening p-5">
+          <div className="border-l-2 border-oxblood bg-screening p-5 pl-6">
             <p className="text-xs uppercase tracking-wider text-ember font-semibold mb-1">
               Recommended setup
             </p>
@@ -78,7 +78,7 @@ export default function BallparkTool() {
             </p>
             <Link
               href={`/contact?package=${encodeURIComponent(result.name)}`}
-              className="mt-4 inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold bg-oxblood text-projector hover:bg-oxblood-deep transition-colors"
+              className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-oxblood text-projector hover:bg-oxblood-deep transition-colors"
             >
               Get a real quote
               <ArrowRight size={14} aria-hidden="true" />

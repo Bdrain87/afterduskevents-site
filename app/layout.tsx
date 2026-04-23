@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat, Bebas_Neue } from "next/font/google";
+import { Inter, Montserrat, Bebas_Neue, Cormorant_Garamond } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
@@ -39,6 +39,14 @@ const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
   variable: "--font-bebas",
   weight: "400",
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+  weight: ["300", "400", "600"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -89,7 +97,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
+      className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-screening text-projector">
         <SchemaMarkup

@@ -1,48 +1,79 @@
-import Marquee from "@/components/marquee";
-import TestimonialCard from "./testimonial-card";
+"use client";
+
+import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { publishedTestimonials } from "@/lib/testimonials";
 
 type Props = {
-  /** Heading id used for aria-labelledby */
   headingId?: string;
 };
 
-/**
- * Renders testimonials as Marquee when 5+, grid when 3-4, single column when 1-2.
- * Renders nothing when zero published testimonials (placeholders auto-filtered).
- */
 export default function TestimonialsSection({ headingId = "testimonials-heading" }: Props) {
   const items = publishedTestimonials();
+  const [index, setIndex] = useState(0);
+
   if (items.length === 0) return null;
 
-  return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby={headingId}>
-      <div className="mx-auto max-w-7xl">
-        <h2 id={headingId} className="font-heading text-2xl sm:text-3xl text-projector mb-3">
-          What people say
-        </h2>
-        <p className="text-steel text-sm mb-8">
-          Real events. Real customers. Veteran-owned, insured, and serving 60 miles of Canton.
-        </p>
+  const t = items[index];
+  const hasMultiple = items.length > 1;
 
-        {items.length >= 5 ? (
-          <div className="relative overflow-hidden">
-            <Marquee pauseOnHover className="[--duration:50s]">
-              {items.map((t) => (
-                <TestimonialCard key={t.id} testimonial={t} className="mx-2" />
-              ))}
-            </Marquee>
-            {/* Edge fades */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-charcoal to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-charcoal to-transparent" />
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {items.map((t) => (
-              <TestimonialCard key={t.id} testimonial={t} className="max-w-none" />
-            ))}
-          </div>
-        )}
+  return (
+    <section
+      className="py-24 px-4 sm:px-8 lg:px-12 bg-screening overflow-hidden"
+      aria-labelledby={headingId}
+    >
+      <h2 id={headingId} className="sr-only">
+        What people say
+      </h2>
+
+      <div className="mx-auto max-w-5xl relative">
+        {/* Oversized decorative quotation glyph */}
+        <div
+          aria-hidden="true"
+          className="font-serif absolute -top-6 -left-2 sm:-left-6 text-projector/[0.04] leading-none select-none pointer-events-none"
+          style={{ fontSize: "clamp(8rem, 18vw, 16rem)", lineHeight: 1 }}
+        >
+          &ldquo;
+        </div>
+
+        <blockquote className="relative z-10 sm:pl-6">
+          <p
+            className="font-serif italic text-cream/90 leading-[1.2] mb-10"
+            style={{ fontSize: "clamp(1.8rem, 3.8vw, 3.6rem)" }}
+          >
+            {t.quote}
+          </p>
+
+          <footer className="flex items-center justify-between gap-6 flex-wrap border-t border-white/8 pt-6">
+            <div>
+              <p className="font-display tracking-[0.22em] text-ember text-sm">
+                {t.author.toUpperCase()}
+              </p>
+              {(t.eventType || t.location) && (
+                <p className="text-steel text-xs tracking-[0.18em] uppercase mt-1">
+                  {t.eventType}
+                  {t.eventType && t.location ? "  ·  " : ""}
+                  {t.location}
+                </p>
+              )}
+            </div>
+
+            {hasMultiple && (
+              <div className="flex items-center gap-4">
+                <span className="text-steel/50 text-xs tracking-[0.2em] uppercase">
+                  {index + 1} / {items.length}
+                </span>
+                <button
+                  onClick={() => setIndex((i) => (i + 1) % items.length)}
+                  aria-label="Next testimonial"
+                  className="p-2.5 border border-white/15 hover:border-ember/60 text-steel hover:text-ember transition-colors duration-200"
+                >
+                  <ArrowRight size={14} aria-hidden="true" />
+                </button>
+              </div>
+            )}
+          </footer>
+        </blockquote>
       </div>
     </section>
   );

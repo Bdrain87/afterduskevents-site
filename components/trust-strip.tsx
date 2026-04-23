@@ -1,31 +1,29 @@
-import { Shield, MapPin, FileCheck } from "lucide-react";
-
 type Props = {
   className?: string;
 };
+
+const items = ["Veteran-Owned", "Fully Insured", "SE Michigan"] as const;
 
 export default function TrustStrip({ className }: Props) {
   return (
     <div
       className={[
-        "flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs uppercase tracking-[0.2em]",
+        "flex flex-wrap items-center gap-x-5 gap-y-2",
         className ?? "",
       ].join(" ")}
     >
-      <span className="inline-flex items-center gap-2 text-steel">
-        <Shield size={14} className="text-ember" aria-hidden="true" />
-        Veteran-owned
-      </span>
-      <span className="hidden sm:inline-block text-white/15" aria-hidden="true">·</span>
-      <span className="inline-flex items-center gap-2 text-steel">
-        <FileCheck size={14} className="text-ember" aria-hidden="true" />
-        Fully Insured
-      </span>
-      <span className="hidden sm:inline-block text-white/15" aria-hidden="true">·</span>
-      <span className="inline-flex items-center gap-2 text-steel">
-        <MapPin size={14} className="text-ember" aria-hidden="true" />
-        SE Michigan
-      </span>
+      {items.map((label, i) => (
+        <span key={label} className="inline-flex items-center gap-5">
+          {i > 0 && (
+            <span className="text-white/20 hidden sm:inline select-none" aria-hidden="true">
+              —
+            </span>
+          )}
+          <span className="font-serif italic font-light text-steel/70 text-sm tracking-[0.12em]">
+            {label}
+          </span>
+        </span>
+      ))}
     </div>
   );
 }

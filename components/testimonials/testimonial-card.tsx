@@ -11,7 +11,7 @@ export default function TestimonialCard({ testimonial, className }: Props) {
   return (
     <figure
       className={cn(
-        "rounded-lg border border-white/10 bg-charcoal p-6 max-w-sm shrink-0",
+        "border-l-2 border-oxblood bg-charcoal p-6 max-w-sm shrink-0",
         className,
       )}
     >
@@ -27,7 +27,7 @@ export default function TestimonialCard({ testimonial, className }: Props) {
           ))}
         </div>
       )}
-      <blockquote className="text-projector text-sm leading-relaxed mb-4">
+      <blockquote className="font-serif italic text-cream/85 text-base leading-relaxed mb-4">
         &ldquo;{testimonial.quote}&rdquo;
       </blockquote>
       <figcaption className="text-xs">
