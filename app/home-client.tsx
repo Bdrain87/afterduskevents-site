@@ -6,22 +6,20 @@ import { useRef } from "react";
 import { motion } from "motion/react";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
+import HeroWordmark from "@/components/hero-wordmark";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import MagneticButton from "@/components/magnetic-button";
 import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
-import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { useFitText } from "@/hooks/use-fit-text";
 import Spotlight from "@/components/atmosphere/spotlight";
-import Starfield from "@/components/atmosphere/starfield";
 import TrustStrip from "@/components/trust-strip";
 import TestimonialsSection from "@/components/testimonials/testimonials-section";
 import NextEventCard from "@/components/next-event-card";
 import type { NearestCityResult } from "@/lib/nearest-city";
 
-gsap.registerPlugin(SplitText, ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 const statements = [
   {
@@ -64,43 +62,9 @@ type Props = {
 };
 
 export default function HomeClient({ geo }: Props = {}) {
-  const { containerRef: nameRef, measureRef, fontSize } = useFitText();
   const heroRestRef    = useRef<HTMLDivElement>(null);
   const statementsRef  = useRef<HTMLDivElement>(null);
   const screenImgRef   = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    if (!fontSize || !nameRef.current) return;
-    const el = nameRef.current.querySelector<HTMLElement>(".wordmark");
-    if (!el) return;
-    const split = new SplitText(el, { type: "chars" });
-
-    // Reveal: chars fly up from below
-    gsap.from(split.chars, {
-      y: 40,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.03,
-      ease: "power2.out",
-      delay: 0.1,
-    });
-
-    // Shine: white flash rolls left→right once the reveal finishes
-    const revealEnd = 0.1 + 0.6 + (split.chars.length - 1) * 0.03 + 0.15;
-    gsap.fromTo(
-      split.chars,
-      { color: "#DD5454" },
-      {
-        color: "#FFFFFF",
-        duration: 0.07,
-        stagger: { each: 0.035, from: "start" },
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: 1,
-        delay: revealEnd,
-      },
-    );
-  }, { dependencies: [fontSize] });
 
   useGSAP(() => {
     if (!heroRestRef.current) return;
@@ -147,17 +111,10 @@ export default function HomeClient({ geo }: Props = {}) {
       <main className="flex-1">
 
         {/* ─── 1. HERO: full-width fitted wordmark ─────────────────── */}
-        <section className="relative min-h-screen flex flex-col justify-center bg-screening overflow-hidden px-4 sm:px-8 lg:px-12">
-          {/* Atmosphere stack: deep-space gradient → starfield → ember nebula glow → spotlight */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse 120% 80% at 50% 110%, rgba(15, 10, 30, 0.8) 0%, rgba(10, 10, 15, 0.95) 45%, #050508 100%)",
-            }}
-          />
-          <Starfield quantity={160} maxSize={1.8} vy={0.015} />
+        <section className="relative min-h-screen flex flex-col justify-center overflow-hidden px-4 sm:px-8 lg:px-12">
+          {/* AmbientSky (sky gradient + starfield) is mounted in layout.tsx as a
+              fixed z-index:-1 backdrop that shows through the whole site. The hero
+              adds only its own ember nebula glow and cursor-follow spotlight. */}
           <div
             aria-hidden="true"
             className="absolute inset-0 pointer-events-none z-[1]"
@@ -168,24 +125,24 @@ export default function HomeClient({ geo }: Props = {}) {
           />
           <Spotlight fill="rgba(107, 31, 31, 0.45)" />
 
+          {/* Dusk horizon line: the "last light" at y=62%. Fades with data-tod.
+              Phase 2 will animate it out on scroll as the sky deepens to night. */}
+          <div
+            aria-hidden="true"
+            className="absolute left-0 right-0 z-[2] pointer-events-none"
+            style={{
+              top: "62%",
+              height: "1px",
+              background:
+                "linear-gradient(to right, transparent 0%, rgba(221, 84, 84, 0.35) 20%, rgba(221, 84, 84, 0.45) 50%, rgba(221, 84, 84, 0.35) 80%, transparent 100%)",
+              filter: "blur(1.5px)",
+              opacity: "var(--atmo-glow-opacity, 1)",
+            }}
+          />
+
           {/* Full-width company name */}
-          <div ref={nameRef} className="relative z-10 w-full overflow-hidden pt-24 pb-2">
-            {/* Hidden measuring span. uses the real loaded font, not canvas */}
-            <span
-              ref={measureRef}
-              aria-hidden="true"
-              className="font-display absolute opacity-0 pointer-events-none whitespace-nowrap leading-none tracking-[0.01em] select-none"
-              style={{ fontSize: "100px", top: 0, left: 0 }}
-            >
-              AFTER DUSK EVENTS
-            </span>
-            <h1
-              className="wordmark wordmark-glow font-display text-projector leading-none tracking-[0.01em] whitespace-nowrap"
-              style={{ fontSize: fontSize > 0 ? `${fontSize}px` : "clamp(4rem,12vw,10rem)" }}
-              aria-label="After Dusk Events"
-            >
-              AFTER DUSK EVENTS
-            </h1>
+          <div className="relative z-10 w-full overflow-hidden pt-24 pb-2">
+            <HeroWordmark />
           </div>
 
           {/* Hero body */}
@@ -194,12 +151,12 @@ export default function HomeClient({ geo }: Props = {}) {
               <div className="w-12 h-[2px] bg-oxblood" aria-hidden="true" />
               <span className="text-steel text-xs tracking-[0.28em] uppercase">Big screen. Bigger nights.</span>
             </div>
-            <p className="text-cream/65 text-lg leading-relaxed mb-9">
+            <p className="text-silver text-body-lg leading-relaxed mb-9">
               {geo?.inRadius && geo.city.slug !== "canton"
                 ? `Serving ${geo.city.name} from Canton, MI. Private outdoor cinema, 30 ft screen, three audio tiers.`
                 : geo?.travelZone
                   ? `We travel to ${geo.city.name}. Expect a travel line on the quote. Otherwise: private outdoor cinema, 30 ft screen, three audio tiers.`
-                  : "We turn your outdoor space into a cinema. You bring the guests. We bring everything else."}
+                  : "We turn your outdoor space into a cinema."}
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4 mb-10">
               <MagneticButton>
@@ -257,7 +214,7 @@ export default function HomeClient({ geo }: Props = {}) {
               >
                 30 FT.
               </h2>
-              <p className="text-steel text-lg leading-relaxed mb-6 max-w-[42ch]">
+              <p className="text-silver text-lg leading-relaxed mb-6 max-w-[42ch]">
                 One screen size for every event we run. Water ballast setup, no digging.
                 Scales visually from a 25-guest backyard to a 250-guest community night.
                 What changes is audio.
@@ -304,7 +261,7 @@ export default function HomeClient({ geo }: Props = {}) {
                   {s.headline}
                 </h3>
                 <p
-                  className={`statement-body text-steel text-base leading-relaxed max-w-[52ch] ${s.align === "right" ? "ml-auto" : ""}`}
+                  className={`statement-body text-silver text-base leading-relaxed max-w-[52ch] ${s.align === "right" ? "ml-auto" : ""}`}
                 >
                   {s.body}
                 </p>
@@ -375,28 +332,12 @@ export default function HomeClient({ geo }: Props = {}) {
                       <h3 className="font-display text-[clamp(1.8rem,3.5vw,3.2rem)] text-projector tracking-wider leading-tight mb-2">
                         {step.title}
                       </h3>
-                      <p className="text-steel text-base leading-relaxed max-w-[44ch]">{step.body}</p>
+                      <p className="text-silver text-base leading-relaxed max-w-[44ch]">{step.body}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* ─── 6. BLAKE'S QUOTE: oxblood, no container limit ───────── */}
-        <section className="relative bg-oxblood overflow-hidden noise-bg py-20 px-4 sm:px-8 lg:px-12">
-          <div className="absolute inset-0 bg-gradient-to-br from-oxblood to-oxblood-deep" aria-hidden="true" />
-          <div className="relative z-10">
-            <p
-              className="font-display text-projector leading-[0.9] tracking-wider mb-8"
-              style={{ fontSize: "clamp(2.2rem, 6.5vw, 6rem)" }}
-            >
-              "EVERY PIECE OF<br />GEAR HAS A BACKUP."
-            </p>
-            <p className="text-projector/45 text-sm tracking-[0.2em] uppercase text-right max-w-5xl ml-auto">
-              Blake, Owner. USAF Veteran.
-            </p>
           </div>
         </section>
 

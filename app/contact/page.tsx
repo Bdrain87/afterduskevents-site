@@ -35,7 +35,7 @@ export default function ContactPage() {
               GET A QUOTE
             </h1>
             <span className="oxblood-rule mx-auto" />
-            <p className="text-steel text-lg leading-relaxed mt-6">
+            <p className="text-silver text-lg leading-relaxed mt-6">
               Fill out the form and we will respond within 24 hours with availability and a real quote.
             </p>
           </div>

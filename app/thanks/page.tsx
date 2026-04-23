@@ -20,7 +20,7 @@ export default function ThanksPage() {
             <CheckCircle size={56} className="text-ember" aria-hidden="true" />
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4">Got it.</h1>
-          <p className="text-steel text-lg leading-relaxed mb-10">
+          <p className="text-silver text-lg leading-relaxed mb-10">
             We will respond within 24 hours with availability and a tailored quote.
             <br />
             <span className="text-projector font-medium">- Blake</span>

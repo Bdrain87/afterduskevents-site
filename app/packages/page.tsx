@@ -50,7 +50,7 @@ export default function PackagesPage() {
               <span className="oxblood-rule mx-auto" />
             </FadeIn>
             <FadeIn delay={0.1}>
-              <p className="text-steel text-lg leading-relaxed mt-6">
+              <p className="text-silver text-lg leading-relaxed mt-6">
                 Every booking is a private, non-ticketed event on a 30 ft inflatable screen.
                 Pick your audio tier. Add what you need. Setup, systems test, and teardown included.
               </p>

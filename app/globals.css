@@ -20,10 +20,12 @@
   --color-silver: #B8B8B8;
   --color-oxblood: #6B1F1F;
   --color-oxblood-deep: #4A0E0E;
-  /* Brighter sibling for foreground text on dark backgrounds — passes WCAG AA (~5.1:1 on screening) */
+  /* Brighter sibling for foreground text on dark backgrounds. Passes WCAG AA (~5.1:1 on screening). */
   --color-ember: #DD5454;
   --color-cream: #F5F1EC;
   --color-projector: #FAFAFA;
+
+  /* Surface gradients (reference via bg-dusk utility defined below) */
 
   /* shadcn tokens */
   --color-background: #0A0A0A;
@@ -53,6 +55,29 @@
   --font-sans: var(--font-inter);
   --font-heading: var(--font-montserrat);
   --font-display: var(--font-bebas);
+
+  /* Locked type scale. Desktop sizes; mobile overrides via utilities below.
+     Line-height pairs with each: display 0.92, heading 1.15, body 1.65. */
+  --text-display-hero: 10rem;        /* 160px. reserved for hero wordmark */
+  --text-display-hero--line-height: 0.92;
+  --text-display-xl: 6.5rem;         /* 104px. section titles like "30 FT." */
+  --text-display-xl--line-height: 0.92;
+  --text-display-lg: 4.5rem;         /* 72px. statement headlines */
+  --text-display-lg--line-height: 0.95;
+  --text-display-md: 3rem;           /* 48px. secondary H2 */
+  --text-display-md--line-height: 1;
+  --text-heading-lg: 1.75rem;        /* 28px. card titles, package names */
+  --text-heading-lg--line-height: 1.15;
+  --text-heading-md: 1.25rem;        /* 20px. subheads */
+  --text-heading-md--line-height: 1.2;
+  --text-body-lg: 1.1875rem;         /* 19px. intro paragraphs */
+  --text-body-lg--line-height: 1.65;
+  --text-body: 1.0625rem;            /* 17px. default body */
+  --text-body--line-height: 1.65;
+  --text-caption: 0.8125rem;         /* 13px. tracking-[0.2em] uppercase kickers */
+  --text-caption--line-height: 1.5;
+  --text-mono: 0.75rem;              /* 12px. timestamps, serials */
+  --text-mono--line-height: 1.4;
 }
 
 :root {
@@ -83,49 +108,55 @@
     box-sizing: border-box;
   }
   body {
-    @apply bg-screening text-projector;
+    @apply bg-screening text-silver;
     font-family: var(--font-inter), system-ui, sans-serif;
     font-size: 17px;
-    line-height: 1.72;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-montserrat), system-ui, sans-serif;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.15;
+    color: #FAFAFA;
   }
 }
 
-/* Time-of-day atmosphere shifts — set via TimeOfDayProvider on <html data-tod="..."> */
+/* Time-of-day atmosphere shifts. Set via TimeOfDayProvider on <html data-tod="..."> */
 :root {
   --atmo-grain-opacity: 0.025;
   --atmo-nebula-opacity: 0.9;
   --atmo-star-opacity: 0.85;
   --atmo-glow-opacity: 1;
+  --atmo-beam-opacity: 1;
 }
 html[data-tod="day"] {
   --atmo-grain-opacity: 0.012;
   --atmo-nebula-opacity: 0.35;
   --atmo-star-opacity: 0.25;
   --atmo-glow-opacity: 0.55;
+  --atmo-beam-opacity: 0;
 }
 html[data-tod="golden"] {
   --atmo-grain-opacity: 0.02;
   --atmo-nebula-opacity: 1.1;
   --atmo-star-opacity: 0.6;
   --atmo-glow-opacity: 1.1;
+  --atmo-beam-opacity: 0.55;
 }
 html[data-tod="dusk"] {
   --atmo-grain-opacity: 0.03;
   --atmo-nebula-opacity: 1;
   --atmo-star-opacity: 0.95;
   --atmo-glow-opacity: 1.2;
+  --atmo-beam-opacity: 1;
 }
 html[data-tod="night"] {
   --atmo-grain-opacity: 0.035;
   --atmo-nebula-opacity: 0.75;
   --atmo-star-opacity: 1;
   --atmo-glow-opacity: 1;
+  --atmo-beam-opacity: 1;
 }
 
 @layer utilities {
@@ -139,7 +170,14 @@ html[data-tod="night"] {
   .oxblood-rule {
     @apply block w-12 h-[2px] bg-oxblood mt-3;
   }
-  /* Dusk color grade for hero photography — warm shadows, slight blue highlights, hint of sepia */
+
+  /* Dusk surface: a deep-space gradient used on long scrollable pages
+     where the sky-gradient is not doing the heavy lifting. */
+  .bg-dusk {
+    background: linear-gradient(180deg, #0d0b12 0%, #0a0a0a 60%, #060608 100%);
+  }
+
+  /* Dusk color grade for hero photography. Warm shadows, slight blue highlights, hint of sepia. */
   .dusk-grade {
     filter: contrast(1.05) saturate(0.92) sepia(0.08) hue-rotate(-6deg);
   }
@@ -148,7 +186,7 @@ html[data-tod="night"] {
     animation: ken-burns 18s ease-out forwards;
     will-change: transform;
   }
-  /* CSS noise texture via pseudo — no JS needed */
+  /* CSS noise texture via pseudo. No JS needed. */
   .noise-bg::before {
     content: '';
     position: absolute;
@@ -167,6 +205,76 @@ html[data-tod="night"] {
   @keyframes ox-spin {
     to { --ox-angle: 495deg; }
   }
+
+  /* Display sizes. Desktop tokens live in @theme; these utilities add
+     responsive mobile overrides so the brand scale is locked in one place. */
+  .text-display-hero {
+    /* Fits "AFTER DUSK EVENTS" on one line across viewports. min ~48px / max 160px. */
+    font-size: clamp(3rem, 12vw, 10rem);
+    line-height: 0.92;
+    letter-spacing: 0.005em;
+  }
+  .text-display-xl {
+    font-size: 3.5rem;              /* 56px mobile */
+    line-height: 0.92;
+  }
+  @media (min-width: 768px) {
+    .text-display-xl { font-size: 6.5rem; }      /* 104px desktop */
+  }
+  .text-display-lg {
+    font-size: 2.75rem;             /* 44px mobile */
+    line-height: 0.95;
+  }
+  @media (min-width: 768px) {
+    .text-display-lg { font-size: 4.5rem; }      /* 72px desktop */
+  }
+  .text-display-md {
+    font-size: 2rem;                /* 32px mobile */
+    line-height: 1;
+  }
+  @media (min-width: 768px) {
+    .text-display-md { font-size: 3rem; }        /* 48px desktop */
+  }
+  .text-heading-lg {
+    font-size: 1.5rem;              /* 24px mobile */
+    line-height: 1.15;
+  }
+  @media (min-width: 768px) {
+    .text-heading-lg { font-size: 1.75rem; }     /* 28px desktop */
+  }
+  .text-heading-md {
+    font-size: 1.125rem;            /* 18px mobile */
+    line-height: 1.2;
+  }
+  @media (min-width: 768px) {
+    .text-heading-md { font-size: 1.25rem; }     /* 20px desktop */
+  }
+  .text-body-lg {
+    font-size: 1.0625rem;           /* 17px mobile */
+    line-height: 1.65;
+  }
+  @media (min-width: 768px) {
+    .text-body-lg { font-size: 1.1875rem; }      /* 19px desktop */
+  }
+  .text-body-default {
+    font-size: 1rem;                /* 16px mobile */
+    line-height: 1.65;
+  }
+  @media (min-width: 768px) {
+    .text-body-default { font-size: 1.0625rem; } /* 17px desktop */
+  }
+  .text-caption {
+    font-size: 0.8125rem;           /* 13px */
+    line-height: 1.5;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .text-mono {
+    font-size: 0.75rem;             /* 12px */
+    line-height: 1.4;
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    letter-spacing: 0.05em;
+  }
 }
 
 /* Accordion panel height animation (base-ui uses --accordion-panel-height CSS var) */
@@ -179,7 +287,7 @@ html[data-tod="night"] {
   to   { height: 0; opacity: 0; }
 }
 
-/* Border beam — animated glowing border for featured cards */
+/* Border beam. Animated glowing border for featured cards. */
 @property --beam-angle {
   syntax: '<angle>';
   initial-value: 0deg;
@@ -189,7 +297,7 @@ html[data-tod="night"] {
   to { --beam-angle: 360deg; }
 }
 
-/* Scroll-driven kinetic headline — per-word spans rise from below as the
+/* Scroll-driven kinetic headline. Per-word spans rise from below as the
    section enters view. Pure CSS, zero JS cost. Safari 26+ / Chrome 115+ /
    Firefox 147+ ship this natively. Older browsers: @supports fallback
    shows words in final state (no animation). */
@@ -207,11 +315,30 @@ html[data-tod="night"] {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero wordmark color. background-clip:text breaks after GSAP SplitText wraps
-   each character in a child span (h1 loses direct text, clip area collapses).
-   Solid ember is the correct fix — visible, on-brand, no fragile clip tricks. */
+/* Hero wordmark color. Solid ember with outer glow to read as "projected"
+   rather than printed. Applied to the HeroWordmark component. */
 .wordmark-glow {
   color: #DD5454;
+  text-shadow:
+    0 0 32px rgba(221, 84, 84, 0.25),
+    0 0 64px rgba(221, 84, 84, 0.12);
+}
+
+/* Cursor beam: projection cone from the top-left virtual projector point
+   through the cursor. Dims inside [data-dim-beam] sections. */
+.cursor-beam[data-dim="1"] {
+  --beam-intensity: 0.02;
+}
+.beam-dust {
+  animation-name: beam-dust;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes beam-dust {
+  0%, 100% { transform: translate(0, 0); opacity: 0; }
+  15%      { opacity: 0.9; }
+  50%      { transform: translate(12px, 26px); opacity: 0.5; }
+  85%      { opacity: 0.2; }
 }
 
 /* Atmosphere: spotlight slow drift */
@@ -255,7 +382,7 @@ html[data-tod="night"] {
   animation: marquee-vertical var(--duration, 40s) linear infinite;
 }
 
-/* View Transitions API — cinematic curtain-raise between routes */
+/* View Transitions API. Cinematic curtain-raise between routes. */
 ::view-transition-old(root) {
   animation: 240ms cubic-bezier(0.65, 0, 0.35, 1) both ad-curtain-out;
 }

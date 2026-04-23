@@ -76,7 +76,7 @@ export default async function CityPage({ params }: Params) {
               <span className="oxblood-rule" />
             </FadeIn>
             <FadeIn delay={0.1}>
-              <p className="text-steel text-lg leading-relaxed mt-6">
+              <p className="text-silver text-lg leading-relaxed mt-6">
                 {city.blurb}
               </p>
             </FadeIn>

@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
 import FilmGrain from "@/components/film-grain";
-import CursorSpotlight from "@/components/cursor-spotlight";
+import CursorBeam from "@/components/cursor-beam";
 import ScrollProgress from "@/components/scroll-progress";
 import LoadingScreen from "@/components/loading-screen";
 import LenisProvider from "@/components/lenis-provider";
@@ -14,6 +14,7 @@ import MicrosoftClarity from "@/components/microsoft-clarity";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import TimeOfDayProvider from "@/components/atmosphere/time-of-day-provider";
+import AmbientSky from "@/components/atmosphere/ambient-sky";
 import {
   buildLocalBusiness,
   buildOrganization,
@@ -103,9 +104,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           ]}
         />
         <TimeOfDayProvider />
+        <AmbientSky />
         <LoadingScreen />
         <ScrollProgress />
-        <CursorSpotlight />
+        <CursorBeam />
         <FilmGrain />
         <NuqsAdapter>
           <LenisProvider>
