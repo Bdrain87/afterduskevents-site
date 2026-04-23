@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import { Shield, MapPin, FileCheck } from "lucide-react";
+import BulbButton from "@/components/bulb-button";
+import TicketStub from "@/components/ticket-stub";
+import FilmStrip from "@/components/film-strip";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList, buildPerson } from "@/lib/schema";
-import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
   title: "About",
@@ -28,114 +28,111 @@ export default function AboutPage() {
         ]}
       />
       <Nav />
-      <main className="flex-1 pt-16">
+      <main className="flex-1">
         {/* Header */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
-          <PageAtmosphere variant="space" />
-          <div className="relative z-10 mx-auto max-w-3xl">
-            <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4">
-              Mission-ready cinema for Michigan nights.
+        <section className="bg-paper px-4 sm:px-10 pt-16 sm:pt-24 pb-14">
+          <div className="mx-auto max-w-5xl">
+            <p className="serial text-tail mb-6">№ 006 · Who&apos;s Running the Reel</p>
+            <h1 className="font-display text-[clamp(3rem,9vw,7rem)] uppercase leading-none">
+              Mission-ready
+              <br />
+              cinema.
             </h1>
-            <p className="text-steel text-lg leading-relaxed">
-              Veteran-owned. Canton, MI. Built on the idea that your event deserves the same
-              attention to detail as any indoor production.
+            <p className="mt-8 font-body text-lg max-w-2xl">
+              Veteran-owned. Canton, Michigan. Built on the idea that your
+              event deserves the same attention to detail as any indoor
+              production.
             </p>
           </div>
         </section>
 
-        {/* Story + sidebar */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-              {/* Body copy */}
-              <div className="lg:col-span-2 space-y-6 text-steel leading-relaxed text-base max-w-prose">
-                <p>
-                  After Dusk Events was built on one idea: outdoor events deserve the same attention
-                  to detail as any indoor production. A good movie night is not just a projector on
-                  a sheet. It is audio you can hear clearly in the back row, a screen big enough
-                  that no one strains, lighting that holds the mood without blowing out the picture,
-                  and an operator who has already tested everything before you arrive.
-                </p>
-                <p>
-                  The company is owner-operated by Blake, a U.S. Air Force veteran based in
-                  Canton. Military field service teaches you to plan for every failure mode: weather,
-                  power, equipment, logistics. That mindset is what you hire when you hire After
-                  Dusk Events. Every event runs off a checklist. Every piece of gear has a backup.
-                  Every arrival is 3 hours before the first guest walks in.
-                </p>
-                <p>
-                  We serve private residential events, graduation parties, and
-                  get-togethers of all kinds across the greater Detroit and Ann Arbor area. Movie
-                  nights, gaming nights, sports watch parties, fight nights, anywhere within
-                  60 miles of Canton. Proudly veteran-owned.
-                </p>
-              </div>
+        <FilmStrip tone="ink" />
 
-              {/* Sidebar */}
-              <div className="space-y-4">
-                <div className="bg-charcoal rounded-lg p-6 border border-white/10">
-                  <h2 className="font-heading text-sm text-projector mb-4 uppercase tracking-wider">
-                    Quick facts
-                  </h2>
-                  <ul className="space-y-4">
-                    {[
-                      {
-                        icon: <MapPin size={16} className="text-ember shrink-0 mt-0.5" aria-hidden="true" />,
-                        label: "Service area",
-                        value: "60 miles of Canton, MI",
-                      },
-                      {
-                        icon: <Shield size={16} className="text-ember shrink-0 mt-0.5" aria-hidden="true" />,
-                        label: "Ownership",
-                        value: "Veteran-owned and operated",
-                      },
-                      {
-                        icon: <FileCheck size={16} className="text-ember shrink-0 mt-0.5" aria-hidden="true" />,
-                        label: "Coverage",
-                        value: "Insured. COI on request",
-                      },
-                    ].map((item) => (
-                      <li key={item.label} className="flex items-start gap-3">
-                        {item.icon}
-                        <div>
-                          <div className="text-steel text-xs uppercase tracking-wider mb-0.5">
-                            {item.label}
-                          </div>
-                          <div className="text-projector text-sm font-medium">{item.value}</div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+        {/* Editorial body + pull-quote stub */}
+        <section className="bg-paper px-4 sm:px-10 py-20">
+          <div className="mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-12 lg:gap-20">
+              <article className="font-body text-lg leading-relaxed max-w-prose space-y-6">
+                <p>
+                  <span className="float-left font-display text-[clamp(5rem,12vw,9rem)] leading-[0.8] mr-3 mt-1 text-tail">
+                    A
+                  </span>
+                  fter Dusk Events was built on one idea: outdoor events
+                  deserve the same attention to detail as any indoor
+                  production. A good movie night is not just a projector
+                  on a sheet. It is audio you can hear clearly in the
+                  back row, a screen big enough that no one strains,
+                  lighting that holds the mood without blowing out the
+                  picture, and an operator who has already tested
+                  everything before you arrive.
+                </p>
+                <p>
+                  The company is owner-operated by Blake, a U.S. Air
+                  Force veteran based in Canton. Military field service
+                  teaches you to plan for every failure mode: weather,
+                  power, equipment, logistics. That mindset is what you
+                  hire when you hire After Dusk Events. Every event runs
+                  off a checklist. Every piece of gear has a backup.
+                  Every arrival is three hours before the first guest
+                  walks in.
+                </p>
+                <p>
+                  We serve private residential events, graduation
+                  parties, and get-togethers of all kinds across the
+                  greater Detroit and Ann Arbor area. Movie nights,
+                  gaming nights, sports watch parties, fight nights —
+                  anywhere within 60 miles of Canton.
+                </p>
+                <p className="serial text-tail pt-4">
+                  Proudly veteran-owned.
+                </p>
+              </article>
 
-                <div className="bg-charcoal rounded-lg p-6 border border-white/10">
-                  <p className="text-steel text-sm leading-relaxed">
-                    "Every piece of gear has a backup. Every arrival is 3 hours before
-                    the first guest walks in."
+              <aside className="space-y-6 lg:pt-8">
+                <TicketStub
+                  tone="ink"
+                  serial="Q-001"
+                  stamp="Word From The Owner"
+                >
+                  <p className="font-display text-xl uppercase leading-tight mb-4">
+                    &ldquo;Every piece of gear has a backup. Every arrival
+                    is three hours before the first guest walks in.&rdquo;
                   </p>
-                  <p className="text-steel text-xs mt-3">Blake, Owner</p>
+                  <p className="serial text-bulb">Blake · Owner · USAF</p>
+                </TicketStub>
+
+                <div className="border-2 border-ink p-5">
+                  <p className="serial text-tail mb-3">Quick Facts</p>
+                  <dl className="space-y-3 text-sm font-mono">
+                    <div className="flex justify-between gap-4">
+                      <dt className="text-concrete">Service Area</dt>
+                      <dd>60 mi of Canton, MI</dd>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <dt className="text-concrete">Ownership</dt>
+                      <dd>Veteran-owned</dd>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <dt className="text-concrete">Coverage</dt>
+                      <dd>Insured · COI on request</dd>
+                    </div>
+                  </dl>
                 </div>
-              </div>
+              </aside>
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="bg-charcoal py-20 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-heading text-3xl text-projector mb-4">
-              Let us run your next event.
-            </h2>
-            <p className="text-steel mb-8 leading-relaxed">
-              Tell us what you are planning and we will put together a real quote within 24 hours.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(107,31,31,0.4)] transition-all duration-300 min-h-[44px]"
-            >
-              Get a Quote
-            </Link>
-          </div>
+        <section className="bg-ink text-paper px-4 sm:px-10 py-24 text-center">
+          <p className="serial text-bulb mb-4">Book the Night</p>
+          <h2 className="font-display text-[clamp(2.5rem,8vw,6rem)] uppercase leading-none mb-6">
+            Let us run your next event.
+          </h2>
+          <p className="font-body text-paper/80 max-w-xl mx-auto mb-10">
+            Tell us what you&apos;re planning. Real quote inside 24 hours.
+          </p>
+          <BulbButton href="/contact">Get a Quote</BulbButton>
         </section>
       </main>
       <Footer />

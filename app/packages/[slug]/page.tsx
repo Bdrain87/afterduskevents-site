@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import FadeIn from "@/components/fade-in";
-import MagneticButton from "@/components/magnetic-button";
+import BulbButton from "@/components/bulb-button";
+import TicketStub from "@/components/ticket-stub";
+import FilmStrip from "@/components/film-strip";
+import SpecSheet from "@/components/spec-sheet";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { audioTiers, useCases, type AudioTier } from "@/lib/packages";
 import { buildService, buildBreadcrumbList } from "@/lib/schema";
-import { Check, ArrowRight } from "lucide-react";
-import Balancer from "react-wrap-balancer";
-import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -79,6 +77,8 @@ export default async function TierPage({ params }: Params) {
   const otherTiers = audioTiers.filter((t) => t.slug !== tier.slug);
   const fitUseCases = useCases.filter((u) => u.recommendedTier === tier.slug);
 
+  const tierNumber = audioTiers.findIndex((t) => t.slug === tier.slug) + 1;
+
   return (
     <>
       <SchemaMarkup
@@ -93,94 +93,88 @@ export default async function TierPage({ params }: Params) {
         ]}
       />
       <Nav />
-      <main className="flex-1 pt-16">
-        {/* Hero */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
-          <PageAtmosphere variant={tier.popular ? "ember" : "dusk"} />
-          <div className="relative z-10 mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <div>
-              <FadeIn>
-                <p className="text-ember text-xs tracking-[0.25em] uppercase mb-3">Audio tier</p>
-                <h1 className="font-display text-5xl sm:text-6xl text-projector tracking-wider leading-none mb-4">
-                  <Balancer>{tier.name}</Balancer>
-                </h1>
-                <span className="oxblood-rule" />
-              </FadeIn>
-              <FadeIn delay={0.1}>
-                <p className="text-steel text-lg leading-relaxed mt-6">
-                  {tier.best}. 30 ft inflatable screen, water ballast setup, bring your own content.
-                </p>
-              </FadeIn>
-              <FadeIn delay={0.2}>
-                <MagneticButton className="inline-flex mt-8">
-                  <Link
-                    href={`/contact?package=${encodeURIComponent(tier.name)}`}
-                    className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
-                    style={{ viewTransitionName: `tier-cta-${tier.slug}` }}
-                  >
-                    Request a Quote
-                  </Link>
-                </MagneticButton>
-              </FadeIn>
+      <main className="flex-1">
+        {/* Hero — spec sheet header */}
+        <section className="bg-paper px-4 sm:px-10 pt-16 sm:pt-24 pb-14">
+          <div className="mx-auto max-w-5xl">
+            <p className="serial text-tail mb-6">
+              Audio Tier № {String(tierNumber).padStart(2, "0")}
+              {tier.popular && " · Most Popular"}
+            </p>
+            <h1
+              className="font-display text-[clamp(2.5rem,8vw,6rem)] uppercase leading-none"
+              style={{ viewTransitionName: `tier-name-${tier.slug}` }}
+            >
+              {tier.name}
+            </h1>
+            <p className="mt-8 font-body text-lg max-w-2xl">
+              {tier.best}. 30 ft inflatable screen, water-ballast setup,
+              bring your own content.
+            </p>
+            <div className="mt-10">
+              <BulbButton
+                href={`/contact?package=${encodeURIComponent(tier.name)}`}
+              >
+                Request a Quote
+              </BulbButton>
             </div>
-            <FadeIn delay={0.15}>
-              <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-screening">
-                <Image
-                  src="/images/setup/30ft-screen-studio.avif"
-                  alt="30 ft inflatable outdoor cinema screen, studio render"
-                  fill
-                  priority
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="object-cover dusk-grade"
-                  style={{ viewTransitionName: `tier-image-${tier.slug}` }}
-                />
-              </div>
-            </FadeIn>
           </div>
         </section>
 
-        {/* Includes */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="includes-heading">
+        <FilmStrip tone="ink" />
+
+        {/* Spec sheet — what's included */}
+        <section
+          className="bg-paper px-4 sm:px-10 py-20"
+          aria-labelledby="includes-heading"
+        >
           <div className="mx-auto max-w-3xl">
-            <FadeIn>
-              <h2 id="includes-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-6">
-                What&apos;s included.
-              </h2>
-            </FadeIn>
-            <ul className="space-y-3">
-              {tier.includes.map((item, i) => (
-                <FadeIn key={item} delay={i * 0.04}>
-                  <li className="flex items-start gap-3 text-projector text-base">
-                    <Check size={18} className="text-ember mt-1 shrink-0" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                </FadeIn>
-              ))}
-            </ul>
+            <p className="serial text-tail mb-4">The Rig</p>
+            <h2
+              id="includes-heading"
+              className="font-display text-[clamp(2.25rem,5vw,4rem)] uppercase mb-10"
+            >
+              What&apos;s included.
+            </h2>
+            <SpecSheet
+              rows={tier.includes.map((item, i) => ({
+                label: `Item ${String(i + 1).padStart(2, "0")}`,
+                value: item,
+              }))}
+            />
           </div>
         </section>
 
         {/* Fits these events */}
         {fitUseCases.length > 0 && (
-          <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="fits-heading">
+          <section
+            className="bg-ink text-paper px-4 sm:px-10 py-20"
+            aria-labelledby="fits-heading"
+          >
             <div className="mx-auto max-w-5xl">
-              <FadeIn>
-                <h2 id="fits-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-6">
-                  Fits these events.
-                </h2>
-              </FadeIn>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <p className="serial text-bulb mb-4">Fits These Events</p>
+              <h2
+                id="fits-heading"
+                className="font-display text-[clamp(2.25rem,5vw,4rem)] uppercase mb-10"
+              >
+                Now showing.
+              </h2>
+              <ul className="divide-y-2 divide-paper/30 border-y-2 border-paper/30">
                 {fitUseCases.map((uc) => (
                   <li key={uc.slug}>
                     <Link
                       href={`/packages#${uc.slug}`}
-                      className="group flex items-start justify-between gap-3 rounded-lg p-5 bg-screening border border-white/10 hover:border-oxblood/40 transition-colors"
+                      className="group grid grid-cols-[1fr_auto] gap-4 items-center py-5 hover:text-bulb transition-colors"
                     >
                       <div>
-                        <p className="font-heading text-base text-projector">{uc.name}</p>
-                        <p className="text-steel text-xs mt-1">{uc.desc}</p>
+                        <p className="font-display text-2xl uppercase leading-none mb-1">
+                          {uc.name}
+                        </p>
+                        <p className="font-mono text-sm opacity-70">{uc.desc}</p>
                       </div>
-                      <ArrowRight size={16} className="text-ember mt-0.5 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                      <span className="serial group-hover:translate-x-1 transition-transform">
+                        →
+                      </span>
                     </Link>
                   </li>
                 ))}
@@ -190,78 +184,93 @@ export default async function TierPage({ params }: Params) {
         )}
 
         {/* Add-on suggestions */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="addons-heading">
+        <section
+          className="bg-paper px-4 sm:px-10 py-20"
+          aria-labelledby="addons-heading"
+        >
           <div className="mx-auto max-w-3xl">
-            <FadeIn>
-              <h2 id="addons-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-3">
-                {addons.heading}.
-              </h2>
-              <p className="text-steel text-sm mb-6">
-                All add-ons are quoted together with your setup. No set prices.
-              </p>
-            </FadeIn>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <p className="serial text-tail mb-4">The Concessions Stand</p>
+            <h2
+              id="addons-heading"
+              className="font-display text-[clamp(2rem,4.5vw,3.25rem)] uppercase leading-tight mb-4"
+            >
+              {addons.heading}.
+            </h2>
+            <p className="font-body text-concrete mb-8">
+              All add-ons are quoted together with your setup. No set prices.
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
               {addons.items.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-steel text-sm">
-                  <Check size={14} className="text-ember mt-0.5 shrink-0" aria-hidden="true" />
+                <li
+                  key={item}
+                  className="flex gap-3 py-3 border-t border-ink/30 first:border-t-0 font-body"
+                >
+                  <span className="serial text-tail">+</span>
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
             <Link
               href="/add-ons"
-              className="mt-6 inline-flex items-center gap-2 text-ember underline-offset-4 hover:underline text-sm"
+              className="mt-10 inline-block serial border-b-2 border-ink pb-0.5 hover:text-tail hover:border-tail transition-colors"
             >
-              Full add-on catalog
-              <ArrowRight size={14} aria-hidden="true" />
+              Full add-on catalog →
             </Link>
           </div>
         </section>
 
         {/* Other tiers */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="other-tiers-heading">
+        <section
+          className="bg-ink text-paper px-4 sm:px-10 py-20"
+          aria-labelledby="other-tiers-heading"
+        >
           <div className="mx-auto max-w-5xl">
-            <FadeIn>
-              <h2 id="other-tiers-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-6">
-                Other audio tiers.
-              </h2>
-            </FadeIn>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {otherTiers.map((t) => (
-                <Link
+            <p className="serial text-bulb mb-4">Other Audio Tiers</p>
+            <h2
+              id="other-tiers-heading"
+              className="font-display text-[clamp(2.25rem,5vw,4rem)] uppercase mb-10"
+            >
+              Switch your reel.
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+              {otherTiers.map((t, i) => (
+                <TicketStub
                   key={t.slug}
-                  href={`/packages/${t.slug}`}
-                  className="group flex items-start justify-between gap-3 rounded-lg p-5 bg-screening border border-white/10 hover:border-oxblood/40 transition-colors"
+                  tone="paper"
+                  serial={`AT-${String(audioTiers.findIndex((x) => x.slug === t.slug) + 1).padStart(3, "0")}`}
+                  stamp={t.popular ? "Most Popular" : undefined}
                 >
-                  <div>
-                    <p
-                      className="font-heading text-base text-projector"
-                      style={{ viewTransitionName: `tier-name-${t.slug}` }}
-                    >
-                      {t.name}
-                    </p>
-                    <p className="text-steel text-xs mt-1">Best for: {t.best}</p>
-                  </div>
-                  <ArrowRight size={16} className="text-ember mt-0.5 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                </Link>
+                  <h3
+                    className="font-display text-2xl uppercase leading-tight mb-3"
+                    style={{ viewTransitionName: `tier-name-${t.slug}` }}
+                  >
+                    {t.name}
+                  </h3>
+                  <p className="font-mono text-sm text-concrete mb-5">
+                    Best for: {t.best}
+                  </p>
+                  <Link
+                    href={`/packages/${t.slug}`}
+                    className="serial text-tail border-b-2 border-tail pb-0.5 hover:text-ink hover:border-ink transition-colors"
+                  >
+                    View Spec Sheet →
+                  </Link>
+                </TicketStub>
               ))}
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl space-y-6">
+        <section className="bg-paper px-4 sm:px-10 py-20">
+          <div className="mx-auto max-w-3xl">
             <PrivateEventsNotice />
-            <div className="text-center pt-4">
-              <MagneticButton className="inline-flex">
-                <Link
-                  href={`/contact?package=${encodeURIComponent(tier.name)}`}
-                  className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
-                >
-                  Get a Quote
-                </Link>
-              </MagneticButton>
+            <div className="text-center mt-12">
+              <BulbButton
+                href={`/contact?package=${encodeURIComponent(tier.name)}`}
+              >
+                Get a Quote
+              </BulbButton>
             </div>
           </div>
         </section>
