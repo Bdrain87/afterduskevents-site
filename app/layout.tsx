@@ -10,6 +10,7 @@ import LoadingScreen from "@/components/loading-screen";
 import LenisProvider from "@/components/lenis-provider";
 import StickyCTA from "@/components/sticky-cta";
 import AvailabilityDock from "@/components/availability-dock";
+import ConciergeMount from "@/components/concierge/concierge-mount";
 import MicrosoftClarity from "@/components/microsoft-clarity";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
@@ -123,6 +124,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </NuqsAdapter>
         <StickyCTA />
         <AvailabilityDock />
+        <ConciergeMount />
         <Toaster
           position="bottom-right"
           toastOptions={{

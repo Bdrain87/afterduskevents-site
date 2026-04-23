@@ -88,7 +88,12 @@ export default function PackagesPage() {
                       Most popular
                     </span>
                   )}
-                  <h3 className="font-heading text-xl text-projector mb-1">{tier.name}</h3>
+                  <h3
+                    className="font-heading text-xl text-projector mb-1"
+                    style={{ viewTransitionName: `tier-name-${tier.slug}` }}
+                  >
+                    {tier.name}
+                  </h3>
                   <p className="text-ember font-semibold text-sm mb-1">Custom quote per event</p>
                   <p className="text-steel text-xs mt-3 mb-4 italic">Best for: {tier.best}</p>
                   <ul className="space-y-2 flex-1 mb-6">
@@ -99,16 +104,24 @@ export default function PackagesPage() {
                       </li>
                     ))}
                   </ul>
-                  <Link
-                    href={`/contact?package=${encodeURIComponent(tier.name)}`}
-                    className={`inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-colors ${
-                      tier.popular
-                        ? "bg-oxblood text-projector hover:bg-oxblood-deep"
-                        : "border border-ember text-ember hover:bg-oxblood hover:border-oxblood hover:text-projector"
-                    }`}
-                  >
-                    Request a Quote
-                  </Link>
+                  <div className="flex items-center justify-between gap-3">
+                    <Link
+                      href={`/packages/${tier.slug}`}
+                      className="text-ember text-xs font-semibold uppercase tracking-wider hover:text-projector transition-colors"
+                    >
+                      Details →
+                    </Link>
+                    <Link
+                      href={`/contact?package=${encodeURIComponent(tier.name)}`}
+                      className={`inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-colors ${
+                        tier.popular
+                          ? "bg-oxblood text-projector hover:bg-oxblood-deep"
+                          : "border border-ember text-ember hover:bg-oxblood hover:border-oxblood hover:text-projector"
+                      }`}
+                    >
+                      Request a Quote
+                    </Link>
+                  </div>
                 </AnimatedCard>
               ))}
             </div>
