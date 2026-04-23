@@ -212,7 +212,6 @@ html[data-tod="night"] {
    Solid ember is the correct fix — visible, on-brand, no fragile clip tricks. */
 .wordmark-glow {
   color: #DD5454;
-  -webkit-text-fill-color: #DD5454;
 }
 
 /* Atmosphere: spotlight slow drift */
