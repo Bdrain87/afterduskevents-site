@@ -28,7 +28,7 @@ export const audioTiers: AudioTier[] = [
       "30 ft inflatable screen",
       "Single speaker",
       "BYO Content",
-      "Water ballast setup — no digging",
+      "Water ballast setup. no digging",
     ],
     best: "Smaller backyards, intimate gatherings",
   },
@@ -40,7 +40,7 @@ export const audioTiers: AudioTier[] = [
       "30 ft inflatable screen",
       "Two speakers",
       "BYO Content",
-      "Water ballast setup — no digging",
+      "Water ballast setup. no digging",
     ],
     best: "Standard outdoor events, most bookings",
   },
@@ -52,14 +52,14 @@ export const audioTiers: AudioTier[] = [
       "Two speakers",
       "Death From Below subwoofer",
       "BYO Content",
-      "Water ballast setup — no digging",
+      "Water ballast setup. no digging",
     ],
-    best: "Fight nights, dance floors, bass-heavy music, large crowds",
+    best: "Fight nights, bass-heavy music, large crowds",
   },
 ];
 
 /**
- * Event types — marketing framings, not distinct products.
+ * Event types. marketing framings, not distinct products.
  * Each one maps to a recommended audio tier for the ballpark tool.
  */
 export type UseCase = {
@@ -104,8 +104,8 @@ export const useCases: UseCase[] = [
   {
     slug: "wedding",
     name: "Wedding Reception",
-    desc: "Dance floor audio and a first-dance reel on a 30 ft screen.",
-    recommendedTier: "two-speakers-sub",
+    desc: "Reception entertainment only. 30 ft screen with your content for guests during the reception.",
+    recommendedTier: "two-speakers",
   },
   {
     slug: "graduation",

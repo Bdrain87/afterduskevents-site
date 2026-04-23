@@ -39,7 +39,7 @@ const categories = [
     name: "Atmosphere",
     items: [
       { item: "Ambient string lighting", bestFor: "Dusk weddings, dinner parties, backyard vibes" },
-      { item: "Blacklights", bestFor: "Teen birthdays, graduations, glow parties — pairs with the glow bundle" },
+      { item: "Blacklights", bestFor: "Teen birthdays, graduations, glow parties. Pairs with the glow bundle." },
       { item: "Glow sticks, bracelets, necklaces", bestFor: "Teen / tween parties, reception late-night energy" },
       { item: "Photo area with backdrop", bestFor: "Weddings, graduations, memory-driven events" },
     ],

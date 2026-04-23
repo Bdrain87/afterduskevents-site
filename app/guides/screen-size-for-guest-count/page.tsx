@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 const guideFaqs = [
   {
     q: "What size screen do I need for 25 guests?",
-    a: "The 30 ft inflatable screen works for 25 guests and looks cinematic at that scale. For a smaller backyard, the 30 ft + Single Speaker tier usually fits — audio stays intimate without overpowering the space.",
+    a: "The 30 ft inflatable screen works for 25 guests and looks cinematic at that scale. For a smaller backyard, the 30 ft + Single Speaker tier usually fits. Audio stays intimate without overpowering the space.",
   },
   {
     q: "What size screen do I need for 50 guests?",
@@ -30,7 +30,7 @@ const guideFaqs = [
   },
   {
     q: "What size screen do I need for 100 guests?",
-    a: "The 30 ft inflatable screen still handles the visual side. At 100 guests and above, the Two Speakers + Death From Below subwoofer tier is the call — bass that carries across a wider crowd, clean high-end for dialogue.",
+    a: "The 30 ft inflatable screen still handles the visual side. At 100 guests and above, the Two Speakers + Death From Below subwoofer tier is the call: bass that carries across a wider crowd, clean high-end for dialogue.",
   },
   {
     q: "What size screen do I need for 200+ guests?",
@@ -43,7 +43,7 @@ const sizingTable = [
   { guests: "25–50", tier: "30 ft + Two Speakers", note: "Tight backyards, birthdays, smaller gatherings" },
   { guests: "50–100", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Block parties, larger backyards, dance-floor events" },
   { guests: "100–250", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Community events, weddings, fight nights" },
-  { guests: "250+", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Custom quote — contact for details on larger crowds" },
+  { guests: "250+", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Custom quote. Contact for details on larger crowds." },
 ];
 
 export default function GuidePage() {
@@ -88,7 +88,7 @@ export default function GuidePage() {
               <p className="text-steel text-lg leading-relaxed mt-8">
                 Short answer: the 30 ft inflatable screen fits every private event we run, from
                 a 25-guest backyard to a 250-guest community night. What scales instead is
-                audio — we offer three tiers so the sound matches your crowd size and event type.
+                audio: we offer three tiers so the sound matches your crowd size and event type.
               </p>
             </FadeIn>
 
@@ -124,14 +124,14 @@ export default function GuidePage() {
                 A 30 ft inflatable screen is the right visual scale for the entire spectrum of
                 private events we run. Backyard movie nights feel cinematic at that size without
                 overwhelming the space. Larger community events, fight nights, and weddings all
-                benefit from the same screen — the screen is the "wow" that makes a backyard
+                benefit from the same screen. The screen is the "wow" that makes a backyard
                 feel like an amphitheater. The variable is sound.
               </p>
               <p className="text-steel leading-relaxed mt-4">
                 Pick the single speaker tier for intimate gatherings where dialogue carries best
-                at conversational volume. Pick two speakers for standard outdoor events — most
-                bookings land here. Pick two speakers plus the Death From Below subwoofer for
-                anything bass-driven: fight nights, dance floors, heavy soundtracks, or any
+                at conversational volume. Pick two speakers for standard outdoor events (most
+                bookings land here). Pick two speakers plus the Death From Below subwoofer for
+                anything bass-driven: fight nights, heavy soundtracks, or any
                 event 100+ guests where you want sound that fills the yard.
               </p>
             </FadeIn>

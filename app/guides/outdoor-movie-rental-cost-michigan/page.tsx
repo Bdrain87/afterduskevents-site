@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Outdoor Movie Rental Cost in Michigan (2026)",
     description:
-      "What outdoor cinema rentals actually cost in Southeast Michigan — one 30 ft screen, three audio tiers.",
+      "What outdoor cinema rentals actually cost in Southeast Michigan: one 30 ft screen, three audio tiers.",
     url: `https://afterduskevents.com${SLUG}`,
   },
 };
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 const guideFaqs = [
   {
     q: "What is the average cost of an outdoor movie rental in Michigan?",
-    a: "Outdoor cinema rentals in Southeast Michigan run a custom range depending on audio tier, event type, runtime, distance, and add-ons. Every After Dusk Events booking is quoted custom around the event — there is no automated calculator.",
+    a: "Outdoor cinema rentals in Southeast Michigan run a custom range depending on audio tier, event type, runtime, distance, and add-ons. Every After Dusk Events booking is quoted custom around the event. There is no automated calculator.",
   },
   {
     q: "What changes the price of a backyard movie rental?",
@@ -114,7 +114,7 @@ export default function GuidePage() {
                     {[
                       { tier: "30 ft + Single Speaker", rec: "Smaller backyards, intimate gatherings" },
                       { tier: "30 ft + Two Speakers", rec: "Standard outdoor events, most bookings" },
-                      { tier: "30 ft + Two Speakers + Death From Below Sub", rec: "Fight nights, dance floors, bass-heavy music, large crowds" },
+                      { tier: "30 ft + Two Speakers + Death From Below Sub", rec: "Fight nights, bass-heavy music, large crowds" },
                     ].map((row, i) => (
                       <tr key={row.tier} className={`border-b border-white/5 ${i % 2 === 1 ? "bg-charcoal/40" : ""}`}>
                         <td className="px-5 py-3.5 text-ember font-semibold">{row.tier}</td>
@@ -135,7 +135,7 @@ export default function GuidePage() {
               </h2>
               <ul className="space-y-3 text-steel leading-relaxed">
                 {[
-                  ["Audio tier", "Single speaker, two speakers, or two speakers plus a Death From Below subwoofer. The subwoofer tier is the one to pick for fight nights, dance floors, and music-heavy events."],
+                  ["Audio tier", "Single speaker, two speakers, or two speakers plus a Death From Below subwoofer. The subwoofer tier is the one to pick for fight nights and music-heavy events."],
                   ["Runtime", "3 hour vs 4 hour vs 6+ hour events scale the price."],
                   ["Distance from Canton", "Inside 60 miles, no travel fee. Beyond, a travel line is added."],
                   ["Add-ons", "Karaoke with 2 wireless mics, drone video/photos, popcorn machine, cooler, cornhole / can jam / ladder ball, photo backdrop, ambient string lighting, blacklights + glow kit, patio heater, bug zapper, folding tables, early setup, late teardown."],

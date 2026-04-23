@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Calendar } from "lucide-react";
 
 /**
- * Sticky availability dock — appears after the visitor scrolls past the
+ * Sticky availability dock. appears after the visitor scrolls past the
  * hero. Mobile bottom pill / desktop floating top-right. One date input +
  * "Check availability" button that deep-links to /contact with the date
  * pre-filled.

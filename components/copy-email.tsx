@@ -25,7 +25,7 @@ export default function CopyEmail({
     e.preventDefault();
     try {
       await navigator.clipboard.writeText(email);
-      toast.success("Email copied — we reply within 24 hours", { duration: 3500 });
+      toast.success("Email copied. We reply within 24 hours.", { duration: 3500 });
     } catch {
       window.location.href = `mailto:${email}`;
     }

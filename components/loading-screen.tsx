@@ -121,7 +121,7 @@ export default function LoadingScreen() {
             >
               Big screen. Bigger nights.
             </p>
-            <p className="sr-only">After Dusk Events — loading</p>
+            <p className="sr-only">After Dusk Events. loading</p>
           </div>
         </motion.div>
       )}

@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const tier = audioTiers.find((t) => t.slug === slug);
   if (!tier) return {};
   const title = `${tier.name} | After Dusk Events`;
-  const description = `${tier.name} — ${tier.best}. 30 ft inflatable screen, BYO Content, private events in Southeast Michigan.`;
+  const description = `${tier.name}. ${tier.best}. 30 ft inflatable screen, BYO Content, private events in Southeast Michigan.`;
   return {
     title,
     description,
@@ -59,7 +59,7 @@ const ADDON_SUGGESTIONS: Record<AudioTier["slug"], { heading: string; items: str
     ],
   },
   "two-speakers-sub": {
-    heading: "Common add-ons for fight nights and dance floors",
+    heading: "Common add-ons for fight nights and big-crowd events",
     items: [
       "YouTube karaoke + 2 wireless mics",
       "Drone video and photos",

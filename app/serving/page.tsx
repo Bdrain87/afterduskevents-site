@@ -11,9 +11,9 @@ import { MapPin } from "lucide-react";
 import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
-  title: "Service Area — Southeast Michigan",
+  title: "Service Area | Southeast Michigan",
   description:
-    "Outdoor cinema rentals across Southeast Michigan. After Dusk Events serves a 60-mile radius from Canton, MI — including Detroit, Ann Arbor, Plymouth, Northville, Novi, Birmingham, and more.",
+    "Outdoor cinema rentals across Southeast Michigan. After Dusk Events serves a 60-mile radius from Canton, MI, including Detroit, Ann Arbor, Plymouth, Northville, Novi, Birmingham, and more.",
   alternates: { canonical: "/serving" },
 };
 

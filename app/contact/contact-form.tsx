@@ -119,7 +119,7 @@ export default function ContactForm() {
     <form action={formAction} className="space-y-6" noValidate>
       <ProgressIndicator current={step} />
 
-      {/* STEP 1 — Event basics */}
+      {/* STEP 1. Event basics */}
       <fieldset className="space-y-6" hidden={step !== 1} aria-hidden={step !== 1}>
         <legend className="sr-only">Event basics</legend>
 
@@ -179,7 +179,7 @@ export default function ContactForm() {
         </div>
       </fieldset>
 
-      {/* STEP 2 — Package + guest count */}
+      {/* STEP 2. Package + guest count */}
       <fieldset className="space-y-6" hidden={step !== 2} aria-hidden={step !== 2}>
         <legend className="sr-only">Package + guest count</legend>
 
@@ -230,7 +230,7 @@ export default function ContactForm() {
         </div>
       </fieldset>
 
-      {/* STEP 3 — Contact info */}
+      {/* STEP 3. Contact info */}
       <fieldset className="space-y-6" hidden={step !== 3} aria-hidden={step !== 3}>
         <legend className="sr-only">Your contact info</legend>
 

@@ -8,10 +8,10 @@ import { DefaultChatTransport } from "ai";
 import { MessageCircle, Send, Sparkles, X } from "lucide-react";
 
 /**
- * AI concierge drawer — augments the contact form. Uses Vaul drawer,
+ * AI concierge drawer. augments the contact form. Uses Vaul drawer,
  * streams from /api/concierge via AI SDK v6 useChat, renders assistant
  * messages in Blake's voice with tool calls bound to lib/packages.ts
- * and lib/cities.ts (deterministic — can't hallucinate a price).
+ * and lib/cities.ts (deterministic. can't hallucinate a price).
  *
  * Gated by NEXT_PUBLIC_CONCIERGE_ENABLED: drawer + trigger button only
  * render when the env var is "true". Otherwise site is unchanged.
@@ -19,8 +19,8 @@ import { MessageCircle, Send, Sparkles, X } from "lucide-react";
 
 const SUGGESTIONS = [
   "I want a backyard movie night in June for 30 people",
-  "Wedding reception, dance floor, 120 guests in Plymouth",
-  "Fight night with friends — PPV on the big screen",
+  "Wedding reception entertainment, 120 guests in Plymouth",
+  "Fight night with friends. PPV on the big screen",
   "Graduation party, want a blacklight / glow vibe",
 ];
 
@@ -60,7 +60,7 @@ export default function ConciergeDrawer() {
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm" />
         <Drawer.Content className="fixed inset-x-0 bottom-0 z-[100] mt-24 flex h-[85vh] flex-col rounded-t-2xl bg-charcoal border-t border-oxblood/40 focus:outline-none">
-          <Drawer.Title className="sr-only">Plan your night — After Dusk concierge</Drawer.Title>
+          <Drawer.Title className="sr-only">Plan your night. After Dusk concierge</Drawer.Title>
           <Drawer.Description className="sr-only">
             Ask about audio tiers, add-ons, and service area. Final quotes come from Blake.
           </Drawer.Description>
@@ -85,7 +85,7 @@ export default function ConciergeDrawer() {
               <div className="space-y-4">
                 <p className="text-steel text-sm leading-relaxed">
                   Tell us about your event. Our concierge will recommend the right audio tier and
-                  flag add-ons that fit. For final pricing, we always send a custom quote — within
+                  flag add-ons that fit. For final pricing, we always send a custom quote. within
                   24 hours.
                 </p>
                 <ul className="space-y-2">

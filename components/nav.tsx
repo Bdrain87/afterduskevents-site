@@ -69,7 +69,7 @@ export default function Nav() {
         </div>
       </div>
 
-      {/* Mobile menu — full screen takeover */}
+      {/* Mobile menu. full screen takeover */}
       {open && (
         <div
           id="mobile-menu"

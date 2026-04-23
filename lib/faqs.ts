@@ -23,11 +23,11 @@ export const faqs: Faq[] = [
   },
   {
     q: "Do we bring our own content?",
-    a: "Yes. Stream from your own accounts: Netflix, Disney+, YouTube, Apple TV+, HBO Max, or whatever you subscribe to. Same rule applies to karaoke — we use YouTube karaoke tracks with our 2 wireless mics as an add-on. For console gaming you either use our 8-bit retro system with 4 wireless controllers, or you bring your own PlayStation or Xbox and staff connects it for you.",
+    a: "Yes. Stream from your own accounts: Netflix, Disney+, YouTube, Apple TV+, HBO Max, or whatever you subscribe to. Same rule applies to karaoke: we use YouTube karaoke tracks with our 2 wireless mics as an add-on. For console gaming you either use our 8-bit retro system with 4 wireless controllers, or you bring your own PlayStation or Xbox and staff connects it for you.",
   },
   {
     q: "What audio tiers do you offer?",
-    a: "Three tiers on the same 30 ft screen: single speaker, two speakers, or two speakers plus a Death From Below subwoofer. The subwoofer tier is the right call for fight nights, dance floors, and music-heavy events where bass matters.",
+    a: "Three tiers on the same 30 ft screen: single speaker, two speakers, or two speakers plus a Death From Below subwoofer. The subwoofer tier is the right call for fight nights and music-heavy events where bass matters.",
   },
   {
     q: "Can we hook up our own console or laptop?",
@@ -35,7 +35,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Do you offer karaoke?",
-    a: "Yes, as an add-on: YouTube karaoke plus two wireless mics. BYO content rule applies — you pick the tracks.",
+    a: "Yes, as an add-on: YouTube karaoke plus two wireless mics. BYO content rule applies: you pick the tracks.",
   },
   {
     q: "Can you handle cold weather and bugs?",
@@ -51,7 +51,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Who secures the venue permit if the event is on public or rented property?",
-    a: "The customer. For any non-private-backyard venue — parks, community spaces, HOA common areas, rented properties, etc. — the customer is responsible for obtaining the permit or approval from the property owner or municipality. We show up and set up once that's confirmed.",
+    a: "The customer. For any non-private-backyard venue (parks, community spaces, HOA common areas, rented properties, etc.), the customer is responsible for obtaining the permit or approval from the property owner or municipality. We show up and set up once that's confirmed.",
   },
   {
     q: "Are you insured?",

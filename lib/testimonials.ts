@@ -1,5 +1,5 @@
 /**
- * Customer testimonials. After Dusk Events is pre-launch — this array stays empty
+ * Customer testimonials. After Dusk Events is pre-launch. this array stays empty
  * until Blake has real customer quotes to publish. TestimonialsSection renders
  * nothing when the array is empty, so the homepage stays honest.
  *
@@ -25,7 +25,7 @@ export type Testimonial = {
 };
 
 export const testimonials: Testimonial[] = [
-  // Intentionally empty — pre-launch. Add real customer quotes here as they arrive.
+  // Intentionally empty. pre-launch. Add real customer quotes here as they arrive.
 ];
 
 /** Returns all published testimonials. Currently empty. */

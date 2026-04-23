@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef } from "react";
 import { motion } from "motion/react";
 import Nav from "@/components/nav";
@@ -50,13 +51,13 @@ const eventTypes = [
   { name: "Sports Watch Party", desc: "Game day, bigger than any bar." },
   { name: "Fight Night",        desc: "UFC, boxing, WWE. Built for the bass drop." },
   { name: "Gaming Night",       desc: "8-bit retro with 4 controllers, or your PS/Xbox with staff hookup." },
-  { name: "Wedding Reception",  desc: "Dance floor audio and a first-dance reel on a 30 ft screen." },
+  { name: "Wedding Reception",  desc: "Reception entertainment only. 30 ft screen with your content for guests during the reception." },
   { name: "Graduation Party",   desc: "Photo reel and a movie all night." },
   { name: "Get-together",       desc: "Birthdays, holidays, any private gathering." },
 ];
 
 const packages = [
-  { name: "30 ft + Two Speakers + Sub", tag: "Most popular", desc: "Two speakers plus Death From Below subwoofer. Dance-floor audio, fight-night bass.", featured: true },
+  { name: "30 ft + Two Speakers + Sub", tag: "Most popular", desc: "Two speakers plus Death From Below subwoofer. Fight-night bass, big-crowd coverage.", featured: true },
   { name: "30 ft + Two Speakers",       tag: null,           desc: "Standard two-speaker setup. Covers most outdoor events." },
   { name: "30 ft + Single Speaker",     tag: null,           desc: "Intimate audio for small gatherings and tight backyards." },
 ];
@@ -86,7 +87,7 @@ export default function HomeClient({ geo }: Props = {}) {
       stagger: 0.018,
       ease: "power3.out",
     });
-    // Scramble pass — run after the chars land so the cycle reads clean
+    // Scramble pass. run after the chars land so the cycle reads clean
     tl.to(
       el,
       {
@@ -162,7 +163,7 @@ export default function HomeClient({ geo }: Props = {}) {
 
           {/* Full-width company name */}
           <div ref={nameRef} className="relative z-10 w-full overflow-hidden pt-24 pb-2">
-            {/* Hidden measuring span — uses the real loaded font, not canvas */}
+            {/* Hidden measuring span. uses the real loaded font, not canvas */}
             <span
               ref={measureRef}
               aria-hidden="true"
@@ -190,7 +191,7 @@ export default function HomeClient({ geo }: Props = {}) {
               {geo?.inRadius && geo.city.slug !== "canton"
                 ? `Serving ${geo.city.name} from Canton, MI. Private outdoor cinema, 30 ft screen, three audio tiers.`
                 : geo?.travelZone
-                  ? `We travel to ${geo.city.name}. Expect a travel line on the quote. Otherwise — private outdoor cinema, 30 ft screen, three audio tiers.`
+                  ? `We travel to ${geo.city.name}. Expect a travel line on the quote. Otherwise: private outdoor cinema, 30 ft screen, three audio tiers.`
                   : "We turn your outdoor space into a cinema. You bring the guests. We bring everything else."}
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4 mb-10">
@@ -202,7 +203,7 @@ export default function HomeClient({ geo }: Props = {}) {
               </Link>
             </div>
             <p className="text-steel/80 text-[11px] tracking-[0.18em] uppercase">
-              Canton, MI — Private events only — Veteran owned
+              Canton, MI. Private events only. Veteran owned
             </p>
             <div className="mt-8">
               <TrustStrip />
@@ -210,7 +211,7 @@ export default function HomeClient({ geo }: Props = {}) {
           </div>
         </section>
 
-        {/* Next open dates — hides when availability.openDates is empty */}
+        {/* Next open dates. hides when availability.openDates is empty */}
         <NextEventCard />
 
         {/* ─── 2. FULL-BLEED STATEMENT: oxblood ───────────────────── */}
@@ -233,6 +234,46 @@ export default function HomeClient({ geo }: Props = {}) {
             <span style={{ animationDelay: "400ms" }}>A</span>{" "}
             <span style={{ animationDelay: "460ms" }}>CINEMA.</span>
           </h2>
+        </section>
+
+        {/* ─── 2.5 THE 30 FT: studio hero for the actual product ─── */}
+        <section className="relative bg-screening overflow-hidden py-20 sm:py-24 px-4 sm:px-8 lg:px-12" aria-labelledby="thirty-ft-heading">
+          <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
+            <div className="lg:col-span-2 order-2 lg:order-1">
+              <p className="text-ember text-xs tracking-[0.3em] uppercase mb-4">The screen</p>
+              <h2
+                id="thirty-ft-heading"
+                className="font-display text-projector leading-none tracking-wider mb-6"
+                style={{ fontSize: "clamp(3.5rem, 10vw, 8rem)" }}
+              >
+                30 FT.
+              </h2>
+              <p className="text-steel text-lg leading-relaxed mb-6 max-w-[42ch]">
+                One screen size for every event we run. Water ballast setup, no digging.
+                Scales visually from a 25-guest backyard to a 250-guest community night.
+                What changes is audio.
+              </p>
+              <Link
+                href="/packages"
+                className="inline-flex items-center gap-2 text-ember text-sm font-semibold hover:text-projector transition-colors group"
+              >
+                Pick your audio tier
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="lg:col-span-3 order-1 lg:order-2 relative">
+              <div className="relative aspect-[4/5] sm:aspect-[5/6] rounded-xl overflow-hidden bg-screening">
+                <Image
+                  src="/images/setup/30ft-screen-studio.avif"
+                  alt="After Dusk Events 30 foot inflatable outdoor cinema screen, studio render with a person at the base for scale"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 60vw, 100vw"
+                  className="object-contain"
+                />
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* ─── 3. THREE STATEMENTS: alternating alignment ──────────── */}

@@ -34,7 +34,7 @@ export function proxy(req: NextRequest) {
 
 export const config = {
   matcher: [
-    // Run on HTML routes only — skip API, static assets, Next.js internals.
+    // Run on HTML routes only. skip API, static assets, Next.js internals.
     "/((?!api|_next/static|_next/image|images|favicon.ico|robots.txt|sitemap.xml).*)",
   ],
 };

@@ -25,7 +25,7 @@ type Star = {
 };
 
 /**
- * Canvas starfield — varied star sizes, per-star twinkle, slow drift.
+ * Canvas starfield. varied star sizes, per-star twinkle, slow drift.
  * Built to give the hero a "space at dusk" feel without Three.js.
  * Respects prefers-reduced-motion (renders one static frame).
  */

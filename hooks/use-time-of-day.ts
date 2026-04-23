@@ -5,13 +5,13 @@ import SunCalc from "suncalc";
 
 export type TimeOfDay = "day" | "golden" | "dusk" | "night";
 
-/** Canton, MI — used as a fallback when geolocation is unavailable. */
+/** Canton, MI. used as a fallback when geolocation is unavailable. */
 const FALLBACK_LAT = 42.3086;
 const FALLBACK_LNG = -83.482;
 
 /**
  * Resolves the current time-of-day bucket for the visitor's local sunset.
- * SunCalc is pure math — no network request. SSR-safe: returns "night" as
+ * SunCalc is pure math. no network request. SSR-safe: returns "night" as
  * the initial server value then hydrates to the real bucket on the client.
  */
 export function useTimeOfDay(): TimeOfDay {

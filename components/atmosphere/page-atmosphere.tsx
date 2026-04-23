@@ -10,11 +10,11 @@ type Props = {
 };
 
 const PALETTES: Record<Variant, string[]> = {
-  // Default — soft oxblood wash over deep charcoal
+  // Default. soft oxblood wash over deep charcoal
   dusk: ["#0A0A0A", "#1A1A1A", "#3A0E0E", "#6B1F1F"],
-  // Brighter — for pages that want more warmth (add-ons, contact)
+  // Brighter. for pages that want more warmth (add-ons, contact)
   ember: ["#0A0A0A", "#2a0e0e", "#6B1F1F", "#DD5454"],
-  // Cooler — navy / oxblood blend for long-form pages (guides, about)
+  // Cooler. navy / oxblood blend for long-form pages (guides, about)
   space: ["#050508", "#0F0A1E", "#1A1A1A", "#4A0E0E"],
 };
 

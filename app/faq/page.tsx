@@ -10,7 +10,7 @@ import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Answers to common questions about outdoor cinema rentals. travel distance, weather, power, deposit, insurance, and more. After Dusk Events, Canton, MI.",
+    "Answers to common questions about outdoor cinema rentals: travel distance, weather, power, deposit, insurance, and more. After Dusk Events, Canton, MI.",
   alternates: { canonical: "/faq" },
 };
 

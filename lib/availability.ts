@@ -1,5 +1,5 @@
 /**
- * Open dates for booking. Blake maintains this manually for now —
+ * Open dates for booking. Blake maintains this manually for now  
  * when he adds Google Calendar MCP sync later, this file becomes the
  * cache/source of truth.
  *
@@ -14,7 +14,7 @@ export type OpenDate = {
 };
 
 export const openDates: OpenDate[] = [
-  // Placeholder entries — Blake replaces these with real open weekends.
+  // Placeholder entries. Blake replaces these with real open weekends.
   // The card on the homepage renders nothing if the array is empty.
 ];
 

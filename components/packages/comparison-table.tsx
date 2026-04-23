@@ -38,7 +38,7 @@ const featureRows: Row[] = [
     values: [
       "Smaller backyards, intimate gatherings",
       "Standard outdoor events, most bookings",
-      "Fight nights, dance floors, bass-heavy music",
+      "Fight nights, bass-heavy music",
     ],
   },
 ];

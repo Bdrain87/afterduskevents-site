@@ -6,7 +6,7 @@ import { useTimeOfDay } from "@/hooks/use-time-of-day";
 /**
  * Sets a `data-tod` attribute on <html> keyed to time-of-day (day / golden /
  * dusk / night). CSS targets `[data-tod="..."]` to shift the atmosphere
- * palette — grain opacity, vignette intensity, star brightness. Pure client
+ * palette. grain opacity, vignette intensity, star brightness. Pure client
  * hydration; SSR renders without the attribute.
  */
 export default function TimeOfDayProvider() {
