@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import FadeIn from "@/components/fade-in";
 import MagneticButton from "@/components/magnetic-button";
+import { ArrowRight } from "lucide-react";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList } from "@/lib/schema";
-import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
-  title: "Add-On Catalog",
+  title: "Add-Ons",
   description:
     "Customize your outdoor cinema event: karaoke, drone video, gaming, backyard games, popcorn, photo backdrop, string lights, patio heater, and more. After Dusk Events, Canton, MI.",
   alternates: { canonical: "/add-ons" },
@@ -71,42 +70,34 @@ const categories = [
 const bundles = [
   {
     name: "Blacklight + Neon Kit",
-    includes:
-      "Blacklights + glow sticks + glow bracelets + glow necklaces, priced as one line.",
+    includes: "Blacklights, glow sticks, glow bracelets, and glow necklaces priced as one line.",
     bestFor: "Teen birthdays, graduations, bachelorettes, post-prom, Halloween",
+    featured: true,
   },
 ];
 
-function CategoryTable({ category }: { category: typeof categories[0] }) {
+function CategoryBlock({ category }: { category: (typeof categories)[0] }) {
   return (
-    <FadeIn>
-      <div className="mb-12">
-        <h2 className="font-heading text-xl text-projector mb-4 pb-2 border-b border-oxblood/30">
-          {category.name}
-        </h2>
-        <div className="overflow-x-auto rounded-lg border border-white/10">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-white/10 text-left bg-charcoal">
-                <th className="px-5 py-3 text-steel font-semibold">Item</th>
-                <th className="px-5 py-3 text-steel font-semibold">Best for</th>
-              </tr>
-            </thead>
-            <tbody>
-              {category.items.map((row, i) => (
-                <tr
-                  key={row.item}
-                  className={`border-b border-white/5 ${i % 2 === 1 ? "bg-charcoal/50" : ""}`}
-                >
-                  <td className="px-5 py-3.5 text-projector font-medium align-top">{row.item}</td>
-                  <td className="px-5 py-3.5 text-steel align-top">{row.bestFor}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </FadeIn>
+    <div className="mb-16 last:mb-0">
+      <h2 className="font-display text-projector text-display-md tracking-wider leading-none mb-6">
+        {category.name.toUpperCase()}.
+      </h2>
+      <ul className="divide-y divide-white/8 border-t border-white/8">
+        {category.items.map((row) => (
+          <li
+            key={row.item}
+            className="group flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-8 py-5 pl-4 -ml-4 border-l-2 border-transparent hover:border-ember transition-colors"
+          >
+            <p className="text-projector text-heading-md font-medium leading-snug flex-1">
+              {row.item}
+            </p>
+            <p className="text-caption text-steel sm:text-right sm:max-w-[34ch]">
+              {row.bestFor}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -117,83 +108,99 @@ export default function AddOnsPage() {
         id="addons-breadcrumb"
         data={buildBreadcrumbList([
           { name: "Home", href: "/" },
-          { name: "Setup", href: "/packages" },
+          { name: "Packages", href: "/packages" },
           { name: "Add-Ons", href: "/add-ons" },
         ])}
       />
       <Nav />
       <main className="flex-1 pt-16">
         {/* Header */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-oxblood relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-oxblood to-oxblood-deep" aria-hidden="true" />
-          <PageAtmosphere variant="ember" className="opacity-60" />
-          <div className="relative z-10 mx-auto max-w-3xl">
-            <FadeIn>
-              <p className="text-projector/60 text-xs tracking-[0.2em] uppercase mb-3">Customize your event</p>
-              <h1 className="font-display text-[clamp(3rem,8vw,6rem)] text-projector tracking-wider leading-none mb-2">
-                ADD-ON CATALOG
-              </h1>
-              <div className="block w-12 h-[2px] bg-projector/40 mt-3" />
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <p className="text-projector/70 text-lg leading-relaxed mt-6">
-                Every add-on is quoted with your setup. Contact Blake for a real total.
-              </p>
-            </FadeIn>
+        <section
+          className="relative overflow-hidden px-6 sm:px-10 lg:px-16"
+          style={{ paddingTop: "96px", paddingBottom: "64px" }}
+        >
+          <div className="relative z-10 mx-auto max-w-5xl">
+            <p className="text-caption text-ember mb-4">Customize your event</p>
+            <h1 className="font-display text-projector text-display-lg tracking-wider leading-none mb-6">
+              PILE IT ON.
+            </h1>
+            <p className="text-silver text-body-lg leading-relaxed max-w-[58ch]">
+              Every add-on is quoted with your setup. Nothing is pay-per-ticket. Tell Blake what you&apos;re thinking and he&apos;ll write a real total.
+            </p>
           </div>
         </section>
 
         {/* Categories */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <section
+          className="relative px-6 sm:px-10 lg:px-16"
+          style={{ paddingTop: "32px", paddingBottom: "96px" }}
+        >
           <div className="mx-auto max-w-5xl">
             {categories.map((cat) => (
-              <CategoryTable key={cat.name} category={cat} />
+              <CategoryBlock key={cat.name} category={cat} />
             ))}
           </div>
         </section>
 
         {/* Bundles */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="bundles-heading">
+        <section
+          aria-labelledby="bundles-heading"
+          className="relative px-6 sm:px-10 lg:px-16 border-t border-white/8 bg-charcoal/30 backdrop-blur-sm"
+          style={{ paddingTop: "96px", paddingBottom: "96px" }}
+        >
           <div className="mx-auto max-w-5xl">
-            <FadeIn>
-              <h2 id="bundles-heading" className="font-heading text-2xl text-projector mb-2">
-                Bundles
-              </h2>
-              <p className="text-steel text-sm mb-8">
-                Pre-built combos. Ask Blake for bundle pricing.
-              </p>
-            </FadeIn>
+            <p className="text-caption text-ember mb-3">Pre-built</p>
+            <h2
+              id="bundles-heading"
+              className="font-display text-projector text-display-md tracking-wider leading-none mb-3"
+            >
+              BUNDLES.
+            </h2>
+            <p className="text-silver text-body mb-10 max-w-[54ch]">
+              A few favorite combos priced as one line. Ask about bundle pricing.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {bundles.map((b, i) => (
-                <FadeIn key={b.name} delay={i * 0.06}>
-                  <div className="bg-screening rounded-lg p-6 border border-white/10 hover:border-oxblood/30 transition-colors h-full">
-                    <h3 className="font-heading text-base text-projector mb-2">{b.name}</h3>
-                    <p className="text-steel text-sm leading-relaxed mb-2">{b.includes}</p>
-                    <p className="text-steel text-xs">Best for: {b.bestFor}</p>
-                  </div>
-                </FadeIn>
+              {bundles.map((b) => (
+                <div
+                  key={b.name}
+                  className={`relative p-8 border ${
+                    b.featured
+                      ? "border-ember/50 bg-screening shadow-[0_24px_48px_rgba(0,0,0,0.4)]"
+                      : "border-white/10 bg-screening/60"
+                  }`}
+                >
+                  <h3 className="font-display text-heading-lg text-projector tracking-wider mb-3">
+                    {b.name}
+                  </h3>
+                  <p className="text-silver text-sm leading-relaxed mb-3">{b.includes}</p>
+                  <p className="text-steel text-xs">Best for: {b.bestFor}</p>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <FadeIn>
-              <h2 className="font-heading text-2xl text-projector mb-4">Ready to build your event?</h2>
-              <p className="text-steel mb-8 text-sm leading-relaxed">
-                Tell Blake what you are thinking and he will put together a real quote.
-              </p>
-              <MagneticButton className="inline-flex">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(107,31,31,0.4)] transition-all duration-300"
-                >
-                  Get a Quote
-                </Link>
-              </MagneticButton>
-            </FadeIn>
+        <section
+          className="relative px-6 sm:px-10 lg:px-16"
+          style={{ paddingTop: "96px", paddingBottom: "128px" }}
+        >
+          <div className="mx-auto max-w-3xl">
+            <h2 className="font-display text-projector text-display-lg tracking-wider leading-none mb-6">
+              READY TO BUILD YOUR EVENT?
+            </h2>
+            <p className="text-silver text-body-lg leading-relaxed mb-10 max-w-[44ch]">
+              Tell Blake what you&apos;re thinking and he&apos;ll put together a real quote.
+            </p>
+            <MagneticButton className="inline-flex">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
+              >
+                Get a Quote
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </MagneticButton>
           </div>
         </section>
       </main>

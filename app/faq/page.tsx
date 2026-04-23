@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import FaqAccordion from "./faq-accordion";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList, buildFAQPage } from "@/lib/schema";
-import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -13,8 +13,6 @@ export const metadata: Metadata = {
     "Answers to common questions about outdoor cinema rentals: travel distance, weather, power, deposit, insurance, and more. After Dusk Events, Canton, MI.",
   alternates: { canonical: "/faq" },
 };
-
-const UPDATED = "2026-04-22";
 
 export default function FaqPage() {
   return (
@@ -32,48 +30,50 @@ export default function FaqPage() {
       <Nav />
       <main className="flex-1 pt-16">
         {/* Header */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
-          <PageAtmosphere variant="dusk" />
-          <div className="relative z-10 mx-auto max-w-3xl text-center">
-            <h1 className="font-display tracking-wider text-4xl sm:text-5xl text-projector mb-4">
-              Frequently asked questions.
+        <section
+          className="relative overflow-hidden px-6 sm:px-10 lg:px-16"
+          style={{ paddingTop: "96px", paddingBottom: "48px" }}
+        >
+          <div className="relative z-10 mx-auto max-w-4xl">
+            <p className="text-caption text-ember mb-4">Before you book</p>
+            <h1 className="font-display text-projector text-display-lg tracking-wider leading-none mb-6">
+              QUESTIONS. ANSWERED.
             </h1>
-            <p className="text-silver text-lg leading-relaxed">
-              Everything you need to know before booking. Still have a question?{" "}
-              <Link
-                href="/contact"
-                className="text-projector underline hover:text-steel transition-colors"
-              >
-                Send us a message.
-              </Link>
-            </p>
-            <p className="text-steel text-xs uppercase tracking-wider mt-6">
-              Updated{" "}
-              <time dateTime={UPDATED} className="text-steel">
-                April 2026
-              </time>
+            <p className="text-silver text-body-lg leading-relaxed max-w-[56ch]">
+              The things people ask most. If your question is not here, the contact form goes straight to Blake.
             </p>
           </div>
         </section>
 
         {/* Accordion */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <section
+          className="px-6 sm:px-10 lg:px-16"
+          style={{ paddingTop: "48px", paddingBottom: "96px" }}
+        >
           <div className="mx-auto max-w-3xl">
             <FaqAccordion />
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-heading text-2xl sm:text-3xl text-projector mb-4">
-              Ready to get a quote?
+        {/* Still have a question? */}
+        <section
+          className="relative px-6 sm:px-10 lg:px-16 border-t border-white/8"
+          style={{ paddingTop: "96px", paddingBottom: "128px" }}
+        >
+          <div className="mx-auto max-w-2xl">
+            <p className="text-caption text-ember mb-4">Still curious</p>
+            <h2 className="font-display text-projector text-display-md tracking-wider leading-none mb-6">
+              STILL HAVE A QUESTION?
             </h2>
+            <p className="text-silver text-body-lg leading-relaxed mb-10 max-w-[46ch]">
+              Send it over. We usually reply within 24 hours.
+            </p>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood/90 transition-colors"
+              className="inline-flex items-center gap-2 px-7 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
             >
-              Request a Quote
+              Contact Blake
+              <ArrowRight size={14} aria-hidden="true" />
             </Link>
           </div>
         </section>

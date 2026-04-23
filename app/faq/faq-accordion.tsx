@@ -10,17 +10,17 @@ import { faqs } from "@/lib/faqs";
 
 export default function FaqAccordion() {
   return (
-    <Accordion multiple={false} className="space-y-2">
+    <Accordion multiple={false} className="divide-y divide-white/10 border-t border-b border-white/10">
       {faqs.map((faq, i) => (
         <AccordionItem
           key={i}
           value={`item-${i}`}
-          className="bg-charcoal border border-white/10 rounded-lg px-6 data-open:border-oxblood/40"
+          className="data-open:bg-charcoal/30"
         >
-          <AccordionTrigger className="text-projector font-heading text-base text-left py-5 hover:no-underline hover:text-projector aria-expanded:text-ember">
+          <AccordionTrigger className="text-projector font-heading text-heading-md text-left py-6 pr-2 hover:no-underline hover:text-ember aria-expanded:text-ember transition-colors">
             {faq.q}
           </AccordionTrigger>
-          <AccordionContent className="text-steel leading-relaxed pb-5">
+          <AccordionContent className="text-silver leading-relaxed pb-6 pr-6 max-w-[56ch] text-body">
             {faq.a}
           </AccordionContent>
         </AccordionItem>

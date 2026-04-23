@@ -20,9 +20,9 @@ function FieldError({ errors, field }: { errors?: Record<string, string[]>; fiel
   );
 }
 
-const labelClass = "block text-sm font-medium text-projector mb-1.5";
+const labelClass = "block text-caption text-steel mb-2";
 const inputClass =
-  "w-full rounded-lg bg-screening border border-white/15 text-projector placeholder-steel px-3 py-2.5 text-sm focus:outline-none focus:border-oxblood focus:ring-1 focus:ring-oxblood transition-colors";
+  "w-full bg-screening/60 border border-white/10 text-projector placeholder-steel/70 px-4 py-3.5 text-base min-h-[56px] focus:outline-none focus:border-ember focus:ring-2 focus:ring-ember/40 hover:border-ember/40 transition-colors";
 const selectClass = `${inputClass} appearance-none`;
 
 type Step = 1 | 2 | 3;
