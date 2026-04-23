@@ -19,7 +19,7 @@ export default function TrustStrip({ className }: Props) {
               ·
             </span>
           )}
-          <span className="text-steel/60 text-[11px] tracking-[0.25em] uppercase">
+          <span className="text-silver text-[11px] tracking-[0.25em] uppercase">
             {label}
           </span>
         </span>
