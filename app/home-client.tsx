@@ -17,7 +17,6 @@ import { useFitText } from "@/hooks/use-fit-text";
 import Spotlight from "@/components/atmosphere/spotlight";
 import Starfield from "@/components/atmosphere/starfield";
 import TrustStrip from "@/components/trust-strip";
-import EventGallery from "@/components/event-gallery";
 import TestimonialsSection from "@/components/testimonials/testimonials-section";
 import NextEventCard from "@/components/next-event-card";
 import type { NearestCityResult } from "@/lib/nearest-city";
@@ -404,9 +403,6 @@ export default function HomeClient({ geo }: Props = {}) {
             ))}
           </div>
         </section>
-
-        {/* Past events gallery (renders only when public/images/gallery has real photos) */}
-        <EventGallery />
 
         {/* Social proof (renders only when lib/testimonials has real entries) */}
         <TestimonialsSection />

@@ -207,18 +207,12 @@ html[data-tod="night"] {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero wordmark: red chrome gradient clipped to the text, matching the
-   vetclaimsupport "second battle" effect. Dark oxblood edges with a bright
-   ember center creates a rolling highlight built into the letters themselves. */
+/* Hero wordmark: top-to-bottom red gradient clipped to the letters. Floor
+   color #7A1E22 matches the vetclaimsupport "second battle" red and is the
+   dark end; bright ember on top carries the letter's visibility — every
+   letter stays legible regardless of horizontal position. */
 .wordmark-glow {
-  background: linear-gradient(
-    90deg,
-    #4A0E0E 0%,
-    #6B1F1F 25%,
-    #DD5454 50%,
-    #6B1F1F 75%,
-    #4A0E0E 100%
-  );
+  background: linear-gradient(180deg, #DD5454 0%, #7A1E22 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
