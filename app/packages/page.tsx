@@ -8,6 +8,7 @@ import AnimatedCard from "@/components/animated-card";
 import MagneticButton from "@/components/magnetic-button";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
+import BallparkTool from "@/components/packages/ballpark-tool";
 import { corePackages, eventPackages } from "@/lib/packages";
 import {
   buildAllServicesGraph,
@@ -86,7 +87,14 @@ export default function PackagesPage() {
                     </span>
                   )}
                   <h3 className="font-heading text-xl text-projector mb-1">{pkg.name}</h3>
-                  <p className="text-oxblood font-semibold text-lg mb-1">{pkg.price}</p>
+                  {pkg.startsAt ? (
+                    <p className="text-oxblood font-semibold text-lg mb-1">
+                      Starts at {pkg.startsAt}{" "}
+                      <span className="text-steel text-xs font-normal italic">· custom quote</span>
+                    </p>
+                  ) : (
+                    <p className="text-oxblood font-semibold text-lg mb-1">{pkg.price}</p>
+                  )}
                   <p className="text-steel text-xs mt-3 mb-4 italic">Best for: {pkg.best}</p>
                   <ul className="space-y-2 flex-1 mb-6">
                     {pkg.highlights.map((item) => (
@@ -109,6 +117,16 @@ export default function PackagesPage() {
                 </AnimatedCard>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Quick ballpark tool */}
+        <section className="py-12 px-4 sm:px-6 lg:px-8" aria-labelledby="ballpark-heading">
+          <div className="mx-auto max-w-3xl">
+            <FadeIn>
+              <h2 id="ballpark-heading" className="sr-only">Quick ballpark</h2>
+              <BallparkTool />
+            </FadeIn>
           </div>
         </section>
 
@@ -147,7 +165,14 @@ export default function PackagesPage() {
                   className="bg-charcoal rounded-lg p-8 flex flex-col border border-white/10 hover:border-white/20 transition-colors"
                 >
                   <h3 className="font-heading text-xl text-projector mb-1">{pkg.name}</h3>
-                  <p className="text-oxblood font-semibold text-lg mb-1">{pkg.price}</p>
+                  {pkg.startsAt ? (
+                    <p className="text-oxblood font-semibold text-lg mb-1">
+                      Starts at {pkg.startsAt}{" "}
+                      <span className="text-steel text-xs font-normal italic">· custom quote</span>
+                    </p>
+                  ) : (
+                    <p className="text-oxblood font-semibold text-lg mb-1">{pkg.price}</p>
+                  )}
                   <p className="text-steel text-xs mt-3 mb-4 italic">Best for: {pkg.best}</p>
                   <ul className="space-y-2 flex-1 mb-6">
                     {pkg.highlights.map((item) => (

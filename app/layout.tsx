@@ -8,6 +8,7 @@ import CursorSpotlight from "@/components/cursor-spotlight";
 import ScrollProgress from "@/components/scroll-progress";
 import LoadingScreen from "@/components/loading-screen";
 import LenisProvider from "@/components/lenis-provider";
+import StickyCTA from "@/components/sticky-cta";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import {
   buildLocalBusiness,
@@ -105,6 +106,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <LenisProvider>
           {children}
         </LenisProvider>
+        <StickyCTA />
         <Toaster
           position="bottom-right"
           toastOptions={{
