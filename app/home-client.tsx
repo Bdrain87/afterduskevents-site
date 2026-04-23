@@ -1,9 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useRef } from "react";
-import { motion } from "motion/react";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import HeroWordmark from "@/components/hero-wordmark";
@@ -11,110 +9,44 @@ import { ShimmerButton } from "@/components/ui/shimmer-button";
 import MagneticButton from "@/components/magnetic-button";
 import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Spotlight from "@/components/atmosphere/spotlight";
 import TrustStrip from "@/components/trust-strip";
 import TestimonialsSection from "@/components/testimonials/testimonials-section";
 import NextEventCard from "@/components/next-event-card";
+import ThirtyFootCheck from "@/components/home/thirty-foot-check";
+import ManifestoLine from "@/components/home/manifesto-line";
+import EventTypesMarquee from "@/components/home/event-types-marquee";
+import RunSheet from "@/components/home/run-sheet";
+import PackagesTeaser from "@/components/home/packages-teaser";
 import type { NearestCityResult } from "@/lib/nearest-city";
-
-gsap.registerPlugin(ScrollTrigger);
-
-const statements = [
-  {
-    headline: "A SCREEN SO BIG YOUR GUESTS STOP TALKING.",
-    body: "Thirty feet of inflatable screen. Every seat is the front row.",
-    align: "left" as const,
-    bg: "bg-screening",
-  },
-  {
-    headline: "SOUND THAT ACTUALLY FILLS THE YARD.",
-    body: "No wires. No volume fights. No calling the neighbors.",
-    align: "right" as const,
-    bg: "bg-charcoal",
-  },
-  {
-    headline: "YOU SHOW UP. WE HANDLE THE REST.",
-    body: "We arrive 3 hours early. We set up, test, and run the show. Teardown is ours too.",
-    align: "left" as const,
-    bg: "bg-screening",
-  },
-];
-
-const eventTypes = [
-  { name: "Movie Night",        desc: "Your yard. Our cinema. Bring your own content." },
-  { name: "Sports Watch Party", desc: "Game day, bigger than any bar." },
-  { name: "Fight Night",        desc: "UFC, boxing, WWE. Built for the bass drop." },
-  { name: "Gaming Night",       desc: "8-bit retro with 4 controllers, or your PS/Xbox with staff hookup." },
-  { name: "Graduation Party",   desc: "Photo reel and a movie all night." },
-  { name: "Get-together",       desc: "Birthdays, holidays, any private gathering." },
-];
-
-const packages = [
-  { name: "30 ft + Two Speakers + Sub", tag: "Most popular", desc: "Two speakers plus Death From Below subwoofer. Fight-night bass, big-crowd coverage.", featured: true },
-  { name: "30 ft + Two Speakers",       tag: null,           desc: "Standard two-speaker setup. Covers most outdoor events." },
-  { name: "30 ft + Single Speaker",     tag: null,           desc: "Intimate audio for small gatherings and tight backyards." },
-];
 
 type Props = {
   geo?: NearestCityResult | null;
 };
 
 export default function HomeClient({ geo }: Props = {}) {
-  const heroRestRef    = useRef<HTMLDivElement>(null);
-  const statementsRef  = useRef<HTMLDivElement>(null);
-  const screenImgRef   = useRef<HTMLDivElement>(null);
+  const heroRestRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     if (!heroRestRef.current) return;
     gsap.from(heroRestRef.current, {
-      y: 24, opacity: 0,
-      duration: 0.7, ease: "power2.out", delay: 0.5,
+      y: 24,
+      opacity: 0,
+      duration: 0.7,
+      ease: "power2.out",
+      delay: 0.5,
     });
   }, []);
-
-  useGSAP(() => {
-    if (!screenImgRef.current) return;
-    gsap.from(screenImgRef.current, {
-      clipPath: "inset(100% 0 0 0)",
-      duration: 1.2,
-      ease: "power3.inOut",
-      scrollTrigger: { trigger: screenImgRef.current, start: "top 82%" },
-    });
-  }, []);
-
-  useGSAP(() => {
-    if (!statementsRef.current) return;
-    const rows = statementsRef.current.querySelectorAll(".statement-row");
-    rows.forEach((row, i) => {
-      const hl = row.querySelector(".statement-hl");
-      const body = row.querySelector(".statement-body");
-      const dir = i % 2 === 0 ? -60 : 60;
-      gsap.from(hl, {
-        x: dir, opacity: 0, duration: 0.7, ease: "power2.out",
-        scrollTrigger: { trigger: row, start: "top 78%" },
-      });
-      gsap.from(body, {
-        y: 16, opacity: 0, duration: 0.5, ease: "power2.out",
-        scrollTrigger: { trigger: row, start: "top 75%" },
-      });
-    });
-  }, []);
-
-  // Sitewide org/business schema is injected via app/layout.tsx (Workstream C);
-  // homepage doesn't need to repeat it.
 
   return (
     <>
       <Nav />
       <main className="flex-1">
-
-        {/* ─── 1. HERO: full-width fitted wordmark ─────────────────── */}
+        {/* 1. HERO — Dusk Horizon */}
         <section className="relative min-h-screen flex flex-col justify-center overflow-hidden px-4 sm:px-8 lg:px-12">
-          {/* AmbientSky (sky gradient + starfield) is mounted in layout.tsx as a
-              fixed z-index:-1 backdrop that shows through the whole site. The hero
-              adds only its own ember nebula glow and cursor-follow spotlight. */}
+          {/* AmbientSky (sky gradient + starfield) renders globally in layout.tsx.
+              The hero layers its own ember nebula + cursor-follow spotlight + horizon line. */}
           <div
             aria-hidden="true"
             className="absolute inset-0 pointer-events-none z-[1]"
@@ -124,9 +56,6 @@ export default function HomeClient({ geo }: Props = {}) {
             }}
           />
           <Spotlight fill="rgba(107, 31, 31, 0.45)" />
-
-          {/* Dusk horizon line: the "last light" at y=62%. Fades with data-tod.
-              Phase 2 will animate it out on scroll as the sky deepens to night. */}
           <div
             aria-hidden="true"
             className="absolute left-0 right-0 z-[2] pointer-events-none"
@@ -140,22 +69,22 @@ export default function HomeClient({ geo }: Props = {}) {
             }}
           />
 
-          {/* Full-width company name */}
           <div className="relative z-10 w-full overflow-hidden pt-24 pb-2">
             <HeroWordmark />
           </div>
 
-          {/* Hero body */}
           <div ref={heroRestRef} className="relative z-10 pb-16 max-w-xl">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-12 h-[2px] bg-oxblood" aria-hidden="true" />
-              <span className="text-steel text-xs tracking-[0.28em] uppercase">Big screen. Bigger nights.</span>
+              <span className="text-ember text-xs tracking-[0.28em] uppercase">
+                Big screen. Bigger nights.
+              </span>
             </div>
             <p className="text-silver text-body-lg leading-relaxed mb-9">
               {geo?.inRadius && geo.city.slug !== "canton"
-                ? `Serving ${geo.city.name} from Canton, MI. Private outdoor cinema, 30 ft screen, three audio tiers.`
+                ? `Serving ${geo.city.name} from Canton, MI.`
                 : geo?.travelZone
-                  ? `We travel to ${geo.city.name}. Expect a travel line on the quote. Otherwise: private outdoor cinema, 30 ft screen, three audio tiers.`
+                  ? `We travel to ${geo.city.name}. Expect a travel line on the quote.`
                   : "We turn your outdoor space into a cinema."}
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4 mb-10">
@@ -164,12 +93,16 @@ export default function HomeClient({ geo }: Props = {}) {
                   {geo?.inRadius && geo.city.slug !== "canton" ? `Get a ${geo.city.name} Quote` : "Get a Quote"}
                 </ShimmerButton>
               </MagneticButton>
-              <Link href="/packages" className="inline-flex items-center gap-2 text-steel hover:text-projector text-sm font-medium transition-colors py-4 group">
-                See setup <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+              <Link
+                href="/packages"
+                className="inline-flex items-center gap-2 text-steel hover:text-projector text-sm font-medium transition-colors py-4 group"
+              >
+                See the setup
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </Link>
             </div>
             <p className="text-steel/80 text-[11px] tracking-[0.18em] uppercase">
-              Canton, MI. Private events only. Veteran owned
+              Canton, MI · Private events only · Veteran owned
             </p>
             <div className="mt-8">
               <TrustStrip />
@@ -177,224 +110,61 @@ export default function HomeClient({ geo }: Props = {}) {
           </div>
         </section>
 
-        {/* Next open dates. hides when availability.openDates is empty */}
+        {/* 2. NextEventCard. Thin band; hides when no open dates. */}
         <NextEventCard />
 
-        {/* ─── 2. FULL-BLEED STATEMENT: oxblood ───────────────────── */}
-        <section
-          className="relative bg-oxblood overflow-hidden noise-bg"
-          style={{ padding: "10vw 12vw" }}
-          aria-label="What we do"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-oxblood to-oxblood-deep" aria-hidden="true" />
-          <h2 className="kinetic-headline relative z-10 font-display text-projector leading-none tracking-wider"
-            style={{ fontSize: "clamp(3rem, 8.5vw, 8rem)" }}>
-            <span style={{ animationDelay: "0ms" }}>WE</span>{" "}
-            <span style={{ animationDelay: "60ms" }}>TURN</span>{" "}
-            <span style={{ animationDelay: "120ms" }}>YOUR</span>{" "}
-            <br />
-            <span style={{ animationDelay: "200ms" }}>OUTDOOR</span>{" "}
-            <span style={{ animationDelay: "260ms" }}>SPACE</span>
-            <br />
-            <span style={{ animationDelay: "340ms" }}>INTO</span>{" "}
-            <span style={{ animationDelay: "400ms" }}>A</span>{" "}
-            <span style={{ animationDelay: "460ms" }}>CINEMA.</span>
-          </h2>
-        </section>
+        {/* 3. 30-foot reality check with live scale-against selector */}
+        <ThirtyFootCheck />
 
-        {/* ─── 2.5 THE 30 FT: studio hero for the actual product ─── */}
-        <section className="relative bg-screening overflow-hidden py-20 sm:py-24 px-4 sm:px-8 lg:px-12" aria-labelledby="thirty-ft-heading">
-          <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
-            <div className="lg:col-span-2 order-2 lg:order-1">
-              <p className="text-ember text-xs tracking-[0.3em] uppercase mb-4">The screen</p>
-              <h2
-                id="thirty-ft-heading"
-                className="font-display text-projector leading-none tracking-wider mb-6"
-                style={{ fontSize: "clamp(3.5rem, 10vw, 8rem)" }}
-              >
-                30 FT.
-              </h2>
-              <p className="text-silver text-lg leading-relaxed mb-6 max-w-[42ch]">
-                One screen size for every event we run. Water ballast setup, no digging.
-                Scales visually from a 25-guest backyard to a 250-guest community night.
-                What changes is audio.
-              </p>
-              <Link
-                href="/packages"
-                className="inline-flex items-center gap-2 text-ember text-sm font-semibold hover:text-projector transition-colors group"
-              >
-                Pick your audio tier
-                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-              </Link>
-            </div>
-            <div className="lg:col-span-3 order-1 lg:order-2 relative">
-              <div ref={screenImgRef} className="relative aspect-[4/5] sm:aspect-[5/6] overflow-hidden bg-screening">
-                <Image
-                  src="/images/setup/30ft-screen-studio.avif"
-                  alt="After Dusk Events 30 foot inflatable outdoor cinema screen, studio render with a person at the base for scale"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 60vw, 100vw"
-                  className="object-contain"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* 4. Manifesto line */}
+        <ManifestoLine />
 
-        {/* ─── 3. THREE STATEMENTS: alternating alignment ──────────── */}
-        <div ref={statementsRef} aria-label="Why After Dusk">
-          {statements.map((s, i) => (
-            <div
-              key={i}
-              className={`statement-row ${s.bg} border-b border-white/8 flex flex-col justify-center`}
-              style={{
-                minHeight: "38vh",
-                padding: `clamp(3rem, 6vw, 5rem) clamp(1.5rem, 8vw, 7rem)`,
-              }}
-            >
-              <div className={s.align === "right" ? "text-right" : "text-left"}>
-                <h3
-                  className="statement-hl font-display text-projector leading-none tracking-wider mb-4"
-                  style={{ fontSize: "clamp(2rem, 5vw, 5rem)" }}
-                >
-                  {s.headline}
-                </h3>
-                <p
-                  className={`statement-body text-silver text-base leading-relaxed max-w-[52ch] ${s.align === "right" ? "ml-auto" : ""}`}
-                >
-                  {s.body}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* 5. Event types marquee. Placeholder gradient cards; real photos TBD summer 2026. */}
+        <EventTypesMarquee />
 
-        {/* ─── 4. EVENT MENU: vertical list, no cards ──────────────── */}
-        <section className="bg-charcoal py-24 px-4 sm:px-8 lg:px-12" aria-labelledby="events-heading">
-          <p id="events-heading" className="text-steel text-xs tracking-[0.25em] uppercase mb-10 ml-1">
-            Your event
-          </p>
-          <div className="divide-y divide-white/8 border-t border-white/8">
-            {eventTypes.map((e) => (
-              <motion.div key={e.name} whileHover={{ backgroundColor: "rgba(107,31,31,0.07)" }}
-                transition={{ duration: 0.15 }} className="rounded-sm">
-                <Link
-                  href="/packages"
-                  className="flex items-baseline gap-3 py-5 group"
-                >
-                  <span className="font-display text-[clamp(1.6rem,3.5vw,3rem)] text-projector leading-none tracking-wider group-hover:text-ember transition-colors duration-200 shrink-0">
-                    {e.name}
-                  </span>
-                  <span className="flex-1 border-b border-dotted border-white/15 self-center mb-1 hidden sm:block" aria-hidden="true" />
-                  <span className="text-steel text-sm leading-relaxed shrink-0 hidden sm:block max-w-[32ch] text-right">
-                    {e.desc}
-                  </span>
-                  <ArrowRight
-                    size={16}
-                    className="text-ember shrink-0 group-hover:translate-x-1 transition-transform duration-200"
-                    aria-hidden="true"
-                  />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </section>
+        {/* 6. Run sheet. Monospaced checklist, local dusk time on the final line. */}
+        <RunSheet />
 
-        {/* ─── 5. HOW IT WORKS: decorative vertical text + steps ───── */}
-        <section className="bg-screening py-24 overflow-hidden" aria-labelledby="how-heading">
-          <div className="flex gap-0">
-            {/* Decorative vertical text */}
-            <div
-              aria-hidden="true"
-              className="hidden lg:flex flex-col leading-none font-display text-white/[0.04] select-none shrink-0 pl-8 pt-2"
-              style={{ fontSize: "clamp(4rem, 10vw, 9rem)", lineHeight: 0.88 }}
-            >
-              {"HOW IT WORKS".split("").map((ch, i) => (
-                <span key={i} className={ch === " " ? "opacity-0" : ""}>{ch === " " ? "H" : ch}</span>
-              ))}
-            </div>
+        {/* 7. Packages teaser. Three LED stacks linking into /packages. */}
+        <PackagesTeaser />
 
-            {/* Steps */}
-            <div className="flex-1 px-8 lg:px-16 xl:px-20">
-              <h2 id="how-heading" className="sr-only">How it works</h2>
-              <div className="space-y-14">
-                {[
-                  { n: "01", title: "Fill out the form.", body: "Tell us your date, location, and event type. Blake sends a custom quote within 24 hours." },
-                  { n: "02", title: "We arrive 3 hours early.", body: "Full setup, sound check, and systems test before your first guest sets foot on the lawn." },
-                  { n: "03", title: "Your guests are blown away.", body: "You enjoy the night. We run the show. Teardown is ours." },
-                ].map((step) => (
-                  <div key={step.n} className="flex items-start gap-8">
-                    <span className="font-display text-[clamp(3rem,6vw,5.5rem)] text-ember/30 leading-none select-none shrink-0 w-[3ch]">
-                      {step.n}
-                    </span>
-                    <div className="pt-2">
-                      <h3 className="font-display text-[clamp(1.8rem,3.5vw,3.2rem)] text-projector tracking-wider leading-tight mb-2">
-                        {step.title}
-                      </h3>
-                      <p className="text-silver text-base leading-relaxed max-w-[44ch]">{step.body}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── 7. PACKAGES: minimal full-width rows ────────────────── */}
-        <section className="bg-charcoal py-20 px-4 sm:px-8 lg:px-12" aria-labelledby="packages-heading">
-          <div className="flex items-end justify-between mb-10 gap-4 flex-wrap">
-            <h2 id="packages-heading" className="font-display text-[clamp(2rem,5vw,4.5rem)] text-projector tracking-wider leading-none">
-              PICK YOUR SETUP.
-            </h2>
-            <Link href="/packages" className="flex items-center gap-2 text-ember text-sm font-medium hover:text-projector transition-colors group">
-              All packages <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-            </Link>
-          </div>
-
-          <div className="border-t border-white/10">
-            {packages.map((pkg) => (
-              <Link
-                key={pkg.name}
-                href={`/contact?package=${encodeURIComponent(pkg.name)}`}
-                className="flex items-center gap-4 py-6 border-b border-white/10 hover:bg-screening/40 transition-colors duration-200 group px-2 -mx-2 rounded-sm"
-              >
-                <h3 className="font-display text-[clamp(1.6rem,3vw,2.8rem)] text-projector tracking-wider leading-none group-hover:text-ember transition-colors duration-200 shrink-0">
-                  {pkg.name}
-                </h3>
-                {pkg.tag && (
-                  <span className="text-ember text-xs font-semibold px-2.5 py-0.5 rounded-full border border-oxblood/30 shrink-0 hidden sm:inline-flex">
-                    {pkg.tag}
-                  </span>
-                )}
-                <span className="text-steel text-sm flex-1 hidden md:block">{pkg.desc}</span>
-                <span className="text-ember text-sm font-medium whitespace-nowrap group-hover:text-projector transition-colors duration-200">
-                  Get a Quote <ArrowRight size={13} className="inline group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true" />
-                </span>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* Social proof (renders only when lib/testimonials has real entries) */}
+        {/* 8. Social proof (renders only when lib/testimonials has real entries) */}
         <TestimonialsSection />
 
-        {/* ─── 8. FINAL CTA: stark, maximum whitespace ─────────────── */}
-        <section className="bg-screening flex flex-col justify-center px-4 sm:px-8 lg:px-12" style={{ minHeight: "60vh", paddingTop: "10vh", paddingBottom: "10vh" }} aria-labelledby="cta-heading">
-          <h2
-            id="cta-heading"
-            className="font-display text-projector leading-none tracking-wider mb-10"
-            style={{ fontSize: "clamp(3.5rem, 9vw, 9rem)" }}
-          >
-            BOOK YOUR<br />NIGHT.
-          </h2>
-          <MagneticButton>
-            <ShimmerButton onClick={() => window.location.href = "/contact"}>
-              Get a Quote
-            </ShimmerButton>
-          </MagneticButton>
+        {/* 9. Final CTA. Placeholder backdrop until a real projected-frame shot lands. */}
+        <section
+          aria-labelledby="cta-heading"
+          className="relative flex flex-col justify-center px-4 sm:px-8 lg:px-12 overflow-hidden"
+          style={{ minHeight: "70vh", paddingTop: "12vh", paddingBottom: "12vh" }}
+        >
+          {/* Placeholder projected-frame shot. real photo TBD summer 2026. */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 55% 45% at 50% 38%, rgba(245, 241, 236, 0.09) 0%, rgba(221, 84, 84, 0.06) 35%, transparent 72%)",
+            }}
+          />
+          <div className="relative z-10 mx-auto max-w-5xl w-full">
+            <h2
+              id="cta-heading"
+              className="font-display text-projector text-display-xl tracking-wider mb-8"
+            >
+              BOOK YOUR
+              <br />
+              NIGHT.
+            </h2>
+            <p className="text-silver text-body-lg leading-relaxed mb-10 max-w-[44ch]">
+              Tell us the event. We&apos;ll pick the rig.
+            </p>
+            <MagneticButton>
+              <ShimmerButton onClick={() => (window.location.href = "/contact")}>
+                Get a Quote
+              </ShimmerButton>
+            </MagneticButton>
+          </div>
         </section>
-
       </main>
       <Footer />
     </>
