@@ -14,8 +14,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useFitText } from "@/hooks/use-fit-text";
 import Spotlight from "@/components/atmosphere/spotlight";
-import Particles from "@/components/atmosphere/particles";
-import GridPattern from "@/components/atmosphere/grid-pattern";
+import Starfield from "@/components/atmosphere/starfield";
 import TrustStrip from "@/components/trust-strip";
 import EventGallery from "@/components/event-gallery";
 import TestimonialsSection from "@/components/testimonials/testimonials-section";
@@ -113,20 +112,25 @@ export default function HomeClient() {
 
         {/* ─── 1. HERO: full-width fitted wordmark ─────────────────── */}
         <section className="relative min-h-screen flex flex-col justify-center bg-screening overflow-hidden px-4 sm:px-8 lg:px-12">
-          {/* Atmosphere stack: subtle grid → drifting particles → spotlight → existing radial */}
-          <GridPattern
-            width={60}
-            height={60}
-            strokeDasharray="2 4"
-            className="[mask-image:radial-gradient(ellipse_at_center,white,transparent_75%)]"
+          {/* Atmosphere stack: deep-space gradient → starfield → ember nebula glow → spotlight */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 120% 80% at 50% 110%, rgba(15, 10, 30, 0.8) 0%, rgba(10, 10, 15, 0.95) 45%, #050508 100%)",
+            }}
           />
-          <Particles quantity={45} vy={0.18} size={1.4} color="#FAFAFA" />
-          <Spotlight fill="rgba(107, 31, 31, 0.55)" />
+          <Starfield quantity={160} maxSize={1.8} vy={0.015} />
           <div
             aria-hidden="true"
             className="absolute inset-0 pointer-events-none z-[1]"
-            style={{ background: "radial-gradient(ellipse 65% 55% at 35% 25%, rgba(107,31,31,0.2) 0%, transparent 65%)" }}
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 50% at 30% 30%, rgba(107,31,31,0.28) 0%, transparent 65%), radial-gradient(ellipse 45% 40% at 80% 75%, rgba(74,14,14,0.25) 0%, transparent 60%)",
+            }}
           />
+          <Spotlight fill="rgba(107, 31, 31, 0.45)" />
 
           {/* Full-width company name */}
           <div ref={nameRef} className="relative z-10 w-full overflow-hidden pt-24 pb-2">
@@ -140,7 +144,7 @@ export default function HomeClient() {
               AFTER DUSK EVENTS
             </span>
             <h1
-              className="wordmark font-display text-projector leading-none tracking-[0.01em] whitespace-nowrap"
+              className="wordmark wordmark-glow font-display text-projector leading-none tracking-[0.01em] whitespace-nowrap"
               style={{ fontSize: fontSize > 0 ? `${fontSize}px` : "clamp(4rem,12vw,10rem)" }}
               aria-label="After Dusk Events"
             >
