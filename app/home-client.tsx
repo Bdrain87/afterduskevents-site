@@ -74,6 +74,8 @@ export default function HomeClient({ geo }: Props = {}) {
     const el = nameRef.current.querySelector<HTMLElement>(".wordmark");
     if (!el) return;
     const split = new SplitText(el, { type: "chars" });
+
+    // Reveal: chars fly up from below
     gsap.from(split.chars, {
       y: 40,
       opacity: 0,
@@ -82,6 +84,22 @@ export default function HomeClient({ geo }: Props = {}) {
       ease: "power2.out",
       delay: 0.1,
     });
+
+    // Shine: white flash rolls left→right once the reveal finishes
+    const revealEnd = 0.1 + 0.6 + (split.chars.length - 1) * 0.03 + 0.15;
+    gsap.fromTo(
+      split.chars,
+      { color: "#DD5454" },
+      {
+        color: "#FFFFFF",
+        duration: 0.07,
+        stagger: { each: 0.035, from: "start" },
+        ease: "power1.inOut",
+        yoyo: true,
+        repeat: 1,
+        delay: revealEnd,
+      },
+    );
   }, { dependencies: [fontSize] });
 
   useGSAP(() => {
