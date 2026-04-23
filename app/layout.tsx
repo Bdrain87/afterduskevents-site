@@ -11,7 +11,8 @@ import LenisProvider from "@/components/lenis-provider";
 import StickyCTA from "@/components/sticky-cta";
 import MicrosoftClarity from "@/components/microsoft-clarity";
 import SchemaMarkup from "@/components/seo/schema-markup";
-import { ViewTransitions } from "next-view-transitions";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import TimeOfDayProvider from "@/components/atmosphere/time-of-day-provider";
 import {
   buildLocalBusiness,
   buildOrganization,
@@ -87,40 +88,41 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <ViewTransitions>
-      <html
-        lang="en"
-        className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
-      >
-        <body className="min-h-full flex flex-col bg-screening text-projector">
-          <SchemaMarkup
-            id="site-schema"
-            data={[
-              buildOrganization(),
-              buildLocalBusiness(),
-              buildPerson(),
-              buildWebSite(),
-            ]}
-          />
-          <LoadingScreen />
-          <ScrollProgress />
-          <CursorSpotlight />
-          <FilmGrain />
+    <html
+      lang="en"
+      className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col bg-screening text-projector">
+        <SchemaMarkup
+          id="site-schema"
+          data={[
+            buildOrganization(),
+            buildLocalBusiness(),
+            buildPerson(),
+            buildWebSite(),
+          ]}
+        />
+        <TimeOfDayProvider />
+        <LoadingScreen />
+        <ScrollProgress />
+        <CursorSpotlight />
+        <FilmGrain />
+        <NuqsAdapter>
           <LenisProvider>
             {children}
           </LenisProvider>
-          <StickyCTA />
-          <Toaster
-            position="bottom-right"
-            toastOptions={{
-              style: { background: "#1A1A1A", border: "1px solid #2a2a2a", color: "#FAFAFA" },
-            }}
-          />
-          <MicrosoftClarity />
-          <Analytics />
-          <SpeedInsights />
-        </body>
-      </html>
-    </ViewTransitions>
+        </NuqsAdapter>
+        <StickyCTA />
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            style: { background: "#1A1A1A", border: "1px solid #2a2a2a", color: "#FAFAFA" },
+          }}
+        />
+        <MicrosoftClarity />
+        <Analytics />
+        <SpeedInsights />
+      </body>
+    </html>
   );
 }

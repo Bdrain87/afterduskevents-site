@@ -96,6 +96,38 @@
   }
 }
 
+/* Time-of-day atmosphere shifts — set via TimeOfDayProvider on <html data-tod="..."> */
+:root {
+  --atmo-grain-opacity: 0.025;
+  --atmo-nebula-opacity: 0.9;
+  --atmo-star-opacity: 0.85;
+  --atmo-glow-opacity: 1;
+}
+html[data-tod="day"] {
+  --atmo-grain-opacity: 0.012;
+  --atmo-nebula-opacity: 0.35;
+  --atmo-star-opacity: 0.25;
+  --atmo-glow-opacity: 0.55;
+}
+html[data-tod="golden"] {
+  --atmo-grain-opacity: 0.02;
+  --atmo-nebula-opacity: 1.1;
+  --atmo-star-opacity: 0.6;
+  --atmo-glow-opacity: 1.1;
+}
+html[data-tod="dusk"] {
+  --atmo-grain-opacity: 0.03;
+  --atmo-nebula-opacity: 1;
+  --atmo-star-opacity: 0.95;
+  --atmo-glow-opacity: 1.2;
+}
+html[data-tod="night"] {
+  --atmo-grain-opacity: 0.035;
+  --atmo-nebula-opacity: 0.75;
+  --atmo-star-opacity: 1;
+  --atmo-glow-opacity: 1;
+}
+
 @layer utilities {
   .font-display {
     font-family: var(--font-bebas), 'Bebas Neue', cursive;

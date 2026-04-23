@@ -8,8 +8,8 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(SplitText);
 
-const IRIS_OPEN_S  = 0.65;
-const IRIS_CLOSE_S = 0.85;
+const IRIS_OPEN_S  = 0.45;
+const IRIS_CLOSE_S = 0.55;
 
 export default function LoadingScreen() {
   const [show,    setShow]    = useState(false);
@@ -57,7 +57,7 @@ export default function LoadingScreen() {
     }, "-=0.15");
 
     // Hold then close
-    tl.add(() => setClosing(true), "+=0.75");
+    tl.add(() => setClosing(true), "+=0.3");
 
   }, { dependencies: [show], scope: containerRef });
 
