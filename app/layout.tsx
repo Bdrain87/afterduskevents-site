@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat, Bebas_Neue, Lora } from "next/font/google";
+import { Inter, Montserrat, Bebas_Neue } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
@@ -42,15 +42,6 @@ const bebasNeue = Bebas_Neue({
   weight: "400",
   display: "swap",
 });
-
-const lora = Lora({
-  subsets: ["latin"],
-  variable: "--font-editorial",
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
 
 export const metadata: Metadata = {
   title: {
@@ -99,7 +90,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} ${lora.variable} h-full antialiased`}
+      className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-screening text-projector">
         <SchemaMarkup

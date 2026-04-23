@@ -155,7 +155,7 @@ export default async function CityPage({ params }: Params) {
                   }`}
                 >
                   <h3 className="font-heading text-lg text-projector mb-1">{tier.name}</h3>
-                  <p className="text-steel text-xs mb-4 italic">Best for: {tier.best}</p>
+                  <p className="text-steel text-xs mb-4">Best for: {tier.best}</p>
                   <Link
                     href={`/contact?package=${encodeURIComponent(tier.name)}&location=${encodeURIComponent(city.name)}`}
                     className={`mt-auto inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors ${

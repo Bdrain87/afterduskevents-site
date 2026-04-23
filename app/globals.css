@@ -136,12 +136,6 @@ html[data-tod="night"] {
     font-family: var(--font-montserrat), system-ui, sans-serif;
     font-weight: 700;
   }
-  .font-editorial {
-    font-family: var(--font-editorial), 'Lora', Georgia, serif;
-    font-weight: 500;
-    font-style: italic;
-    letter-spacing: 0.005em;
-  }
   .oxblood-rule {
     @apply block w-12 h-[2px] bg-oxblood mt-3;
   }

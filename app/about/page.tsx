@@ -109,11 +109,11 @@ export default function AboutPage() {
                 </div>
 
                 <div className="bg-charcoal rounded-lg p-6 border border-white/10">
-                  <p className="text-steel text-sm leading-relaxed italic">
+                  <p className="text-steel text-sm leading-relaxed">
                     "Every piece of gear has a backup. Every arrival is 3 hours before
                     the first guest walks in."
                   </p>
-                  <p className="text-steel text-xs mt-3 not-italic">Blake, Owner</p>
+                  <p className="text-steel text-xs mt-3">Blake, Owner</p>
                 </div>
               </div>
             </div>

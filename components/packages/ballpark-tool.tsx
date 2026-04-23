@@ -85,7 +85,7 @@ export default function BallparkTool() {
             </Link>
           </div>
         ) : (
-          <p className="text-steel text-sm italic">Pick an event type to see a recommendation.</p>
+          <p className="text-steel text-sm">Pick an event type to see a recommendation.</p>
         )}
       </div>
     </div>

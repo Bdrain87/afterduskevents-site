@@ -143,7 +143,7 @@ export default async function TierPage({ params }: Params) {
         <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="includes-heading">
           <div className="mx-auto max-w-3xl">
             <FadeIn>
-              <h2 id="includes-heading" className="font-editorial text-3xl sm:text-4xl text-projector mb-6">
+              <h2 id="includes-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-6">
                 What&apos;s included.
               </h2>
             </FadeIn>
@@ -165,7 +165,7 @@ export default async function TierPage({ params }: Params) {
           <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="fits-heading">
             <div className="mx-auto max-w-5xl">
               <FadeIn>
-                <h2 id="fits-heading" className="font-editorial text-3xl sm:text-4xl text-projector mb-6">
+                <h2 id="fits-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-6">
                   Fits these events.
                 </h2>
               </FadeIn>
@@ -193,7 +193,7 @@ export default async function TierPage({ params }: Params) {
         <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="addons-heading">
           <div className="mx-auto max-w-3xl">
             <FadeIn>
-              <h2 id="addons-heading" className="font-editorial text-3xl sm:text-4xl text-projector mb-3">
+              <h2 id="addons-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-3">
                 {addons.heading}.
               </h2>
               <p className="text-steel text-sm mb-6">
@@ -222,7 +222,7 @@ export default async function TierPage({ params }: Params) {
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="other-tiers-heading">
           <div className="mx-auto max-w-5xl">
             <FadeIn>
-              <h2 id="other-tiers-heading" className="font-editorial text-3xl sm:text-4xl text-projector mb-6">
+              <h2 id="other-tiers-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-6">
                 Other audio tiers.
               </h2>
             </FadeIn>

@@ -27,7 +27,7 @@ export default function TestimonialCard({ testimonial, className }: Props) {
           ))}
         </div>
       )}
-      <blockquote className="text-projector text-sm leading-relaxed mb-4 italic">
+      <blockquote className="text-projector text-sm leading-relaxed mb-4">
         &ldquo;{testimonial.quote}&rdquo;
       </blockquote>
       <figcaption className="text-xs">

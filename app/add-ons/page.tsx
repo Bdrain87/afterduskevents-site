@@ -169,7 +169,7 @@ export default function AddOnsPage() {
                   <div className="bg-screening rounded-lg p-6 border border-white/10 hover:border-oxblood/30 transition-colors h-full">
                     <h3 className="font-heading text-base text-projector mb-2">{b.name}</h3>
                     <p className="text-steel text-sm leading-relaxed mb-2">{b.includes}</p>
-                    <p className="text-steel text-xs italic">Best for: {b.bestFor}</p>
+                    <p className="text-steel text-xs">Best for: {b.bestFor}</p>
                   </div>
                 </FadeIn>
               ))}

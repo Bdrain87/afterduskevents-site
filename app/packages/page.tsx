@@ -54,7 +54,7 @@ export default function PackagesPage() {
                 Every booking is a private, non-ticketed event on a 30 ft inflatable screen.
                 Pick your audio tier. Add what you need. Setup, systems test, and teardown included.
               </p>
-              <p className="text-steel text-sm mt-2 italic">
+              <p className="text-steel text-sm mt-2">
                 Every event is custom-quoted. Contact for a real number within 24 hours.
               </p>
             </FadeIn>
@@ -70,7 +70,7 @@ export default function PackagesPage() {
         <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="tiers-heading">
           <div className="mx-auto max-w-7xl">
             <FadeIn>
-              <h2 id="tiers-heading" className="font-editorial text-3xl sm:text-4xl text-projector mb-8">
+              <h2 id="tiers-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-8">
                 Audio tiers.
               </h2>
             </FadeIn>
@@ -97,7 +97,7 @@ export default function PackagesPage() {
                     {tier.name}
                   </h3>
                   <p className="text-ember font-semibold text-sm mb-1">Custom quote per event</p>
-                  <p className="text-steel text-xs mt-3 mb-4 italic">Best for: {tier.best}</p>
+                  <p className="text-steel text-xs mt-3 mb-4">Best for: {tier.best}</p>
                   <ul className="space-y-2 flex-1 mb-6">
                     {tier.includes.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-steel text-sm">
@@ -144,7 +144,7 @@ export default function PackagesPage() {
         <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="comparison-heading">
           <div className="mx-auto max-w-5xl">
             <FadeIn>
-              <h2 id="comparison-heading" className="font-editorial text-3xl sm:text-4xl text-projector mb-3">
+              <h2 id="comparison-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-3">
                 Compare audio tiers.
               </h2>
               <p className="text-steel text-sm mb-6">
@@ -159,7 +159,7 @@ export default function PackagesPage() {
         <section id="use-cases" className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="use-cases-heading">
           <div className="mx-auto max-w-7xl">
             <FadeIn>
-              <h2 id="use-cases-heading" className="font-editorial text-3xl sm:text-4xl text-projector mb-3">
+              <h2 id="use-cases-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-3">
                 Event types.
               </h2>
               <p className="text-steel text-sm mb-8">
