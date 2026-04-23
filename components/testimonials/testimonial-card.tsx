@@ -1,4 +1,3 @@
-import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Testimonial } from "@/lib/testimonials";
 
@@ -11,33 +10,31 @@ export default function TestimonialCard({ testimonial, className }: Props) {
   return (
     <figure
       className={cn(
-        "rounded-lg border border-white/10 bg-charcoal p-6 max-w-sm shrink-0",
+        "border-2 border-ink bg-paper p-6",
         className,
       )}
     >
       {testimonial.rating && (
-        <div className="flex items-center gap-0.5 mb-3" aria-label={`${testimonial.rating} out of 5 stars`}>
-          {Array.from({ length: testimonial.rating }).map((_, i) => (
-            <Star
-              key={i}
-              size={14}
-              className="fill-oxblood text-ember"
-              aria-hidden="true"
-            />
-          ))}
-        </div>
+        <p
+          className="serial text-tail mb-3"
+          aria-label={`${testimonial.rating} out of 5 stars`}
+        >
+          {"★".repeat(testimonial.rating)}
+          {"☆".repeat(5 - testimonial.rating)}
+        </p>
       )}
-      <blockquote className="text-projector text-sm leading-relaxed mb-4">
+      <blockquote className="font-body text-base leading-relaxed mb-4">
         &ldquo;{testimonial.quote}&rdquo;
       </blockquote>
-      <figcaption className="text-xs">
-        <p className="text-projector font-semibold">{testimonial.author}</p>
+      <figcaption className="serial">
+        <span className="text-ink">{testimonial.author}</span>
         {(testimonial.eventType || testimonial.location) && (
-          <p className="text-steel mt-0.5">
+          <span className="text-concrete">
+            {" · "}
             {testimonial.eventType}
             {testimonial.eventType && testimonial.location ? " · " : ""}
             {testimonial.location}
-          </p>
+          </span>
         )}
       </figcaption>
     </figure>
