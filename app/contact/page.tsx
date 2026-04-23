@@ -7,7 +7,6 @@ import FormSkeleton from "@/components/skeletons/form-skeleton";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList } from "@/lib/schema";
-import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -28,20 +27,27 @@ export default function ContactPage() {
       />
       <Nav />
       <main className="flex-1 pt-16">
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
-          <PageAtmosphere variant="ember" />
-          <div className="relative z-10 mx-auto max-w-3xl text-center">
-            <h1 className="font-display text-5xl sm:text-6xl text-projector tracking-wider mb-2">
-              GET A QUOTE
+        {/* Header */}
+        <section
+          className="relative overflow-hidden px-6 sm:px-10 lg:px-16"
+          style={{ paddingTop: "96px", paddingBottom: "48px" }}
+        >
+          <div className="relative z-10 mx-auto max-w-3xl">
+            <p className="text-caption text-ember mb-4">Book the night</p>
+            <h1 className="font-display text-projector text-display-md tracking-wider leading-none mb-6">
+              LET US RUN YOUR NIGHT.
             </h1>
-            <span className="oxblood-rule mx-auto" />
-            <p className="text-silver text-lg leading-relaxed mt-6">
-              Fill out the form and we will respond within 24 hours with availability and a real quote.
+            <p className="text-silver text-body-lg leading-relaxed max-w-[48ch]">
+              We respond within 24 hours with a real quote.
             </p>
           </div>
         </section>
 
-        <section className="py-12 px-4 sm:px-6 lg:px-8">
+        {/* Form */}
+        <section
+          className="relative px-6 sm:px-10 lg:px-16"
+          style={{ paddingTop: "24px", paddingBottom: "128px" }}
+        >
           <div className="mx-auto max-w-2xl space-y-8">
             <PrivateEventsNotice />
             <Suspense fallback={<FormSkeleton />}>
