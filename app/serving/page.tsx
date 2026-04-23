@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import FadeIn from "@/components/fade-in";
-import MagneticButton from "@/components/magnetic-button";
+import NightSkyMap from "@/components/serving/night-sky-map";
+import { ArrowRight } from "lucide-react";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList } from "@/lib/schema";
 import { cities } from "@/lib/cities";
-import { MapPin } from "lucide-react";
-import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
   title: "Service Area | Southeast Michigan",
@@ -29,76 +27,86 @@ export default function ServingIndexPage() {
       />
       <Nav />
       <main className="flex-1 pt-16">
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
-          <PageAtmosphere variant="dusk" />
-          <div className="relative z-10 mx-auto max-w-3xl text-center">
-            <FadeIn>
-              <h1 className="font-display text-5xl sm:text-6xl text-projector tracking-wider mb-2">
-                SERVICE AREA
-              </h1>
-              <span className="oxblood-rule mx-auto" />
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <p className="text-silver text-lg leading-relaxed mt-6">
-                After Dusk Events serves a 60-mile radius from Canton, MI. Tap a city for
-                location-specific details.
-              </p>
-            </FadeIn>
+        {/* Header */}
+        <section
+          className="relative overflow-hidden px-6 sm:px-10 lg:px-16"
+          style={{ paddingTop: "96px", paddingBottom: "48px" }}
+        >
+          <div className="relative z-10 mx-auto max-w-5xl">
+            <p className="text-caption text-ember mb-4">Southeast Michigan</p>
+            <h1 className="font-display text-projector text-display-lg tracking-wider leading-none mb-6">
+              60 MILES OF CANTON.
+            </h1>
+            <p className="text-silver text-body-lg leading-relaxed max-w-[60ch]">
+              Every star is a city we serve. Canton is the bright one at the middle. Tap any city to see distance, a short note, and a direct booking link.
+            </p>
           </div>
         </section>
 
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-5xl">
-            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-              {cities.map((city, i) => (
-                <FadeIn key={city.slug} delay={(i % 3) * 0.05}>
-                  <li>
-                    <Link
-                      href={`/serving/${city.slug}`}
-                      className="group flex items-start gap-3 rounded-lg p-5 bg-charcoal border border-white/10 hover:border-oxblood/40 transition-colors h-full"
-                    >
-                      <MapPin
-                        size={18}
-                        className="text-ember mt-1 shrink-0"
-                        aria-hidden="true"
-                      />
-                      <div>
-                        <p className="font-heading text-base text-projector group-hover:text-projector">
-                          {city.name}
-                        </p>
-                        <p className="text-steel text-xs mt-1">
-                          {city.county} County
-                          {city.distanceMiles > 0
-                            ? ` · ${city.distanceMiles} mi from Canton`
-                            : " · Home base"}
-                        </p>
-                      </div>
-                    </Link>
-                  </li>
-                </FadeIn>
+        {/* Night sky map */}
+        <section
+          className="relative px-6 sm:px-10 lg:px-16"
+          style={{ paddingTop: "24px", paddingBottom: "96px" }}
+          data-dim-beam
+        >
+          <div className="mx-auto max-w-7xl">
+            <NightSkyMap />
+          </div>
+        </section>
+
+        {/* Full city list as fallback + SEO */}
+        <section
+          aria-labelledby="city-list-heading"
+          className="relative px-6 sm:px-10 lg:px-16 border-t border-white/8"
+          style={{ paddingTop: "96px", paddingBottom: "96px" }}
+        >
+          <div className="mx-auto max-w-7xl">
+            <p className="text-caption text-ember mb-3">All cities</p>
+            <h2
+              id="city-list-heading"
+              className="font-display text-projector text-display-md tracking-wider leading-none mb-10"
+            >
+              EVERY STAR ON THE MAP.
+            </h2>
+            <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-6 gap-y-4">
+              {cities.map((city) => (
+                <li key={city.slug}>
+                  <Link
+                    href={`/serving/${city.slug}`}
+                    className="group flex items-baseline justify-between gap-3 border-b border-white/8 pb-2 hover:border-ember transition-colors"
+                  >
+                    <span className="text-silver group-hover:text-ember text-sm font-medium transition-colors">
+                      {city.name}
+                    </span>
+                    <span className="text-mono text-steel shrink-0">
+                      {city.distanceMiles === 0 ? "home" : `${city.distanceMiles} mi`}
+                    </span>
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>
         </section>
 
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal">
-          <div className="mx-auto max-w-2xl text-center">
-            <FadeIn>
-              <h2 className="font-heading text-2xl text-projector mb-4">
-                Outside the 60-mile radius?
-              </h2>
-              <p className="text-steel mb-8 leading-relaxed text-sm">
-                Contact Blake for a custom quote with travel.
-              </p>
-              <MagneticButton className="inline-flex">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
-                >
-                  Get a Quote
-                </Link>
-              </MagneticButton>
-            </FadeIn>
+        {/* CTA */}
+        <section
+          className="relative px-6 sm:px-10 lg:px-16"
+          style={{ paddingTop: "96px", paddingBottom: "128px" }}
+        >
+          <div className="mx-auto max-w-3xl">
+            <h2 className="font-display text-projector text-display-lg tracking-wider leading-none mb-6">
+              OUTSIDE THE RING?
+            </h2>
+            <p className="text-silver text-body-lg leading-relaxed mb-10 max-w-[46ch]">
+              We can usually make it work up to 90 miles with a travel line on the quote. Beyond that, still ask.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
+            >
+              Get a Quote
+              <ArrowRight size={14} aria-hidden="true" />
+            </Link>
           </div>
         </section>
       </main>
