@@ -13,6 +13,9 @@ import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useFitText } from "@/hooks/use-fit-text";
+import Spotlight from "@/components/atmosphere/spotlight";
+import Particles from "@/components/atmosphere/particles";
+import GridPattern from "@/components/atmosphere/grid-pattern";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -96,29 +99,28 @@ export default function HomeClient() {
     });
   }, []);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "After Dusk Events LLC",
-    description: "Veteran-owned outdoor cinema rental for private events in Southeast Michigan.",
-    url: "https://afterduskevents.com",
-    email: "hello@afterduskevents.com",
-    address: { "@type": "PostalAddress", addressLocality: "Canton", addressRegion: "MI", postalCode: "48188", addressCountry: "US" },
-    areaServed: { "@type": "GeoCircle", geoMidpoint: { "@type": "GeoCoordinates", latitude: 42.3084, longitude: -83.4822 }, geoRadius: "96560" },
-    image: "https://afterduskevents.com/og-image.png",
-  };
+  // Sitewide org/business schema is injected via app/layout.tsx (Workstream C);
+  // homepage doesn't need to repeat it.
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Nav />
       <main className="flex-1">
 
         {/* ─── 1. HERO: full-width fitted wordmark ─────────────────── */}
         <section className="relative min-h-screen flex flex-col justify-center bg-screening overflow-hidden px-4 sm:px-8 lg:px-12">
+          {/* Atmosphere stack: subtle grid → drifting particles → spotlight → existing radial */}
+          <GridPattern
+            width={60}
+            height={60}
+            strokeDasharray="2 4"
+            className="[mask-image:radial-gradient(ellipse_at_center,white,transparent_75%)]"
+          />
+          <Particles quantity={45} vy={0.18} size={1.4} color="#FAFAFA" />
+          <Spotlight fill="rgba(107, 31, 31, 0.55)" />
           <div
             aria-hidden="true"
-            className="absolute inset-0 pointer-events-none"
+            className="absolute inset-0 pointer-events-none z-[1]"
             style={{ background: "radial-gradient(ellipse 65% 55% at 35% 25%, rgba(107,31,31,0.2) 0%, transparent 65%)" }}
           />
 

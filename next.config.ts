@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
     viewTransition: true,
   },
   images: {
+    formats: ["image/avif", "image/webp"],
+    qualities: [70, 80, 90],
+    minimumCacheTTL: 31536000,
     remotePatterns: [
       {
         protocol: "https",

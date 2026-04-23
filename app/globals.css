@@ -105,6 +105,15 @@
   .oxblood-rule {
     @apply block w-12 h-[2px] bg-oxblood mt-3;
   }
+  /* Dusk color grade for hero photography — warm shadows, slight blue highlights, hint of sepia */
+  .dusk-grade {
+    filter: contrast(1.05) saturate(0.92) sepia(0.08) hue-rotate(-6deg);
+  }
+  /* Slow Ken-Burns zoom for hero images */
+  .ken-burns {
+    animation: ken-burns 18s ease-out forwards;
+    will-change: transform;
+  }
   /* CSS noise texture via pseudo — no JS needed */
   .noise-bg::before {
     content: '';
@@ -144,6 +153,31 @@
 }
 @keyframes border-beam {
   to { --beam-angle: 360deg; }
+}
+
+/* Atmosphere: spotlight slow drift */
+@keyframes spotlight {
+  0%   { opacity: 0;   transform: translate(-72%, -62%) scale(0.5); }
+  100% { opacity: 1;   transform: translate(-50%, -40%) scale(1); }
+}
+.motion-safe\:animate-spotlight {
+  animation: spotlight 2s ease forwards;
+}
+
+/* Atmosphere: meteor diagonal streak */
+@keyframes meteor {
+  0%   { transform: rotate(215deg) translateX(0);    opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: rotate(215deg) translateX(-500px); opacity: 0; }
+}
+.motion-safe\:animate-meteor {
+  animation: meteor linear infinite;
+}
+
+/* Hero image: slow Ken-Burns zoom */
+@keyframes ken-burns {
+  from { transform: scale(1)    translate3d(0,0,0); }
+  to   { transform: scale(1.06) translate3d(-1%, -0.5%, 0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
