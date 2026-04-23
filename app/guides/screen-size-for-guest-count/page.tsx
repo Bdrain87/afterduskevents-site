@@ -10,41 +10,40 @@ import Balancer from "react-wrap-balancer";
 
 const SLUG = "/guides/screen-size-for-guest-count";
 const PUBLISHED = "2026-04-22";
-const UPDATED = "2026-04-22";
+const UPDATED = "2026-04-23";
 
 export const metadata: Metadata = {
   title: "What Size Outdoor Movie Screen Do I Need for My Guest Count? (2026)",
   description:
-    "Match guest count to screen size and audio coverage for backyard movie nights, weddings, and outdoor events. Plain-language guide from After Dusk Events.",
+    "Answer: 30 ft fits every private event we run, from intimate backyards to 250-guest gatherings. What scales is audio tier, not screen size.",
   alternates: { canonical: SLUG },
 };
 
 const guideFaqs = [
   {
     q: "What size screen do I need for 25 guests?",
-    a: "For 25 guests, a 20 ft inflatable screen with two Soundboks 4 speakers is the right setup. Sightlines are clean from 8 to 40 feet of throw distance, and the audio covers a typical residential backyard with room for chatter.",
+    a: "The 30 ft inflatable screen works for 25 guests and looks cinematic at that scale. For a smaller backyard, the 30 ft + Single Speaker tier usually fits — audio stays intimate without overpowering the space.",
   },
   {
     q: "What size screen do I need for 50 guests?",
-    a: "For 50 guests, a 20 ft screen still works but you should add a second Soundboks zone for even audio coverage. If your layout is wider than 60 feet, the 30 ft Community screen is more comfortable for back-row viewing.",
+    a: "The 30 ft inflatable screen. With 50 guests, the 30 ft + Two Speakers tier is the standard recommendation so everyone hears cleanly from the back row.",
   },
   {
     q: "What size screen do I need for 100 guests?",
-    a: "For 100 guests, the 30 ft Community screen with four Soundboks 4 speakers across two zones plus a DFB MK2 subwoofer is the right setup. This is the most-booked configuration for HOA nights, larger backyards, and church events.",
+    a: "The 30 ft inflatable screen still handles the visual side. At 100 guests and above, the Two Speakers + Death From Below subwoofer tier is the call — bass that carries across a wider crowd, clean high-end for dialogue.",
   },
   {
     q: "What size screen do I need for 200+ guests?",
-    a: "For 200+ guests, the 30 ft Community screen handles the visual side, but plan for additional Soundboks zones to keep the audio clean across a wider crowd. Once you cross about 250 guests, a custom multi-zone audio plan is the right call.",
+    a: "The 30 ft inflatable screen handles visuals for 200+ guests. Sound is the deciding factor: Two Speakers + Death From Below subwoofer is the right tier. Larger crowds also benefit from early setup and late teardown add-ons for smoother flow.",
   },
 ];
 
 const sizingTable = [
-  { guests: "Under 25", screen: "20 ft (Intimate)", audio: "2 Soundboks 4", note: "Backyard movie nights, family events" },
-  { guests: "25–50", screen: "20 ft (Intimate)", audio: "2 Soundboks 4 + optional 3rd zone", note: "Tight backyards, birthdays" },
-  { guests: "50–100", screen: "30 ft (Community)", audio: "4 Soundboks 4 + DFB MK2 subwoofer", note: "Block parties, HOA nights" },
-  { guests: "100–250", screen: "30 ft (Community)", audio: "4+ Soundboks 4 + DFB MK2", note: "Large community events, schools" },
-  { guests: "250+", screen: "30 ft (Community)", audio: "Custom multi-zone + extra subwoofer", note: "Custom quote required" },
-  { guests: "Indoor (any)", screen: "120\" Da-Lite fast-fold", audio: "2 Soundboks 4", note: "Halls, gyms, barns, large rooms" },
+  { guests: "Under 25", tier: "30 ft + Single Speaker", note: "Backyard movie nights, family events" },
+  { guests: "25–50", tier: "30 ft + Two Speakers", note: "Tight backyards, birthdays, smaller gatherings" },
+  { guests: "50–100", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Block parties, larger backyards, dance-floor events" },
+  { guests: "100–250", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Community events, weddings, fight nights" },
+  { guests: "250+", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Custom quote — contact for details on larger crowds" },
 ];
 
 export default function GuidePage() {
@@ -56,7 +55,7 @@ export default function GuidePage() {
           buildArticle({
             headline: "What Size Outdoor Movie Screen Do I Need for My Guest Count? (2026)",
             description:
-              "Match guest count to screen size and audio coverage for backyard movie nights, weddings, and outdoor events.",
+              "Match guest count to audio tier for outdoor movie nights, weddings, and private events. One screen size, three audio tiers.",
             slug: SLUG,
             datePublished: PUBLISHED,
             dateModified: UPDATED,
@@ -87,20 +86,20 @@ export default function GuidePage() {
 
             <FadeIn delay={0.05}>
               <p className="text-steel text-lg leading-relaxed mt-8">
-                Choose a 20 ft screen for crowds under 50 and a 30 ft screen for crowds of 50 to 250.
-                Audio coverage scales separately. The full sizing chart is below.
+                Short answer: the 30 ft inflatable screen fits every private event we run, from
+                a 25-guest backyard to a 250-guest community night. What scales instead is
+                audio — we offer three tiers so the sound matches your crowd size and event type.
               </p>
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <h2 className="font-heading text-2xl text-projector mt-12 mb-4">Sizing chart</h2>
+              <h2 className="font-heading text-2xl text-projector mt-12 mb-4">Audio tier by guest count</h2>
               <div className="overflow-x-auto rounded-lg border border-white/10">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-white/10 text-left bg-charcoal">
                       <th className="px-5 py-3 text-steel font-semibold">Guest count</th>
-                      <th className="px-5 py-3 text-steel font-semibold">Screen</th>
-                      <th className="px-5 py-3 text-steel font-semibold">Audio</th>
+                      <th className="px-5 py-3 text-steel font-semibold">Recommended tier</th>
                       <th className="px-5 py-3 text-steel font-semibold">Best for</th>
                     </tr>
                   </thead>
@@ -108,8 +107,7 @@ export default function GuidePage() {
                     {sizingTable.map((row, i) => (
                       <tr key={row.guests} className={`border-b border-white/5 ${i % 2 === 1 ? "bg-charcoal/40" : ""}`}>
                         <td className="px-5 py-3.5 text-projector font-medium">{row.guests}</td>
-                        <td className="px-5 py-3.5 text-ember">{row.screen}</td>
-                        <td className="px-5 py-3.5 text-steel">{row.audio}</td>
+                        <td className="px-5 py-3.5 text-ember">{row.tier}</td>
                         <td className="px-5 py-3.5 text-steel">{row.note}</td>
                       </tr>
                     ))}
@@ -119,6 +117,26 @@ export default function GuidePage() {
             </FadeIn>
 
             <FadeIn delay={0.15}>
+              <h2 className="font-heading text-2xl text-projector mt-12 mb-4">
+                Why one screen size works
+              </h2>
+              <p className="text-steel leading-relaxed">
+                A 30 ft inflatable screen is the right visual scale for the entire spectrum of
+                private events we run. Backyard movie nights feel cinematic at that size without
+                overwhelming the space. Larger community events, fight nights, and weddings all
+                benefit from the same screen — the screen is the "wow" that makes a backyard
+                feel like an amphitheater. The variable is sound.
+              </p>
+              <p className="text-steel leading-relaxed mt-4">
+                Pick the single speaker tier for intimate gatherings where dialogue carries best
+                at conversational volume. Pick two speakers for standard outdoor events — most
+                bookings land here. Pick two speakers plus the Death From Below subwoofer for
+                anything bass-driven: fight nights, dance floors, heavy soundtracks, or any
+                event 100+ guests where you want sound that fills the yard.
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
               <h2 className="font-heading text-2xl text-projector mt-12 mb-4">
                 Common questions
               </h2>
@@ -132,13 +150,13 @@ export default function GuidePage() {
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.2}>
+            <FadeIn delay={0.25}>
               <div className="mt-16 text-center">
                 <h2 className="font-heading text-2xl text-projector mb-4">
-                  Not sure which fits?
+                  Not sure which tier fits?
                 </h2>
                 <p className="text-steel mb-8 text-sm leading-relaxed max-w-xl mx-auto">
-                  Tell us your guest count and venue. We will recommend the right screen and audio.
+                  Tell us your guest count and event type. We will recommend the right audio tier.
                 </p>
                 <MagneticButton className="inline-flex">
                   <Link

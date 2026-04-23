@@ -5,6 +5,7 @@ import Footer from "@/components/footer";
 import { Shield, MapPin, FileCheck } from "lucide-react";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList, buildPerson } from "@/lib/schema";
+import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
   title: "About",
@@ -29,8 +30,9 @@ export default function AboutPage() {
       <Nav />
       <main className="flex-1 pt-16">
         {/* Header */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-charcoal">
-          <div className="mx-auto max-w-3xl">
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
+          <PageAtmosphere variant="space" />
+          <div className="relative z-10 mx-auto max-w-3xl">
             <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4">
               Mission-ready cinema for Michigan nights.
             </h1>
@@ -62,9 +64,10 @@ export default function AboutPage() {
                   Every arrival is 3 hours before the first guest walks in.
                 </p>
                 <p>
-                  We serve residential, HOA, school, corporate, and wedding clients across the greater
-                  Detroit and Ann Arbor area. If it is within 60 miles of Canton, we can be there.
-                  Proudly veteran-owned.
+                  We serve private residential events, wedding receptions, graduation parties, and
+                  get-togethers of all kinds across the greater Detroit and Ann Arbor area. Movie
+                  nights, gaming nights, sports watch parties, fight nights — anywhere within
+                  60 miles of Canton. Proudly veteran-owned.
                 </p>
               </div>
 

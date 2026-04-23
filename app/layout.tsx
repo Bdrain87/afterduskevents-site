@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat, Bebas_Neue } from "next/font/google";
+import { Inter, Montserrat, Bebas_Neue, Lora } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
@@ -9,9 +9,12 @@ import ScrollProgress from "@/components/scroll-progress";
 import LoadingScreen from "@/components/loading-screen";
 import LenisProvider from "@/components/lenis-provider";
 import StickyCTA from "@/components/sticky-cta";
+import AvailabilityDock from "@/components/availability-dock";
+import ConciergeMount from "@/components/concierge/concierge-mount";
 import MicrosoftClarity from "@/components/microsoft-clarity";
 import SchemaMarkup from "@/components/seo/schema-markup";
-import { ViewTransitions } from "next-view-transitions";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import TimeOfDayProvider from "@/components/atmosphere/time-of-day-provider";
 import {
   buildLocalBusiness,
   buildOrganization,
@@ -37,6 +40,14 @@ const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
   variable: "--font-bebas",
   weight: "400",
+  display: "swap",
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-editorial",
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -87,40 +98,43 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <ViewTransitions>
-      <html
-        lang="en"
-        className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
-      >
-        <body className="min-h-full flex flex-col bg-screening text-projector">
-          <SchemaMarkup
-            id="site-schema"
-            data={[
-              buildOrganization(),
-              buildLocalBusiness(),
-              buildPerson(),
-              buildWebSite(),
-            ]}
-          />
-          <LoadingScreen />
-          <ScrollProgress />
-          <CursorSpotlight />
-          <FilmGrain />
+    <html
+      lang="en"
+      className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} ${lora.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col bg-screening text-projector">
+        <SchemaMarkup
+          id="site-schema"
+          data={[
+            buildOrganization(),
+            buildLocalBusiness(),
+            buildPerson(),
+            buildWebSite(),
+          ]}
+        />
+        <TimeOfDayProvider />
+        <LoadingScreen />
+        <ScrollProgress />
+        <CursorSpotlight />
+        <FilmGrain />
+        <NuqsAdapter>
           <LenisProvider>
             {children}
           </LenisProvider>
-          <StickyCTA />
-          <Toaster
-            position="bottom-right"
-            toastOptions={{
-              style: { background: "#1A1A1A", border: "1px solid #2a2a2a", color: "#FAFAFA" },
-            }}
-          />
-          <MicrosoftClarity />
-          <Analytics />
-          <SpeedInsights />
-        </body>
-      </html>
-    </ViewTransitions>
+        </NuqsAdapter>
+        <StickyCTA />
+        <AvailabilityDock />
+        <ConciergeMount />
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            style: { background: "#1A1A1A", border: "1px solid #2a2a2a", color: "#FAFAFA" },
+          }}
+        />
+        <MicrosoftClarity />
+        <Analytics />
+        <SpeedInsights />
+      </body>
+    </html>
   );
 }

@@ -1,12 +1,11 @@
 /**
- * Side-by-side comparison of core packages.
+ * Side-by-side comparison of the three audio tiers.
  *
- * Research-backed: pages with 3+ comparison tables earn ~25-34% more AI citations
- * (Frase / Profound 2026). Comparison tables also satisfy the "online estimates"
- * filter Google rolled out in local search.
+ * Single screen size (30 ft). The pricing axis is audio only. Every tier includes
+ * the same 30 ft inflatable screen, water-ballast setup, and BYO Content rule.
  */
 import { Check, X } from "lucide-react";
-import { corePackages } from "@/lib/packages";
+import { audioTiers } from "@/lib/packages";
 
 type Row = {
   label: string;
@@ -15,48 +14,32 @@ type Row = {
 
 const featureRows: Row[] = [
   {
-    label: "Screen size",
-    values: ["20 ft inflatable", "30 ft inflatable", "120″ Da-Lite fast-fold"],
+    label: "Screen",
+    values: ["30 ft inflatable", "30 ft inflatable", "30 ft inflatable"],
   },
   {
-    label: "Projector",
-    values: ["4K laser (BenQ LU930)", "4K laser", "4K laser"],
+    label: "Speakers",
+    values: ["1 speaker", "2 speakers", "2 speakers"],
   },
   {
-    label: "Audio zones",
-    values: ["2 Soundboks 4", "4 Soundboks 4 (2 zones)", "2 Soundboks 4"],
+    label: "Death From Below subwoofer",
+    values: [false, false, true],
   },
   {
-    label: "Subwoofer (DFB MK2)",
-    values: [false, true, false],
-  },
-  {
-    label: "Runtime",
-    values: ["3 hours", "4 hours", "3 hours"],
-  },
-  {
-    label: "Crowd coverage",
-    values: ["Up to ~75", "Up to ~250", "Indoor venue capacity"],
-  },
-  {
-    label: "Setup",
-    values: ["Water ballast", "Water ballast", "Indoor / no ballast"],
+    label: "Water ballast setup",
+    values: [true, true, true],
   },
   {
     label: "BYO Content",
     values: [true, true, true],
   },
   {
-    label: "Honda generator + EcoFlow",
-    values: [true, true, false],
-  },
-  {
-    label: "Starlink Mini",
-    values: [true, true, true],
-  },
-  {
-    label: "Weather-proof",
-    values: [false, false, true],
+    label: "Best for",
+    values: [
+      "Smaller backyards, intimate gatherings",
+      "Standard outdoor events, most bookings",
+      "Fight nights, dance floors, bass-heavy music",
+    ],
   },
 ];
 
@@ -82,22 +65,22 @@ export default function ComparisonTable() {
   return (
     <div className="overflow-x-auto rounded-lg border border-white/10">
       <table className="w-full text-sm">
-        <caption className="sr-only">Side-by-side comparison of core cinema packages</caption>
+        <caption className="sr-only">Side-by-side comparison of audio tiers</caption>
         <thead>
           <tr className="border-b border-white/10 text-left bg-charcoal">
             <th className="px-5 py-4 text-steel font-semibold w-[28%]">Feature</th>
-            {corePackages.map((pkg) => (
+            {audioTiers.map((tier) => (
               <th
-                key={pkg.slug}
+                key={tier.slug}
                 scope="col"
                 className={[
                   "px-5 py-4 text-center font-semibold",
-                  pkg.popular ? "text-ember" : "text-projector",
+                  tier.popular ? "text-ember" : "text-projector",
                 ].join(" ")}
               >
                 <div className="flex flex-col items-center gap-1">
-                  <span>{pkg.name}</span>
-                  {pkg.popular && (
+                  <span>{tier.name}</span>
+                  {tier.popular && (
                     <span className="text-[10px] uppercase tracking-wider bg-oxblood text-projector px-2 py-0.5 rounded-full font-bold">
                       Most popular
                     </span>

@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 import LogoMark from "./logo-mark";
 
 const links = [
-  { href: "/packages", label: "Packages" },
+  { href: "/packages", label: "Setup" },
   { href: "/add-ons", label: "Add-Ons" },
   { href: "/faq", label: "FAQ" },
   { href: "/about", label: "About" },

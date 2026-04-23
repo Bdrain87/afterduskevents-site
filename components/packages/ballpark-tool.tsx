@@ -2,17 +2,17 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { suggestPackage } from "@/lib/packages";
+import { useCases, suggestTier } from "@/lib/packages";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function BallparkTool() {
-  const [eventType, setEventType] = useState("");
+  const [useCaseSlug, setUseCaseSlug] = useState("");
   const [guestCount, setGuestCount] = useState("");
 
   const result = useMemo(() => {
-    if (!eventType) return null;
-    return suggestPackage(eventType, guestCount || undefined);
-  }, [eventType, guestCount]);
+    if (!useCaseSlug) return null;
+    return suggestTier(useCaseSlug, guestCount || undefined);
+  }, [useCaseSlug, guestCount]);
 
   const inputClass =
     "w-full rounded-lg bg-screening border border-white/15 text-projector placeholder-steel px-3 py-2.5 text-sm focus:outline-none focus:border-oxblood focus:ring-1 focus:ring-oxblood transition-colors";
@@ -24,7 +24,7 @@ export default function BallparkTool() {
         <h3 className="font-heading text-lg text-projector">Quick ballpark</h3>
       </div>
       <p className="text-steel text-xs mb-5 leading-relaxed">
-        Two questions, instant range. Final quote depends on date, distance, and add-ons.
+        Two questions, one recommended setup. Final quote depends on date, distance, and add-ons.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -34,20 +34,16 @@ export default function BallparkTool() {
           </label>
           <select
             id="ballpark-event"
-            value={eventType}
-            onChange={(e) => setEventType(e.target.value)}
+            value={useCaseSlug}
+            onChange={(e) => setUseCaseSlug(e.target.value)}
             className={`${inputClass} appearance-none`}
           >
             <option value="" disabled>Pick one</option>
-            <option value="Movie Night">Movie Night</option>
-            <option value="Sports Watch Party">Sports Watch Party</option>
-            <option value="Gaming Night">Gaming Night</option>
-            <option value="Karaoke Night">Karaoke Night</option>
-            <option value="Birthday or Graduation">Birthday or Graduation</option>
-            <option value="Wedding">Wedding</option>
-            <option value="Corporate or Community Org">Corporate or Community Org</option>
-            <option value="HOA or Neighborhood">HOA or Neighborhood</option>
-            <option value="Other Private Event">Other Private Event</option>
+            {useCases.map((uc) => (
+              <option key={uc.slug} value={uc.slug}>
+                {uc.name}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -74,19 +70,11 @@ export default function BallparkTool() {
         {result ? (
           <div className="rounded-lg border border-oxblood/40 bg-screening p-5">
             <p className="text-xs uppercase tracking-wider text-ember font-semibold mb-1">
-              Suggested setup
+              Recommended setup
             </p>
             <p className="font-heading text-projector text-lg mb-2">{result.name}</p>
             <p className="text-steel text-sm leading-relaxed">
-              Most events like yours fall between{" "}
-              <span className="text-projector font-semibold">
-                ${result.range.min.toLocaleString()}
-              </span>
-              {" and "}
-              <span className="text-projector font-semibold">
-                ${result.range.max.toLocaleString()}
-              </span>
-              .
+              {result.best}. Every event is custom-quoted around your date, location, and add-ons.
             </p>
             <Link
               href={`/contact?package=${encodeURIComponent(result.name)}`}
@@ -97,7 +85,7 @@ export default function BallparkTool() {
             </Link>
           </div>
         ) : (
-          <p className="text-steel text-sm italic">Pick an event type to see a range.</p>
+          <p className="text-steel text-sm italic">Pick an event type to see a recommendation.</p>
         )}
       </div>
     </div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LogoMark from "./logo-mark";
+import CopyEmail from "./copy-email";
 
 export default function Footer() {
   return (
@@ -26,9 +27,8 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2 text-sm">
               {[
-                { href: "/packages", label: "Packages" },
+                { href: "/packages", label: "Setup" },
                 { href: "/add-ons", label: "Add-Ons" },
-                { href: "/packages/weddings", label: "Weddings" },
                 { href: "/faq", label: "FAQ" },
                 { href: "/about", label: "About" },
                 { href: "/contact", label: "Contact" },
@@ -51,9 +51,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2 text-sm text-steel">
               <li>
-                <a href="mailto:hello@afterduskevents.com" className="hover:text-projector transition-colors">
-                  hello@afterduskevents.com
-                </a>
+                <CopyEmail className="hover:text-projector transition-colors" />
               </li>
               <li>Canton, MI 48188</li>
               <li>Service area: 60 miles of Canton</li>

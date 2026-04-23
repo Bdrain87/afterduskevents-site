@@ -1,11 +1,12 @@
 "use client";
 
-import { useActionState, useEffect, useMemo, useState } from "react";
+import { useActionState, useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
+import { useQueryState, parseAsInteger, parseAsString } from "nuqs";
 import { submitInquiry, type InquiryState } from "@/app/actions/inquiry";
 import ProgressIndicator from "./steps/progress-indicator";
-import { suggestPackage } from "@/lib/packages";
+import { suggestTier, useCases } from "@/lib/packages";
 
 const initialState: InquiryState = {};
 
@@ -30,14 +31,17 @@ export default function ContactForm() {
   const searchParams = useSearchParams();
   const prefilledPackage = searchParams.get("package") ?? "";
   const prefilledLocation = searchParams.get("location") ?? "";
+  const prefilledEventDate = searchParams.get("eventDate") ?? "";
 
   const [state, formAction, isPending] = useActionState(submitInquiry, initialState);
-  const [step, setStep] = useState<Step>(1);
 
-  // Track step 1 selections so step 2 can suggest a package + show ballpark
-  const [eventType, setEventType] = useState("");
-  const [guestCount, setGuestCount] = useState("");
-  const [stepError, setStepError] = useState<string | null>(null);
+  // URL-synced step + field state so refresh preserves progress and links are shareable.
+  const [stepNum, setStep] = useQueryState("step", parseAsInteger.withDefault(1));
+  const step = (stepNum >= 1 && stepNum <= 3 ? stepNum : 1) as Step;
+  const [eventType, setEventType] = useQueryState("et", parseAsString.withDefault(""));
+  const [guestCount, setGuestCount] = useQueryState("guests", parseAsString.withDefault(""));
+  const [stepError, setStepErrorState] = useQueryState("err", parseAsString.withDefault(""));
+  const setStepError = (v: string | null) => setStepErrorState(v ?? "");
 
   useEffect(() => {
     if (state.message) {
@@ -58,10 +62,14 @@ export default function ContactForm() {
     }
   }, [state.errors]);
 
-  const suggestion = useMemo(
-    () => (eventType ? suggestPackage(eventType, guestCount) : null),
-    [eventType, guestCount],
-  );
+  const suggestion = useMemo(() => {
+    if (!eventType) return null;
+    // eventType value is the UseCase.name (e.g. "Movie Night"); look up the matching slug.
+    const uc = useCases.find((u) => u.name === eventType);
+    if (!uc) return null;
+    const tier = suggestTier(uc.slug, guestCount);
+    return tier ? { name: tier.name, best: tier.best } : null;
+  }, [eventType, guestCount]);
 
   function validateStep(s: Step): string | null {
     if (s === 1) {
@@ -124,6 +132,7 @@ export default function ContactForm() {
             name="eventDate"
             type="date"
             required
+            defaultValue={prefilledEventDate}
             className={`${inputClass} [color-scheme:dark]`}
             aria-describedby={state.errors?.eventDate ? "eventDate-error" : undefined}
           />
@@ -161,14 +170,9 @@ export default function ContactForm() {
             aria-describedby={state.errors?.eventType ? "eventType-error" : undefined}
           >
             <option value="" disabled>Select type</option>
-            <option value="Movie Night">Movie Night</option>
-            <option value="Sports Watch Party">Sports Watch Party</option>
-            <option value="Gaming Night">Gaming Night</option>
-            <option value="Karaoke Night">Karaoke Night</option>
-            <option value="Birthday or Graduation">Birthday or Graduation</option>
-            <option value="Wedding">Wedding</option>
-            <option value="Corporate or Community Org">Corporate or Community Org</option>
-            <option value="HOA or Neighborhood">HOA or Neighborhood</option>
+            {useCases.map((uc) => (
+              <option key={uc.slug} value={uc.name}>{uc.name}</option>
+            ))}
             <option value="Other Private Event">Other Private Event</option>
           </select>
           <FieldError errors={state.errors} field="eventType" />
@@ -204,19 +208,11 @@ export default function ContactForm() {
         {suggestion && (
           <div className="rounded-lg border border-oxblood/40 bg-charcoal p-4">
             <p className="text-xs uppercase tracking-wider text-ember font-semibold mb-1">
-              Suggested package
+              Recommended setup
             </p>
             <p className="text-projector font-heading text-base">{suggestion.name}</p>
             <p className="text-steel text-xs mt-1">
-              Most events like yours fall between{" "}
-              <span className="text-projector font-semibold">
-                ${suggestion.range.min.toLocaleString()}
-              </span>
-              {" and "}
-              <span className="text-projector font-semibold">
-                ${suggestion.range.max.toLocaleString()}
-              </span>
-              . Final quote depends on date, distance, and add-ons.
+              {suggestion.best}. Every event is custom-quoted around date, distance, and add-ons.
             </p>
           </div>
         )}
@@ -227,17 +223,9 @@ export default function ContactForm() {
           </label>
           <select id="packageInterest" name="packageInterest" defaultValue={prefilledPackage} className={selectClass}>
             <option value="">Not sure</option>
-            <option value="Intimate 20 ft">Intimate 20 ft</option>
-            <option value="Community 30 ft">Community 30 ft</option>
-            <option value="Indoor Winter">Indoor Winter</option>
-            <option value="Sports Watch Party">Sports Watch Party</option>
-            <option value="Gaming Night">Gaming Night</option>
-            <option value="Karaoke Night">Karaoke Night</option>
-            <option value="Birthday or Graduation">Birthday or Graduation</option>
-            <option value="Elopement / Micro-Wedding">Elopement / Micro-Wedding</option>
-            <option value="Wedding Reception Cinema">Wedding Reception Cinema</option>
-            <option value="Wedding Full Day">Wedding Full Day</option>
-            <option value="Corporate or Community Org">Corporate or Community Org</option>
+            <option value="30 ft + Single Speaker">30 ft + Single Speaker</option>
+            <option value="30 ft + Two Speakers">30 ft + Two Speakers</option>
+            <option value="30 ft + Two Speakers + Death From Below Sub">30 ft + Two Speakers + Sub</option>
           </select>
         </div>
       </fieldset>

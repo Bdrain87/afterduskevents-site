@@ -6,6 +6,7 @@ import FadeIn from "@/components/fade-in";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList } from "@/lib/schema";
 import { ArrowRight } from "lucide-react";
+import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
   title: "Guides",
@@ -19,7 +20,7 @@ const guides = [
     href: "/guides/outdoor-movie-rental-cost-michigan",
     title: "How much does an outdoor movie rental cost in Michigan? (2026)",
     description:
-      "Typical price ranges by event type, what changes the price, deposit policy, travel fees.",
+      "How we think about pricing, what changes the number, and why every event is quoted custom.",
   },
   {
     href: "/guides/screen-size-for-guest-count",
@@ -41,8 +42,9 @@ export default function GuidesIndexPage() {
       />
       <Nav />
       <main className="flex-1 pt-16">
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-charcoal">
-          <div className="mx-auto max-w-3xl text-center">
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
+          <PageAtmosphere variant="space" />
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
             <FadeIn>
               <h1 className="font-display text-5xl sm:text-6xl text-projector tracking-wider mb-2">
                 GUIDES

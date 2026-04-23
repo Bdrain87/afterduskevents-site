@@ -1,8 +1,12 @@
 /**
- * Past-event gallery data. Drop image files into `public/images/gallery/` and
- * reference them here. Filename pattern: `{event-type}-{location}-{YYYY-MM-DD}.avif`
+ * Past-event gallery. After Dusk Events is pre-launch — the only published entry
+ * is the 30 ft studio render. Real past-event photos get added here as they
+ * arrive. EventGallery auto-hides when no entries are published, so nothing
+ * on the homepage claims events that haven't happened.
  *
- * For each entry, alt text should DESCRIBE the photo (Vision AI flags mismatches).
+ * Drop new image files into `public/images/gallery/` and reference them here.
+ * Filename pattern: `{event-type}-{location}-{YYYY-MM-DD}.avif`.
+ * Alt text should DESCRIBE the photo honestly — no invented gear or event claims.
  */
 export type GalleryItem = {
   src: string;
@@ -11,73 +15,22 @@ export type GalleryItem = {
   location: string;
   /** ISO date string */
   date?: string;
-  /** Optional 4-byte blurDataURL (data URI) for placeholder */
+  /** Optional blurDataURL for placeholder */
   blurDataURL?: string;
   /** Layout hint: "wide" spans 2 columns in bento, "tall" spans 2 rows */
   span?: "wide" | "tall" | "feature";
-  /** Marks AI-generated placeholder vs. real event photo */
-  isAIPlaceholder?: boolean;
   /** Marks the hero shot — only one entry should set this true */
   isHero?: boolean;
 };
 
-/**
- * Placeholder slots — replace `src` with `/images/gallery/{filename}.avif`
- * when real photos arrive. Until then, entries with empty `src` are filtered
- * out at render time so the gallery just renders the available items.
- */
 export const gallery: GalleryItem[] = [
   {
-    src: "",
-    alt: "Hero photo of a 30-foot inflatable cinema screen at dusk in a Canton backyard",
-    eventType: "Backyard Movie Night",
-    location: "Canton, MI",
+    src: "/images/setup/30ft-screen-studio.avif",
+    alt: "After Dusk Events 30 foot inflatable outdoor cinema screen, studio render with person at base for scale",
+    eventType: "The 30 ft",
+    location: "Studio",
     span: "feature",
     isHero: true,
-  },
-  {
-    src: "",
-    alt: "Wedding reception cinema with screen displaying first dance reel",
-    eventType: "Wedding",
-    location: "Plymouth, MI",
-    span: "wide",
-  },
-  {
-    src: "",
-    alt: "Soundboks 4 speakers and projector setup detail at sunset",
-    eventType: "Equipment Detail",
-    location: "Canton, MI",
-  },
-  {
-    src: "",
-    alt: "HOA block-party movie night with full audience seated on lawn",
-    eventType: "HOA or Neighborhood",
-    location: "Northville, MI",
-    span: "tall",
-  },
-  {
-    src: "",
-    alt: "Indoor winter setup with 120-inch fast-fold screen in a community hall",
-    eventType: "Indoor Winter",
-    location: "Ann Arbor, MI",
-  },
-  {
-    src: "",
-    alt: "Sports watch party with Soundboks audio and live game on screen",
-    eventType: "Sports Watch Party",
-    location: "Detroit, MI",
-  },
-  {
-    src: "",
-    alt: "Birthday party at dusk with fairy-light strung backyard and movie playing",
-    eventType: "Birthday or Graduation",
-    location: "Birmingham, MI",
-  },
-  {
-    src: "",
-    alt: "Corporate event with multi-zone Soundboks audio and presentation on screen",
-    eventType: "Corporate or Community Org",
-    location: "Novi, MI",
   },
 ];
 

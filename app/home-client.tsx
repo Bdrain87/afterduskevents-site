@@ -11,16 +11,18 @@ import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
 import { useFitText } from "@/hooks/use-fit-text";
 import Spotlight from "@/components/atmosphere/spotlight";
-import Particles from "@/components/atmosphere/particles";
-import GridPattern from "@/components/atmosphere/grid-pattern";
+import Starfield from "@/components/atmosphere/starfield";
 import TrustStrip from "@/components/trust-strip";
 import EventGallery from "@/components/event-gallery";
 import TestimonialsSection from "@/components/testimonials/testimonials-section";
+import NextEventCard from "@/components/next-event-card";
+import type { NearestCityResult } from "@/lib/nearest-city";
 
-gsap.registerPlugin(SplitText, ScrollTrigger);
+gsap.registerPlugin(SplitText, ScrollTrigger, ScrambleTextPlugin);
 
 const statements = [
   {
@@ -44,36 +46,62 @@ const statements = [
 ];
 
 const eventTypes = [
-  { name: "Backyard Movie Night",    desc: "Your lawn. Our cinema. Bring the chairs." },
-  { name: "Sports Watch Party",      desc: "Fight night, playoffs, Super Bowl. Big screen, bigger reactions." },
-  { name: "Wedding Reception",       desc: "Dance floor audio, first-dance reel, ceremony sound. All handled." },
-  { name: "Gaming Night",            desc: "Console gaming and a screen no one forgets." },
-  { name: "Birthday or Graduation",  desc: "A night your guests talk about long after the cake is gone." },
-  { name: "Corporate Event",         desc: "Company screenings, presentations, team events. Fully insured." },
+  { name: "Movie Night",        desc: "Your yard. Our cinema. Bring your own content." },
+  { name: "Sports Watch Party", desc: "Game day, bigger than any bar." },
+  { name: "Fight Night",        desc: "UFC, boxing, WWE. Built for the bass drop." },
+  { name: "Gaming Night",       desc: "8-bit retro with 4 controllers, or your PS/Xbox with staff hookup." },
+  { name: "Wedding Reception",  desc: "Dance floor audio and a first-dance reel on a 30 ft screen." },
+  { name: "Graduation Party",   desc: "Photo reel and a movie all night." },
+  { name: "Get-together",       desc: "Birthdays, holidays, any private gathering." },
 ];
 
 const packages = [
-  { name: "Community 30 ft", tag: "Most popular", desc: "Thirty-foot screen. Concert sound. Up to 250 people.", featured: true },
-  { name: "Intimate 20 ft",  tag: null,           desc: "Twenty-foot screen. Backyards and small venues." },
-  { name: "Indoor Winter",   tag: null,           desc: "Year-round, weather-proof. Halls, gyms, barns." },
+  { name: "30 ft + Two Speakers + Sub", tag: "Most popular", desc: "Two speakers plus Death From Below subwoofer. Dance-floor audio, fight-night bass.", featured: true },
+  { name: "30 ft + Two Speakers",       tag: null,           desc: "Standard two-speaker setup. Covers most outdoor events." },
+  { name: "30 ft + Single Speaker",     tag: null,           desc: "Intimate audio for small gatherings and tight backyards." },
 ];
 
-export default function HomeClient() {
+type Props = {
+  geo?: NearestCityResult | null;
+};
+
+export default function HomeClient({ geo }: Props = {}) {
   const { containerRef: nameRef, measureRef, fontSize } = useFitText();
   const heroRestRef    = useRef<HTMLDivElement>(null);
   const statementsRef  = useRef<HTMLDivElement>(null);
 
-  // Only animate once fontSize is calculated from the real font
+  // Only animate once fontSize is calculated from the real font.
+  // Sequence: chars slide up + fade in, then the whole line scrambles through
+  // random glyphs and resolves back to "AFTER DUSK EVENTS".
   useGSAP(() => {
     if (!fontSize || !nameRef.current) return;
-    const el = nameRef.current.querySelector(".wordmark");
+    const el = nameRef.current.querySelector<HTMLElement>(".wordmark");
     if (!el) return;
     const split = new SplitText(el, { type: "chars" });
-    gsap.from(split.chars, {
-      y: 80, opacity: 0,
-      duration: 0.75, stagger: 0.018,
-      ease: "power3.out", delay: 0.1,
+    const tl = gsap.timeline({ delay: 0.1 });
+    tl.from(split.chars, {
+      y: 80,
+      opacity: 0,
+      duration: 0.75,
+      stagger: 0.018,
+      ease: "power3.out",
     });
+    // Scramble pass — run after the chars land so the cycle reads clean
+    tl.to(
+      el,
+      {
+        duration: 1.4,
+        scrambleText: {
+          text: "AFTER DUSK EVENTS",
+          chars: "XKWZ30FT█▓▒░MICHIGAN",
+          revealDelay: 0.25,
+          tweenLength: false,
+          speed: 0.55,
+        },
+        ease: "power1.inOut",
+      },
+      "-=0.2",
+    );
   }, { dependencies: [fontSize] });
 
   useGSAP(() => {
@@ -112,20 +140,25 @@ export default function HomeClient() {
 
         {/* ─── 1. HERO: full-width fitted wordmark ─────────────────── */}
         <section className="relative min-h-screen flex flex-col justify-center bg-screening overflow-hidden px-4 sm:px-8 lg:px-12">
-          {/* Atmosphere stack: subtle grid → drifting particles → spotlight → existing radial */}
-          <GridPattern
-            width={60}
-            height={60}
-            strokeDasharray="2 4"
-            className="[mask-image:radial-gradient(ellipse_at_center,white,transparent_75%)]"
+          {/* Atmosphere stack: deep-space gradient → starfield → ember nebula glow → spotlight */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 120% 80% at 50% 110%, rgba(15, 10, 30, 0.8) 0%, rgba(10, 10, 15, 0.95) 45%, #050508 100%)",
+            }}
           />
-          <Particles quantity={45} vy={0.18} size={1.4} color="#FAFAFA" />
-          <Spotlight fill="rgba(107, 31, 31, 0.55)" />
+          <Starfield quantity={160} maxSize={1.8} vy={0.015} />
           <div
             aria-hidden="true"
             className="absolute inset-0 pointer-events-none z-[1]"
-            style={{ background: "radial-gradient(ellipse 65% 55% at 35% 25%, rgba(107,31,31,0.2) 0%, transparent 65%)" }}
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 50% at 30% 30%, rgba(107,31,31,0.28) 0%, transparent 65%), radial-gradient(ellipse 45% 40% at 80% 75%, rgba(74,14,14,0.25) 0%, transparent 60%)",
+            }}
           />
+          <Spotlight fill="rgba(107, 31, 31, 0.45)" />
 
           {/* Full-width company name */}
           <div ref={nameRef} className="relative z-10 w-full overflow-hidden pt-24 pb-2">
@@ -139,7 +172,7 @@ export default function HomeClient() {
               AFTER DUSK EVENTS
             </span>
             <h1
-              className="wordmark font-display text-projector leading-none tracking-[0.01em] whitespace-nowrap"
+              className="wordmark wordmark-glow font-display text-projector leading-none tracking-[0.01em] whitespace-nowrap"
               style={{ fontSize: fontSize > 0 ? `${fontSize}px` : "clamp(4rem,12vw,10rem)" }}
               aria-label="After Dusk Events"
             >
@@ -154,15 +187,18 @@ export default function HomeClient() {
               <span className="text-steel text-xs tracking-[0.28em] uppercase">Big screen. Bigger nights.</span>
             </div>
             <p className="text-steel text-lg leading-relaxed mb-9">
-              We turn your outdoor space into a cinema.
-              You bring the guests. We bring everything else.
+              {geo?.inRadius && geo.city.slug !== "canton"
+                ? `Serving ${geo.city.name} from Canton, MI. Private outdoor cinema, 30 ft screen, three audio tiers.`
+                : geo?.travelZone
+                  ? `We travel to ${geo.city.name}. Expect a travel line on the quote. Otherwise — private outdoor cinema, 30 ft screen, three audio tiers.`
+                  : "We turn your outdoor space into a cinema. You bring the guests. We bring everything else."}
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4 mb-10">
-              <ShimmerButton onClick={() => window.location.href = "/contact"}>
-                Get a Quote
+              <ShimmerButton href={geo?.inRadius ? `/contact?location=${encodeURIComponent(geo.city.name)}` : "/contact"}>
+                {geo?.inRadius && geo.city.slug !== "canton" ? `Get a ${geo.city.name} Quote` : "Get a Quote"}
               </ShimmerButton>
               <Link href="/packages" className="inline-flex items-center gap-2 text-steel hover:text-projector text-sm font-medium transition-colors py-4 group">
-                See packages <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                See setup <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </Link>
             </div>
             <p className="text-steel/80 text-[11px] tracking-[0.18em] uppercase">
@@ -174,6 +210,9 @@ export default function HomeClient() {
           </div>
         </section>
 
+        {/* Next open dates — hides when availability.openDates is empty */}
+        <NextEventCard />
+
         {/* ─── 2. FULL-BLEED STATEMENT: oxblood ───────────────────── */}
         <section
           className="relative bg-oxblood overflow-hidden noise-bg"
@@ -181,9 +220,18 @@ export default function HomeClient() {
           aria-label="What we do"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-oxblood to-oxblood-deep" aria-hidden="true" />
-          <h2 className="relative z-10 font-display text-projector leading-none tracking-wider"
+          <h2 className="kinetic-headline relative z-10 font-display text-projector leading-none tracking-wider"
             style={{ fontSize: "clamp(3rem, 8.5vw, 8rem)" }}>
-            WE TURN YOUR<br />OUTDOOR SPACE<br />INTO A CINEMA.
+            <span style={{ animationDelay: "0ms" }}>WE</span>{" "}
+            <span style={{ animationDelay: "60ms" }}>TURN</span>{" "}
+            <span style={{ animationDelay: "120ms" }}>YOUR</span>{" "}
+            <br />
+            <span style={{ animationDelay: "200ms" }}>OUTDOOR</span>{" "}
+            <span style={{ animationDelay: "260ms" }}>SPACE</span>
+            <br />
+            <span style={{ animationDelay: "340ms" }}>INTO</span>{" "}
+            <span style={{ animationDelay: "400ms" }}>A</span>{" "}
+            <span style={{ animationDelay: "460ms" }}>CINEMA.</span>
           </h2>
         </section>
 

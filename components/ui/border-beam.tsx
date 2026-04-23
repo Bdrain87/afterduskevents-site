@@ -12,7 +12,7 @@ interface BorderBeamProps {
 export function BorderBeam({
   className,
   duration = 12,
-  colorFrom = "#6B1F1F",
+  colorFrom = "var(--color-oxblood)",
   colorTo = "transparent",
 }: BorderBeamProps) {
   return (

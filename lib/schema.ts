@@ -1,6 +1,5 @@
 import { faqs } from "./faqs";
-import { allPackages, type Package } from "./packages";
-import { weddingTiers, type WeddingTier } from "./wedding-tiers";
+import { allTiers, type AudioTier } from "./packages";
 import { cities, type City } from "./cities";
 
 const SITE_URL = "https://afterduskevents.com";
@@ -67,12 +66,11 @@ export function buildLocalBusiness(): SchemaObject {
     name: BUSINESS_NAME,
     alternateName: BRAND,
     description:
-      "Premium outdoor cinema and event rentals for private events in Southeast Michigan. 4K laser projection, concert-grade Soundboks audio, water-ballast inflatable screens. Veteran-owned, fully insured, serving 60 miles of Canton, MI.",
+      "Outdoor cinema and event rentals for private events in Southeast Michigan. 30-foot inflatable screen, three audio tiers up to a Death From Below subwoofer, water-ballast setup. Veteran-owned, fully insured, serving 60 miles of Canton, MI.",
     url: SITE_URL,
     logo: LOGO_URL,
     image: OG_IMAGE,
     email: EMAIL,
-    priceRange: "$$",
     foundingDate: FOUNDED,
     founder: { "@id": FOUNDER_ID },
     parentOrganization: { "@id": ORG_ID },
@@ -109,12 +107,13 @@ export function buildLocalBusiness(): SchemaObject {
     })),
     knowsAbout: [
       "outdoor cinema",
-      "inflatable movie screen rental",
+      "30 ft inflatable movie screen rental",
       "backyard movie night",
-      "wedding cinema",
-      "outdoor projector rental",
+      "outdoor wedding cinema",
+      "sports watch party outdoor projector",
+      "fight night outdoor projection",
+      "graduation party outdoor cinema",
       "Detroit area event rentals",
-      "Soundboks rental",
       "BYO Content private screenings",
     ],
     knowsLanguage: "en-US",
@@ -161,12 +160,12 @@ export function buildWebSite(): SchemaObject {
   };
 }
 
-export function buildService(pkg: Package): SchemaObject {
+export function buildService(tier: AudioTier): SchemaObject {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `${SITE_URL}/packages#${pkg.slug}`,
-    name: pkg.name,
+    "@id": `${SITE_URL}/packages#${tier.slug}`,
+    name: tier.name,
     serviceType: "Outdoor Cinema Rental",
     provider: { "@id": BUSINESS_ID },
     areaServed: {
@@ -174,14 +173,14 @@ export function buildService(pkg: Package): SchemaObject {
       geoMidpoint: { "@type": "GeoCoordinates", latitude: LAT, longitude: LNG },
       geoRadius: String(RADIUS_M),
     },
-    description: pkg.highlights.join(". "),
+    description: tier.includes.join(". "),
     audience: {
       "@type": "Audience",
-      audienceType: pkg.best,
+      audienceType: tier.best,
     },
     offers: {
       "@type": "Offer",
-      url: url(`/contact?package=${encodeURIComponent(pkg.name)}`),
+      url: url(`/contact?package=${encodeURIComponent(tier.name)}`),
       availability: "https://schema.org/InStock",
       priceCurrency: "USD",
       priceSpecification: {
@@ -195,35 +194,7 @@ export function buildService(pkg: Package): SchemaObject {
         geoRadius: String(RADIUS_M),
       },
     },
-    isRelatedTo: pkg.highlights.slice(0, 3),
-  };
-}
-
-export function buildWeddingService(tier: WeddingTier): SchemaObject {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${SITE_URL}/packages/weddings#${tier.slug}`,
-    name: tier.name,
-    serviceType: "Wedding Cinema Rental",
-    provider: { "@id": BUSINESS_ID },
-    areaServed: {
-      "@type": "GeoCircle",
-      geoMidpoint: { "@type": "GeoCoordinates", latitude: LAT, longitude: LNG },
-      geoRadius: String(RADIUS_M),
-    },
-    description: `${tier.duration}. ${tier.includes.join(". ")}`,
-    offers: {
-      "@type": "Offer",
-      url: url(`/contact?package=${encodeURIComponent(tier.name)}`),
-      availability: "https://schema.org/InStock",
-      priceCurrency: "USD",
-      priceSpecification: {
-        "@type": "PriceSpecification",
-        priceCurrency: "USD",
-        description: "Custom quote per wedding. Contact for pricing.",
-      },
-    },
+    isRelatedTo: tier.includes.slice(0, 3),
   };
 }
 
@@ -315,8 +286,5 @@ export function buildArticle(opts: {
 }
 
 export function buildAllServicesGraph(): SchemaObject[] {
-  return [
-    ...allPackages.map(buildService),
-    ...weddingTiers.map(buildWeddingService),
-  ];
+  return allTiers.map(buildService);
 }
