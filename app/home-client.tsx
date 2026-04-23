@@ -102,13 +102,13 @@ export default function HomeClient({ geo }: Props = {}) {
               </MagneticButton>
               <Link
                 href="/packages"
-                className="inline-flex items-center gap-2 text-steel hover:text-projector text-sm font-medium transition-colors py-4 group"
+                className="inline-flex items-center gap-2 text-silver hover:text-ember text-sm font-medium transition-colors py-4 group"
               >
                 See the setup
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </Link>
             </div>
-            <p className="text-steel/80 text-[11px] tracking-[0.18em] uppercase">
+            <p className="text-silver text-[11px] tracking-[0.18em] uppercase">
               Canton, MI · Private events only · Veteran owned
             </p>
             <div className="mt-8">
