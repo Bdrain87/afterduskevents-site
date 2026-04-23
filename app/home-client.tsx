@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import HeroWordmark from "@/components/hero-wordmark";
@@ -27,6 +27,13 @@ type Props = {
 
 export default function HomeClient({ geo }: Props = {}) {
   const heroRestRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.body.dataset.home = "1";
+    return () => {
+      delete document.body.dataset.home;
+    };
+  }, []);
 
   useGSAP(() => {
     if (!heroRestRef.current) return;
@@ -58,7 +65,7 @@ export default function HomeClient({ geo }: Props = {}) {
           <Spotlight fill="rgba(107, 31, 31, 0.45)" />
           <div
             aria-hidden="true"
-            className="absolute left-0 right-0 z-[2] pointer-events-none"
+            className="hero-horizon-fade absolute left-0 right-0 z-[2] pointer-events-none"
             style={{
               top: "62%",
               height: "1px",
