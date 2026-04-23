@@ -53,7 +53,6 @@
   --font-sans: var(--font-inter);
   --font-heading: var(--font-montserrat);
   --font-display: var(--font-bebas);
-  --font-serif: var(--font-cormorant);
 }
 
 :root {
@@ -137,9 +136,6 @@ html[data-tod="night"] {
     font-family: var(--font-montserrat), system-ui, sans-serif;
     font-weight: 700;
   }
-  .font-serif {
-    font-family: var(--font-cormorant), Georgia, 'Times New Roman', serif;
-  }
   .oxblood-rule {
     @apply block w-12 h-[2px] bg-oxblood mt-3;
   }
@@ -211,16 +207,12 @@ html[data-tod="night"] {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero wordmark: top-to-bottom red gradient clipped to the letters. Floor
-   color #7A1E22 matches the vetclaimsupport "second battle" red and is the
-   dark end; bright ember on top carries the letter's visibility — every
-   letter stays legible regardless of horizontal position. */
+/* Hero wordmark color. background-clip:text breaks after GSAP SplitText wraps
+   each character in a child span (h1 loses direct text, clip area collapses).
+   Solid ember is the correct fix — visible, on-brand, no fragile clip tricks. */
 .wordmark-glow {
-  background: linear-gradient(180deg, #DD5454 0%, #7A1E22 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: #DD5454;
+  -webkit-text-fill-color: #DD5454;
 }
 
 /* Atmosphere: spotlight slow drift */

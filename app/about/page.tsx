@@ -32,8 +32,8 @@ export default function AboutPage() {
         <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
           <PageAtmosphere variant="space" />
           <div className="relative z-10 mx-auto max-w-3xl">
-            <p className="font-serif italic text-steel/60 text-lg mb-4 tracking-[0.04em]">
-              Veteran-owned. Canton, MI.
+            <p className="text-ember text-xs tracking-[0.3em] uppercase mb-4">
+              Veteran-owned · Canton, MI
             </p>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl text-projector tracking-wider leading-none mb-6">
               MISSION-READY CINEMA.
@@ -94,7 +94,7 @@ export default function AboutPage() {
 
                 {/* Pull quote */}
                 <div className="border-l-2 border-oxblood/50 pl-5 pt-1">
-                  <p className="font-serif italic text-cream/70 text-lg leading-snug mb-3">
+                  <p className="font-heading font-medium text-cream/70 text-base leading-snug mb-3">
                     &ldquo;Every piece of gear has a backup. Every arrival is 3 hours before
                     the first guest walks in.&rdquo;
                   </p>

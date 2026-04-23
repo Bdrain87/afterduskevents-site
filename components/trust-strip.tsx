@@ -16,10 +16,10 @@ export default function TrustStrip({ className }: Props) {
         <span key={label} className="inline-flex items-center gap-5">
           {i > 0 && (
             <span className="text-white/20 hidden sm:inline select-none" aria-hidden="true">
-              —
+              ·
             </span>
           )}
-          <span className="font-serif italic font-light text-steel/70 text-sm tracking-[0.12em]">
+          <span className="text-steel/60 text-[11px] tracking-[0.25em] uppercase">
             {label}
           </span>
         </span>

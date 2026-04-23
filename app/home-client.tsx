@@ -332,7 +332,7 @@ export default function HomeClient({ geo }: Props = {}) {
             {/* Decorative vertical text */}
             <div
               aria-hidden="true"
-              className="hidden lg:flex flex-col leading-none font-display text-oxblood/10 select-none shrink-0 pl-8 pt-2"
+              className="hidden lg:flex flex-col leading-none font-display text-white/[0.04] select-none shrink-0 pl-8 pt-2"
               style={{ fontSize: "clamp(4rem, 10vw, 9rem)", lineHeight: 0.88 }}
             >
               {"HOW IT WORKS".split("").map((ch, i) => (
@@ -350,7 +350,7 @@ export default function HomeClient({ geo }: Props = {}) {
                   { n: "03", title: "Your guests are blown away.", body: "You enjoy the night. We run the show. Teardown is ours." },
                 ].map((step) => (
                   <div key={step.n} className="flex items-start gap-8">
-                    <span className="font-display text-[clamp(3rem,6vw,5.5rem)] text-oxblood/25 leading-none select-none shrink-0 w-[3ch]">
+                    <span className="font-display text-[clamp(3rem,6vw,5.5rem)] text-ember/30 leading-none select-none shrink-0 w-[3ch]">
                       {step.n}
                     </span>
                     <div className="pt-2">
@@ -371,13 +371,13 @@ export default function HomeClient({ geo }: Props = {}) {
           <div className="absolute inset-0 bg-gradient-to-br from-oxblood to-oxblood-deep" aria-hidden="true" />
           <div className="relative z-10">
             <p
-              className="font-serif italic text-projector leading-[1.1] mb-8"
-              style={{ fontSize: "clamp(2.4rem, 6.5vw, 6.5rem)" }}
+              className="font-display text-projector leading-[0.9] tracking-wider mb-8"
+              style={{ fontSize: "clamp(2.2rem, 6.5vw, 6rem)" }}
             >
-              &ldquo;Every piece of gear<br />has a backup.&rdquo;
+              "EVERY PIECE OF<br />GEAR HAS A BACKUP."
             </p>
-            <p className="font-display text-projector/40 text-sm tracking-[0.28em] uppercase text-right max-w-5xl ml-auto">
-              Blake — Owner — USAF Veteran
+            <p className="text-projector/45 text-sm tracking-[0.2em] uppercase text-right max-w-5xl ml-auto">
+              Blake, Owner. USAF Veteran.
             </p>
           </div>
         </section>

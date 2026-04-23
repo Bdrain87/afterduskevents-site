@@ -27,21 +27,15 @@ export default function TestimonialsSection({ headingId = "testimonials-heading"
       </h2>
 
       <div className="mx-auto max-w-5xl relative">
-        {/* Oversized decorative quotation glyph */}
-        <div
-          aria-hidden="true"
-          className="font-serif absolute -top-6 -left-2 sm:-left-6 text-projector/[0.04] leading-none select-none pointer-events-none"
-          style={{ fontSize: "clamp(8rem, 18vw, 16rem)", lineHeight: 1 }}
-        >
-          &ldquo;
-        </div>
+        {/* Decorative rule */}
+        <div className="w-12 h-[2px] bg-oxblood mb-10" aria-hidden="true" />
 
-        <blockquote className="relative z-10 sm:pl-6">
+        <blockquote className="relative z-10">
           <p
-            className="font-serif italic text-cream/90 leading-[1.2] mb-10"
-            style={{ fontSize: "clamp(1.8rem, 3.8vw, 3.6rem)" }}
+            className="font-heading font-medium text-cream/85 leading-[1.25] mb-10"
+            style={{ fontSize: "clamp(1.5rem, 3vw, 2.8rem)" }}
           >
-            {t.quote}
+            &ldquo;{t.quote}&rdquo;
           </p>
 
           <footer className="flex items-center justify-between gap-6 flex-wrap border-t border-white/8 pt-6">
