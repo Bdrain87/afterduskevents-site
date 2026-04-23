@@ -6,6 +6,7 @@ import FadeIn from "@/components/fade-in";
 import MagneticButton from "@/components/magnetic-button";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildArticle, buildBreadcrumbList, buildFAQPage } from "@/lib/schema";
+import Balancer from "react-wrap-balancer";
 
 const SLUG = "/guides/screen-size-for-guest-count";
 const PUBLISHED = "2026-04-22";
@@ -75,7 +76,7 @@ export default function GuidePage() {
             <FadeIn>
               <p className="text-oxblood text-xs tracking-[0.2em] uppercase mb-3">Guide</p>
               <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4 leading-tight">
-                What size outdoor movie screen do I need for my guest count?
+                <Balancer>What size outdoor movie screen do I need for my guest count?</Balancer>
               </h1>
               <p className="text-steel text-xs uppercase tracking-wider">
                 By <Link href="/about" className="text-oxblood hover:text-projector transition-colors">Blake Drain</Link>

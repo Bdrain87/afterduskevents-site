@@ -9,6 +9,7 @@ import MagneticButton from "@/components/magnetic-button";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import BallparkTool from "@/components/packages/ballpark-tool";
+import ComparisonTable from "@/components/packages/comparison-table";
 import { corePackages, eventPackages } from "@/lib/packages";
 import {
   buildAllServicesGraph,
@@ -126,6 +127,21 @@ export default function PackagesPage() {
             <FadeIn>
               <h2 id="ballpark-heading" className="sr-only">Quick ballpark</h2>
               <BallparkTool />
+            </FadeIn>
+          </div>
+        </section>
+
+        {/* Side-by-side comparison */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="comparison-heading">
+          <div className="mx-auto max-w-5xl">
+            <FadeIn>
+              <h2 id="comparison-heading" className="font-heading text-2xl sm:text-3xl text-projector mb-3">
+                Compare core packages
+              </h2>
+              <p className="text-steel text-sm mb-6">
+                Side-by-side feature breakdown. Every event is custom-quoted.
+              </p>
+              <ComparisonTable />
             </FadeIn>
           </div>
         </section>

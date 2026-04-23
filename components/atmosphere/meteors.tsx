@@ -2,6 +2,8 @@
  * Diagonal meteor streaks atmospheric effect.
  * Pattern adapted from Magic UI Meteors (https://magicui.design/docs/components/meteors).
  * Pure CSS animation, no JS, no deps. Honors prefers-reduced-motion via Tailwind motion-safe.
+ *
+ * Uses deterministic seeded pseudo-random per index so SSR HTML matches client hydration.
  */
 import { cn } from "@/lib/utils";
 
@@ -9,6 +11,12 @@ type Props = {
   number?: number;
   className?: string;
 };
+
+// Cheap deterministic 0-1 from integer seed pair
+function seeded(n: number, salt: number): number {
+  const x = Math.sin(n * 12.9898 + salt * 78.233) * 43758.5453;
+  return x - Math.floor(x);
+}
 
 export default function Meteors({ number = 12, className }: Props) {
   const meteors = Array.from({ length: number });
@@ -21,9 +29,9 @@ export default function Meteors({ number = 12, className }: Props) {
       )}
     >
       {meteors.map((_, idx) => {
-        const left = Math.random() * 100;
-        const delay = (Math.random() * 6).toFixed(2);
-        const duration = (Math.random() * 5 + 6).toFixed(2);
+        const left = seeded(idx, 1) * 100;
+        const delay = (seeded(idx, 2) * 6).toFixed(2);
+        const duration = (seeded(idx, 3) * 5 + 6).toFixed(2);
         return (
           <span
             key={idx}

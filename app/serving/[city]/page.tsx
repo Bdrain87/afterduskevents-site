@@ -14,6 +14,7 @@ import {
 } from "@/lib/schema";
 import { corePackages } from "@/lib/packages";
 import { Check, MapPin } from "lucide-react";
+import Balancer from "react-wrap-balancer";
 
 type Params = { params: Promise<{ city: string }> };
 
@@ -68,7 +69,7 @@ export default async function CityPage({ params }: Params) {
                 {city.county} County, MI
               </p>
               <h1 className="font-display text-5xl sm:text-7xl text-projector tracking-wider leading-none mb-2">
-                OUTDOOR MOVIE RENTALS IN {city.name.toUpperCase()}, MI
+                <Balancer>OUTDOOR MOVIE RENTALS IN {city.name.toUpperCase()}, MI</Balancer>
               </h1>
               <span className="oxblood-rule" />
             </FadeIn>

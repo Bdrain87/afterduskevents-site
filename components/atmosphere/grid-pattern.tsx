@@ -3,6 +3,7 @@
  * Pattern adapted from Magic UI Grid Pattern (https://magicui.design/docs/components/grid-pattern).
  * Pure SVG, no JS, no deps.
  */
+import { useId } from "react";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -22,7 +23,9 @@ export default function GridPattern({
   strokeDasharray = "0",
   className,
 }: Props) {
-  const patternId = `grid-pattern-${Math.random().toString(36).slice(2, 9)}`;
+  // useId() is stable across SSR + hydration (no Math.random hydration mismatch)
+  const reactId = useId();
+  const patternId = `grid-pattern-${reactId.replace(/:/g, "")}`;
   return (
     <svg
       aria-hidden="true"

@@ -6,6 +6,7 @@ import FadeIn from "@/components/fade-in";
 import MagneticButton from "@/components/magnetic-button";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildArticle, buildBreadcrumbList, buildFAQPage } from "@/lib/schema";
+import Balancer from "react-wrap-balancer";
 
 const SLUG = "/guides/outdoor-movie-rental-cost-michigan";
 const PUBLISHED = "2026-04-22";
@@ -79,7 +80,7 @@ export default function GuidePage() {
                 Guide
               </p>
               <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4 leading-tight">
-                How much does an outdoor movie rental cost in Michigan? (2026)
+                <Balancer>How much does an outdoor movie rental cost in Michigan? (2026)</Balancer>
               </h1>
               <p className="text-steel text-xs uppercase tracking-wider">
                 By <Link href="/about" className="text-oxblood hover:text-projector transition-colors">Blake Drain</Link>

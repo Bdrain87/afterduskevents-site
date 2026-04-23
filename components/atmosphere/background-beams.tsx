@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -7,6 +8,8 @@ import { cn } from "@/lib/utils";
  * Animated SVG beams converging toward bottom.
  * Pattern adapted from Aceternity UI Background Beams (https://ui.aceternity.com/components/background-beams).
  * Uses Motion for path-draw animation. Honors prefers-reduced-motion via Motion's defaults.
+ *
+ * Random transition timings are memoized per mount so Motion doesn't restart on every render.
  */
 type Props = {
   className?: string;
@@ -24,6 +27,17 @@ const paths = [
 ];
 
 export default function BackgroundBeams({ className }: Props) {
+  // Stable per-mount randomization so transitions don't restart on parent re-renders
+  const timings = useMemo(
+    () =>
+      paths.map(() => ({
+        duration: Math.random() * 10 + 10,
+        delay: Math.random() * 10,
+        y2: 93 + Math.random() * 8,
+      })),
+    [],
+  );
+
   return (
     <div
       aria-hidden="true"
@@ -54,23 +68,18 @@ export default function BackgroundBeams({ className }: Props) {
             <motion.linearGradient
               key={`grad-${idx}`}
               id={`linearGradient-${idx}`}
-              initial={{
-                x1: "0%",
-                x2: "0%",
-                y1: "0%",
-                y2: "0%",
-              }}
+              initial={{ x1: "0%", x2: "0%", y1: "0%", y2: "0%" }}
               animate={{
                 x1: ["0%", "100%"],
                 x2: ["0%", "95%"],
                 y1: ["0%", "100%"],
-                y2: ["0%", `${93 + Math.random() * 8}%`],
+                y2: ["0%", `${timings[idx].y2}%`],
               }}
               transition={{
-                duration: Math.random() * 10 + 10,
+                duration: timings[idx].duration,
                 ease: "easeInOut",
                 repeat: Infinity,
-                delay: Math.random() * 10,
+                delay: timings[idx].delay,
               }}
             >
               <stop stopColor="#6B1F1F" stopOpacity="0" />
