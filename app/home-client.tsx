@@ -16,6 +16,9 @@ import { useFitText } from "@/hooks/use-fit-text";
 import Spotlight from "@/components/atmosphere/spotlight";
 import Particles from "@/components/atmosphere/particles";
 import GridPattern from "@/components/atmosphere/grid-pattern";
+import TrustStrip from "@/components/trust-strip";
+import EventGallery from "@/components/event-gallery";
+import TestimonialsSection from "@/components/testimonials/testimonials-section";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -165,6 +168,9 @@ export default function HomeClient() {
             <p className="text-steel/35 text-[11px] tracking-[0.18em] uppercase">
               Canton, MI — Private events only — Veteran owned
             </p>
+            <div className="mt-8">
+              <TrustStrip />
+            </div>
           </div>
         </section>
 
@@ -330,6 +336,12 @@ export default function HomeClient() {
             ))}
           </div>
         </section>
+
+        {/* Past events gallery (renders only when public/images/gallery has real photos) */}
+        <EventGallery />
+
+        {/* Social proof (renders only when lib/testimonials has real entries) */}
+        <TestimonialsSection />
 
         {/* ─── 8. FINAL CTA: stark, maximum whitespace ─────────────── */}
         <section className="bg-screening flex flex-col justify-center px-4 sm:px-8 lg:px-12" style={{ minHeight: "60vh", paddingTop: "10vh", paddingBottom: "10vh" }} aria-labelledby="cta-heading">
