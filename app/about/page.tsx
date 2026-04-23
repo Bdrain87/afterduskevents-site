@@ -3,6 +3,8 @@ import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import { Shield, MapPin, FileCheck } from "lucide-react";
+import SchemaMarkup from "@/components/seo/schema-markup";
+import { buildBreadcrumbList, buildPerson } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "About",
@@ -14,6 +16,16 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <SchemaMarkup
+        id="about-schema"
+        data={[
+          buildPerson(),
+          buildBreadcrumbList([
+            { name: "Home", href: "/" },
+            { name: "About", href: "/about" },
+          ]),
+        ]}
+      />
       <Nav />
       <main className="flex-1 pt-16">
         {/* Header */}
@@ -65,17 +77,17 @@ export default function AboutPage() {
                   <ul className="space-y-4">
                     {[
                       {
-                        icon: <MapPin size={16} className="text-oxblood shrink-0 mt-0.5" aria-hidden="true" />,
+                        icon: <MapPin size={16} className="text-ember shrink-0 mt-0.5" aria-hidden="true" />,
                         label: "Service area",
                         value: "60 miles of Canton, MI",
                       },
                       {
-                        icon: <Shield size={16} className="text-oxblood shrink-0 mt-0.5" aria-hidden="true" />,
+                        icon: <Shield size={16} className="text-ember shrink-0 mt-0.5" aria-hidden="true" />,
                         label: "Ownership",
                         value: "Veteran-owned and operated",
                       },
                       {
-                        icon: <FileCheck size={16} className="text-oxblood shrink-0 mt-0.5" aria-hidden="true" />,
+                        icon: <FileCheck size={16} className="text-ember shrink-0 mt-0.5" aria-hidden="true" />,
                         label: "Coverage",
                         value: "Insured. COI on request",
                       },

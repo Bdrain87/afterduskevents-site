@@ -3,6 +3,8 @@ import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import Link from "next/link";
 import FaqAccordion from "./faq-accordion";
+import SchemaMarkup from "@/components/seo/schema-markup";
+import { buildBreadcrumbList, buildFAQPage } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -11,9 +13,21 @@ export const metadata: Metadata = {
   alternates: { canonical: "/faq" },
 };
 
+const UPDATED = "2026-04-22";
+
 export default function FaqPage() {
   return (
     <>
+      <SchemaMarkup
+        id="faq-schema"
+        data={[
+          buildFAQPage(),
+          buildBreadcrumbList([
+            { name: "Home", href: "/" },
+            { name: "FAQ", href: "/faq" },
+          ]),
+        ]}
+      />
       <Nav />
       <main className="flex-1 pt-16">
         {/* Header */}
@@ -30,6 +44,12 @@ export default function FaqPage() {
               >
                 Send us a message.
               </Link>
+            </p>
+            <p className="text-steel text-xs uppercase tracking-wider mt-6">
+              Updated{" "}
+              <time dateTime={UPDATED} className="text-steel">
+                April 2026
+              </time>
             </p>
           </div>
         </section>

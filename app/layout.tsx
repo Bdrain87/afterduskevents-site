@@ -8,6 +8,16 @@ import CursorSpotlight from "@/components/cursor-spotlight";
 import ScrollProgress from "@/components/scroll-progress";
 import LoadingScreen from "@/components/loading-screen";
 import LenisProvider from "@/components/lenis-provider";
+import StickyCTA from "@/components/sticky-cta";
+import MicrosoftClarity from "@/components/microsoft-clarity";
+import SchemaMarkup from "@/components/seo/schema-markup";
+import { ViewTransitions } from "next-view-transitions";
+import {
+  buildLocalBusiness,
+  buildOrganization,
+  buildPerson,
+  buildWebSite,
+} from "@/lib/schema";
 import "./globals.css";
 
 const inter = Inter({
@@ -77,27 +87,40 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-screening text-projector">
-        <LoadingScreen />
-        <ScrollProgress />
-        <CursorSpotlight />
-        <FilmGrain />
-        <LenisProvider>
-          {children}
-        </LenisProvider>
-        <Toaster
-          position="bottom-right"
-          toastOptions={{
-            style: { background: "#1A1A1A", border: "1px solid #2a2a2a", color: "#FAFAFA" },
-          }}
-        />
-        <Analytics />
-        <SpeedInsights />
-      </body>
-    </html>
+    <ViewTransitions>
+      <html
+        lang="en"
+        className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
+      >
+        <body className="min-h-full flex flex-col bg-screening text-projector">
+          <SchemaMarkup
+            id="site-schema"
+            data={[
+              buildOrganization(),
+              buildLocalBusiness(),
+              buildPerson(),
+              buildWebSite(),
+            ]}
+          />
+          <LoadingScreen />
+          <ScrollProgress />
+          <CursorSpotlight />
+          <FilmGrain />
+          <LenisProvider>
+            {children}
+          </LenisProvider>
+          <StickyCTA />
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              style: { background: "#1A1A1A", border: "1px solid #2a2a2a", color: "#FAFAFA" },
+            }}
+          />
+          <MicrosoftClarity />
+          <Analytics />
+          <SpeedInsights />
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

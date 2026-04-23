@@ -13,6 +13,12 @@ import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useFitText } from "@/hooks/use-fit-text";
+import Spotlight from "@/components/atmosphere/spotlight";
+import Particles from "@/components/atmosphere/particles";
+import GridPattern from "@/components/atmosphere/grid-pattern";
+import TrustStrip from "@/components/trust-strip";
+import EventGallery from "@/components/event-gallery";
+import TestimonialsSection from "@/components/testimonials/testimonials-section";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -96,29 +102,28 @@ export default function HomeClient() {
     });
   }, []);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "After Dusk Events LLC",
-    description: "Veteran-owned outdoor cinema rental for private events in Southeast Michigan.",
-    url: "https://afterduskevents.com",
-    email: "hello@afterduskevents.com",
-    address: { "@type": "PostalAddress", addressLocality: "Canton", addressRegion: "MI", postalCode: "48188", addressCountry: "US" },
-    areaServed: { "@type": "GeoCircle", geoMidpoint: { "@type": "GeoCoordinates", latitude: 42.3084, longitude: -83.4822 }, geoRadius: "96560" },
-    image: "https://afterduskevents.com/og-image.png",
-  };
+  // Sitewide org/business schema is injected via app/layout.tsx (Workstream C);
+  // homepage doesn't need to repeat it.
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Nav />
       <main className="flex-1">
 
         {/* ─── 1. HERO: full-width fitted wordmark ─────────────────── */}
         <section className="relative min-h-screen flex flex-col justify-center bg-screening overflow-hidden px-4 sm:px-8 lg:px-12">
+          {/* Atmosphere stack: subtle grid → drifting particles → spotlight → existing radial */}
+          <GridPattern
+            width={60}
+            height={60}
+            strokeDasharray="2 4"
+            className="[mask-image:radial-gradient(ellipse_at_center,white,transparent_75%)]"
+          />
+          <Particles quantity={45} vy={0.18} size={1.4} color="#FAFAFA" />
+          <Spotlight fill="rgba(107, 31, 31, 0.55)" />
           <div
             aria-hidden="true"
-            className="absolute inset-0 pointer-events-none"
+            className="absolute inset-0 pointer-events-none z-[1]"
             style={{ background: "radial-gradient(ellipse 65% 55% at 35% 25%, rgba(107,31,31,0.2) 0%, transparent 65%)" }}
           />
 
@@ -160,9 +165,12 @@ export default function HomeClient() {
                 See packages <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </Link>
             </div>
-            <p className="text-steel/35 text-[11px] tracking-[0.18em] uppercase">
+            <p className="text-steel/80 text-[11px] tracking-[0.18em] uppercase">
               Canton, MI — Private events only — Veteran owned
             </p>
+            <div className="mt-8">
+              <TrustStrip />
+            </div>
           </div>
         </section>
 
@@ -220,7 +228,7 @@ export default function HomeClient() {
                   href="/packages"
                   className="flex items-baseline gap-3 py-5 group"
                 >
-                  <span className="font-display text-[clamp(1.6rem,3.5vw,3rem)] text-projector leading-none tracking-wider group-hover:text-oxblood transition-colors duration-200 shrink-0">
+                  <span className="font-display text-[clamp(1.6rem,3.5vw,3rem)] text-projector leading-none tracking-wider group-hover:text-ember transition-colors duration-200 shrink-0">
                     {e.name}
                   </span>
                   <span className="flex-1 border-b border-dotted border-white/15 self-center mb-1 hidden sm:block" aria-hidden="true" />
@@ -229,7 +237,7 @@ export default function HomeClient() {
                   </span>
                   <ArrowRight
                     size={16}
-                    className="text-oxblood shrink-0 group-hover:translate-x-1 transition-transform duration-200"
+                    className="text-ember shrink-0 group-hover:translate-x-1 transition-transform duration-200"
                     aria-hidden="true"
                   />
                 </Link>
@@ -300,7 +308,7 @@ export default function HomeClient() {
             <h2 id="packages-heading" className="font-display text-[clamp(2rem,5vw,4.5rem)] text-projector tracking-wider leading-none">
               PICK YOUR SETUP.
             </h2>
-            <Link href="/packages" className="flex items-center gap-2 text-oxblood text-sm font-medium hover:text-projector transition-colors group">
+            <Link href="/packages" className="flex items-center gap-2 text-ember text-sm font-medium hover:text-projector transition-colors group">
               All packages <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
             </Link>
           </div>
@@ -312,22 +320,28 @@ export default function HomeClient() {
                 href={`/contact?package=${encodeURIComponent(pkg.name)}`}
                 className="flex items-center gap-4 py-6 border-b border-white/10 hover:bg-screening/40 transition-colors duration-200 group px-2 -mx-2 rounded-sm"
               >
-                <h3 className="font-display text-[clamp(1.6rem,3vw,2.8rem)] text-projector tracking-wider leading-none group-hover:text-oxblood transition-colors duration-200 shrink-0">
+                <h3 className="font-display text-[clamp(1.6rem,3vw,2.8rem)] text-projector tracking-wider leading-none group-hover:text-ember transition-colors duration-200 shrink-0">
                   {pkg.name}
                 </h3>
                 {pkg.tag && (
-                  <span className="text-oxblood text-xs font-semibold px-2.5 py-0.5 rounded-full border border-oxblood/30 shrink-0 hidden sm:inline-flex">
+                  <span className="text-ember text-xs font-semibold px-2.5 py-0.5 rounded-full border border-oxblood/30 shrink-0 hidden sm:inline-flex">
                     {pkg.tag}
                   </span>
                 )}
                 <span className="text-steel text-sm flex-1 hidden md:block">{pkg.desc}</span>
-                <span className="text-oxblood text-sm font-medium whitespace-nowrap group-hover:text-projector transition-colors duration-200">
+                <span className="text-ember text-sm font-medium whitespace-nowrap group-hover:text-projector transition-colors duration-200">
                   Get a Quote <ArrowRight size={13} className="inline group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true" />
                 </span>
               </Link>
             ))}
           </div>
         </section>
+
+        {/* Past events gallery (renders only when public/images/gallery has real photos) */}
+        <EventGallery />
+
+        {/* Social proof (renders only when lib/testimonials has real entries) */}
+        <TestimonialsSection />
 
         {/* ─── 8. FINAL CTA: stark, maximum whitespace ─────────────── */}
         <section className="bg-screening flex flex-col justify-center px-4 sm:px-8 lg:px-12" style={{ minHeight: "60vh", paddingTop: "10vh", paddingBottom: "10vh" }} aria-labelledby="cta-heading">

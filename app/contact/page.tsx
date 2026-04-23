@@ -3,7 +3,10 @@ import { Suspense } from "react";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import ContactForm from "./contact-form";
+import FormSkeleton from "@/components/skeletons/form-skeleton";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
+import SchemaMarkup from "@/components/seo/schema-markup";
+import { buildBreadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -15,6 +18,13 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <SchemaMarkup
+        id="contact-breadcrumb"
+        data={buildBreadcrumbList([
+          { name: "Home", href: "/" },
+          { name: "Contact", href: "/contact" },
+        ])}
+      />
       <Nav />
       <main className="flex-1 pt-16">
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-charcoal">
@@ -32,7 +42,7 @@ export default function ContactPage() {
         <section className="py-12 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl space-y-8">
             <PrivateEventsNotice />
-            <Suspense fallback={<div className="text-steel text-sm">Loading form...</div>}>
+            <Suspense fallback={<FormSkeleton />}>
               <ContactForm />
             </Suspense>
           </div>

@@ -14,7 +14,7 @@ export default function Footer() {
                 AFTER DUSK EVENTS
               </span>
             </div>
-            <p className="text-oxblood text-sm italic leading-relaxed font-medium">
+            <p className="text-ember text-sm italic leading-relaxed font-medium">
               Big screen. Bigger nights.
             </p>
           </div>

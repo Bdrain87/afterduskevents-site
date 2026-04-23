@@ -4,6 +4,8 @@ import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import FadeIn from "@/components/fade-in";
 import MagneticButton from "@/components/magnetic-button";
+import SchemaMarkup from "@/components/seo/schema-markup";
+import { buildBreadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Add-On Catalog",
@@ -120,6 +122,14 @@ function CategoryTable({ category }: { category: typeof categories[0] }) {
 export default function AddOnsPage() {
   return (
     <>
+      <SchemaMarkup
+        id="addons-breadcrumb"
+        data={buildBreadcrumbList([
+          { name: "Home", href: "/" },
+          { name: "Packages", href: "/packages" },
+          { name: "Add-Ons", href: "/add-ons" },
+        ])}
+      />
       <Nav />
       <main className="flex-1 pt-16">
         {/* Header */}

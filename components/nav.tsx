@@ -82,7 +82,7 @@ export default function Nav() {
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className={`py-5 text-2xl font-display tracking-wider border-b border-white/8 transition-colors hover:text-projector ${
-                  pathname.startsWith(link.href) ? "text-oxblood" : "text-steel"
+                  pathname.startsWith(link.href) ? "text-ember" : "text-steel"
                 }`}
               >
                 {link.label}

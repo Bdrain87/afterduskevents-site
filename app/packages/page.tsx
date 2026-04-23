@@ -7,6 +7,14 @@ import FadeIn from "@/components/fade-in";
 import AnimatedCard from "@/components/animated-card";
 import MagneticButton from "@/components/magnetic-button";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
+import SchemaMarkup from "@/components/seo/schema-markup";
+import BallparkTool from "@/components/packages/ballpark-tool";
+import ComparisonTable from "@/components/packages/comparison-table";
+import { corePackages, eventPackages } from "@/lib/packages";
+import {
+  buildAllServicesGraph,
+  buildBreadcrumbList,
+} from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Packages & Pricing",
@@ -15,114 +23,19 @@ export const metadata: Metadata = {
   alternates: { canonical: "/packages" },
 };
 
-const corePackages = [
-  {
-    name: "Intimate 20 ft",
-    price: "Contact for quote",
-    popular: false,
-    highlights: [
-      "3 hour event",
-      "20 ft airtight inflatable screen",
-      "4K laser projector (BenQ LU930)",
-      "2 Soundboks 4 wireless speakers",
-      "BYO Content",
-      "Water ballast, no digging required",
-    ],
-    best: "Backyards, small parties, family movie nights",
-  },
-  {
-    name: "Community 30 ft",
-    price: "Contact for quote",
-    popular: true,
-    highlights: [
-      "4 hour event",
-      "30 ft airtight inflatable screen",
-      "4K laser projector",
-      "4 Soundboks 4 speakers across two zones",
-      "1 Death From Below MK2 subwoofer",
-      "BYO Content",
-      "Coverage up to ~250 people",
-    ],
-    best: "HOA nights, block parties, church events, larger backyards",
-  },
-  {
-    name: "Indoor Winter",
-    price: "Contact for quote",
-    popular: false,
-    highlights: [
-      "3 hour event",
-      "120 inch Da-Lite fast-fold screen",
-      "4K laser projector",
-      "2 Soundboks 4 speakers",
-      "BYO Content",
-      "Works in halls, gyms, barns, large living rooms",
-    ],
-    best: "Year-round events regardless of weather",
-  },
-];
-
-const eventPackages = [
-  {
-    name: "Sports Watch Party",
-    price: "Contact for quote",
-    highlights: [
-      "4 hour event, 30 ft screen",
-      "Multi-zone Soundboks audio",
-      "DFB MK2 subwoofer",
-      "Live TV or streaming via Starlink Mini",
-    ],
-    best: "Fight nights, Super Bowl, Final Four, World Cup",
-  },
-  {
-    name: "Gaming Night",
-    price: "Contact for quote",
-    highlights: [
-      "4 hour event, 20 ft screen",
-      "Nintendo Switch OLED + Retroid Pocket 4 Pro",
-      "Wireless controllers",
-      "2 Soundboks 4 speakers",
-    ],
-    best: "Birthdays, teen events, corporate team building",
-  },
-  {
-    name: "Karaoke Night",
-    price: "Contact for quote",
-    highlights: [
-      "3 hour event, 20 ft screen",
-      "2 professional wireless microphones",
-      "Multi-zone Soundboks audio",
-      "Lightboks audio-reactive LED lighting",
-    ],
-    best: "Birthdays, bachelorette, holiday parties",
-  },
-  {
-    name: "Birthday or Graduation",
-    price: "Contact for quote",
-    highlights: [
-      "3 to 4 hour event",
-      "20 ft or 30 ft screen",
-      "Full Soundboks audio",
-      "Photo slideshow or memory reel on screen",
-    ],
-    best: "Milestone celebrations for all ages",
-  },
-  {
-    name: "Corporate or Community Org",
-    price: "Contact for quote",
-    highlights: [
-      "4 to 6 hour event, 30 ft screen",
-      "Multi-zone Soundboks audio",
-      "Wireless mic pair for speakers",
-      "Starlink Mini for presentations and live streams",
-      "Invoicing and COI support",
-    ],
-    best: "Company events, non-profits, community organizations",
-  },
-];
-
 export default function PackagesPage() {
   return (
     <>
+      <SchemaMarkup
+        id="packages-services"
+        data={[
+          ...buildAllServicesGraph(),
+          buildBreadcrumbList([
+            { name: "Home", href: "/" },
+            { name: "Packages", href: "/packages" },
+          ]),
+        ]}
+      />
       <Nav />
       <main className="flex-1 pt-16">
         {/* Header */}
@@ -175,12 +88,19 @@ export default function PackagesPage() {
                     </span>
                   )}
                   <h3 className="font-heading text-xl text-projector mb-1">{pkg.name}</h3>
-                  <p className="text-oxblood font-semibold text-lg mb-1">{pkg.price}</p>
+                  {pkg.startsAt ? (
+                    <p className="text-ember font-semibold text-lg mb-1">
+                      Starts at {pkg.startsAt}{" "}
+                      <span className="text-steel text-xs font-normal italic">· custom quote</span>
+                    </p>
+                  ) : (
+                    <p className="text-ember font-semibold text-lg mb-1">{pkg.price}</p>
+                  )}
                   <p className="text-steel text-xs mt-3 mb-4 italic">Best for: {pkg.best}</p>
                   <ul className="space-y-2 flex-1 mb-6">
                     {pkg.highlights.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-steel text-sm">
-                        <Check size={14} className="text-oxblood mt-0.5 shrink-0" aria-hidden="true" />
+                        <Check size={14} className="text-ember mt-0.5 shrink-0" aria-hidden="true" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -190,7 +110,7 @@ export default function PackagesPage() {
                     className={`inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-colors ${
                       pkg.popular
                         ? "bg-oxblood text-projector hover:bg-oxblood-deep"
-                        : "border border-oxblood text-oxblood hover:bg-oxblood hover:text-projector"
+                        : "border border-ember text-ember hover:bg-oxblood hover:border-oxblood hover:text-projector"
                     }`}
                   >
                     Request a Quote
@@ -201,6 +121,31 @@ export default function PackagesPage() {
           </div>
         </section>
 
+        {/* Quick ballpark tool */}
+        <section className="py-12 px-4 sm:px-6 lg:px-8" aria-labelledby="ballpark-heading">
+          <div className="mx-auto max-w-3xl">
+            <FadeIn>
+              <h2 id="ballpark-heading" className="sr-only">Quick ballpark</h2>
+              <BallparkTool />
+            </FadeIn>
+          </div>
+        </section>
+
+        {/* Side-by-side comparison */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="comparison-heading">
+          <div className="mx-auto max-w-5xl">
+            <FadeIn>
+              <h2 id="comparison-heading" className="font-heading text-2xl sm:text-3xl text-projector mb-3">
+                Compare core packages
+              </h2>
+              <p className="text-steel text-sm mb-6">
+                Side-by-side feature breakdown. Every event is custom-quoted.
+              </p>
+              <ComparisonTable />
+            </FadeIn>
+          </div>
+        </section>
+
         {/* Weddings teaser */}
         <section className="py-12 px-4 sm:px-6 lg:px-8 bg-charcoal">
           <FadeIn>
@@ -208,7 +153,7 @@ export default function PackagesPage() {
               <div>
                 <h2 className="font-heading text-2xl text-projector mb-1">Weddings</h2>
                 <p className="text-steel text-sm">Elopement, reception cinema, or full ceremony plus reception. Three tiers, one veteran-owned operator.</p>
-                <p className="text-oxblood font-semibold mt-1 text-sm">Contact for quote</p>
+                <p className="text-ember font-semibold mt-1 text-sm">Contact for quote</p>
               </div>
               <Link
                 href="/packages/weddings"
@@ -236,19 +181,26 @@ export default function PackagesPage() {
                   className="bg-charcoal rounded-lg p-8 flex flex-col border border-white/10 hover:border-white/20 transition-colors"
                 >
                   <h3 className="font-heading text-xl text-projector mb-1">{pkg.name}</h3>
-                  <p className="text-oxblood font-semibold text-lg mb-1">{pkg.price}</p>
+                  {pkg.startsAt ? (
+                    <p className="text-ember font-semibold text-lg mb-1">
+                      Starts at {pkg.startsAt}{" "}
+                      <span className="text-steel text-xs font-normal italic">· custom quote</span>
+                    </p>
+                  ) : (
+                    <p className="text-ember font-semibold text-lg mb-1">{pkg.price}</p>
+                  )}
                   <p className="text-steel text-xs mt-3 mb-4 italic">Best for: {pkg.best}</p>
                   <ul className="space-y-2 flex-1 mb-6">
                     {pkg.highlights.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-steel text-sm">
-                        <Check size={14} className="text-oxblood mt-0.5 shrink-0" aria-hidden="true" />
+                        <Check size={14} className="text-ember mt-0.5 shrink-0" aria-hidden="true" />
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                   <Link
                     href={`/contact?package=${encodeURIComponent(pkg.name)}`}
-                    className="inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold border border-oxblood text-oxblood hover:bg-oxblood hover:text-projector transition-colors"
+                    className="inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold border border-ember text-ember hover:bg-oxblood hover:border-oxblood hover:text-projector transition-colors"
                   >
                     Request a Quote
                   </Link>
@@ -266,7 +218,7 @@ export default function PackagesPage() {
               <p className="text-steel mb-6 text-sm leading-relaxed">
                 Popcorn, extra speakers, gaming bundles, Lightboks lighting, fog machines, and more.
               </p>
-              <Link href="/add-ons" className="text-oxblood underline-offset-4 hover:underline font-medium">
+              <Link href="/add-ons" className="text-ember underline-offset-4 hover:underline font-medium">
                 Browse the Add-On Catalog
               </Link>
             </FadeIn>
