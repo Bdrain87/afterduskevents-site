@@ -10,16 +10,16 @@ import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import BallparkTool from "@/components/packages/ballpark-tool";
 import ComparisonTable from "@/components/packages/comparison-table";
-import { corePackages, eventPackages } from "@/lib/packages";
+import { audioTiers, useCases } from "@/lib/packages";
 import {
   buildAllServicesGraph,
   buildBreadcrumbList,
 } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Packages & Pricing",
+  title: "Setup & Audio Tiers",
   description:
-    "Outdoor cinema packages for private events in Southeast Michigan. Movie nights, sports parties, gaming, weddings, corporate. Contact for quote. Canton, MI.",
+    "One 30 ft inflatable screen. Three audio tiers. Private events only in Southeast Michigan. After Dusk Events, Canton, MI.",
   alternates: { canonical: "/packages" },
 };
 
@@ -32,7 +32,7 @@ export default function PackagesPage() {
           ...buildAllServicesGraph(),
           buildBreadcrumbList([
             { name: "Home", href: "/" },
-            { name: "Packages", href: "/packages" },
+            { name: "Setup", href: "/packages" },
           ]),
         ]}
       />
@@ -43,16 +43,17 @@ export default function PackagesPage() {
           <div className="mx-auto max-w-3xl text-center">
             <FadeIn>
               <h1 className="font-display text-5xl sm:text-6xl text-projector tracking-wider mb-2">
-                PACKAGES
+                ONE SCREEN. THREE AUDIO TIERS.
               </h1>
               <span className="oxblood-rule mx-auto" />
             </FadeIn>
             <FadeIn delay={0.1}>
               <p className="text-steel text-lg leading-relaxed mt-6">
-                Every package is a private, non-ticketed event. Setup, systems test, and teardown included.
+                Every booking is a private, non-ticketed event on a 30 ft inflatable screen.
+                Pick your audio tier. Add what you need. Setup, systems test, and teardown included.
               </p>
               <p className="text-steel text-sm mt-2 italic">
-                All pricing is an estimate. Reach out for a real quote built around your event.
+                Every event is custom-quoted. Contact for a real number within 24 hours.
               </p>
             </FadeIn>
           </div>
@@ -63,42 +64,42 @@ export default function PackagesPage() {
           <PrivateEventsNotice />
         </div>
 
-        {/* Core Cinema */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="core-heading">
+        {/* Three audio tiers */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="tiers-heading">
           <div className="mx-auto max-w-7xl">
             <FadeIn>
-              <h2 id="core-heading" className="font-heading text-2xl sm:text-3xl text-projector mb-8">
-                Core Cinema
+              <h2 id="tiers-heading" className="font-heading text-2xl sm:text-3xl text-projector mb-8">
+                Audio tiers
               </h2>
             </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {corePackages.map((pkg, i) => (
+              {audioTiers.map((tier, i) => (
                 <AnimatedCard
-                  key={pkg.name}
+                  key={tier.slug}
                   delay={i * 0.08}
                   className={`rounded-lg p-8 flex flex-col ${
-                    pkg.popular
+                    tier.popular
                       ? "bg-charcoal ring-2 ring-oxblood"
                       : "bg-charcoal border border-white/10 hover:border-white/20 transition-colors"
                   }`}
                 >
-                  {pkg.popular && (
+                  {tier.popular && (
                     <span className="inline-flex self-start mb-3 bg-oxblood text-projector text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                       Most popular
                     </span>
                   )}
-                  <h3 className="font-heading text-xl text-projector mb-1">{pkg.name}</h3>
-                  {pkg.startsAt ? (
+                  <h3 className="font-heading text-xl text-projector mb-1">{tier.name}</h3>
+                  {tier.startsAt ? (
                     <p className="text-ember font-semibold text-lg mb-1">
-                      Starts at {pkg.startsAt}{" "}
+                      Starts at {tier.startsAt}{" "}
                       <span className="text-steel text-xs font-normal italic">· custom quote</span>
                     </p>
                   ) : (
-                    <p className="text-ember font-semibold text-lg mb-1">{pkg.price}</p>
+                    <p className="text-ember font-semibold text-lg mb-1">{tier.price}</p>
                   )}
-                  <p className="text-steel text-xs mt-3 mb-4 italic">Best for: {pkg.best}</p>
+                  <p className="text-steel text-xs mt-3 mb-4 italic">Best for: {tier.best}</p>
                   <ul className="space-y-2 flex-1 mb-6">
-                    {pkg.highlights.map((item) => (
+                    {tier.includes.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-steel text-sm">
                         <Check size={14} className="text-ember mt-0.5 shrink-0" aria-hidden="true" />
                         <span>{item}</span>
@@ -106,9 +107,9 @@ export default function PackagesPage() {
                     ))}
                   </ul>
                   <Link
-                    href={`/contact?package=${encodeURIComponent(pkg.name)}`}
+                    href={`/contact?package=${encodeURIComponent(tier.name)}`}
                     className={`inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-colors ${
-                      pkg.popular
+                      tier.popular
                         ? "bg-oxblood text-projector hover:bg-oxblood-deep"
                         : "border border-ember text-ember hover:bg-oxblood hover:border-oxblood hover:text-projector"
                     }`}
@@ -136,70 +137,38 @@ export default function PackagesPage() {
           <div className="mx-auto max-w-5xl">
             <FadeIn>
               <h2 id="comparison-heading" className="font-heading text-2xl sm:text-3xl text-projector mb-3">
-                Compare core packages
+                Compare audio tiers
               </h2>
               <p className="text-steel text-sm mb-6">
-                Side-by-side feature breakdown. Every event is custom-quoted.
+                Same screen. Same BYO Content rule. Sound scales with your event.
               </p>
               <ComparisonTable />
             </FadeIn>
           </div>
         </section>
 
-        {/* Weddings teaser */}
-        <section className="py-12 px-4 sm:px-6 lg:px-8 bg-charcoal">
-          <FadeIn>
-            <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-8 rounded-lg border border-oxblood/30">
-              <div>
-                <h2 className="font-heading text-2xl text-projector mb-1">Weddings</h2>
-                <p className="text-steel text-sm">Elopement, reception cinema, or full ceremony plus reception. Three tiers, one veteran-owned operator.</p>
-                <p className="text-ember font-semibold mt-1 text-sm">Contact for quote</p>
-              </div>
-              <Link
-                href="/packages/weddings"
-                className="shrink-0 inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold bg-oxblood text-projector hover:bg-oxblood-deep transition-colors"
-              >
-                See Wedding Packages
-              </Link>
-            </div>
-          </FadeIn>
-        </section>
-
-        {/* Event-type packages */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="event-heading">
+        {/* Event types */}
+        <section id="use-cases" className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="use-cases-heading">
           <div className="mx-auto max-w-7xl">
             <FadeIn>
-              <h2 id="event-heading" className="font-heading text-2xl sm:text-3xl text-projector mb-8">
-                Event-Type Packages
+              <h2 id="use-cases-heading" className="font-heading text-2xl sm:text-3xl text-projector mb-3">
+                Event types
               </h2>
+              <p className="text-steel text-sm mb-8">
+                Pick your event. We pick the right audio tier and walk you through add-ons.
+              </p>
             </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {eventPackages.map((pkg, i) => (
+              {useCases.map((uc, i) => (
                 <AnimatedCard
-                  key={pkg.name}
+                  key={uc.slug}
                   delay={(i % 2) * 0.08}
                   className="bg-charcoal rounded-lg p-8 flex flex-col border border-white/10 hover:border-white/20 transition-colors"
                 >
-                  <h3 className="font-heading text-xl text-projector mb-1">{pkg.name}</h3>
-                  {pkg.startsAt ? (
-                    <p className="text-ember font-semibold text-lg mb-1">
-                      Starts at {pkg.startsAt}{" "}
-                      <span className="text-steel text-xs font-normal italic">· custom quote</span>
-                    </p>
-                  ) : (
-                    <p className="text-ember font-semibold text-lg mb-1">{pkg.price}</p>
-                  )}
-                  <p className="text-steel text-xs mt-3 mb-4 italic">Best for: {pkg.best}</p>
-                  <ul className="space-y-2 flex-1 mb-6">
-                    {pkg.highlights.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-steel text-sm">
-                        <Check size={14} className="text-ember mt-0.5 shrink-0" aria-hidden="true" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <h3 id={uc.slug} className="font-heading text-xl text-projector mb-2">{uc.name}</h3>
+                  <p className="text-steel text-sm leading-relaxed mb-5 flex-1">{uc.desc}</p>
                   <Link
-                    href={`/contact?package=${encodeURIComponent(pkg.name)}`}
+                    href={`/contact?package=${encodeURIComponent(uc.name)}`}
                     className="inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold border border-ember text-ember hover:bg-oxblood hover:border-oxblood hover:text-projector transition-colors"
                   >
                     Request a Quote
@@ -216,7 +185,7 @@ export default function PackagesPage() {
             <FadeIn>
               <h2 className="font-heading text-2xl text-projector mb-3">Need extras?</h2>
               <p className="text-steel mb-6 text-sm leading-relaxed">
-                Popcorn, extra speakers, gaming bundles, Lightboks lighting, fog machines, and more.
+                Karaoke, drone video, popcorn, cornhole, photo backdrop, string lights, patio heater, bug zapper, and more.
               </p>
               <Link href="/add-ons" className="text-ember underline-offset-4 hover:underline font-medium">
                 Browse the Add-On Catalog

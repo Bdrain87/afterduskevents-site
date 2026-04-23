@@ -3,14 +3,14 @@ import NumberTicker from "@/components/number-ticker";
 import { testimonialCount } from "@/lib/testimonials";
 
 type Props = {
-  /** Override events-completed count when known. Falls back to a launch-floor value if no testimonials yet. */
+  /** Override events-completed count when known. Pass the real cumulative count; strip hides the count line when 0. */
   eventsCompleted?: number;
   className?: string;
 };
 
 export default function TrustStrip({ eventsCompleted, className }: Props) {
-  // Default to a small floor (1) while testimonials are placeholders so the ticker still animates.
-  const count = eventsCompleted ?? Math.max(1, testimonialCount());
+  // Show a real count or nothing. No fake floor — the {count > 0 && ...} guard below hides the line when 0.
+  const count = eventsCompleted ?? testimonialCount();
 
   return (
     <div

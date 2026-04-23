@@ -3,50 +3,47 @@ export type Faq = {
   a: string;
 };
 
+/**
+ * FAQs reflect After Dusk Events' real operations only.
+ * Anything Blake hasn't confirmed (power solution brand, rain-reschedule policy specifics,
+ * exact deposit terms, etc.) stays out of this file until he supplies it.
+ */
 export const faqs: Faq[] = [
   {
     q: "Why is every price a starting estimate?",
-    a: "Every event is different. Date, distance, duration, venue requirements, and add-ons all change the number. Every booking gets a custom quote from Blake. There is no automated calculator.",
+    a: "Every event is different. Date, distance, duration, venue, and add-ons all change the number. Every booking gets a custom quote from Blake. There is no automated calculator.",
   },
   {
     q: "Can I sell tickets or charge admission?",
-    a: "No. All After Dusk Events bookings are for private, non-ticketed, non-admission-charged gatherings. Selling tickets, charging admission, taking donations tied to entry, or advertising to the general public turns a private screening into a public performance and triggers federal licensing obligations outside the scope of our service. The Service Agreement and Private Event Acknowledgment prohibit ticketed use. Violations void the agreement and shift full liability to the client.",
+    a: "No. All After Dusk Events bookings are for private, non-ticketed, non-admission-charged gatherings. Selling tickets, charging admission, taking donations tied to entry, or advertising to the general public turns a private screening into a public performance and triggers federal licensing obligations outside the scope of our service. Violations void the Service Agreement and shift full liability to the client.",
   },
   {
     q: "How far do you travel?",
-    a: "Anywhere inside 60 miles of Canton, MI. Beyond that, contact Blake for a custom quote with a travel fee.",
+    a: "Inside 60 miles of Canton, MI, no separate travel fee. Beyond that, contact Blake for a custom quote with travel.",
   },
   {
-    q: "Do we need to provide power?",
-    a: "No. Dual power comes with every event: Honda generator plus EcoFlow silent battery backup. Zero venue dependency.",
+    q: "Do we bring our own content?",
+    a: "Yes. Stream from your own accounts: Netflix, Disney+, YouTube, Apple TV+, HBO Max, or whatever you subscribe to. Same rule applies to karaoke — we use YouTube karaoke tracks with our 2 wireless mics as an add-on. For console gaming you either use our 8-bit retro system with 4 wireless controllers, or you bring your own PlayStation or Xbox and staff connects it for you.",
   },
   {
-    q: "Do we need wifi?",
-    a: "No. Starlink Mini is included on every event. If your venue wifi goes down, we do not.",
-  },
-  {
-    q: "Can we rent without a movie license?",
-    a: "Yes. We are a BYO Content business. You bring your own movie, show, slideshow, stream, or game feed. You supply the content and confirm you have the right to show it privately. We run the equipment.",
-  },
-  {
-    q: "What if it rains?",
-    a: "We monitor forecasts 72 hours out. If we call the event, you get a free reschedule within 6 months. Our Weather Policy is in the Service Agreement.",
+    q: "What audio tiers do you offer?",
+    a: "Three tiers on the same 30 ft screen: single speaker, two speakers, or two speakers plus a Death From Below subwoofer. The subwoofer tier is the right call for fight nights, dance floors, and music-heavy events where bass matters.",
   },
   {
     q: "Can we hook up our own console or laptop?",
-    a: "Yes, with a signed BYO Console Hookup Waiver. It is a $75 add-on.",
+    a: "Yes. Staff connects your PlayStation, Xbox, or laptop for you. A BYO Console Hookup Waiver is signed at the event. Priced at quote.",
   },
   {
-    q: "Do you do indoor events?",
-    a: "Yes. The Indoor Winter package uses a 120 inch Da-Lite fast-fold screen. Works in community rooms, church halls, gyms, large living rooms, and barns. Year-round, weather-proof.",
+    q: "Do you offer karaoke?",
+    a: "Yes, as an add-on: YouTube karaoke plus two wireless mics. BYO content rule applies — you pick the tracks.",
   },
   {
-    q: "Is the audio loud enough for a big crowd?",
-    a: "Yes. Four Soundboks 4 speakers cover up to ~250 people. Add extra Soundboks zones or the DFB MK2 subwoofer for larger crowds or dance floors.",
+    q: "Can you handle cold weather and bugs?",
+    a: "Patio heater and bug zapper are both available as add-ons. Ask Blake at quote time.",
   },
   {
     q: "Do you need to stake the screen?",
-    a: "Most of the time, no. Water ballast setup handles most sites including golf courses, vineyards, barns, hardscape, and private estates. If stakes are required by weather or venue, you call Miss Dig 811 at least 3 business days ahead and provide the ticket number and visible markings.",
+    a: "Most of the time, no. Water ballast setup handles most sites including golf courses, vineyards, barns, hardscape, and private estates. If stakes are required by weather or venue, the client calls Miss Dig 811 at least 3 business days ahead and provides the ticket number and visible markings.",
   },
   {
     q: "Are you insured?",
@@ -54,6 +51,10 @@ export const faqs: Faq[] = [
   },
   {
     q: "Do you handle weddings?",
-    a: "Yes. Three tiers: Elopement, Wedding Reception Cinema, and Wedding Full Day. See the Weddings page for full details.",
+    a: "Yes. Wedding receptions run on the same 30 ft screen with your chosen audio tier (most wedding receptions go with two speakers plus the Death From Below subwoofer). Wedding-relevant add-ons include early setup, late teardown, photo area with backdrop, ambient string lighting, and patio heater.",
+  },
+  {
+    q: "What if it rains?",
+    a: "Contact Blake to confirm the weather policy that applies to your booking. Rain policy specifics are spelled out in the Service Agreement that comes with your quote.",
   },
 ];

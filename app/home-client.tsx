@@ -44,18 +44,19 @@ const statements = [
 ];
 
 const eventTypes = [
-  { name: "Backyard Movie Night",    desc: "Your lawn. Our cinema. Bring the chairs." },
-  { name: "Sports Watch Party",      desc: "Fight night, playoffs, Super Bowl. Big screen, bigger reactions." },
-  { name: "Wedding Reception",       desc: "Dance floor audio, first-dance reel, ceremony sound. All handled." },
-  { name: "Gaming Night",            desc: "Console gaming and a screen no one forgets." },
-  { name: "Birthday or Graduation",  desc: "A night your guests talk about long after the cake is gone." },
-  { name: "Corporate Event",         desc: "Company screenings, presentations, team events. Fully insured." },
+  { name: "Movie Night",        desc: "Your yard. Our cinema. Bring your own content." },
+  { name: "Sports Watch Party", desc: "Game day, bigger than any bar." },
+  { name: "Fight Night",        desc: "UFC, boxing, WWE. Built for the bass drop." },
+  { name: "Gaming Night",       desc: "8-bit retro with 4 controllers, or your PS/Xbox with staff hookup." },
+  { name: "Wedding Reception",  desc: "Dance floor audio and a first-dance reel on a 30 ft screen." },
+  { name: "Graduation Party",   desc: "Photo reel and a movie all night." },
+  { name: "Get-together",       desc: "Birthdays, holidays, any private gathering." },
 ];
 
 const packages = [
-  { name: "Community 30 ft", tag: "Most popular", desc: "Thirty-foot screen. Concert sound. Up to 250 people.", featured: true },
-  { name: "Intimate 20 ft",  tag: null,           desc: "Twenty-foot screen. Backyards and small venues." },
-  { name: "Indoor Winter",   tag: null,           desc: "Year-round, weather-proof. Halls, gyms, barns." },
+  { name: "30 ft + Two Speakers + Sub", tag: "Most popular", desc: "Two speakers plus Death From Below subwoofer. Dance-floor audio, fight-night bass.", featured: true },
+  { name: "30 ft + Two Speakers",       tag: null,           desc: "Standard two-speaker setup. Covers most outdoor events." },
+  { name: "30 ft + Single Speaker",     tag: null,           desc: "Intimate audio for small gatherings and tight backyards." },
 ];
 
 export default function HomeClient() {
@@ -158,7 +159,7 @@ export default function HomeClient() {
               You bring the guests. We bring everything else.
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4 mb-10">
-              <ShimmerButton onClick={() => window.location.href = "/contact"}>
+              <ShimmerButton href="/contact">
                 Get a Quote
               </ShimmerButton>
               <Link href="/packages" className="inline-flex items-center gap-2 text-steel hover:text-projector text-sm font-medium transition-colors py-4 group">

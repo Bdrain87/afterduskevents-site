@@ -2,7 +2,11 @@
  * Past-event gallery data. Drop image files into `public/images/gallery/` and
  * reference them here. Filename pattern: `{event-type}-{location}-{YYYY-MM-DD}.avif`
  *
- * For each entry, alt text should DESCRIBE the photo (Vision AI flags mismatches).
+ * The 30 ft studio render lives at `public/images/setup/30ft-screen-studio.avif` and
+ * is the first real entry. Other entries are empty-src placeholders that filter out
+ * at render time until Blake drops real event photos.
+ *
+ * For each entry, alt text should DESCRIBE the photo honestly — no fabricated gear.
  */
 export type GalleryItem = {
   src: string;
@@ -15,69 +19,65 @@ export type GalleryItem = {
   blurDataURL?: string;
   /** Layout hint: "wide" spans 2 columns in bento, "tall" spans 2 rows */
   span?: "wide" | "tall" | "feature";
-  /** Marks AI-generated placeholder vs. real event photo */
-  isAIPlaceholder?: boolean;
   /** Marks the hero shot — only one entry should set this true */
   isHero?: boolean;
 };
 
-/**
- * Placeholder slots — replace `src` with `/images/gallery/{filename}.avif`
- * when real photos arrive. Until then, entries with empty `src` are filtered
- * out at render time so the gallery just renders the available items.
- */
 export const gallery: GalleryItem[] = [
   {
+    // TODO: Blake — save the 30 ft studio render you sent to `public/images/setup/30ft-screen-studio.avif`
+    // then replace the empty src below. Until then this entry stays hidden.
     src: "",
-    alt: "Hero photo of a 30-foot inflatable cinema screen at dusk in a Canton backyard",
-    eventType: "Backyard Movie Night",
-    location: "Canton, MI",
+    alt: "After Dusk Events 30 foot inflatable outdoor cinema screen, studio render with person at base for scale",
+    eventType: "The 30 ft",
+    location: "Studio",
     span: "feature",
     isHero: true,
   },
+  // Empty-src placeholders below — filtered out at render until Blake drops real event photos.
   {
     src: "",
-    alt: "Wedding reception cinema with screen displaying first dance reel",
-    eventType: "Wedding",
-    location: "Plymouth, MI",
+    alt: "Backyard movie night with 30 ft inflatable screen at dusk",
+    eventType: "Movie Night",
+    location: "Canton, MI",
     span: "wide",
   },
   {
     src: "",
-    alt: "Soundboks 4 speakers and projector setup detail at sunset",
-    eventType: "Equipment Detail",
-    location: "Canton, MI",
-  },
-  {
-    src: "",
-    alt: "HOA block-party movie night with full audience seated on lawn",
-    eventType: "HOA or Neighborhood",
-    location: "Northville, MI",
-    span: "tall",
-  },
-  {
-    src: "",
-    alt: "Indoor winter setup with 120-inch fast-fold screen in a community hall",
-    eventType: "Indoor Winter",
+    alt: "Wedding reception with 30 ft screen and dance-floor audio",
+    eventType: "Wedding Reception",
     location: "Ann Arbor, MI",
   },
   {
     src: "",
-    alt: "Sports watch party with Soundboks audio and live game on screen",
+    alt: "Fight night watch party with Death From Below subwoofer and packed crowd",
+    eventType: "Fight Night",
+    location: "Plymouth, MI",
+    span: "tall",
+  },
+  {
+    src: "",
+    alt: "Graduation party with photo reel on the 30 ft screen",
+    eventType: "Graduation Party",
+    location: "Northville, MI",
+  },
+  {
+    src: "",
+    alt: "Gaming night with the 8-bit retro system and wireless controllers on the big screen",
+    eventType: "Gaming Night",
+    location: "Canton, MI",
+  },
+  {
+    src: "",
+    alt: "Sports watch party with the 30 ft screen and concert-level audio",
     eventType: "Sports Watch Party",
     location: "Detroit, MI",
   },
   {
     src: "",
-    alt: "Birthday party at dusk with fairy-light strung backyard and movie playing",
-    eventType: "Birthday or Graduation",
+    alt: "Glow party with blacklights and neon kit on the 30 ft screen",
+    eventType: "Get-together",
     location: "Birmingham, MI",
-  },
-  {
-    src: "",
-    alt: "Corporate event with multi-zone Soundboks audio and presentation on screen",
-    eventType: "Corporate or Community Org",
-    location: "Novi, MI",
   },
 ];
 

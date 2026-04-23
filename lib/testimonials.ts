@@ -47,7 +47,7 @@ export const testimonials: Testimonial[] = [
     id: "placeholder-3",
     quote: "Placeholder testimonial — Blake to replace with third real customer quote.",
     author: "Third Customer Name",
-    eventType: "Wedding Reception Cinema",
+    eventType: "Wedding Reception",
     location: "Northville, MI",
     rating: 5,
     isPlaceholder: true,

@@ -62,9 +62,10 @@ export default function AboutPage() {
                   Every arrival is 3 hours before the first guest walks in.
                 </p>
                 <p>
-                  We serve residential, HOA, school, corporate, and wedding clients across the greater
-                  Detroit and Ann Arbor area. If it is within 60 miles of Canton, we can be there.
-                  Proudly veteran-owned.
+                  We serve private residential events, wedding receptions, graduation parties, and
+                  get-togethers of all kinds across the greater Detroit and Ann Arbor area. Movie
+                  nights, gaming nights, sports watch parties, fight nights — anywhere within
+                  60 miles of Canton. Proudly veteran-owned.
                 </p>
               </div>
 

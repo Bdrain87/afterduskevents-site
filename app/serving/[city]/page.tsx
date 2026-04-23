@@ -12,7 +12,7 @@ import {
   buildBreadcrumbList,
   buildCityServicePage,
 } from "@/lib/schema";
-import { corePackages } from "@/lib/packages";
+import { audioTiers } from "@/lib/packages";
 import { Check, MapPin } from "lucide-react";
 import Balancer from "react-wrap-balancer";
 
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const city = getCity(slug);
   if (!city) return {};
   const title = `Outdoor Movie Rentals in ${city.name}, MI`;
-  const description = `Premium outdoor cinema and inflatable movie screen rentals serving ${city.name}, MI. 4K laser projection, Soundboks audio, water-ballast setup. Veteran-owned. Quote in 24 hours.`;
+  const description = `Outdoor cinema and private event rentals serving ${city.name}, MI. 30 ft inflatable screen with three audio tiers up to a Death From Below subwoofer. Veteran-owned. Quote in 24 hours.`;
   return {
     title,
     description,
@@ -103,10 +103,8 @@ export default async function CityPage({ params }: Params) {
                 {city.distanceMiles === 0
                   ? "home base for After Dusk Events"
                   : `${city.distanceMiles} miles from our Canton home base, well inside our 60-mile service radius`}
-                . Every {city.name} booking gets the same setup playbook: arrival three hours
-                before guests, dual power redundancy via Honda generator and EcoFlow battery,
-                Starlink Mini for content streaming, and a complete systems test before the
-                first reel rolls.
+                . Every {city.name} booking is a 30 ft inflatable screen with one of three audio tiers,
+                set up on site with water ballast and a complete systems test before the first reel rolls.
               </p>
               <p>
                 We run private events only — backyards, weddings, corporate gatherings, HOA
@@ -133,33 +131,33 @@ export default async function CityPage({ params }: Params) {
           </div>
         </section>
 
-        {/* Packages */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="city-packages-heading">
+        {/* Audio tiers */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="city-tiers-heading">
           <div className="mx-auto max-w-7xl">
             <FadeIn>
-              <h2 id="city-packages-heading" className="font-heading text-2xl sm:text-3xl text-projector mb-3">
-                Packages available in {city.name}
+              <h2 id="city-tiers-heading" className="font-heading text-2xl sm:text-3xl text-projector mb-3">
+                Audio tiers available in {city.name}
               </h2>
               <p className="text-steel text-sm mb-8">
-                Three core tiers. Every {city.name} booking is custom quoted around your event.
+                One 30 ft screen. Three audio tiers. Every {city.name} booking is custom quoted around your event.
               </p>
             </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {corePackages.map((pkg) => (
+              {audioTiers.map((tier) => (
                 <div
-                  key={pkg.slug}
+                  key={tier.slug}
                   className={`rounded-lg p-6 flex flex-col bg-screening ${
-                    pkg.popular
+                    tier.popular
                       ? "ring-2 ring-oxblood"
                       : "border border-white/10 hover:border-white/20 transition-colors"
                   }`}
                 >
-                  <h3 className="font-heading text-lg text-projector mb-1">{pkg.name}</h3>
-                  <p className="text-steel text-xs mb-4 italic">Best for: {pkg.best}</p>
+                  <h3 className="font-heading text-lg text-projector mb-1">{tier.name}</h3>
+                  <p className="text-steel text-xs mb-4 italic">Best for: {tier.best}</p>
                   <Link
-                    href={`/contact?package=${encodeURIComponent(pkg.name)}&location=${encodeURIComponent(city.name)}`}
+                    href={`/contact?package=${encodeURIComponent(tier.name)}&location=${encodeURIComponent(city.name)}`}
                     className={`mt-auto inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors ${
-                      pkg.popular
+                      tier.popular
                         ? "bg-oxblood text-projector hover:bg-oxblood-deep"
                         : "border border-ember text-ember hover:bg-oxblood hover:border-oxblood hover:text-projector"
                     }`}

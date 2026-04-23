@@ -10,7 +10,7 @@ import { buildBreadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Add-On Catalog",
   description:
-    "Customize your outdoor cinema event with audio upgrades, lighting, gaming, concessions, and more. After Dusk Events, Canton, MI.",
+    "Customize your outdoor cinema event: karaoke, drone video, gaming, backyard games, popcorn, photo backdrop, string lights, patio heater, and more. After Dusk Events, Canton, MI.",
   alternates: { canonical: "/add-ons" },
 };
 
@@ -18,71 +18,61 @@ const categories = [
   {
     name: "Entertainment",
     items: [
-      { item: "Gaming bundle", bestFor: "Birthdays, corporate, family events" },
-      { item: "BYO console hookup plus waiver", bestFor: "Hardcore gamers bringing their own gear" },
-      { item: "Second feature or extended runtime", bestFor: "Double features, long events" },
-      { item: "Live TV or sports streaming upgrade", bestFor: "Sports nights, live event watch parties" },
-    ],
-  },
-  {
-    name: "Audio and Lighting",
-    items: [
-      { item: "Extra Soundboks zone", bestFor: "Larger layouts, multi-area events" },
-      { item: "Extra DFB MK2 subwoofer", bestFor: "Bass-heavy events, dance floors" },
-      { item: "Lightboks pair", bestFor: "Night mood, dance floor energy" },
-      { item: "Wireless mic pair", bestFor: "Speeches, ceremonies, karaoke" },
-      { item: "Fog machine", bestFor: "Dramatic moments, dance floor" },
-    ],
-  },
-  {
-    name: "Wedding Specific",
-    items: [
-      { item: "Ceremony sound setup", bestFor: "Clean vows audio and processional music" },
-      { item: "First dance projected film", bestFor: "Love-story reel during first dance" },
-      { item: "Reception dance floor Soundboks and Lightboks zone", bestFor: "Premium dance floor" },
-      { item: "Late night after-party bass drop", bestFor: "After-dinner energy shift" },
-      { item: "Brunch projection loop", bestFor: "Next-day brunch recap loops" },
+      { item: "8-bit retro system + 4 wireless controllers", bestFor: "Birthdays, family nights, casual gaming" },
+      { item: "BYO console hookup (PlayStation / Xbox, staff-connected)", bestFor: "Gamers bringing their own gear" },
+      { item: "YouTube karaoke + 2 wireless mics", bestFor: "Any event, any age" },
+      { item: "Drone video and photos (staff-operated only)", bestFor: "Weddings, big events, memories you want recorded" },
+      { item: "Cornhole", bestFor: "Daytime / pre-event activation" },
+      { item: "Can jam", bestFor: "Daytime / pre-event activation" },
+      { item: "Ladder ball", bestFor: "Daytime / pre-event activation" },
     ],
   },
   {
     name: "Concessions",
     items: [
-      { item: "Popcorn station", bestFor: "Movie nights" },
-      { item: "Canned drinks (50 ct)", bestFor: "Any event with refreshments" },
-      { item: "Packaged candy bar", bestFor: "Birthdays, family events" },
-      { item: "Concession combo", bestFor: "Turnkey food and drink setup" },
+      { item: "Popcorn machine rental", bestFor: "Movie nights, birthdays, classic cinema feel" },
+      { item: "Cooler rental (you supply drinks, ice, popcorn supplies)", bestFor: "Outdoor events" },
     ],
   },
   {
-    name: "Party Extras",
+    name: "Atmosphere",
     items: [
-      { item: "Glow kit (sticks, glow balloons, blacklight)", bestFor: "Teen and tween parties" },
-      { item: "Yard games", bestFor: "Pre-event and daytime activation" },
-      { item: "Early setup (2 hr)", bestFor: "Tight venues, complex layouts" },
+      { item: "Ambient string lighting", bestFor: "Dusk weddings, dinner parties, backyard vibes" },
+      { item: "Blacklights", bestFor: "Teen birthdays, graduations, glow parties — pairs with the glow bundle" },
+      { item: "Glow sticks, bracelets, necklaces", bestFor: "Teen / tween parties, reception late-night energy" },
+      { item: "Photo area with backdrop", bestFor: "Weddings, graduations, memory-driven events" },
+    ],
+  },
+  {
+    name: "Comfort",
+    items: [
+      { item: "Patio heater", bestFor: "Cool-weather evenings" },
+      { item: "Bug zapper", bestFor: "Any outdoor event, summer months" },
+    ],
+  },
+  {
+    name: "Seating & surfaces",
+    items: [
+      { item: "Folding table, 6 ft", bestFor: "Food service, concessions, gift table" },
+      { item: "Folding table, 4 ft", bestFor: "Smaller concessions" },
+      { item: "Folding table, 4 ft round", bestFor: "Wedding / reception seating" },
+    ],
+  },
+  {
+    name: "Service extensions",
+    items: [
+      { item: "Early setup", bestFor: "Weddings, complex venues, tight timelines" },
+      { item: "Late teardown", bestFor: "Late-running events, weddings" },
     ],
   },
 ];
 
 const bundles = [
   {
-    name: "Wedding Reception Pro",
-    includes: "Ceremony sound, first dance film, dance floor zone, late night bass",
-  },
-  {
-    name: "Sports Night Premium",
-    includes: "Extra DFB MK2, live TV upgrade, concession combo",
-  },
-  {
-    name: "Gaming Party Max",
-    includes: "Gaming bundle, BYO hookup, glow kit, extra Soundboks zone",
-  },
-  {
-    name: "Karaoke Premium",
-    includes: "Wireless mic pair, Lightboks pair, fog machine",
-  },
-  {
-    name: "Backyard Family Combo",
-    includes: "Popcorn, canned drinks, yard games, glow kit",
+    name: "Blacklight + Neon Kit",
+    includes:
+      "Blacklights + glow sticks + glow bracelets + glow necklaces, priced as one line.",
+    bestFor: "Teen birthdays, graduations, bachelorettes, post-prom, Halloween",
   },
 ];
 
@@ -126,7 +116,7 @@ export default function AddOnsPage() {
         id="addons-breadcrumb"
         data={buildBreadcrumbList([
           { name: "Home", href: "/" },
-          { name: "Packages", href: "/packages" },
+          { name: "Setup", href: "/packages" },
           { name: "Add-Ons", href: "/add-ons" },
         ])}
       />
@@ -145,7 +135,7 @@ export default function AddOnsPage() {
             </FadeIn>
             <FadeIn delay={0.1}>
               <p className="text-projector/70 text-lg leading-relaxed mt-6">
-                Every add-on is quoted with your package. Contact Blake for a real total.
+                Every add-on is quoted with your setup. Contact Blake for a real total.
               </p>
             </FadeIn>
           </div>
@@ -160,15 +150,15 @@ export default function AddOnsPage() {
           </div>
         </section>
 
-        {/* Signature Bundles */}
+        {/* Bundles */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="bundles-heading">
           <div className="mx-auto max-w-5xl">
             <FadeIn>
               <h2 id="bundles-heading" className="font-heading text-2xl text-projector mb-2">
-                Signature Bundles
+                Bundles
               </h2>
               <p className="text-steel text-sm mb-8">
-                Pre-built combinations. Ask Blake for bundle pricing.
+                Pre-built combos. Ask Blake for bundle pricing.
               </p>
             </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -176,7 +166,8 @@ export default function AddOnsPage() {
                 <FadeIn key={b.name} delay={i * 0.06}>
                   <div className="bg-screening rounded-lg p-6 border border-white/10 hover:border-oxblood/30 transition-colors h-full">
                     <h3 className="font-heading text-base text-projector mb-2">{b.name}</h3>
-                    <p className="text-steel text-sm leading-relaxed">{b.includes}</p>
+                    <p className="text-steel text-sm leading-relaxed mb-2">{b.includes}</p>
+                    <p className="text-steel text-xs italic">Best for: {b.bestFor}</p>
                   </div>
                 </FadeIn>
               ))}
