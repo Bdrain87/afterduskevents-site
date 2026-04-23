@@ -71,7 +71,7 @@ export default function GuidesIndexPage() {
                   </div>
                   <ArrowRight
                     size={20}
-                    className="text-oxblood shrink-0 mt-1 transition-transform group-hover:translate-x-1"
+                    className="text-ember shrink-0 mt-1 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"
                   />
                 </Link>

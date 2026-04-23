@@ -20,6 +20,8 @@
   --color-silver: #B8B8B8;
   --color-oxblood: #6B1F1F;
   --color-oxblood-deep: #4A0E0E;
+  /* Brighter sibling for foreground text on dark backgrounds — passes WCAG AA (~5.1:1 on screening) */
+  --color-ember: #DD5454;
   --color-cream: #F5F1EC;
   --color-projector: #FAFAFA;
 

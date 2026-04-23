@@ -20,7 +20,7 @@ export default function BallparkTool() {
   return (
     <div className="rounded-2xl border border-white/10 bg-charcoal p-6 sm:p-8 shadow-[0_24px_48px_rgba(0,0,0,0.4)]">
       <div className="flex items-center gap-2 mb-1">
-        <Sparkles size={16} className="text-oxblood" aria-hidden="true" />
+        <Sparkles size={16} className="text-ember" aria-hidden="true" />
         <h3 className="font-heading text-lg text-projector">Quick ballpark</h3>
       </div>
       <p className="text-steel text-xs mb-5 leading-relaxed">
@@ -73,7 +73,7 @@ export default function BallparkTool() {
       <div className="mt-6">
         {result ? (
           <div className="rounded-lg border border-oxblood/40 bg-screening p-5">
-            <p className="text-xs uppercase tracking-wider text-oxblood font-semibold mb-1">
+            <p className="text-xs uppercase tracking-wider text-ember font-semibold mb-1">
               Suggested setup
             </p>
             <p className="font-heading text-projector text-lg mb-2">{result.name}</p>

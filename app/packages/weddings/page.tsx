@@ -100,7 +100,7 @@ export default function WeddingsPage() {
                   <ul className="space-y-2.5 flex-1 mt-5 mb-6">
                     {tier.includes.map((item) => (
                       <li key={item} className="flex items-start gap-2.5 text-steel text-sm">
-                        <Check size={14} className="text-oxblood mt-0.5 shrink-0" aria-hidden="true" />
+                        <Check size={14} className="text-ember mt-0.5 shrink-0" aria-hidden="true" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -110,7 +110,7 @@ export default function WeddingsPage() {
                     className={`inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-colors ${
                       tier.popular
                         ? "bg-oxblood text-projector hover:bg-oxblood-deep"
-                        : "border border-oxblood text-oxblood hover:bg-oxblood hover:text-projector"
+                        : "border border-ember text-ember hover:bg-oxblood hover:border-oxblood hover:text-projector"
                     }`}
                   >
                     {tier.cta}

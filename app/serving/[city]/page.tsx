@@ -64,7 +64,7 @@ export default async function CityPage({ params }: Params) {
         <section className="py-24 px-4 sm:px-6 lg:px-8 bg-charcoal">
           <div className="mx-auto max-w-3xl">
             <FadeIn>
-              <p className="text-oxblood text-xs tracking-[0.2em] uppercase mb-3 inline-flex items-center gap-2">
+              <p className="text-ember text-xs tracking-[0.2em] uppercase mb-3 inline-flex items-center gap-2">
                 <MapPin size={14} aria-hidden="true" />
                 {city.county} County, MI
               </p>
@@ -123,7 +123,7 @@ export default async function CityPage({ params }: Params) {
                 <ul className="space-y-1.5">
                   {city.featuredVenues.map((v) => (
                     <li key={v} className="flex items-start gap-2 text-sm">
-                      <Check size={14} className="text-oxblood mt-0.5 shrink-0" aria-hidden="true" />
+                      <Check size={14} className="text-ember mt-0.5 shrink-0" aria-hidden="true" />
                       <span>{v}</span>
                     </li>
                   ))}
@@ -161,7 +161,7 @@ export default async function CityPage({ params }: Params) {
                     className={`mt-auto inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors ${
                       pkg.popular
                         ? "bg-oxblood text-projector hover:bg-oxblood-deep"
-                        : "border border-oxblood text-oxblood hover:bg-oxblood hover:text-projector"
+                        : "border border-ember text-ember hover:bg-oxblood hover:border-oxblood hover:text-projector"
                     }`}
                   >
                     Quote for {city.name}
@@ -190,7 +190,7 @@ export default async function CityPage({ params }: Params) {
                       href={`/serving/${c.slug}`}
                       className="inline-flex items-center gap-1.5 text-sm text-steel hover:text-projector border border-white/10 hover:border-oxblood/40 rounded-full px-4 py-1.5 transition-colors"
                     >
-                      <MapPin size={12} className="text-oxblood" aria-hidden="true" />
+                      <MapPin size={12} className="text-ember" aria-hidden="true" />
                       {c.name}
                     </Link>
                   </li>

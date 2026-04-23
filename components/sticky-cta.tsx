@@ -80,7 +80,7 @@ export default function StickyCTA() {
                     href="/contact"
                     className="flex items-center gap-3 rounded-lg p-4 bg-screening border border-oxblood/40 text-projector hover:border-oxblood transition-colors"
                   >
-                    <MessageSquare size={18} className="text-oxblood" aria-hidden="true" />
+                    <MessageSquare size={18} className="text-ember" aria-hidden="true" />
                     <div>
                       <div className="font-heading text-base">Quote form</div>
                       <div className="text-steel text-xs">3 quick steps · response in 24h</div>
@@ -92,7 +92,7 @@ export default function StickyCTA() {
                     href="mailto:hello@afterduskevents.com"
                     className="flex items-center gap-3 rounded-lg p-4 bg-screening border border-white/10 text-projector hover:border-oxblood/40 transition-colors"
                   >
-                    <Mail size={18} className="text-oxblood" aria-hidden="true" />
+                    <Mail size={18} className="text-ember" aria-hidden="true" />
                     <div>
                       <div className="font-heading text-base">Email Blake</div>
                       <div className="text-steel text-xs">hello@afterduskevents.com</div>
@@ -104,7 +104,7 @@ export default function StickyCTA() {
                     href="sms:+17347760000"
                     className="flex items-center gap-3 rounded-lg p-4 bg-screening border border-white/10 text-projector hover:border-oxblood/40 transition-colors"
                   >
-                    <Phone size={18} className="text-oxblood" aria-hidden="true" />
+                    <Phone size={18} className="text-ember" aria-hidden="true" />
                     <div>
                       <div className="font-heading text-base">Text Blake</div>
                       <div className="text-steel text-xs">SMS for fastest reply</div>

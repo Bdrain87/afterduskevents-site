@@ -33,7 +33,7 @@ export default function ProgressIndicator({ current, labels = DEFAULT_LABELS }: 
               <span
                 className={[
                   "text-xs uppercase tracking-wider font-medium hidden sm:inline-block",
-                  isActive ? "text-projector" : isComplete ? "text-steel" : "text-steel/60",
+                  isActive ? "text-projector" : isComplete ? "text-projector" : "text-steel",
                 ].join(" ")}
               >
                 {label}

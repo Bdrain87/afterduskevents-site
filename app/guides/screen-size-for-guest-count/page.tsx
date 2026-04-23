@@ -74,12 +74,12 @@ export default function GuidePage() {
         <article className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl">
             <FadeIn>
-              <p className="text-oxblood text-xs tracking-[0.2em] uppercase mb-3">Guide</p>
+              <p className="text-ember text-xs tracking-[0.2em] uppercase mb-3">Guide</p>
               <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4 leading-tight">
                 <Balancer>What size outdoor movie screen do I need for my guest count?</Balancer>
               </h1>
               <p className="text-steel text-xs uppercase tracking-wider">
-                By <Link href="/about" className="text-oxblood hover:text-projector transition-colors">Blake Drain</Link>
+                By <Link href="/about" className="text-ember hover:text-projector transition-colors">Blake Drain</Link>
                 {" · "}
                 Updated <time dateTime={UPDATED}>April 2026</time>
               </p>
@@ -108,7 +108,7 @@ export default function GuidePage() {
                     {sizingTable.map((row, i) => (
                       <tr key={row.guests} className={`border-b border-white/5 ${i % 2 === 1 ? "bg-charcoal/40" : ""}`}>
                         <td className="px-5 py-3.5 text-projector font-medium">{row.guests}</td>
-                        <td className="px-5 py-3.5 text-oxblood">{row.screen}</td>
+                        <td className="px-5 py-3.5 text-ember">{row.screen}</td>
                         <td className="px-5 py-3.5 text-steel">{row.audio}</td>
                         <td className="px-5 py-3.5 text-steel">{row.note}</td>
                       </tr>

@@ -17,7 +17,7 @@ export default function ThanksPage() {
       <main className="flex-1 pt-16 flex items-center justify-center min-h-[calc(100vh-4rem)]">
         <div className="px-4 py-20 text-center max-w-xl mx-auto">
           <div className="flex justify-center mb-6">
-            <CheckCircle size={56} className="text-oxblood" aria-hidden="true" />
+            <CheckCircle size={56} className="text-ember" aria-hidden="true" />
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4">Got it.</h1>
           <p className="text-steel text-lg leading-relaxed mb-10">

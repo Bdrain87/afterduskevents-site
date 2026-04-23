@@ -57,7 +57,7 @@ export default function ServingIndexPage() {
                     >
                       <MapPin
                         size={18}
-                        className="text-oxblood mt-1 shrink-0"
+                        className="text-ember mt-1 shrink-0"
                         aria-hidden="true"
                       />
                       <div>

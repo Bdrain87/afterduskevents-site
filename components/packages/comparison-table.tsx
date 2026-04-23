@@ -63,14 +63,14 @@ const featureRows: Row[] = [
 function Cell({ value }: { value: string | boolean }) {
   if (value === true) {
     return (
-      <span className="inline-flex items-center justify-center text-oxblood">
+      <span className="inline-flex items-center justify-center text-ember">
         <Check size={16} aria-label="Included" />
       </span>
     );
   }
   if (value === false) {
     return (
-      <span className="inline-flex items-center justify-center text-steel/40">
+      <span className="inline-flex items-center justify-center text-steel/60">
         <X size={16} aria-label="Not included" />
       </span>
     );
@@ -92,7 +92,7 @@ export default function ComparisonTable() {
                 scope="col"
                 className={[
                   "px-5 py-4 text-center font-semibold",
-                  pkg.popular ? "text-oxblood" : "text-projector",
+                  pkg.popular ? "text-ember" : "text-projector",
                 ].join(" ")}
               >
                 <div className="flex flex-col items-center gap-1">

@@ -13,7 +13,7 @@ function FieldError({ errors, field }: { errors?: Record<string, string[]>; fiel
   const msgs = errors?.[field];
   if (!msgs?.length) return null;
   return (
-    <p id={`${field}-error`} className="mt-1 text-xs text-oxblood" role="alert">
+    <p id={`${field}-error`} className="mt-1 text-xs text-ember" role="alert">
       {msgs[0]}
     </p>
   );
@@ -117,7 +117,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="eventDate" className={labelClass}>
-            Event date <span className="text-oxblood" aria-hidden="true">*</span>
+            Event date <span className="text-ember" aria-hidden="true">*</span>
           </label>
           <input
             id="eventDate"
@@ -132,7 +132,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="location" className={labelClass}>
-            Event ZIP or city <span className="text-oxblood" aria-hidden="true">*</span>
+            Event ZIP or city <span className="text-ember" aria-hidden="true">*</span>
           </label>
           <input
             id="location"
@@ -149,7 +149,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="eventType" className={labelClass}>
-            Event type <span className="text-oxblood" aria-hidden="true">*</span>
+            Event type <span className="text-ember" aria-hidden="true">*</span>
           </label>
           <select
             id="eventType"
@@ -181,7 +181,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="guestCount" className={labelClass}>
-            Guest count <span className="text-oxblood" aria-hidden="true">*</span>
+            Guest count <span className="text-ember" aria-hidden="true">*</span>
           </label>
           <select
             id="guestCount"
@@ -203,7 +203,7 @@ export default function ContactForm() {
 
         {suggestion && (
           <div className="rounded-lg border border-oxblood/40 bg-charcoal p-4">
-            <p className="text-xs uppercase tracking-wider text-oxblood font-semibold mb-1">
+            <p className="text-xs uppercase tracking-wider text-ember font-semibold mb-1">
               Suggested package
             </p>
             <p className="text-projector font-heading text-base">{suggestion.name}</p>
@@ -248,7 +248,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="name" className={labelClass}>
-            Name <span className="text-oxblood" aria-hidden="true">*</span>
+            Name <span className="text-ember" aria-hidden="true">*</span>
           </label>
           <input
             id="name"
@@ -264,7 +264,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="email" className={labelClass}>
-            Email <span className="text-oxblood" aria-hidden="true">*</span>
+            Email <span className="text-ember" aria-hidden="true">*</span>
           </label>
           <input
             id="email"
@@ -333,7 +333,7 @@ export default function ContactForm() {
             />
             <label htmlFor="consent" className="text-sm text-steel leading-relaxed cursor-pointer">
               I agree to receive a reply by email, phone, or text.{" "}
-              <span className="text-oxblood" aria-hidden="true">*</span>
+              <span className="text-ember" aria-hidden="true">*</span>
             </label>
           </div>
           <FieldError errors={state.errors} field="consent" />
@@ -352,7 +352,7 @@ export default function ContactForm() {
             />
             <label htmlFor="privateConfirm" className="text-sm text-steel leading-relaxed cursor-pointer">
               I confirm this event is private, non-ticketed, and will not charge admission.{" "}
-              <span className="text-oxblood" aria-hidden="true">*</span>
+              <span className="text-ember" aria-hidden="true">*</span>
             </label>
           </div>
           <FieldError errors={state.errors} field="privateConfirm" />
@@ -360,7 +360,7 @@ export default function ContactForm() {
       </fieldset>
 
       {stepError && (
-        <p className="text-xs text-oxblood" role="alert">
+        <p className="text-xs text-ember" role="alert">
           {stepError}
         </p>
       )}

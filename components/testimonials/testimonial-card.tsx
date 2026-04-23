@@ -21,7 +21,7 @@ export default function TestimonialCard({ testimonial, className }: Props) {
             <Star
               key={i}
               size={14}
-              className="fill-oxblood text-oxblood"
+              className="fill-oxblood text-ember"
               aria-hidden="true"
             />
           ))}

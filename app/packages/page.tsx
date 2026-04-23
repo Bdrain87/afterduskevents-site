@@ -89,18 +89,18 @@ export default function PackagesPage() {
                   )}
                   <h3 className="font-heading text-xl text-projector mb-1">{pkg.name}</h3>
                   {pkg.startsAt ? (
-                    <p className="text-oxblood font-semibold text-lg mb-1">
+                    <p className="text-ember font-semibold text-lg mb-1">
                       Starts at {pkg.startsAt}{" "}
                       <span className="text-steel text-xs font-normal italic">· custom quote</span>
                     </p>
                   ) : (
-                    <p className="text-oxblood font-semibold text-lg mb-1">{pkg.price}</p>
+                    <p className="text-ember font-semibold text-lg mb-1">{pkg.price}</p>
                   )}
                   <p className="text-steel text-xs mt-3 mb-4 italic">Best for: {pkg.best}</p>
                   <ul className="space-y-2 flex-1 mb-6">
                     {pkg.highlights.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-steel text-sm">
-                        <Check size={14} className="text-oxblood mt-0.5 shrink-0" aria-hidden="true" />
+                        <Check size={14} className="text-ember mt-0.5 shrink-0" aria-hidden="true" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -110,7 +110,7 @@ export default function PackagesPage() {
                     className={`inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-colors ${
                       pkg.popular
                         ? "bg-oxblood text-projector hover:bg-oxblood-deep"
-                        : "border border-oxblood text-oxblood hover:bg-oxblood hover:text-projector"
+                        : "border border-ember text-ember hover:bg-oxblood hover:border-oxblood hover:text-projector"
                     }`}
                   >
                     Request a Quote
@@ -153,7 +153,7 @@ export default function PackagesPage() {
               <div>
                 <h2 className="font-heading text-2xl text-projector mb-1">Weddings</h2>
                 <p className="text-steel text-sm">Elopement, reception cinema, or full ceremony plus reception. Three tiers, one veteran-owned operator.</p>
-                <p className="text-oxblood font-semibold mt-1 text-sm">Contact for quote</p>
+                <p className="text-ember font-semibold mt-1 text-sm">Contact for quote</p>
               </div>
               <Link
                 href="/packages/weddings"
@@ -182,25 +182,25 @@ export default function PackagesPage() {
                 >
                   <h3 className="font-heading text-xl text-projector mb-1">{pkg.name}</h3>
                   {pkg.startsAt ? (
-                    <p className="text-oxblood font-semibold text-lg mb-1">
+                    <p className="text-ember font-semibold text-lg mb-1">
                       Starts at {pkg.startsAt}{" "}
                       <span className="text-steel text-xs font-normal italic">· custom quote</span>
                     </p>
                   ) : (
-                    <p className="text-oxblood font-semibold text-lg mb-1">{pkg.price}</p>
+                    <p className="text-ember font-semibold text-lg mb-1">{pkg.price}</p>
                   )}
                   <p className="text-steel text-xs mt-3 mb-4 italic">Best for: {pkg.best}</p>
                   <ul className="space-y-2 flex-1 mb-6">
                     {pkg.highlights.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-steel text-sm">
-                        <Check size={14} className="text-oxblood mt-0.5 shrink-0" aria-hidden="true" />
+                        <Check size={14} className="text-ember mt-0.5 shrink-0" aria-hidden="true" />
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                   <Link
                     href={`/contact?package=${encodeURIComponent(pkg.name)}`}
-                    className="inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold border border-oxblood text-oxblood hover:bg-oxblood hover:text-projector transition-colors"
+                    className="inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold border border-ember text-ember hover:bg-oxblood hover:border-oxblood hover:text-projector transition-colors"
                   >
                     Request a Quote
                   </Link>
@@ -218,7 +218,7 @@ export default function PackagesPage() {
               <p className="text-steel mb-6 text-sm leading-relaxed">
                 Popcorn, extra speakers, gaming bundles, Lightboks lighting, fog machines, and more.
               </p>
-              <Link href="/add-ons" className="text-oxblood underline-offset-4 hover:underline font-medium">
+              <Link href="/add-ons" className="text-ember underline-offset-4 hover:underline font-medium">
                 Browse the Add-On Catalog
               </Link>
             </FadeIn>
