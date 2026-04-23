@@ -9,7 +9,6 @@ import ScrollProgress from "@/components/scroll-progress";
 import LoadingScreen from "@/components/loading-screen";
 import LenisProvider from "@/components/lenis-provider";
 import StickyCTA from "@/components/sticky-cta";
-import AvailabilityDock from "@/components/availability-dock";
 import ConciergeMount from "@/components/concierge/concierge-mount";
 import MicrosoftClarity from "@/components/microsoft-clarity";
 import SchemaMarkup from "@/components/seo/schema-markup";
@@ -113,7 +112,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           </LenisProvider>
         </NuqsAdapter>
         <StickyCTA />
-        <AvailabilityDock />
         <ConciergeMount />
         <Toaster
           position="bottom-right"
