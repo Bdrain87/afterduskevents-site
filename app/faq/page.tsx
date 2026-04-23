@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import Link from "next/link";
-import FaqAccordion from "./faq-accordion";
+import BulbButton from "@/components/bulb-button";
+import FilmStrip from "@/components/film-strip";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList, buildFAQPage } from "@/lib/schema";
-import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
+import { faqs } from "@/lib/faqs";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -30,52 +30,62 @@ export default function FaqPage() {
         ]}
       />
       <Nav />
-      <main className="flex-1 pt-16">
+      <main className="flex-1">
         {/* Header */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
-          <PageAtmosphere variant="dusk" />
-          <div className="relative z-10 mx-auto max-w-3xl text-center">
-            <h1 className="font-display tracking-wider text-4xl sm:text-5xl text-projector mb-4">
-              Frequently asked questions.
+        <section className="bg-paper px-4 sm:px-10 pt-16 sm:pt-24 pb-14">
+          <div className="mx-auto max-w-5xl">
+            <p className="serial text-tail mb-6">№ 007 · The Program</p>
+            <h1 className="font-display text-[clamp(3rem,9vw,7rem)] uppercase leading-none">
+              Questions
+              <br />
+              &amp; answers.
             </h1>
-            <p className="text-steel text-lg leading-relaxed">
-              Everything you need to know before booking. Still have a question?{" "}
-              <Link
-                href="/contact"
-                className="text-projector underline hover:text-steel transition-colors"
-              >
-                Send us a message.
-              </Link>
+            <p className="mt-8 font-body text-lg max-w-2xl">
+              Before the reel runs — here&apos;s what to know.
             </p>
-            <p className="text-steel text-xs uppercase tracking-wider mt-6">
-              Updated{" "}
-              <time dateTime={UPDATED} className="text-steel">
-                April 2026
-              </time>
+            <p className="serial text-concrete mt-6">
+              Updated <time dateTime={UPDATED}>April 2026</time>
             </p>
           </div>
         </section>
 
-        {/* Accordion */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <FilmStrip tone="ink" />
+
+        {/* Folder-tab Q&A list */}
+        <section className="bg-paper px-4 sm:px-10 py-16">
           <div className="mx-auto max-w-3xl">
-            <FaqAccordion />
+            {faqs.map((faq, i) => (
+              <details
+                key={i}
+                className="folder-tab"
+                name="faqs"
+              >
+                <summary>
+                  <span>
+                    <span className="serial text-tail mr-3">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {faq.q}
+                  </span>
+                </summary>
+                <div className="font-body text-base leading-relaxed">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-heading text-2xl sm:text-3xl text-projector mb-4">
-              Ready to get a quote?
-            </h2>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood/90 transition-colors"
-            >
-              Request a Quote
-            </Link>
-          </div>
+        <section className="bg-ink text-paper px-4 sm:px-10 py-24 text-center">
+          <p className="serial text-bulb mb-4">Got a Date?</p>
+          <h2 className="font-display text-[clamp(2.5rem,8vw,6rem)] uppercase leading-none mb-6">
+            Ready to quote?
+          </h2>
+          <p className="font-body text-paper/80 max-w-lg mx-auto mb-10">
+            Still have a question? Send a message.
+          </p>
+          <BulbButton href="/contact">Request a Quote</BulbButton>
         </section>
       </main>
       <Footer />
