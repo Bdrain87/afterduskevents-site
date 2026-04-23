@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HomeClient from "./home-client";
+import { getVisitorGeo } from "@/lib/geo";
 
 export const metadata: Metadata = {
   title: "Outdoor Cinema Rental for Private Events | After Dusk Events | Canton, MI",
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export default function HomePage() {
-  return <HomeClient />;
+export default async function HomePage() {
+  const geo = await getVisitorGeo();
+  return <HomeClient geo={geo} />;
 }

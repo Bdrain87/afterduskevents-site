@@ -136,6 +136,12 @@ html[data-tod="night"] {
     font-family: var(--font-montserrat), system-ui, sans-serif;
     font-weight: 700;
   }
+  .font-editorial {
+    font-family: var(--font-editorial), 'Lora', Georgia, serif;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0.005em;
+  }
   .oxblood-rule {
     @apply block w-12 h-[2px] bg-oxblood mt-3;
   }
@@ -187,6 +193,24 @@ html[data-tod="night"] {
 }
 @keyframes border-beam {
   to { --beam-angle: 360deg; }
+}
+
+/* Scroll-driven kinetic headline — per-word spans rise from below as the
+   section enters view. Pure CSS, zero JS cost. Safari 26+ / Chrome 115+ /
+   Firefox 147+ ship this natively. Older browsers: @supports fallback
+   shows words in final state (no animation). */
+@supports (animation-timeline: view()) {
+  .kinetic-headline > span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.5em);
+    animation: kinetic-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 35%;
+  }
+}
+@keyframes kinetic-rise {
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Hero wordmark: slow red glow rolling across "AFTER DUSK EVENTS" */

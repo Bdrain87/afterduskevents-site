@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat, Bebas_Neue } from "next/font/google";
+import { Inter, Montserrat, Bebas_Neue, Lora } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
@@ -9,6 +9,7 @@ import ScrollProgress from "@/components/scroll-progress";
 import LoadingScreen from "@/components/loading-screen";
 import LenisProvider from "@/components/lenis-provider";
 import StickyCTA from "@/components/sticky-cta";
+import AvailabilityDock from "@/components/availability-dock";
 import MicrosoftClarity from "@/components/microsoft-clarity";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
@@ -38,6 +39,14 @@ const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
   variable: "--font-bebas",
   weight: "400",
+  display: "swap",
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-editorial",
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -90,7 +99,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
+      className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} ${lora.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-screening text-projector">
         <SchemaMarkup
@@ -113,6 +122,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           </LenisProvider>
         </NuqsAdapter>
         <StickyCTA />
+        <AvailabilityDock />
         <Toaster
           position="bottom-right"
           toastOptions={{

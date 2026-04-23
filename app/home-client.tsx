@@ -18,6 +18,8 @@ import Starfield from "@/components/atmosphere/starfield";
 import TrustStrip from "@/components/trust-strip";
 import EventGallery from "@/components/event-gallery";
 import TestimonialsSection from "@/components/testimonials/testimonials-section";
+import NextEventCard from "@/components/next-event-card";
+import type { NearestCityResult } from "@/lib/nearest-city";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -58,7 +60,11 @@ const packages = [
   { name: "30 ft + Single Speaker",     tag: null,           desc: "Intimate audio for small gatherings and tight backyards." },
 ];
 
-export default function HomeClient() {
+type Props = {
+  geo?: NearestCityResult | null;
+};
+
+export default function HomeClient({ geo }: Props = {}) {
   const { containerRef: nameRef, measureRef, fontSize } = useFitText();
   const heroRestRef    = useRef<HTMLDivElement>(null);
   const statementsRef  = useRef<HTMLDivElement>(null);
@@ -159,15 +165,18 @@ export default function HomeClient() {
               <span className="text-steel text-xs tracking-[0.28em] uppercase">Big screen. Bigger nights.</span>
             </div>
             <p className="text-steel text-lg leading-relaxed mb-9">
-              We turn your outdoor space into a cinema.
-              You bring the guests. We bring everything else.
+              {geo?.inRadius && geo.city.slug !== "canton"
+                ? `Serving ${geo.city.name} from Canton, MI. Private outdoor cinema, 30 ft screen, three audio tiers.`
+                : geo?.travelZone
+                  ? `We travel to ${geo.city.name}. Expect a travel line on the quote. Otherwise — private outdoor cinema, 30 ft screen, three audio tiers.`
+                  : "We turn your outdoor space into a cinema. You bring the guests. We bring everything else."}
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4 mb-10">
-              <ShimmerButton href="/contact">
-                Get a Quote
+              <ShimmerButton href={geo?.inRadius ? `/contact?location=${encodeURIComponent(geo.city.name)}` : "/contact"}>
+                {geo?.inRadius && geo.city.slug !== "canton" ? `Get a ${geo.city.name} Quote` : "Get a Quote"}
               </ShimmerButton>
               <Link href="/packages" className="inline-flex items-center gap-2 text-steel hover:text-projector text-sm font-medium transition-colors py-4 group">
-                See packages <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                See setup <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </Link>
             </div>
             <p className="text-steel/80 text-[11px] tracking-[0.18em] uppercase">
@@ -179,6 +188,9 @@ export default function HomeClient() {
           </div>
         </section>
 
+        {/* Next open dates — hides when availability.openDates is empty */}
+        <NextEventCard />
+
         {/* ─── 2. FULL-BLEED STATEMENT: oxblood ───────────────────── */}
         <section
           className="relative bg-oxblood overflow-hidden noise-bg"
@@ -186,9 +198,18 @@ export default function HomeClient() {
           aria-label="What we do"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-oxblood to-oxblood-deep" aria-hidden="true" />
-          <h2 className="relative z-10 font-display text-projector leading-none tracking-wider"
+          <h2 className="kinetic-headline relative z-10 font-display text-projector leading-none tracking-wider"
             style={{ fontSize: "clamp(3rem, 8.5vw, 8rem)" }}>
-            WE TURN YOUR<br />OUTDOOR SPACE<br />INTO A CINEMA.
+            <span style={{ animationDelay: "0ms" }}>WE</span>{" "}
+            <span style={{ animationDelay: "60ms" }}>TURN</span>{" "}
+            <span style={{ animationDelay: "120ms" }}>YOUR</span>{" "}
+            <br />
+            <span style={{ animationDelay: "200ms" }}>OUTDOOR</span>{" "}
+            <span style={{ animationDelay: "260ms" }}>SPACE</span>
+            <br />
+            <span style={{ animationDelay: "340ms" }}>INTO</span>{" "}
+            <span style={{ animationDelay: "400ms" }}>A</span>{" "}
+            <span style={{ animationDelay: "460ms" }}>CINEMA.</span>
           </h2>
         </section>
 

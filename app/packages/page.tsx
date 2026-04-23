@@ -68,8 +68,8 @@ export default function PackagesPage() {
         <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="tiers-heading">
           <div className="mx-auto max-w-7xl">
             <FadeIn>
-              <h2 id="tiers-heading" className="font-heading text-2xl sm:text-3xl text-projector mb-8">
-                Audio tiers
+              <h2 id="tiers-heading" className="font-editorial text-3xl sm:text-4xl text-projector mb-8">
+                Audio tiers.
               </h2>
             </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -129,8 +129,8 @@ export default function PackagesPage() {
         <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="comparison-heading">
           <div className="mx-auto max-w-5xl">
             <FadeIn>
-              <h2 id="comparison-heading" className="font-heading text-2xl sm:text-3xl text-projector mb-3">
-                Compare audio tiers
+              <h2 id="comparison-heading" className="font-editorial text-3xl sm:text-4xl text-projector mb-3">
+                Compare audio tiers.
               </h2>
               <p className="text-steel text-sm mb-6">
                 Same screen. Same BYO Content rule. Sound scales with your event.
@@ -144,8 +144,8 @@ export default function PackagesPage() {
         <section id="use-cases" className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="use-cases-heading">
           <div className="mx-auto max-w-7xl">
             <FadeIn>
-              <h2 id="use-cases-heading" className="font-heading text-2xl sm:text-3xl text-projector mb-3">
-                Event types
+              <h2 id="use-cases-heading" className="font-editorial text-3xl sm:text-4xl text-projector mb-3">
+                Event types.
               </h2>
               <p className="text-steel text-sm mb-8">
                 Pick your event. We pick the right audio tier and walk you through add-ons.

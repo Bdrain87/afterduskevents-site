@@ -1,8 +1,9 @@
 "use client";
 
-import { useActionState, useEffect, useMemo, useState } from "react";
+import { useActionState, useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
+import { useQueryState, parseAsInteger, parseAsString } from "nuqs";
 import { submitInquiry, type InquiryState } from "@/app/actions/inquiry";
 import ProgressIndicator from "./steps/progress-indicator";
 import { suggestTier, useCases } from "@/lib/packages";
@@ -30,14 +31,17 @@ export default function ContactForm() {
   const searchParams = useSearchParams();
   const prefilledPackage = searchParams.get("package") ?? "";
   const prefilledLocation = searchParams.get("location") ?? "";
+  const prefilledEventDate = searchParams.get("eventDate") ?? "";
 
   const [state, formAction, isPending] = useActionState(submitInquiry, initialState);
-  const [step, setStep] = useState<Step>(1);
 
-  // Track step 1 selections so step 2 can suggest a package + show ballpark
-  const [eventType, setEventType] = useState("");
-  const [guestCount, setGuestCount] = useState("");
-  const [stepError, setStepError] = useState<string | null>(null);
+  // URL-synced step + field state so refresh preserves progress and links are shareable.
+  const [stepNum, setStep] = useQueryState("step", parseAsInteger.withDefault(1));
+  const step = (stepNum >= 1 && stepNum <= 3 ? stepNum : 1) as Step;
+  const [eventType, setEventType] = useQueryState("et", parseAsString.withDefault(""));
+  const [guestCount, setGuestCount] = useQueryState("guests", parseAsString.withDefault(""));
+  const [stepError, setStepErrorState] = useQueryState("err", parseAsString.withDefault(""));
+  const setStepError = (v: string | null) => setStepErrorState(v ?? "");
 
   useEffect(() => {
     if (state.message) {
@@ -128,6 +132,7 @@ export default function ContactForm() {
             name="eventDate"
             type="date"
             required
+            defaultValue={prefilledEventDate}
             className={`${inputClass} [color-scheme:dark]`}
             aria-describedby={state.errors?.eventDate ? "eventDate-error" : undefined}
           />

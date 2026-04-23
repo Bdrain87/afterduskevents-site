@@ -33,8 +33,8 @@ export default function FaqPage() {
         {/* Header */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-charcoal">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4">
-              Frequently asked questions
+            <h1 className="font-editorial text-4xl sm:text-5xl text-projector mb-4">
+              Frequently asked questions.
             </h1>
             <p className="text-steel text-lg leading-relaxed">
               Everything you need to know before booking. Still have a question?{" "}
