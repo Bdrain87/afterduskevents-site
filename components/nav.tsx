@@ -84,7 +84,7 @@ export default function Nav() {
         </div>
       </div>
 
-      {/* Mobile menu — full screen takeover */}
+      {/* Mobile menu. Full-screen takeover */}
       {open && (
         <div id="mobile-menu" className="md:hidden fixed inset-0 top-16 z-40 bg-screening flex flex-col">
           <nav className="flex flex-col px-6 py-8 flex-1" aria-label="Mobile navigation">

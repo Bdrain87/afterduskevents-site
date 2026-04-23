@@ -113,7 +113,7 @@ export default function PackagesPage() {
           </div>
         </section>
 
-        {/* Event types grid — 6 compact cards with placeholder photo slots */}
+        {/* Event types grid. 6 compact cards with placeholder photo slots */}
         <section
           id="use-cases"
           aria-labelledby="use-cases-heading"
