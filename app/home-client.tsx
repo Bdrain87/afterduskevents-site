@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import TrustStrip from "@/components/trust-strip";
 import NextEventCard from "@/components/next-event-card";
 import ThirtyFootCheck from "@/components/home/thirty-foot-check";
+import GearHighlights from "@/components/home/gear-highlights";
 import ByocPanel from "@/components/funnel/byoc-panel";
 import EventMotifCard from "@/components/event-motif-card";
 import HeroIgnition, { IgnitedWordmark } from "@/components/hero-ignition";
@@ -170,6 +171,8 @@ export default function HomeClient({ geo }: Props = {}) {
         </FunnelSection>
 
         <ThirtyFootCheck />
+
+        <GearHighlights />
 
         <ByocPanel />
 
