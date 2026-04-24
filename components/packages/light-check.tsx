@@ -30,7 +30,7 @@ const diagramCopy: Record<TierSlug, { kicker: string; body: string }> = {
     body: "Left and right speakers spread the room without pushing volume.",
   },
   "two-speakers-sub": {
-    kicker: "Full low end",
+    kicker: "Stronger bass",
     body: "Stereo coverage plus sub support for fights, sports, and bigger groups.",
   },
   "four-speakers-two-subs": {

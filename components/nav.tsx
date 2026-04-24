@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import BrandWordmark from "./brand-wordmark";
 import LogoMark from "./logo-mark";
 import LiveDuskClock from "./live-dusk-clock";
 
@@ -38,11 +39,13 @@ export default function Nav() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 shrink-0 min-w-0" aria-label="After Dusk Events home">
-            <LogoMark size={32} />
-            <span className="font-display text-base md:text-xl tracking-wider text-projector leading-none whitespace-nowrap">
-              AFTER DUSK EVENTS
-            </span>
+          <Link
+            href="/"
+            className="brand-lockup group flex items-center gap-2.5 shrink-0 min-w-0"
+            aria-label="After Dusk Events home"
+          >
+            <LogoMark size={32} className="brand-logo-mark shrink-0" />
+            <BrandWordmark className="text-base md:text-xl" />
           </Link>
 
           {/* Desktop nav */}

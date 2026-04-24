@@ -27,7 +27,7 @@ export default function ThirtyFootCheck() {
             30 FEET.
           </h2>
           <p className="text-silver text-body-lg leading-relaxed mb-6 max-w-[44ch]">
-            One screen size for every event we run. Water ballast setup, no digging. Crowd size is handled through audio coverage, not a smaller screen.
+            One screen size for every event we run. We drill ground anchors for a stable setup, then handle crowd size through audio coverage, not a smaller screen.
           </p>
           <TextCta href="/packages">Pick your audio tier</TextCta>
         </div>

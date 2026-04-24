@@ -39,7 +39,7 @@ export default function FaqPage() {
               QUESTIONS. ANSWERED.
             </h1>
             <p className="text-silver text-body-lg leading-relaxed max-w-[56ch]">
-              The things people ask most. If your question is not here, the contact form goes straight to Blake.
+              The things people ask most. If your question is not here, the contact form goes straight to us.
             </p>
           </div>
         </section>
@@ -71,7 +71,7 @@ export default function FaqPage() {
               href="/contact"
               className="inline-flex min-h-[48px] items-center px-7 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
             >
-              Contact Blake
+              Contact us
             </Link>
           </div>
         </section>
