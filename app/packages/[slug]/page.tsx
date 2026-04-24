@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import ByocPanel from "@/components/funnel/byoc-panel";
+import Waveform from "@/components/packages/waveform";
 import {
   ActionBar,
   FunnelSection,
-  MediaPanel,
   PrimaryCta,
   QuotePanel,
   SectionHeader,
@@ -132,16 +131,36 @@ export default async function TierPage({ params }: Params) {
               </ActionBar>
             </div>
             <div className="lg:col-span-5">
-              <MediaPanel className="aspect-[4/5] border-0 bg-transparent shadow-none">
-                <Image
-                  src="/images/setup/30ft-screen-studio.avif"
-                  alt="30 foot inflatable outdoor cinema screen setup"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 42vw, 100vw"
-                  className="rounded-lg object-cover object-[50%_55%]"
-                />
-              </MediaPanel>
+              <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-white/10 bg-screening/50 p-6">
+                <p className="text-caption text-steel">Coverage signal</p>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Waveform
+                    speakers={tier.speakerCount}
+                    subs={tier.subwooferCount}
+                    className="h-[70%] w-[82%]"
+                  />
+                </div>
+                <div className="absolute bottom-6 left-6 right-6 flex items-baseline justify-between gap-3 border-t border-white/10 pt-4">
+                  <div>
+                    <p className="text-caption text-steel">Speakers</p>
+                    <p className="font-display text-display-md leading-none text-projector">
+                      {tier.speakerCount}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-caption text-steel">Subwoofers</p>
+                    <p className="font-display text-display-md leading-none text-projector">
+                      {tier.subwooferCount}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-caption text-steel">Screen</p>
+                    <p className="font-display text-display-md leading-none text-projector">
+                      30 ft
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </FunnelSection>
