@@ -170,7 +170,7 @@ export default function HomeClient({ geo }: Props = {}) {
             </div>
             <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
               {audioTiers.map((tier) => (
-                <TierCard key={tier.slug} tier={tier} href={`/packages#tier-${tier.slug}`} />
+                <TierCard key={tier.slug} tier={tier} href={`/packages/${tier.slug}`} />
               ))}
             </div>
           </div>
