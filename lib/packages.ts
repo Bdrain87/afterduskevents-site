@@ -22,8 +22,6 @@ export type AudioTier = {
   coverageNote: string;
   /** What the customer should expect to hear/feel. */
   soundProfile: string;
-  /** Small technical details for detail pages and comparison views. */
-  technicalNotes: string[];
   /** Practical event fits that can be shown as chips. */
   recommendedFor: string[];
   /** What's in the setup. Only list gear Blake has confirmed. */
@@ -41,11 +39,6 @@ export const audioTiers: AudioTier[] = [
     plainBenefit: "Simple, clean sound for smaller groups seated close to the screen.",
     coverageNote: "Best when everyone is gathered in one main viewing area.",
     soundProfile: "Clear dialogue and enough punch for a calm backyard movie night.",
-    technicalNotes: [
-      "Speaker system is manufacturer-rated up to 126 dB max volume.",
-      "Full-range speaker response covers 40 Hz-20 kHz.",
-      "Battery-powered audio keeps setup flexible when outlets are not nearby.",
-    ],
     recommendedFor: ["Small yards", "Family movie nights", "Groups under 25"],
     includes: [
       "30 ft inflatable screen",
@@ -64,11 +57,6 @@ export const audioTiers: AudioTier[] = [
     plainBenefit: "Wider left/right coverage for most private events.",
     coverageNote: "Two speakers spread the sound so guests do not need to sit in one tight cluster.",
     soundProfile: "Balanced dialogue, sports audio, and music at a comfortable outdoor volume.",
-    technicalNotes: [
-      "Each speaker is manufacturer-rated up to 126 dB max volume.",
-      "Full-range speaker response covers 40 Hz-20 kHz.",
-      "Wireless speaker linking supports a clean left/right layout.",
-    ],
     recommendedFor: ["Most backyards", "Graduations", "Sports watch parties", "25-75 guests"],
     includes: [
       "30 ft inflatable screen",
@@ -86,12 +74,6 @@ export const audioTiers: AudioTier[] = [
     plainBenefit: "Adds stronger bass for events where the audio matters more.",
     coverageNote: "Stereo speakers carry the main sound while the subwoofer adds bass.",
     soundProfile: "Cleaner bass for fights, sports, music, and bigger outdoor groups.",
-    technicalNotes: [
-      "Subwoofer uses dual 8-inch low-frequency drivers.",
-      "Subwoofer response reaches 25 Hz-180 Hz for deeper bass.",
-      "Wireless SKAA connection keeps the subwoofer placement flexible.",
-      "Battery-powered subwoofer can run away from wall power.",
-    ],
     recommendedFor: ["Fight nights", "Sports", "Music-heavy events", "75-150 guests"],
     includes: [
       "30 ft inflatable screen",
@@ -110,12 +92,6 @@ export const audioTiers: AudioTier[] = [
     plainBenefit: "Maximum coverage for big yards, field layouts, and high-energy crowds.",
     coverageNote: "Four speakers help cover the space front to back while two subs add stronger bass.",
     soundProfile: "The fullest setup: more even coverage, stronger bass, and better reach across a larger layout.",
-    technicalNotes: [
-      "Four linked full-range speakers support wider outdoor coverage.",
-      "Each full-range speaker is manufacturer-rated up to 126 dB max volume.",
-      "Two wireless subwoofers add stronger bass down to 25 Hz.",
-      "Battery-powered speakers and subs keep the layout flexible.",
-    ],
     recommendedFor: ["Large yards", "Fields", "150+ guests", "High-energy events"],
     includes: [
       "30 ft inflatable screen",

@@ -189,38 +189,6 @@ export default async function TierPage({ params }: Params) {
           </div>
         </FunnelSection>
 
-        <FunnelSection labelledBy="details-heading">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <SectionHeader
-                id="details-heading"
-                eyebrow="Plain-English specs"
-                title="WHY THIS PACKAGE SOUNDS DIFFERENT."
-                body="These are the useful details, translated for planning an event instead of shopping for gear."
-              />
-              <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {tier.technicalNotes.map((note) => (
-                  <li key={note} className="rounded-lg border border-white/10 bg-charcoal/45 p-4 text-sm leading-relaxed text-silver">
-                    {note}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="lg:col-span-5">
-              <div className="rounded-lg border border-white/10 bg-charcoal/45 p-6">
-                <p className="text-caption text-ember mb-3">Recommended for</p>
-                <div className="flex flex-wrap gap-2">
-                  {tier.recommendedFor.map((item) => (
-                    <span key={item} className="rounded-full border border-white/10 px-3 py-1 text-xs text-silver">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </FunnelSection>
-
         <ByocPanel />
 
         <FunnelSection labelledBy="fits-heading" tone="band">

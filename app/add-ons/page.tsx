@@ -196,7 +196,7 @@ export default function AddOnsPage() {
                 href="/contact"
                 className="inline-flex min-h-[48px] items-center px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
               >
-                Get a Quote
+                Request a Quote
               </Link>
             </MagneticButton>
           </div>

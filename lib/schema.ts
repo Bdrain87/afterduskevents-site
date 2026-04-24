@@ -193,7 +193,7 @@ export function buildService(tier: AudioTier): SchemaObject {
         geoRadius: String(RADIUS_M),
       },
     },
-    isRelatedTo: [...tier.includes.slice(0, 3), ...tier.technicalNotes.slice(0, 2)],
+    isRelatedTo: tier.includes.slice(0, 5),
   };
 }
 

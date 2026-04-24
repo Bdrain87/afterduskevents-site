@@ -11,7 +11,7 @@ import { BookingStep, FunnelSection, SectionHeader } from "@/components/funnel/l
 import ByocPanel from "@/components/funnel/byoc-panel";
 
 export const metadata: Metadata = {
-  title: "Get a Quote",
+  title: "Request a Quote",
   description:
     "Request a custom quote for a private outdoor cinema event. After Dusk Events serves Southeast Michigan within 60 miles of Canton. Response within 24 hours.",
   alternates: { canonical: "/contact" },
