@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
 import FilmGrain from "@/components/film-grain";
 import CursorBeam from "@/components/cursor-beam";
+import BuildRefreshWatcher from "@/components/build-refresh-watcher";
 import StickyCTA from "@/components/sticky-cta";
 import ConciergeMount from "@/components/concierge/concierge-mount";
 import MicrosoftClarity from "@/components/microsoft-clarity";
@@ -83,10 +84,16 @@ export const metadata: Metadata = {
   },
 };
 
+const BUILD_ID =
+  process.env.VERCEL_GIT_COMMIT_SHA ??
+  process.env.VERCEL_DEPLOYMENT_ID ??
+  "dev";
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
+      data-build-id={BUILD_ID}
       className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-screening text-projector">
@@ -102,6 +109,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <AmbientSky />
         <FilmGrain />
         <CursorBeam />
+        <BuildRefreshWatcher buildId={BUILD_ID} />
         <NuqsAdapter>
           {children}
         </NuqsAdapter>
