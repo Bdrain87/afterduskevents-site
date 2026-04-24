@@ -17,7 +17,6 @@ import NextEventCard from "@/components/next-event-card";
 import ThirtyFootCheck from "@/components/home/thirty-foot-check";
 import ManifestoLine from "@/components/home/manifesto-line";
 import EventTypesMarquee from "@/components/home/event-types-marquee";
-import RunSheet from "@/components/home/run-sheet";
 import PackagesTeaser from "@/components/home/packages-teaser";
 import type { NearestCityResult } from "@/lib/nearest-city";
 
@@ -129,16 +128,13 @@ export default function HomeClient({ geo }: Props = {}) {
         {/* 5. Event types marquee. Placeholder gradient cards; real photos TBD summer 2026. */}
         <EventTypesMarquee />
 
-        {/* 6. Run sheet. Monospaced checklist, local dusk time on the final line. */}
-        <RunSheet />
-
-        {/* 7. Packages teaser. Three LED stacks linking into /packages. */}
+        {/* 6. Packages teaser. Three LED stacks linking into /packages. */}
         <PackagesTeaser />
 
-        {/* 8. Social proof (renders only when lib/testimonials has real entries) */}
+        {/* 7. Social proof (renders only when lib/testimonials has real entries) */}
         <TestimonialsSection />
 
-        {/* 9. Final CTA. Placeholder backdrop until a real projected-frame shot lands. */}
+        {/* 8. Final CTA. Placeholder backdrop until a real projected-frame shot lands. */}
         <section
           aria-labelledby="cta-heading"
           className="relative flex flex-col justify-center px-4 sm:px-8 lg:px-12 overflow-hidden"
