@@ -31,7 +31,7 @@ export default function HeroIgnition({ children, mediaAlt }: Props) {
             transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
           >
             <Image
-              src="/images/setup/30ft-screen-studio.avif"
+              src="/images/setup/30ft-screen-branded.png"
               alt={mediaAlt}
               fill
               priority
