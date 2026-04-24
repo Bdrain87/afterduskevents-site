@@ -44,7 +44,7 @@ export default function ThirtyFootCheck() {
 
         {/* Product render: 3 cols */}
         <div className="lg:col-span-3 order-1 lg:order-2 relative">
-          <div className="relative aspect-[4/5] sm:aspect-[5/6] overflow-hidden">
+          <div className="relative aspect-[4/5] sm:aspect-[5/6] overflow-hidden rounded-2xl border border-white/10 bg-charcoal shadow-[0_28px_80px_rgba(0,0,0,0.45)]">
             <Image
               src="/images/setup/30ft-screen-studio.avif"
               alt="After Dusk Events 30 foot inflatable outdoor cinema screen, studio render with a person at the base for scale"
