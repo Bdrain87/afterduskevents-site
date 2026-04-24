@@ -108,7 +108,7 @@ export default function HomeClient({ geo }: Props = {}) {
               </Link>
             </div>
             <p className="text-silver text-[11px] tracking-[0.18em] uppercase">
-              Canton, MI · Private events only · Veteran owned
+              Canton, MI · Private events only
             </p>
             <div className="mt-8">
               <TrustStrip />
