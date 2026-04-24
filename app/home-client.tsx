@@ -127,8 +127,8 @@ export default function HomeClient({ geo }: Props = {}) {
             <SectionHeader
               id="bring-heading"
               eyebrow="What we bring"
-              title="A REAL SCREEN. A CLEAN PLAN."
-              body="The event is built around one big screen, the right audio coverage, and a setup that does not depend on your outlet, wifi, or guesswork."
+              title="BIG SCREEN. TUNED SOUND. HANDLED SETUP."
+              body="One big screen, audio coverage matched to the crowd, and a setup that does not depend on your outlet, wifi, or guesswork."
             />
             <motion.ol
               className="divide-y divide-white/8 border-y border-white/8"
