@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { motion, useReducedMotion } from "motion/react";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import TrustStrip from "@/components/trust-strip";
@@ -8,11 +8,11 @@ import NextEventCard from "@/components/next-event-card";
 import ThirtyFootCheck from "@/components/home/thirty-foot-check";
 import ByocPanel from "@/components/funnel/byoc-panel";
 import EventMotifCard from "@/components/event-motif-card";
+import HeroIgnition, { IgnitedWordmark } from "@/components/hero-ignition";
 import {
   ActionBar,
   BookingStep,
   FunnelSection,
-  MediaPanel,
   PrimaryCta,
   QuotePanel,
   SectionHeader,
@@ -62,6 +62,7 @@ const bookingSteps = [
 ];
 
 export default function HomeClient({ geo }: Props = {}) {
+  const reduced = useReducedMotion();
   const locationLine =
     geo?.inRadius && geo.city.slug !== "canton"
       ? `Serving ${geo.city.name} from Canton, MI.`
@@ -69,46 +70,57 @@ export default function HomeClient({ geo }: Props = {}) {
         ? `We travel to ${geo.city.name}. Expect a travel line on the quote.`
         : "Private outdoor cinema rental across Southeast Michigan.";
 
+  const fadeUp = reduced
+    ? {}
+    : {
+        initial: { opacity: 0, y: 12 },
+        animate: { opacity: 1, y: 0 },
+      };
+
   return (
     <>
       <Nav />
       <main className="flex-1">
-        <section className="relative overflow-hidden px-6 pb-16 pt-28 sm:px-10 lg:px-16 lg:pb-24 lg:pt-36">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-6">
-              <p className="text-caption text-ember mb-4">Canton, MI · Private events only</p>
-              <h1 className="font-display text-display-xl leading-none tracking-wider text-projector">
-                AFTER DUSK EVENTS
-              </h1>
-              <p className="mt-5 max-w-[52ch] text-body-lg leading-relaxed text-silver">
-                30 ft outdoor cinema screen, scalable sound, and a setup crew that handles the night from arrival to teardown.
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-steel">{locationLine}</p>
-              <ActionBar className="mt-8">
-                <PrimaryCta href={geo?.inRadius ? `/contact?location=${encodeURIComponent(geo.city.name)}` : "/contact"}>
-                  {geo?.inRadius && geo.city.slug !== "canton" ? `Get a ${geo.city.name} Quote` : "Get a Quote"}
-                </PrimaryCta>
-                <TextCta href="/packages">Compare packages</TextCta>
-              </ActionBar>
-              <div className="mt-8">
-                <TrustStrip />
-              </div>
+        <HeroIgnition mediaAlt="30 foot inflatable outdoor cinema screen setup">
+          <motion.p
+            {...fadeUp}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 1.25 }}
+            className="text-caption text-ember mb-4"
+          >
+            Canton, MI · Private events only
+          </motion.p>
+          <h1 className="font-display text-display-xl leading-none tracking-wider text-projector">
+            <IgnitedWordmark text="AFTER DUSK EVENTS" />
+          </h1>
+          <motion.p
+            {...fadeUp}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 1.55 }}
+            className="mt-5 max-w-[52ch] text-body-lg leading-relaxed text-silver"
+          >
+            30 ft outdoor cinema screen, scalable sound, and a setup crew that handles the night from arrival to teardown.
+          </motion.p>
+          <motion.p
+            {...fadeUp}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 1.7 }}
+            className="mt-4 text-sm leading-relaxed text-steel"
+          >
+            {locationLine}
+          </motion.p>
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 1.85 }}
+          >
+            <ActionBar className="mt-8">
+              <PrimaryCta href={geo?.inRadius ? `/contact?location=${encodeURIComponent(geo.city.name)}` : "/contact"}>
+                {geo?.inRadius && geo.city.slug !== "canton" ? `Get a ${geo.city.name} Quote` : "Get a Quote"}
+              </PrimaryCta>
+              <TextCta href="/packages">Compare packages</TextCta>
+            </ActionBar>
+            <div className="mt-8">
+              <TrustStrip />
             </div>
-
-            <div className="lg:col-span-6">
-              <MediaPanel className="mx-auto aspect-[4/5] max-w-[560px] border-0 bg-transparent shadow-none lg:ml-auto">
-                <Image
-                  src="/images/setup/30ft-screen-studio.avif"
-                  alt="30 foot inflatable outdoor cinema screen setup"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="rounded-lg object-cover object-[50%_55%]"
-                />
-              </MediaPanel>
-            </div>
-          </div>
-        </section>
+          </motion.div>
+        </HeroIgnition>
 
         <NextEventCard />
 
