@@ -9,6 +9,7 @@ import ThirtyFootCheck from "@/components/home/thirty-foot-check";
 import ByocPanel from "@/components/funnel/byoc-panel";
 import EventMotifCard from "@/components/event-motif-card";
 import HeroIgnition, { IgnitedWordmark } from "@/components/hero-ignition";
+import BrandMarquee from "@/components/brand-marquee";
 import {
   ActionBar,
   BookingStep,
@@ -215,6 +216,8 @@ export default function HomeClient({ geo }: Props = {}) {
             </div>
           </div>
         </FunnelSection>
+
+        <BrandMarquee />
 
         <FunnelSection labelledBy="service-heading">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">

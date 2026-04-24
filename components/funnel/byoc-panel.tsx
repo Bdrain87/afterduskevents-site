@@ -1,5 +1,6 @@
 import { Play } from "lucide-react";
 import { FunnelSection, SectionHeader } from "@/components/funnel/layout";
+import Marquee from "@/components/marquee";
 
 const services = [
   "Netflix",
@@ -12,6 +13,11 @@ const services = [
   "Peacock",
   "Paramount+",
   "ESPN+",
+  "Xbox",
+  "PlayStation",
+  "Switch",
+  "Laptop",
+  "Disc",
 ];
 
 export default function ByocPanel() {
@@ -28,22 +34,33 @@ export default function ByocPanel() {
           />
         </div>
         <div className="lg:col-span-7">
-          <div className="rounded-lg border border-white/10 bg-screening/70 p-5 sm:p-6">
+          <div className="relative overflow-hidden rounded-lg border border-white/10 bg-screening/70 p-5 sm:p-6">
             <div className="mb-5 flex items-center gap-3 text-sm font-semibold text-projector">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-oxblood text-projector">
                 <Play size={15} fill="currentColor" aria-hidden="true" />
               </span>
               Private viewing, your content
             </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
-              {services.map((service) => (
-                <span
-                  key={service}
-                  className="flex min-h-[44px] items-center justify-center rounded-lg border border-white/10 bg-charcoal/65 px-3 text-center text-xs font-semibold text-silver"
-                >
-                  {service}
-                </span>
-              ))}
+            <div className="relative -mx-5 sm:-mx-6">
+              <Marquee pauseOnHover className="[--duration:38s] [--gap:0.75rem]">
+                {services.map((service) => (
+                  <span
+                    key={service}
+                    className="flex shrink-0 items-center justify-center rounded-lg border border-white/10 bg-charcoal/65 px-5 py-3 text-xs font-semibold text-silver transition-colors hover:border-ember/50 hover:text-projector"
+                  >
+                    {service}
+                  </span>
+                ))}
+              </Marquee>
+              {/* Edge fades */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-screening to-transparent"
+              />
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-screening to-transparent"
+              />
             </div>
             <p className="mt-5 text-xs leading-relaxed text-steel">
               Streaming accounts, subscriptions, purchases, rentals, and licensing are the customer&apos;s responsibility. Private, non-ticketed events only.
