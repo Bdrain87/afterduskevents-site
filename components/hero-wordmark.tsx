@@ -9,9 +9,8 @@ gsap.registerPlugin(SplitText);
 
 /**
  * Hero wordmark rendered in ember with an outer projection glow (styled via
- * the .wordmark-glow class in globals.css). Sizing is pure CSS clamp. No JS
- * measurement hook. Reveal + shine animations are driven by GSAP SplitText
- * and skip entirely when prefers-reduced-motion is set.
+ * the .wordmark-glow class in globals.css). Sizing is pure CSS clamp. The
+ * reveal uses a slow projector sweep instead of a hard flash.
  */
 export default function HeroWordmark() {
   const ref = useRef<HTMLHeadingElement>(null);
@@ -23,23 +22,28 @@ export default function HeroWordmark() {
 
       const split = new SplitText(ref.current, { type: "chars" });
       gsap.from(split.chars, {
-        y: 32,
+        y: 30,
         opacity: 0,
-        duration: 0.5,
-        stagger: 0.028,
+        filter: "blur(3px)",
+        duration: 0.64,
+        stagger: 0.032,
         ease: "power2.out",
-        delay: 0.15,
+        delay: 0.18,
       });
 
-      const revealEnd = 0.15 + 0.5 + (split.chars.length - 1) * 0.028 + 0.12;
+      const revealEnd = 0.18 + 0.64 + (split.chars.length - 1) * 0.032 + 0.18;
       gsap.fromTo(
         split.chars,
-        { color: "#DD5454" },
         {
-          color: "#FFFFFF",
-          duration: 0.07,
-          stagger: { each: 0.03, from: "start" },
-          ease: "power1.inOut",
+          color: "#DD5454",
+          textShadow: "0 0 32px rgba(221, 84, 84, 0.25), 0 0 64px rgba(221, 84, 84, 0.12)",
+        },
+        {
+          color: "#F3C1B8",
+          textShadow: "0 0 18px rgba(243, 193, 184, 0.18), 0 0 54px rgba(221, 84, 84, 0.2)",
+          duration: 0.42,
+          stagger: { each: 0.045, from: "start" },
+          ease: "sine.inOut",
           yoyo: true,
           repeat: 1,
           delay: revealEnd,
