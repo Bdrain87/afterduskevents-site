@@ -82,7 +82,7 @@ export function IgnitedWordmark({ text, className }: { text: string; className?:
                   key={ci}
                   initial={{ opacity: 0, y: "0.3em" }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.9 + i * 0.055 }}
+                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.9 + i * 0.11 }}
                   style={{ display: "inline-block" }}
                 >
                   {ch}
