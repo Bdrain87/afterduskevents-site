@@ -283,14 +283,14 @@ export default function HomeClient({ geo }: Props = {}) {
                 id="service-heading"
                 eyebrow="Service area"
                 title="BASED IN CANTON. BUILT FOR SE MICHIGAN."
-                body="We serve private events within 60 miles of Canton. Farther trips can still work when the travel line makes sense."
+                body="Standard service runs within 40 miles of Canton. Farther trips work too with an additional travel charge added to the quote."
                 className="mb-0"
               />
             </div>
             <div className="lg:col-span-5">
               <div className="rounded-lg border border-white/10 bg-charcoal/45 p-6">
                 <MapPin size={22} className="mb-4 text-ember" aria-hidden="true" />
-                <p className="font-heading text-heading-md text-projector">60-mile core service radius</p>
+                <p className="font-heading text-heading-md text-projector">40-mile core service radius</p>
                 <p className="mt-2 text-sm leading-relaxed text-silver">
                   Detroit, Ann Arbor, Plymouth, Northville, Novi, Birmingham, and surrounding Southeast Michigan cities.
                 </p>

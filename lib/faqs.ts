@@ -25,7 +25,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "How far do you travel?",
-    a: "Inside 60 miles of Canton, MI, no separate travel fee. Beyond that, contact us for a custom quote with travel.",
+    a: "Inside 40 miles of Canton, MI, no separate travel fee. Beyond 40 miles, an additional travel charge is added to the quote.",
   },
   {
     q: "Do we bring our own content?",

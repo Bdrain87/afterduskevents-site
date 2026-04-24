@@ -114,7 +114,7 @@ export default function Nav() {
           <div className="px-6 pb-8">
             <LiveDuskClock />
             <p className="mt-6 text-steel text-xs tracking-[0.15em] uppercase">
-              Private events only · 60 miles of Canton, MI
+              Private events only · 40 miles of Canton, MI
             </p>
           </div>
         </div>

@@ -49,7 +49,7 @@ export default function Footer() {
               </li>
               <li>Canton, MI 48188</li>
               <li className="text-steel text-xs leading-relaxed pt-2">
-                60 miles of Canton. Private events only.
+                40 miles of Canton. Private events only.
               </li>
             </ul>
             <div className="flex items-center gap-4 mt-5">
