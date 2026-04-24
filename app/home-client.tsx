@@ -83,13 +83,6 @@ export default function HomeClient({ geo }: Props = {}) {
       <Nav />
       <main className="flex-1">
         <HeroIgnition mediaAlt="30 foot inflatable outdoor cinema screen setup">
-          <motion.p
-            {...fadeUp}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 1.25 }}
-            className="text-caption text-ember mb-4"
-          >
-            Canton, MI · Private events only
-          </motion.p>
           <h1 className="font-display text-display-xl leading-none tracking-wider text-projector">
             <IgnitedWordmark text="AFTER DUSK EVENTS" />
           </h1>

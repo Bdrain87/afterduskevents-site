@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 const COUNTDOWN_KEY = "adeIgnitionPlayed";
@@ -98,29 +98,50 @@ export default function HeroIgnition({ children, mediaAlt }: Props) {
 
 /**
  * Per-letter animated wordmark. Used by the home hero.
+ * Chars are grouped by word so wrapping, when it happens on narrow viewports,
+ * only breaks at spaces ("AFTER DUSK" / "EVENTS") — never mid-word.
  * Falls back to a single static span for reduced-motion visitors.
  */
 export function IgnitedWordmark({ text, className }: { text: string; className?: string }) {
   const reduced = useReducedMotion();
-  const letters = Array.from(text);
 
   if (reduced) {
     return <span className={className}>{text}</span>;
   }
 
+  const words = text.split(" ");
+  const wordStart: number[] = [];
+  let acc = 0;
+  for (const word of words) {
+    wordStart.push(acc);
+    acc += word.length + 1;
+  }
+
   return (
     <span className={className} aria-label={text}>
-      {letters.map((ch, i) => (
-        <motion.span
-          key={i}
-          aria-hidden="true"
-          initial={{ opacity: 0, y: "0.3em" }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.9 + i * 0.03 }}
-          style={{ display: "inline-block", whiteSpace: ch === " " ? "pre" : undefined }}
-        >
-          {ch}
-        </motion.span>
+      {words.map((word, wi) => (
+        <Fragment key={wi}>
+          {wi > 0 && " "}
+          <span
+            aria-hidden="true"
+            style={{ display: "inline-block", whiteSpace: "nowrap" }}
+          >
+            {Array.from(word).map((ch, ci) => {
+              const i = wordStart[wi] + ci;
+              return (
+                <motion.span
+                  key={ci}
+                  initial={{ opacity: 0, y: "0.3em" }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.9 + i * 0.03 }}
+                  style={{ display: "inline-block" }}
+                >
+                  {ch}
+                </motion.span>
+              );
+            })}
+          </span>
+        </Fragment>
       ))}
     </span>
   );
