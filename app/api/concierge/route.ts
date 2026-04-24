@@ -28,7 +28,7 @@ REAL OFFERING (the only facts you may use):
 • Subwoofer specs in plain English: dual 8-inch low-frequency drivers, bass response down to 25 Hz, wireless SKAA connection, and battery-powered placement.
 • BYO Content rule: customer streams from their own accounts (Netflix, Disney+, YouTube, etc.). Karaoke uses YouTube karaoke tracks.
 • Gaming: retro gaming kit add-on with HDMI plug-and-play setup, 100,000+ classic-game library, 50+ classic systems, offline play, and four wireless controllers; OR customer's PS/Xbox with staff hookup.
-• Power/connectivity: Generator, battery backup, Starlink on every event.
+• Power/connectivity: venue power and wifi are used first when available. Generator, battery bank, and Starlink come along as backup only.
 • Service radius: 60 miles of Canton. Travel-zone 60–90 mi has travel fee. Beyond 90 mi: flag.
 • Private events only. no tickets, no admission, no public advertising.
 • Venue permits: customer's responsibility for any non-private-backyard venue.

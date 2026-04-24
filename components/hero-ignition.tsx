@@ -20,7 +20,7 @@ export default function HeroIgnition({ children, mediaAlt }: Props) {
   const reduced = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden px-6 pb-16 pt-28 sm:px-10 lg:px-16 lg:pb-24 lg:pt-36">
+    <section className="relative overflow-hidden px-6 pb-16 pt-24 sm:px-10 sm:pt-28 lg:px-16 lg:pb-24 lg:pt-36">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-12">
         <div className="lg:col-span-6">{children}</div>
         <div className="lg:col-span-6">
@@ -82,7 +82,7 @@ export function IgnitedWordmark({ text, className }: { text: string; className?:
                   key={ci}
                   initial={{ opacity: 0, y: "0.3em" }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.9 + i * 0.03 }}
+                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.9 + i * 0.055 }}
                   style={{ display: "inline-block" }}
                 >
                   {ch}

@@ -144,10 +144,12 @@ export function QuotePanel({
   title,
   body,
   href = "/contact",
+  ctaLabel = "Get a Quote",
 }: {
   title: string;
   body: string;
   href?: string;
+  ctaLabel?: string;
 }) {
   return (
     <div className="rounded-lg border border-white/10 bg-charcoal/55 p-6 sm:p-8">
@@ -157,7 +159,7 @@ export function QuotePanel({
       </h2>
       <p className="mt-4 max-w-[48ch] text-body leading-relaxed text-silver">{body}</p>
       <div className="mt-6">
-        <PrimaryCta href={href}>Get a Quote</PrimaryCta>
+        <PrimaryCta href={href}>{ctaLabel}</PrimaryCta>
       </div>
     </div>
   );

@@ -57,7 +57,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Do we need power or wifi?",
-    a: "No. We bring our own generator and battery backup on every event, and Starlink for content streaming when venue wifi is unavailable. Zero venue dependency.",
+    a: "Venue power and wifi are ideal and will be used first when available. We bring a generator, battery bank, and Starlink as backups so the night runs either way.",
   },
   {
     q: "Who secures the venue permit if the event is on public or rented property?",

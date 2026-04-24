@@ -10,6 +10,7 @@ import ByocPanel from "@/components/funnel/byoc-panel";
 import EventMotifCard from "@/components/event-motif-card";
 import HeroIgnition, { IgnitedWordmark } from "@/components/hero-ignition";
 import BrandMarquee from "@/components/brand-marquee";
+import MagneticButton from "@/components/magnetic-button";
 import {
   ActionBar,
   BookingStep,
@@ -39,7 +40,7 @@ const bringItems = [
   },
   {
     title: "Power + connectivity",
-    body: "Generator, battery backup, and Starlink are part of the event kit so the venue is not carrying the night.",
+    body: "Venue power and wifi are used first when they are available. We bring a generator, battery bank, and Starlink along as backup so a hiccup does not stall the night.",
   },
   {
     title: "Setup handled",
@@ -88,26 +89,28 @@ export default function HomeClient({ geo }: Props = {}) {
           </h1>
           <motion.p
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 1.55 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 2.05 }}
             className="mt-5 max-w-[52ch] text-body-lg leading-relaxed text-silver"
           >
             30 ft outdoor cinema screen, scalable sound, and a setup crew that handles the night from arrival to teardown.
           </motion.p>
           <motion.p
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 1.7 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 2.2 }}
             className="mt-4 text-sm leading-relaxed text-steel"
           >
             {locationLine}
           </motion.p>
           <motion.div
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 1.85 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 2.35 }}
           >
             <ActionBar className="mt-8">
-              <PrimaryCta href={geo?.inRadius ? `/contact?location=${encodeURIComponent(geo.city.name)}` : "/contact"}>
-                {geo?.inRadius && geo.city.slug !== "canton" ? `Get a ${geo.city.name} Quote` : "Get a Quote"}
-              </PrimaryCta>
+              <MagneticButton>
+                <PrimaryCta href={geo?.inRadius ? `/contact?location=${encodeURIComponent(geo.city.name)}` : "/contact"}>
+                  {geo?.inRadius && geo.city.slug !== "canton" ? `Get a ${geo.city.name} Quote` : "Get a Quote"}
+                </PrimaryCta>
+              </MagneticButton>
               <TextCta href="/packages">Compare packages</TextCta>
             </ActionBar>
             <div className="mt-8">
@@ -126,10 +129,31 @@ export default function HomeClient({ geo }: Props = {}) {
               title="A REAL SCREEN. A CLEAN PLAN."
               body="The event is built around one big screen, the right audio coverage, and a setup that does not depend on your outlet, wifi, or guesswork."
             />
-            <ol className="divide-y divide-white/8 border-y border-white/8">
+            <motion.ol
+              className="divide-y divide-white/8 border-y border-white/8"
+              initial={reduced ? undefined : "hidden"}
+              whileInView={reduced ? undefined : "visible"}
+              viewport={{ once: true, margin: "-80px" }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.09 } },
+              }}
+            >
               {bringItems.map((item, i) => (
-                <li
+                <motion.li
                   key={item.title}
+                  variants={
+                    reduced
+                      ? undefined
+                      : {
+                          hidden: { opacity: 0, y: 14 },
+                          visible: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+                          },
+                        }
+                  }
                   className="group grid grid-cols-[auto_1fr] items-start gap-6 py-6 pl-4 -ml-4 border-l-2 border-transparent transition-colors hover:border-ember sm:grid-cols-[auto_1fr_2fr] sm:gap-10"
                 >
                   <span className="font-display text-display-md leading-none tracking-wider text-steel transition-colors group-hover:text-ember">
@@ -139,9 +163,9 @@ export default function HomeClient({ geo }: Props = {}) {
                   <p className="col-span-2 text-sm leading-relaxed text-silver sm:col-span-1">
                     {item.body}
                   </p>
-                </li>
+                </motion.li>
               ))}
-            </ol>
+            </motion.ol>
           </div>
         </FunnelSection>
 
@@ -169,6 +193,21 @@ export default function HomeClient({ geo }: Props = {}) {
           </div>
         </FunnelSection>
 
+        <FunnelSection labelledBy="addons-heading">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+              <SectionHeader
+                id="addons-heading"
+                eyebrow="Add-ons"
+                title="STACK THE NIGHT."
+                body="Popcorn, karaoke with two mics, retro gaming, drone video, glow kit, backyard games, photo backdrop, string lights, patio heater. Quoted with the setup, not a la carte."
+                className="mb-0"
+              />
+              <TextCta href="/add-ons">Full add-ons catalog</TextCta>
+            </div>
+          </div>
+        </FunnelSection>
+
         <FunnelSection labelledBy="events-heading">
           <div className="mx-auto max-w-7xl">
             <SectionHeader
@@ -177,15 +216,39 @@ export default function HomeClient({ geo }: Props = {}) {
               title="BUILT AROUND YOUR NIGHT."
               body="Movie, game, fight, graduation, birthday, or backyard gathering. We keep the format simple and match the setup to the crowd."
             />
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <motion.div
+              className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+              initial={reduced ? undefined : "hidden"}
+              whileInView={reduced ? undefined : "visible"}
+              viewport={{ once: true, margin: "-80px" }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.07 } },
+              }}
+            >
               {useCases.map((event) => (
-                <EventMotifCard
+                <motion.div
                   key={event.slug}
-                  event={event}
-                  href={`/contact?useCase=${event.slug}`}
-                />
+                  variants={
+                    reduced
+                      ? undefined
+                      : {
+                          hidden: { opacity: 0, y: 12 },
+                          visible: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                          },
+                        }
+                  }
+                >
+                  <EventMotifCard
+                    event={event}
+                    href={`/contact?useCase=${event.slug}`}
+                  />
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </FunnelSection>
 
@@ -239,8 +302,9 @@ export default function HomeClient({ geo }: Props = {}) {
         <FunnelSection tone="band">
           <div className="mx-auto max-w-4xl">
             <QuotePanel
-              title="BUILD YOUR QUOTE."
+              title="REQUEST A QUOTE."
               body="Send the date, city, guest count, and event type. We will match the setup and reply with a real quote within 24 hours."
+              ctaLabel="Request a Quote"
             />
           </div>
         </FunnelSection>

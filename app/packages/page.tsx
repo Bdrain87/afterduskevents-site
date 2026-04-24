@@ -9,6 +9,7 @@ import ComparisonSlides from "@/components/packages/comparison-slides";
 import ByocPanel from "@/components/funnel/byoc-panel";
 import EventMotifCard from "@/components/event-motif-card";
 import StatTicker from "@/components/stat-ticker";
+import { FadeInGroup, FadeInItem } from "@/components/fade-in";
 import {
   ActionBar,
   FunnelSection,
@@ -117,9 +118,12 @@ export default function PackagesPage() {
               body="The specs matter because outdoor sound disappears fast. More coverage means guests can hear clearly without the whole yard feeling overdriven."
             />
             <div className="relative overflow-hidden rounded-lg border border-white/10 bg-charcoal/40 p-8 sm:p-10 lg:p-12">
-              <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6">
+              <FadeInGroup
+                className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6"
+                stagger={0.14}
+              >
                 {soundStats.map((stat, i) => (
-                  <div
+                  <FadeInItem
                     key={stat.label}
                     className={`relative ${i > 0 ? "md:border-l md:border-white/10 md:pl-6" : ""}`}
                   >
@@ -133,9 +137,9 @@ export default function PackagesPage() {
                     </p>
                     <p className="mt-4 text-heading-md font-semibold text-projector">{stat.label}</p>
                     <p className="mt-2 text-sm leading-relaxed text-silver">{stat.note}</p>
-                  </div>
+                  </FadeInItem>
                 ))}
-              </div>
+              </FadeInGroup>
             </div>
           </div>
         </FunnelSection>

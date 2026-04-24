@@ -71,15 +71,12 @@ export default async function CityPage({ params }: Params) {
                 <MapPin size={14} aria-hidden="true" />
                 {city.county} County, MI
               </p>
-              <h1 className="font-display text-5xl sm:text-7xl text-projector tracking-wider leading-none mb-2">
+              <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl text-projector tracking-wider leading-none mb-2">
                 <Balancer>OUTDOOR MOVIE RENTALS IN {city.name.toUpperCase()}, MI</Balancer>
               </h1>
               <span className="oxblood-rule" />
             </FadeIn>
             <FadeIn delay={0.1}>
-              <p className="text-silver text-lg leading-relaxed mt-6">
-                {city.blurb}
-              </p>
               {city.distanceMiles > 0 && (
                 <p className="mt-6 flex items-baseline gap-2 font-display tracking-wider text-projector">
                   <StatTicker

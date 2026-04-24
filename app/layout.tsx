@@ -5,7 +5,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
 import FilmGrain from "@/components/film-grain";
 import CursorBeam from "@/components/cursor-beam";
-import LenisProvider from "@/components/lenis-provider";
 import StickyCTA from "@/components/sticky-cta";
 import ConciergeMount from "@/components/concierge/concierge-mount";
 import MicrosoftClarity from "@/components/microsoft-clarity";
@@ -16,7 +15,6 @@ import AmbientSky from "@/components/atmosphere/ambient-sky";
 import {
   buildLocalBusiness,
   buildOrganization,
-  buildPerson,
   buildWebSite,
 } from "@/lib/schema";
 import "./globals.css";
@@ -97,7 +95,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           data={[
             buildOrganization(),
             buildLocalBusiness(),
-            buildPerson(),
             buildWebSite(),
           ]}
         />
@@ -106,9 +103,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <FilmGrain />
         <CursorBeam />
         <NuqsAdapter>
-          <LenisProvider>
-            {children}
-          </LenisProvider>
+          {children}
         </NuqsAdapter>
         <StickyCTA />
         <ConciergeMount />

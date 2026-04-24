@@ -83,10 +83,7 @@ export default function GuidePage() {
                 <Balancer>How much does an outdoor movie rental cost in Michigan? (2026)</Balancer>
               </h1>
               <p className="text-steel text-xs uppercase tracking-wider">
-                By <Link href="/about" className="text-ember hover:text-projector transition-colors">Blake</Link>
-                {" · "}
-                Updated{" "}
-                <time dateTime={UPDATED}>April 2026</time>
+                Updated <time dateTime={UPDATED}>April 2026</time>
               </p>
             </FadeIn>
 
@@ -125,6 +122,7 @@ export default function GuidePage() {
                   </tbody>
                 </table>
               </div>
+              <p className="text-steel text-[11px] mt-2 sm:hidden">Swipe to see all columns.</p>
               <p className="text-steel text-xs mt-3">
                 Real numbers come with your quote. Contact us to price your specific event.
               </p>

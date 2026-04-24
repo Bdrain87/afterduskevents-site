@@ -235,7 +235,7 @@ export function buildCityServicePage(city: City): SchemaObject {
     name: `Outdoor Cinema Rental in ${city.name}, MI`,
     serviceType: "Outdoor Cinema Rental",
     provider: { "@id": BUSINESS_ID },
-    description: city.blurb,
+    description: `After Dusk Events provides outdoor cinema and private event rentals in ${city.name}, ${city.county} County, Michigan. 30 ft inflatable screen with four audio tiers.`,
     areaServed: {
       "@type": "City",
       name: city.name,
