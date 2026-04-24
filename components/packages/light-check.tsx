@@ -7,46 +7,110 @@ import { audioTiers } from "@/lib/packages";
 
 type TierSlug = (typeof audioTiers)[number]["slug"];
 
-const meterLevels: Record<TierSlug, number> = {
-  "single-speaker": 0.4,
-  "two-speakers": 0.7,
-  "two-speakers-sub": 1.0,
-};
-
 const shortLabel: Record<TierSlug, string> = {
   "single-speaker": "Single",
   "two-speakers": "Two",
   "two-speakers-sub": "Two + Sub",
 };
 
-function SoundMeter({ level, active }: { level: number; active: boolean }) {
-  // 18 bars; lit count = round(18 * level). Base ember intensity scales with active state.
-  const bars = 18;
-  const lit = Math.max(1, Math.round(bars * level));
+const coverageRows: Record<TierSlug, number[]> = {
+  "single-speaker": [4, 5, 6],
+  "two-speakers": [5, 7, 9, 7],
+  "two-speakers-sub": [6, 8, 10, 8, 6],
+};
+
+const diagramCopy: Record<TierSlug, { kicker: string; body: string }> = {
+  "single-speaker": {
+    kicker: "Compact yard",
+    body: "One clean speaker for smaller groups near the screen.",
+  },
+  "two-speakers": {
+    kicker: "Balanced coverage",
+    body: "Left and right speakers spread the room without pushing volume.",
+  },
+  "two-speakers-sub": {
+    kicker: "Full low end",
+    body: "Stereo coverage plus sub support for fights, sports, and bigger crowds.",
+  },
+};
+
+function CoverageDot({ active, delay }: { active: boolean; delay: number }) {
   return (
-    <div
-      aria-hidden="true"
-      className="flex items-end gap-[3px] h-28 w-16"
+    <span
+      className={`h-2 w-2 rounded-full transition-colors duration-300 ${
+        active ? "bg-ember shadow-[0_0_14px_rgba(221,84,84,0.5)]" : "bg-white/10"
+      }`}
+      style={{ transitionDelay: `${delay}ms` }}
+    />
+  );
+}
+
+function SpeakerBlock({ label, active = true }: { label: string; active?: boolean }) {
+  return (
+    <span
+      className={`flex h-11 w-14 items-center justify-center border text-[10px] font-semibold tracking-[0.18em] uppercase ${
+        active
+          ? "border-ember/50 bg-oxblood/30 text-projector shadow-[0_0_28px_rgba(221,84,84,0.12)]"
+          : "border-white/10 bg-screening text-steel"
+      }`}
     >
-      {Array.from({ length: bars }).map((_, i) => {
-        const isLit = i < lit;
-        const heightPct = 8 + (i / (bars - 1)) * 90;
-        return (
-          <span
-            key={i}
-            className="flex-1 rounded-[1.5px] transition-all duration-300"
-            style={{
-              height: `${heightPct}%`,
-              background: isLit
-                ? active
-                  ? "#DD5454"
-                  : "rgba(221, 84, 84, 0.55)"
-                : "rgba(245, 241, 236, 0.06)",
-              boxShadow: isLit && active ? "0 0 6px rgba(221, 84, 84, 0.6)" : "none",
-            }}
-          />
-        );
-      })}
+      {label}
+    </span>
+  );
+}
+
+function CoverageDiagram({ slug }: { slug: TierSlug }) {
+  const rows = coverageRows[slug];
+  const copy = diagramCopy[slug];
+  const hasTwoSpeakers = slug !== "single-speaker";
+  const hasSub = slug === "two-speakers-sub";
+
+  return (
+    <div className="relative overflow-hidden border border-white/10 bg-charcoal/50 p-6 sm:p-7 min-h-[390px]">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-80"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 18%, rgba(245,241,236,0.08) 0%, transparent 34%), radial-gradient(ellipse at 50% 95%, rgba(107,31,31,0.24) 0%, transparent 58%)",
+        }}
+      />
+
+      <div className="relative">
+        <div className="mx-auto mb-2 h-2 w-[78%] bg-projector/80 shadow-[0_0_26px_rgba(245,241,236,0.22)]" />
+        <p className="mb-10 text-center text-[10px] tracking-[0.22em] uppercase text-steel">
+          30 ft screen
+        </p>
+
+        <div className="flex min-h-[138px] flex-col items-center justify-center gap-4">
+          {rows.map((count, rowIndex) => (
+            <div key={rowIndex} className="flex justify-center gap-3">
+              {Array.from({ length: count }).map((_, dotIndex) => (
+                <CoverageDot
+                  key={dotIndex}
+                  active
+                  delay={(rowIndex * count + dotIndex) * 12}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-9 flex items-end justify-center gap-5 sm:gap-7">
+          {hasTwoSpeakers ? <SpeakerBlock label="L" /> : <SpeakerBlock label="L" active={false} />}
+          <SpeakerBlock label={hasSub ? "Sub" : slug === "single-speaker" ? "Spk" : "Rig"} active />
+          {hasTwoSpeakers ? <SpeakerBlock label="R" /> : <SpeakerBlock label="R" active={false} />}
+        </div>
+
+        <div className="mt-8 border-t border-white/10 pt-5">
+          <p className="font-display text-heading-md tracking-wider text-projector">
+            {copy.kicker}
+          </p>
+          <p className="mt-2 max-w-[34ch] text-sm leading-relaxed text-silver">
+            {copy.body}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -84,7 +148,9 @@ export default function LightCheck() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
           {/* Meter + selector, 2 cols */}
           <div className="lg:col-span-2">
-            <div className="flex items-end gap-6 sm:gap-8 justify-center lg:justify-start border border-white/10 bg-charcoal/40 backdrop-blur-sm p-8">
+            <CoverageDiagram slug={activeSlug} />
+
+            <div className="mt-4 grid grid-cols-3 gap-2">
               {audioTiers.map((tier) => {
                 const isActive = tier.slug === activeSlug;
                 return (
@@ -97,19 +163,22 @@ export default function LightCheck() {
                     onFocus={() => setActiveSlug(tier.slug)}
                     aria-pressed={isActive}
                     aria-label={`Select ${tier.name}`}
-                    className="flex flex-col items-center gap-3 group"
+                    className={`group border px-3 py-3 text-left transition-colors ${
+                      isActive
+                        ? "border-ember/60 bg-oxblood/25"
+                        : "border-white/10 bg-screening/55 hover:border-white/25"
+                    }`}
                   >
-                    <SoundMeter level={meterLevels[tier.slug]} active={isActive} />
                     <span
-                      className={`font-display text-xl tracking-wider transition-colors ${
+                      className={`block font-display text-base tracking-wider transition-colors ${
                         isActive ? "text-ember" : "text-steel group-hover:text-silver"
                       }`}
                     >
                       {shortLabel[tier.slug]}
                     </span>
                     <span
-                      className={`h-[2px] w-10 transition-colors ${
-                        isActive ? "bg-ember" : "bg-white/10 group-hover:bg-white/25"
+                      className={`mt-2 block h-[2px] w-full transition-colors ${
+                        isActive ? "bg-ember" : "bg-white/10"
                       }`}
                       aria-hidden="true"
                     />
@@ -117,9 +186,6 @@ export default function LightCheck() {
                 );
               })}
             </div>
-            <p className="mt-4 text-mono text-steel tracking-wider">
-              Bass demo: coming v2
-            </p>
           </div>
 
           {/* Card detail, 3 cols */}
