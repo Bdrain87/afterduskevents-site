@@ -7,52 +7,75 @@ type Props = {
 
 const DEFAULT_LABELS: [string, string, string] = ["Event", "Package", "Contact"];
 
+/**
+ * Filmstrip-style step indicator. Each step is a film frame with sprocket
+ * holes on the top and bottom edges. Active frame lights up in ember and
+ * glows; completed frames stay ember-outlined. Upcoming frames are dim.
+ * The "strip" itself is a continuous dark band behind all frames.
+ */
 export default function ProgressIndicator({ current, labels = DEFAULT_LABELS }: Props) {
   return (
     <div className="mb-10">
-      <ol className="flex items-center gap-2" aria-label="Form progress">
+      <ol
+        className="relative flex items-stretch gap-2 rounded-sm border-y border-white/10 bg-charcoal/70 py-3 sm:gap-3"
+        aria-label="Form progress"
+      >
         {labels.map((label, i) => {
           const step = (i + 1) as 1 | 2 | 3;
           const isActive = step === current;
           const isComplete = step < current;
           return (
-            <li key={label} className="flex items-center gap-3 flex-1 last:flex-none">
+            <li
+              key={label}
+              className="relative flex flex-1 flex-col items-center justify-center"
+              aria-current={isActive ? "step" : undefined}
+            >
+              {/* Sprockets top */}
+              <span className="absolute inset-x-3 top-0 flex justify-between" aria-hidden="true">
+                {Array.from({ length: 4 }).map((_, j) => (
+                  <span
+                    key={`t-${j}`}
+                    className={`block h-1 w-1.5 rounded-sm ${
+                      isActive || isComplete ? "bg-ember/70" : "bg-white/10"
+                    }`}
+                  />
+                ))}
+              </span>
+              {/* Frame body */}
               <span
                 className={[
-                  "flex items-center justify-center h-8 w-8 text-xs font-semibold shrink-0 transition-colors border",
+                  "flex h-12 w-full flex-col items-center justify-center gap-0.5 border text-xs transition-all",
                   isActive
-                    ? "bg-ember text-screening border-ember"
+                    ? "border-ember bg-ember/10 text-ember shadow-[0_0_24px_rgba(221,84,84,0.35)]"
                     : isComplete
-                      ? "bg-ember/90 text-screening border-ember/90"
-                      : "bg-transparent text-steel border-white/15",
-                ].join(" ")}
-                aria-current={isActive ? "step" : undefined}
-              >
-                {isComplete ? "✓" : step}
-              </span>
-              <span
-                className={[
-                  "text-caption hidden sm:inline-block",
-                  isActive ? "text-ember" : isComplete ? "text-silver" : "text-steel",
+                      ? "border-ember/60 bg-screening/60 text-ember/90"
+                      : "border-white/10 bg-screening/40 text-steel",
                 ].join(" ")}
               >
-                {label}
+                <span className="font-display text-sm leading-none tracking-[0.2em]">
+                  {isComplete ? "✓" : `0${step}`}
+                </span>
+                <span className="hidden text-[10px] uppercase tracking-[0.18em] sm:block">
+                  {label}
+                </span>
               </span>
-              {step < 3 && (
-                <span
-                  className={[
-                    "flex-1 h-px transition-colors duration-500",
-                    isComplete ? "bg-ember" : "bg-white/10",
-                  ].join(" ")}
-                  aria-hidden="true"
-                />
-              )}
+              {/* Sprockets bottom */}
+              <span className="absolute inset-x-3 bottom-0 flex justify-between" aria-hidden="true">
+                {Array.from({ length: 4 }).map((_, j) => (
+                  <span
+                    key={`b-${j}`}
+                    className={`block h-1 w-1.5 rounded-sm ${
+                      isActive || isComplete ? "bg-ember/70" : "bg-white/10"
+                    }`}
+                  />
+                ))}
+              </span>
             </li>
           );
         })}
       </ol>
       <p className="text-mono text-steel mt-4">
-        Step <span className="text-ember font-semibold">{current}</span> of 3
+        Reel <span className="text-ember font-semibold">{current}</span> of 3
       </p>
     </div>
   );
