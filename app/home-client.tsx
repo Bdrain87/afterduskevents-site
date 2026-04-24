@@ -58,10 +58,10 @@ export default function HomeClient({ geo }: Props = {}) {
             className="absolute inset-0 pointer-events-none z-[1]"
             style={{
               background:
-                "radial-gradient(ellipse 60% 50% at 30% 30%, rgba(107,31,31,0.28) 0%, transparent 65%), radial-gradient(ellipse 45% 40% at 80% 75%, rgba(74,14,14,0.25) 0%, transparent 60%)",
+                "radial-gradient(ellipse 60% 50% at 30% 30%, rgba(107,31,31,0.16) 0%, transparent 65%), radial-gradient(ellipse 45% 40% at 80% 75%, rgba(74,14,14,0.16) 0%, transparent 60%)",
             }}
           />
-          <Spotlight fill="rgba(107, 31, 31, 0.45)" />
+          <Spotlight fill="rgba(107, 31, 31, 0.26)" />
           <div
             aria-hidden="true"
             className="hero-horizon-fade absolute left-0 right-0 z-[2] pointer-events-none"

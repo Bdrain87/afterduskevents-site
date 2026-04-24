@@ -209,10 +209,16 @@ html[data-tod="night"] {
   /* Display sizes. Desktop tokens live in @theme; these utilities add
      responsive mobile overrides so the brand scale is locked in one place. */
   .text-display-hero {
-    /* Fits "AFTER DUSK EVENTS" on one line across viewports. min ~48px / max 160px. */
-    font-size: clamp(3rem, 12vw, 10rem);
-    line-height: 0.92;
-    letter-spacing: 0.005em;
+    /* Fits "AFTER DUSK EVENTS" on one line without turning into a billboard. */
+    font-size: 3rem;
+    line-height: 0.9;
+    letter-spacing: 0;
+  }
+  @media (min-width: 768px) {
+    .text-display-hero { font-size: 6.5rem; }
+  }
+  @media (min-width: 1280px) {
+    .text-display-hero { font-size: 8.5rem; }
   }
   .text-display-xl {
     font-size: 3.5rem;              /* 56px mobile */
@@ -315,13 +321,13 @@ html[data-tod="night"] {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero wordmark color. Solid ember with outer glow to read as "projected"
-   rather than printed. Applied to the HeroWordmark component. */
+/* Hero wordmark: projected light first, ember only as a quiet halo. */
 .wordmark-glow {
-  color: #DD5454;
+  color: #F5F1EC;
   text-shadow:
-    0 0 32px rgba(221, 84, 84, 0.25),
-    0 0 64px rgba(221, 84, 84, 0.12);
+    0 0 14px rgba(245, 241, 236, 0.16),
+    0 0 48px rgba(221, 84, 84, 0.16),
+    0 0 110px rgba(107, 31, 31, 0.2);
 }
 
 /* Scroll-driven sky deepening on the homepage. The dusk horizon fades out,
