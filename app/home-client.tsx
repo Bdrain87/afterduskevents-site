@@ -100,14 +100,14 @@ export default function HomeClient({ geo }: Props = {}) {
             </div>
 
             <div className="lg:col-span-6">
-              <MediaPanel className="aspect-[4/3]">
+              <MediaPanel className="mx-auto aspect-[4/5] max-w-[560px] border-0 bg-transparent shadow-none lg:ml-auto">
                 <Image
                   src="/images/setup/30ft-screen-studio.avif"
                   alt="30 foot inflatable outdoor cinema screen setup"
                   fill
                   priority
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-contain p-4"
+                  className="rounded-lg object-cover object-[50%_55%]"
                 />
               </MediaPanel>
             </div>

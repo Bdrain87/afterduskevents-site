@@ -132,14 +132,14 @@ export default async function TierPage({ params }: Params) {
               </ActionBar>
             </div>
             <div className="lg:col-span-5">
-              <MediaPanel className="aspect-[4/5]">
+              <MediaPanel className="aspect-[4/5] border-0 bg-transparent shadow-none">
                 <Image
                   src="/images/setup/30ft-screen-studio.avif"
                   alt="30 foot inflatable outdoor cinema screen setup"
                   fill
                   priority
                   sizes="(min-width: 1024px) 42vw, 100vw"
-                  className="object-contain p-4"
+                  className="rounded-lg object-cover object-[50%_55%]"
                 />
               </MediaPanel>
             </div>

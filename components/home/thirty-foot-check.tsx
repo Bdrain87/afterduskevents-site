@@ -34,14 +34,14 @@ export default function ThirtyFootCheck() {
 
         {/* Product render: 3 cols */}
         <div className="lg:col-span-3 order-1 lg:order-2 relative">
-          <MediaPanel className="relative aspect-[4/5] sm:aspect-[5/6]">
+          <MediaPanel className="relative aspect-[4/5] border-0 bg-transparent shadow-none sm:aspect-[5/6]">
             <Image
               src="/images/setup/30ft-screen-studio.avif"
               alt="After Dusk Events 30 foot inflatable outdoor cinema screen, studio render with a person at the base for scale"
               fill
               priority
               sizes="(min-width: 1024px) 60vw, 100vw"
-              className="object-contain"
+              className="rounded-lg object-cover object-[50%_55%]"
             />
           </MediaPanel>
         </div>
