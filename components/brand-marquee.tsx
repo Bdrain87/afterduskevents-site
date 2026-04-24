@@ -4,7 +4,7 @@ const SIGNALS = [
   "Veteran-Owned",
   "Fully Insured",
   "SE Michigan",
-  "60-Mile Radius",
+  "40-Mile Radius",
   "Private Events Only",
   "Starlink Backup",
   "Real 30 ft Screen",

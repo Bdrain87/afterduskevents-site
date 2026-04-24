@@ -13,7 +13,7 @@ const POSTAL = "48188";
 const COUNTRY = "US";
 const LAT = 42.3086;
 const LNG = -83.482;
-const RADIUS_M = 96560; // 60 miles in meters
+const RADIUS_M = 64374; // 40 miles in meters
 const FOUNDED = "2025";
 const LOGO_URL = `${SITE_URL}/logo.png`;
 const OG_IMAGE = `${SITE_URL}/og-image.png`;
@@ -66,7 +66,7 @@ export function buildLocalBusiness(): SchemaObject {
     name: BUSINESS_NAME,
     alternateName: BRAND,
     description:
-      "Outdoor cinema and event rentals for private events in Southeast Michigan. 30-foot inflatable screen, four audio tiers up to four speakers and two subwoofers. Veteran-owned, fully insured, serving 60 miles of Canton, MI.",
+      "Outdoor cinema and event rentals for private events in Southeast Michigan. 30-foot inflatable screen, four audio tiers up to four speakers and two subwoofers. Veteran-owned, fully insured, serving 40 miles of Canton, MI with travel beyond by quote.",
     url: SITE_URL,
     logo: LOGO_URL,
     image: OG_IMAGE,

@@ -13,7 +13,7 @@ import ByocPanel from "@/components/funnel/byoc-panel";
 export const metadata: Metadata = {
   title: "Request a Quote",
   description:
-    "Request a custom quote for a private outdoor cinema event. After Dusk Events serves Southeast Michigan within 60 miles of Canton. Response within 24 hours.",
+    "Request a custom quote for a private outdoor cinema event. After Dusk Events serves Southeast Michigan within 40 miles of Canton, with travel charges beyond. Response within 24 hours.",
   alternates: { canonical: "/contact" },
 };
 

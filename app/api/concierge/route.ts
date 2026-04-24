@@ -28,7 +28,7 @@ REAL OFFERING (the only facts you may use):
 • BYO Content rule: customer streams from their own accounts (Netflix, Disney+, YouTube, etc.). Karaoke uses YouTube karaoke tracks.
 • Gaming: retro gaming kit add-on with HDMI plug-and-play setup, 100,000+ classic-game library, 50+ classic systems, offline play, and four wireless controllers; OR customer's PS/Xbox with staff hookup.
 • Power/connectivity: venue power and wifi are used first when available. Generator, battery bank, and Starlink come along as backup only.
-• Service radius: 60 miles of Canton. Travel-zone 60–90 mi has travel fee. Beyond 90 mi: flag.
+• Service radius: 40 miles of Canton (no travel fee). Beyond 40 mi: an additional travel charge is added to the quote. Beyond 90 mi: flag for manual review.
 • Private events only. no tickets, no admission, no public advertising.
 • Venue permits: customer's responsibility for any non-private-backyard venue.
 
@@ -123,7 +123,7 @@ export async function POST(req: Request) {
 
       checkServiceArea: tool({
         description:
-          "Check whether a given city is in our 60-mile service radius. Use when visitor mentions their city. Accepts either a city name or lat/lng.",
+          "Check whether a given city is in our 40-mile service radius. Use when visitor mentions their city. Accepts either a city name or lat/lng.",
         inputSchema: z.object({
           city: z.string().optional(),
           lat: z.number().optional(),
@@ -138,8 +138,8 @@ export async function POST(req: Request) {
                 ok: true,
                 city: known.name,
                 distanceMiles: known.distanceMiles,
-                inRadius: known.distanceMiles <= 60,
-                travelZone: known.distanceMiles > 60 && known.distanceMiles <= 90,
+                inRadius: known.distanceMiles <= 40,
+                travelZone: known.distanceMiles > 40,
               };
             }
           }

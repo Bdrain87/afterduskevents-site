@@ -41,7 +41,7 @@ const guideFaqs = [
   },
   {
     q: "Is there a travel fee?",
-    a: "Inside 60 miles of Canton, MI, no separate travel fee is added. Beyond 60 miles, contact us for a custom quote with a travel line item.",
+    a: "Inside 40 miles of Canton, MI, no separate travel fee is added. Beyond 40 miles, an additional travel charge is added to the quote.",
   },
   {
     q: "Do you publish a price list?",
@@ -136,7 +136,7 @@ export default function GuidePage() {
                 {[
                   ["Audio tier", "Single speaker, two speakers, two speakers plus a subwoofer, or four speakers plus two subwoofers. Bigger sound setups are the call for fight nights, music-heavy events, and larger layouts."],
                   ["Runtime", "3 hour vs 4 hour vs 6+ hour events scale the price."],
-                  ["Distance from Canton", "Inside 60 miles, no travel fee. Beyond, a travel line is added."],
+                  ["Distance from Canton", "Inside 40 miles, no travel fee. Beyond 40 miles, an additional travel charge is added."],
                   ["Add-ons", "Karaoke with 2 wireless mics, drone video/photos, popcorn machine, cooler, cornhole / can jam / ladder ball, photo backdrop, ambient string lighting, blacklights + glow kit, patio heater, bug zapper, folding tables, early setup, late teardown."],
                   ["Console hookup", "BYO PlayStation or Xbox with staff hookup is a paid add-on (waiver signed at event)."],
                 ].map(([title, body]) => (

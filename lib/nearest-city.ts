@@ -16,9 +16,9 @@ export function haversineMiles(aLat: number, aLng: number, bLat: number, bLng: n
 export type NearestCityResult = {
   city: City;
   milesFromVisitor: number;
-  /** in-radius = within the 60-mile Canton service circle. */
+  /** in-radius = within the 40-mile Canton service circle (no travel charge). */
   inRadius: boolean;
-  /** travel-zone = 60–90 miles (travel fee expected). */
+  /** travel-zone = beyond 40 miles (additional travel charge added to the quote). */
   travelZone: boolean;
 };
 
@@ -42,7 +42,7 @@ export function findNearestCity(lat: number | null, lng: number | null): Nearest
   return {
     city: best,
     milesFromVisitor: bestMiles,
-    inRadius: bestMiles <= 60,
-    travelZone: bestMiles > 60 && bestMiles <= 90,
+    inRadius: bestMiles <= 40,
+    travelZone: bestMiles > 40,
   };
 }

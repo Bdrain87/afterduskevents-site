@@ -111,7 +111,7 @@ export default async function CityPage({ params }: Params) {
                 {city.name} is{" "}
                 {city.distanceMiles === 0
                   ? "home base for After Dusk Events"
-                  : `${city.distanceMiles} miles from our Canton home base, well inside our 60-mile service radius`}
+                  : `${city.distanceMiles} miles from our Canton home base${city.distanceMiles <= 40 ? ", well inside our 40-mile service radius" : ", outside the 40-mile core radius (an additional travel charge is added to the quote)"}`}
                 . Every {city.name} booking is a 30 ft inflatable screen with one of four audio tiers,
                 set up on site with a complete systems test before the first reel rolls.
               </p>
@@ -186,7 +186,7 @@ export default async function CityPage({ params }: Params) {
               <h2 id="other-cities-heading" className="font-heading text-2xl text-projector mb-2">
                 Also serving
               </h2>
-              <p className="text-steel text-sm mb-6">All within 60 miles of Canton, MI.</p>
+              <p className="text-steel text-sm mb-6">Standard service within 40 miles of Canton, MI. Beyond that, a travel charge is added.</p>
             </FadeIn>
             <ul className="flex flex-wrap gap-3">
               {cities
