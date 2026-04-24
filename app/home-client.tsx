@@ -128,7 +128,7 @@ export default function HomeClient({ geo }: Props = {}) {
             <SectionHeader
               id="bring-heading"
               eyebrow="What we bring"
-              title="BIG SCREEN. TUNED SOUND. HANDLED SETUP."
+              title="THE SETUP IS OURS. THE NIGHT IS YOURS."
               body="One big screen, audio coverage matched to the crowd, and a setup that does not depend on your outlet, wifi, or guesswork."
             />
             <motion.ol
