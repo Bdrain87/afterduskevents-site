@@ -43,7 +43,7 @@ const bringItems = [
   },
   {
     title: "Setup handled",
-    body: "Water ballast setup, systems test, teardown, private-event rules, and insurance handled before guests settle in.",
+    body: "Ground-anchor setup, systems test, teardown, private-event rules, and insurance handled before guests settle in.",
   },
 ];
 
@@ -54,7 +54,7 @@ const bookingSteps = [
   },
   {
     title: "We match the setup",
-    body: "Blake recommends the audio tier and any add-ons that actually fit the event.",
+    body: "We recommend the audio tier and any add-ons that actually fit the event.",
   },
   {
     title: "We run the setup",
@@ -83,8 +83,8 @@ export default function HomeClient({ geo }: Props = {}) {
       <Nav />
       <main className="flex-1">
         <HeroIgnition mediaAlt="30 foot inflatable outdoor cinema screen setup">
-          <h1 className="font-display text-display-xl leading-none tracking-wider text-projector">
-            <IgnitedWordmark text="AFTER DUSK EVENTS" />
+          <h1 className="font-display text-display-xl leading-none text-projector">
+            <IgnitedWordmark text="AFTER DUSK EVENTS" className="brand-hero-wordmark wordmark-glow" />
           </h1>
           <motion.p
             {...fadeUp}
@@ -156,7 +156,7 @@ export default function HomeClient({ geo }: Props = {}) {
                 id="sound-heading"
                 eyebrow="Packages"
                 title="PICK THE SOUND. THE SCREEN STAYS BIG."
-                body="The package choice is about coverage. Smaller groups need clean dialogue. Larger yards need more speakers and more low-end support."
+                body="The package choice is about coverage. Smaller groups need clear dialogue. Larger yards need more speakers and stronger bass."
                 className="mb-0"
               />
               <TextCta href="/packages">Open package guide</TextCta>

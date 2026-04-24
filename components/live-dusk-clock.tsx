@@ -45,15 +45,14 @@ export default function LiveDuskClock() {
     tick();
     // Align to the next minute boundary, then tick every 60s.
     const ms = 60_000 - (Date.now() % 60_000);
+    let interval: ReturnType<typeof setInterval> | undefined;
     const timeout = setTimeout(() => {
       tick();
-      const interval = setInterval(tick, 60_000);
-      (timeout as unknown as { interval?: number }).interval = interval as unknown as number;
+      interval = setInterval(tick, 60_000);
     }, ms);
     return () => {
       clearTimeout(timeout);
-      const ref = timeout as unknown as { interval?: number };
-      if (ref.interval) clearInterval(ref.interval);
+      if (interval) clearInterval(interval);
     };
   }, []);
 

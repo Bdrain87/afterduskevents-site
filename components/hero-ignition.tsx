@@ -1,20 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import { motion, useReducedMotion } from "motion/react";
-
-const COUNTDOWN_KEY = "adeIgnitionPlayed";
-const DIGITS = ["3", "2", "1"] as const;
-const PER_DIGIT_MS = 260;
-const FADE_OUT_MS = 380;
 
 /**
  * Home hero.
- * - Once per session, a brief film-gate countdown overlays the hero (3 . 2 . 1)
- *   and fades out. Skipped entirely for reduced-motion visitors and on repeat
- *   visits within the session.
- * - The 30 ft studio render reveals through a diagonal mask wipe.
+ * - The 30 ft studio render eases in without an interstitial splash.
  * - Headline renders letter-by-letter via motion stagger.
  *
  * All copy, layout, and alt text match the previous hero verbatim.
@@ -26,30 +18,6 @@ type Props = {
 
 export default function HeroIgnition({ children, mediaAlt }: Props) {
   const reduced = useReducedMotion();
-  const [countdownActive, setCountdownActive] = useState(false);
-  const [digitIndex, setDigitIndex] = useState(0);
-
-  useEffect(() => {
-    if (reduced) return;
-    try {
-      if (sessionStorage.getItem(COUNTDOWN_KEY) === "1") return;
-      sessionStorage.setItem(COUNTDOWN_KEY, "1");
-    } catch {
-      /* private browsing: skip */
-      return;
-    }
-    setCountdownActive(true);
-  }, [reduced]);
-
-  useEffect(() => {
-    if (!countdownActive) return;
-    if (digitIndex >= DIGITS.length) {
-      const fade = window.setTimeout(() => setCountdownActive(false), FADE_OUT_MS);
-      return () => window.clearTimeout(fade);
-    }
-    const advance = window.setTimeout(() => setDigitIndex((i) => i + 1), PER_DIGIT_MS);
-    return () => window.clearTimeout(advance);
-  }, [countdownActive, digitIndex]);
 
   return (
     <section className="relative overflow-hidden px-6 pb-16 pt-28 sm:px-10 lg:px-16 lg:pb-24 lg:pt-36">
@@ -60,7 +28,7 @@ export default function HeroIgnition({ children, mediaAlt }: Props) {
             className="relative mx-auto aspect-[4/5] max-w-[560px] overflow-hidden rounded-lg lg:ml-auto"
             initial={reduced ? false : { opacity: 0, y: 18, filter: "blur(14px) brightness(0.4)" }}
             animate={reduced ? undefined : { opacity: 1, y: 0, filter: "blur(0px) brightness(1)" }}
-            transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1], delay: countdownActive ? 0.85 : 0.15 }}
+            transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
           >
             <Image
               src="/images/setup/30ft-screen-studio.avif"
@@ -73,25 +41,6 @@ export default function HeroIgnition({ children, mediaAlt }: Props) {
           </motion.div>
         </div>
       </div>
-
-      {countdownActive && (
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-screening/55 backdrop-blur-[2px] transition-opacity duration-300"
-          style={{ opacity: digitIndex >= DIGITS.length ? 0 : 1 }}
-        >
-          <div className="relative flex h-48 w-36 items-center justify-center border-2 border-ember/70 sm:h-64 sm:w-48">
-            {/* Sprocket holes */}
-            <span className="absolute -left-3 top-2 h-3 w-2 rounded-sm bg-ember/70" />
-            <span className="absolute -left-3 bottom-2 h-3 w-2 rounded-sm bg-ember/70" />
-            <span className="absolute -right-3 top-2 h-3 w-2 rounded-sm bg-ember/70" />
-            <span className="absolute -right-3 bottom-2 h-3 w-2 rounded-sm bg-ember/70" />
-            <span className="font-display text-[7rem] leading-none text-projector sm:text-[9rem]">
-              {DIGITS[Math.min(digitIndex, DIGITS.length - 1)]}
-            </span>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

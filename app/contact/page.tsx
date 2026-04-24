@@ -28,7 +28,7 @@ const quoteSteps = [
   },
   {
     title: "Real quote",
-    body: "Blake reviews the details and replies with a custom quote within 24 hours.",
+    body: "We review the details and reply with a custom quote within 24 hours.",
   },
 ];
 

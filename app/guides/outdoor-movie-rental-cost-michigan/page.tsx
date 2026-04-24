@@ -126,7 +126,7 @@ export default function GuidePage() {
                 </table>
               </div>
               <p className="text-steel text-xs mt-3">
-                Real numbers come with your quote. Contact Blake to price your specific event.
+                Real numbers come with your quote. Contact us to price your specific event.
               </p>
             </FadeIn>
 

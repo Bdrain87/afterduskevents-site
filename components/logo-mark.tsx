@@ -1,8 +1,17 @@
 "use client";
 
-export default function LogoMark({ size = 36, color = "#DD5454" }: { size?: number; color?: string }) {
+export default function LogoMark({
+  size = 36,
+  color = "#DD5454",
+  className,
+}: {
+  size?: number;
+  color?: string;
+  className?: string;
+}) {
   return (
     <svg
+      className={className}
       width={size}
       height={size}
       viewBox="0 0 64 64"

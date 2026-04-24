@@ -51,7 +51,7 @@ export const audioTiers: AudioTier[] = [
       "30 ft inflatable screen",
       "Single speaker",
       "BYO Content",
-      "Water ballast setup. no digging",
+      "Ground anchors drilled on site",
     ],
     best: "Smaller backyards, intimate gatherings",
   },
@@ -74,7 +74,7 @@ export const audioTiers: AudioTier[] = [
       "30 ft inflatable screen",
       "Two speakers",
       "BYO Content",
-      "Water ballast setup. no digging",
+      "Ground anchors drilled on site",
     ],
     best: "Standard outdoor events, most bookings",
   },
@@ -83,12 +83,12 @@ export const audioTiers: AudioTier[] = [
     name: "30 ft + Two Speakers + Subwoofer",
     speakerCount: 2,
     subwooferCount: 1,
-    plainBenefit: "Adds real low-end support for events where the audio matters more.",
-    coverageNote: "Stereo speakers carry the main sound while the subwoofer fills in the low end.",
+    plainBenefit: "Adds stronger bass for events where the audio matters more.",
+    coverageNote: "Stereo speakers carry the main sound while the subwoofer adds bass.",
     soundProfile: "Cleaner bass for fights, sports, music, and bigger outdoor groups.",
     technicalNotes: [
       "Subwoofer uses dual 8-inch low-frequency drivers.",
-      "Subwoofer response reaches 25 Hz-180 Hz for deeper low-end support.",
+      "Subwoofer response reaches 25 Hz-180 Hz for deeper bass.",
       "Wireless SKAA connection keeps the subwoofer placement flexible.",
       "Battery-powered subwoofer can run away from wall power.",
     ],
@@ -98,7 +98,7 @@ export const audioTiers: AudioTier[] = [
       "Two speakers",
       "Subwoofer",
       "BYO Content",
-      "Water ballast setup. no digging",
+      "Ground anchors drilled on site",
     ],
     best: "Fight nights, bass-heavy music, large crowds",
   },
@@ -108,12 +108,12 @@ export const audioTiers: AudioTier[] = [
     speakerCount: 4,
     subwooferCount: 2,
     plainBenefit: "Maximum coverage for big yards, field layouts, and high-energy crowds.",
-    coverageNote: "Four speakers help cover the space front to back while two subs support the low end.",
+    coverageNote: "Four speakers help cover the space front to back while two subs add stronger bass.",
     soundProfile: "The fullest setup: more even coverage, stronger bass, and better reach across a larger layout.",
     technicalNotes: [
       "Four linked full-range speakers support wider outdoor coverage.",
       "Each full-range speaker is manufacturer-rated up to 126 dB max volume.",
-      "Two wireless subwoofers add dual-driver low-end support down to 25 Hz.",
+      "Two wireless subwoofers add stronger bass down to 25 Hz.",
       "Battery-powered speakers and subs keep the layout flexible.",
     ],
     recommendedFor: ["Large yards", "Fields", "150+ guests", "High-energy events"],
@@ -122,7 +122,7 @@ export const audioTiers: AudioTier[] = [
       "Four speakers",
       "Two subwoofers",
       "BYO Content",
-      "Water ballast setup. no digging",
+      "Ground anchors drilled on site",
     ],
     best: "Large crowds, field layouts, high-energy events",
   },
@@ -131,16 +131,7 @@ export const audioTiers: AudioTier[] = [
 /**
  * Event types. marketing framings, not distinct products.
  * Each one maps to a recommended audio tier for the ballpark tool.
- * `motif` picks a procedural SVG treatment rendered by EventMotifCard.
  */
-export type EventMotif =
-  | "film-frame"
-  | "crt-glow"
-  | "stadium-bloom"
-  | "ring-halo"
-  | "confetti-beam"
-  | "string-lights";
-
 export type UseCase = {
   slug:
     | "movie-night"
@@ -151,7 +142,6 @@ export type UseCase = {
     | "celebration";
   name: string;
   desc: string;
-  motif: EventMotif;
   recommendedTier: AudioTier["slug"];
 };
 
@@ -160,42 +150,36 @@ export const useCases: UseCase[] = [
     slug: "movie-night",
     name: "Movie Night",
     desc: "A private outdoor cinema setup for your own movie, account, or playlist.",
-    motif: "film-frame",
     recommendedTier: "two-speakers",
   },
   {
     slug: "gaming",
     name: "Gaming Night",
     desc: "Plug-and-play retro games with wireless controllers, or your PS/Xbox with staff hookup.",
-    motif: "crt-glow",
     recommendedTier: "two-speakers",
   },
   {
     slug: "sports",
     name: "Sports Watch Party",
     desc: "Big screen visibility with enough audio coverage for the whole yard.",
-    motif: "stadium-bloom",
     recommendedTier: "two-speakers-sub",
   },
   {
     slug: "fights",
     name: "Fight Night",
-    desc: "Clear commentary, crowd energy, and low-end support for the walkouts.",
-    motif: "ring-halo",
+    desc: "Clear commentary, crowd energy, and stronger bass for the walkouts.",
     recommendedTier: "two-speakers-sub",
   },
   {
     slug: "graduation",
     name: "Graduation Party",
     desc: "Photo reels, speeches, slideshows, or a movie once the sun drops.",
-    motif: "confetti-beam",
     recommendedTier: "two-speakers",
   },
   {
     slug: "celebration",
     name: "Get-together",
     desc: "Birthdays, holidays, and private gatherings that need a focal point.",
-    motif: "string-lights",
     recommendedTier: "two-speakers",
   },
 ];

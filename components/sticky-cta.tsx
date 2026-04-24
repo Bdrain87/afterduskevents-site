@@ -69,7 +69,7 @@ export default function StickyCTA() {
                 Quickest path to a quote
               </Drawer.Title>
               <Drawer.Description className="text-steel text-sm mb-5">
-                Reach Blake directly. We respond within 24 hours.
+                Send the basics. We respond within 24 hours.
               </Drawer.Description>
 
               <div className="mx-auto w-12 h-1 bg-white/15 rounded-full mb-6 -mt-2" aria-hidden="true" />
@@ -94,7 +94,7 @@ export default function StickyCTA() {
                   >
                     <Mail size={18} className="text-ember" aria-hidden="true" />
                     <div>
-                      <div className="font-heading text-base">Email Blake</div>
+                      <div className="font-heading text-base">Email us</div>
                       <div className="text-steel text-xs">hello@afterduskevents.com</div>
                     </div>
                   </a>
@@ -106,7 +106,7 @@ export default function StickyCTA() {
                   >
                     <Phone size={18} className="text-ember" aria-hidden="true" />
                     <div>
-                      <div className="font-heading text-base">Text Blake</div>
+                      <div className="font-heading text-base">Text us</div>
                       <div className="text-steel text-xs">SMS for fastest reply</div>
                     </div>
                   </a>

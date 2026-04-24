@@ -31,7 +31,7 @@ export default function ThanksPage() {
             GOT IT.
           </h1>
           <p className="text-silver text-body-lg leading-relaxed mb-12">
-            Blake will reply within 24 hours with availability and a real quote.
+            We will reply within 24 hours with availability and a real quote.
           </p>
           <Link
             href="/"

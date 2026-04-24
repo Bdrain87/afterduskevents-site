@@ -17,7 +17,7 @@ const audioTierSummary = audioTiers
 export const faqs: Faq[] = [
   {
     q: "How does pricing work?",
-    a: "Every event is different. Date, distance, duration, venue, and add-ons all change the number. Every booking gets a custom quote from Blake, delivered within 24 hours of inquiry. No published price list, no automated calculator.",
+    a: "Every event is different. Date, distance, duration, venue, and add-ons all change the number. Every booking gets a custom quote within 24 hours of inquiry. No published price list, no automated calculator.",
   },
   {
     q: "Can I sell tickets or charge admission?",
@@ -25,7 +25,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "How far do you travel?",
-    a: "Inside 60 miles of Canton, MI, no separate travel fee. Beyond that, contact Blake for a custom quote with travel.",
+    a: "Inside 60 miles of Canton, MI, no separate travel fee. Beyond that, contact us for a custom quote with travel.",
   },
   {
     q: "Do we bring our own content?",
@@ -49,11 +49,11 @@ export const faqs: Faq[] = [
   },
   {
     q: "Can you handle cold weather and bugs?",
-    a: "Patio heater and bug zapper are both available as add-ons. Ask Blake at quote time.",
+    a: "Patio heater and bug zapper are both available as add-ons. Ask at quote time.",
   },
   {
     q: "Do you need to stake the screen?",
-    a: "Most of the time, no. Water ballast setup handles most sites including backyards, driveways, barns, hardscape, and private estates. If stakes are required by weather or venue, the client calls Miss Dig 811 at least 3 business days ahead and provides the ticket number and visible markings.",
+    a: "Yes. The screen uses ground anchors drilled into the site, so the setup needs an anchor-friendly grass or soil area. If the venue requires utility marking, the client calls Miss Dig 811 at least 3 business days ahead and provides the ticket number and visible markings.",
   },
   {
     q: "Do we need power or wifi?",
@@ -69,6 +69,6 @@ export const faqs: Faq[] = [
   },
   {
     q: "What if it rains?",
-    a: "Contact Blake to confirm the weather policy that applies to your booking. Rain policy specifics are spelled out in the Service Agreement that comes with your quote.",
+    a: "Contact us to confirm the weather policy that applies to your booking. Rain policy specifics are spelled out in the Service Agreement that comes with your quote.",
   },
 ];

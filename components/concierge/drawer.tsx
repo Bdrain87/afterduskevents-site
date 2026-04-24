@@ -62,7 +62,7 @@ export default function ConciergeDrawer() {
         <Drawer.Content className="fixed inset-x-0 bottom-0 z-[100] mt-24 flex h-[85vh] flex-col rounded-t-2xl bg-charcoal border-t border-oxblood/40 focus:outline-none">
           <Drawer.Title className="sr-only">Plan your night. After Dusk concierge</Drawer.Title>
           <Drawer.Description className="sr-only">
-            Ask about audio tiers, add-ons, and service area. Final quotes come from Blake.
+            Ask about audio tiers, add-ons, and service area. Final quotes come from the After Dusk Events team.
           </Drawer.Description>
           <div className="mx-auto w-12 h-1.5 rounded-full bg-white/20 mt-2 mb-1" aria-hidden="true" />
           <header className="flex items-center justify-between px-5 py-3 border-b border-white/10">
@@ -163,7 +163,7 @@ export default function ConciergeDrawer() {
               </button>
             </form>
             <div className="flex items-center justify-between text-[11px] text-steel/80">
-              <span>Final quotes come from Blake, always.</span>
+              <span>Final quotes are reviewed by our team.</span>
               <Link href="/contact" className="text-ember hover:text-projector transition-colors">
                 Or use the contact form →
               </Link>

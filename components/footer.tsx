@@ -1,25 +1,23 @@
 import Link from "next/link";
 import LogoMark from "./logo-mark";
 import CopyEmail from "./copy-email";
-import LiveDuskClock from "./live-dusk-clock";
 
 export default function Footer() {
   return (
     <footer className="relative border-t border-white/10 bg-charcoal/60 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 mb-12">
-          {/* Brand + tagline + live dusk clock */}
+          {/* Brand + summary */}
           <div>
-            <div className="flex items-center gap-2.5 mb-3">
-              <LogoMark size={32} />
-              <span className="font-display text-xl tracking-wider text-projector leading-none">
-                AFTER DUSK EVENTS
+            <div className="flex items-center gap-3 mb-4">
+              <LogoMark size={28} />
+              <span className="font-heading text-sm font-semibold uppercase tracking-[0.08em] text-projector">
+                After Dusk Events
               </span>
             </div>
-            <p className="text-ember text-sm font-medium">
-              Big screen. Bigger nights.
+            <p className="max-w-xs text-sm leading-relaxed text-silver">
+              Outdoor cinema, sound, power, and setup for private events across Southeast Michigan.
             </p>
-            <LiveDuskClock />
           </div>
 
           {/* Sitemap */}

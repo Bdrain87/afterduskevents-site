@@ -75,7 +75,7 @@ export default function PackagesPage() {
                 ONE 30 FT SCREEN. FOUR WAYS TO HEAR IT.
               </h1>
               <p className="mt-6 max-w-[64ch] text-body-lg leading-relaxed text-silver">
-                Every booking uses the same big screen. Your package choice is the audio coverage: how wide the seating area is, how many guests are coming, and whether the night needs real low end.
+                Every booking uses the same big screen. Your package choice is the audio coverage: how wide the seating area is, how many guests are coming, and whether the night needs stronger bass.
               </p>
               <ActionBar className="mt-8">
                 <PrimaryCta href="/contact">Get a Quote</PrimaryCta>
@@ -146,7 +146,7 @@ export default function PackagesPage() {
               id="ballpark-heading"
               eyebrow="Still not sure?"
               title="TWO QUESTIONS, ONE RECOMMENDATION."
-              body="Use this as a starting point. Blake still reviews the layout, distance, add-ons, and timing before quoting."
+              body="Use this as a starting point. We still review the layout, distance, add-ons, and timing before quoting."
             />
             <BallparkTool />
           </div>
@@ -158,7 +158,7 @@ export default function PackagesPage() {
               id="comparison-heading"
               eyebrow="Compare"
               title="SIDE BY SIDE."
-              body="Same screen and setup rules across every tier. The differences are audio coverage and low-end support."
+              body="Same screen and setup rules across every tier. The differences are audio coverage and bass."
             />
             <ComparisonSlides />
           </div>

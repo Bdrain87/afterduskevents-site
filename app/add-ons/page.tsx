@@ -124,7 +124,7 @@ export default function AddOnsPage() {
               PILE IT ON.
             </h1>
             <p className="text-silver text-body-lg leading-relaxed max-w-[58ch]">
-              Every add-on is quoted with your setup. Nothing is pay-per-ticket. Tell Blake what you&apos;re thinking and he&apos;ll write a real total.
+              Every add-on is quoted with your setup. Nothing is pay-per-ticket. Tell us what you&apos;re thinking and we&apos;ll write a real total.
             </p>
           </div>
         </section>
@@ -189,7 +189,7 @@ export default function AddOnsPage() {
               READY TO BUILD YOUR EVENT?
             </h2>
             <p className="text-silver text-body-lg leading-relaxed mb-10 max-w-[44ch]">
-              Tell Blake what you&apos;re thinking and he&apos;ll put together a real quote.
+              Tell us what you&apos;re thinking and we&apos;ll put together a real quote.
             </p>
             <MagneticButton className="inline-flex">
               <Link
