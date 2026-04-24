@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import {
   FunnelSection,
@@ -9,8 +8,9 @@ import {
 
 /**
  * Home-page sound highlights. Customer-POV outcomes (what guests hear + feel),
- * no spec-sheet language, no brand names. Each column is anchored by a real
- * photo that carries the mood for the benefit underneath.
+ * no specs, no brand names, no decorative imagery — purely typographic so the
+ * section reads like the rest of the site (the "What we bring" numbered list,
+ * the add-ons teaser, the booking-flow steps).
  */
 
 const SPEAKER_OUTCOMES = [
@@ -27,42 +27,31 @@ const SUB_OUTCOMES = [
   "The difference between “outdoor movie” and “outdoor event.”",
 ];
 
-const SPEAKERS_PHOTO = {
-  src: "https://images.unsplash.com/photo-1762215609231-538f04f78d75?auto=format&fit=crop&w=1600&q=80",
-  alt: "Silhouetted crowd watching an outdoor movie screen at dusk",
-};
-
-const SUBS_PHOTO = {
-  src: "https://images.unsplash.com/photo-1653579657403-25b2695601d4?auto=format&fit=crop&w=1600&q=80",
-  alt: "Close-up of a professional speaker cone shot against pure black",
-};
-
 const listVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, x: -10 },
+  hidden: { opacity: 0, x: -12 },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.45,
+      duration: 0.5,
       ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
     },
   },
 };
 
 type ColumnProps = {
-  photo: { src: string; alt: string };
+  number: string;
   eyebrow: string;
   title: string;
   items: readonly string[];
-  focalPoint?: string;
 };
 
-function SoundColumn({ photo, eyebrow, title, items, focalPoint = "50% 50%" }: ColumnProps) {
+function SoundColumn({ number, eyebrow, title, items }: ColumnProps) {
   const reduced = useReducedMotion();
 
   return (
@@ -71,82 +60,58 @@ function SoundColumn({ photo, eyebrow, title, items, focalPoint = "50% 50%" }: C
       whileInView={reduced ? undefined : "visible"}
       viewport={{ once: true, margin: "-80px" }}
       variants={listVariants}
-      className="group relative overflow-hidden rounded-lg border border-white/10 bg-charcoal/45"
+      className="group relative border-l-2 border-white/10 pl-6 sm:pl-8 transition-colors hover:border-ember"
     >
-      <div className="relative aspect-[16/10] w-full overflow-hidden">
-        <Image
-          src={photo.src}
-          alt={photo.alt}
-          fill
-          sizes="(min-width: 1024px) 44vw, 100vw"
-          className="object-cover transition-transform duration-[2400ms] ease-out group-hover:scale-[1.04]"
-          style={{ objectPosition: focalPoint }}
-        />
-        {/* Bottom gradient to anchor text area and keep palette cohesive */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/20 to-transparent"
-        />
-        {/* Subtle ember vignette on hover */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(221, 84, 84, 0.08) 0%, rgba(221, 84, 84, 0) 55%)",
-          }}
-        />
+      <div className="mb-6 flex items-baseline justify-between gap-4">
+        <p className="text-caption text-ember">{eyebrow}</p>
+        <span className="font-display text-display-md leading-none tracking-wider text-steel transition-colors group-hover:text-ember">
+          {number}
+        </span>
       </div>
-
-      <div className="relative p-6 sm:p-8">
-        <p className="text-caption text-ember mb-3">{eyebrow}</p>
-        <h3 className="font-display text-heading-lg tracking-wider leading-none text-projector mb-5">
-          {title}
-        </h3>
-        <motion.ul variants={listVariants} className="space-y-3">
-          {items.map((item) => (
-            <motion.li
-              key={item}
-              variants={reduced ? undefined : itemVariants}
-              className="flex items-start gap-3 text-sm leading-relaxed text-silver"
-            >
-              <span
-                aria-hidden="true"
-                className="mt-[0.55rem] block h-1 w-1 shrink-0 rounded-full bg-ember"
-              />
-              <span>{item}</span>
-            </motion.li>
-          ))}
-        </motion.ul>
-      </div>
+      <h3 className="font-display text-display-md tracking-wider leading-none text-projector mb-6">
+        {title}
+      </h3>
+      <motion.ul variants={listVariants} className="space-y-3.5">
+        {items.map((item) => (
+          <motion.li
+            key={item}
+            variants={reduced ? undefined : itemVariants}
+            className="flex items-start gap-3 text-body leading-relaxed text-silver"
+          >
+            <span
+              aria-hidden="true"
+              className="mt-[0.7rem] block h-px w-4 shrink-0 bg-ember"
+            />
+            <span>{item}</span>
+          </motion.li>
+        ))}
+      </motion.ul>
     </motion.div>
   );
 }
 
 export default function GearHighlights() {
   return (
-    <FunnelSection labelledBy="sound-outcomes-heading">
+    <FunnelSection labelledBy="sound-outcomes-heading" tone="band">
       <div className="mx-auto max-w-7xl">
         <SectionHeader
           id="sound-outcomes-heading"
           eyebrow="The sound"
           title="HEARD FROM THE BACK. FELT IN THE CHEST."
-          body="A backyard movie usually sounds like a backyard movie. Your night should not. The sound is picked so guests in the last row hear what the first row hears, and the bass lands like you are inside a theater."
+          body="A backyard movie usually sounds like a backyard movie. Your night should not. The setup is picked so guests in the last row hear what the first row hears, and the bass lands like you are inside a theater."
         />
-        <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <SoundColumn
-            photo={SPEAKERS_PHOTO}
+            number="01"
             eyebrow="Speakers"
             title="EVERYONE HEARS IT."
             items={SPEAKER_OUTCOMES}
-            focalPoint="50% 55%"
           />
           <SoundColumn
-            photo={SUBS_PHOTO}
+            number="02"
             eyebrow="Subwoofers"
             title="EVERYONE FEELS IT."
             items={SUB_OUTCOMES}
-            focalPoint="50% 50%"
           />
         </div>
       </div>
