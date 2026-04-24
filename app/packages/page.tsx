@@ -5,9 +5,10 @@ import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import LightCheck from "@/components/packages/light-check";
 import BallparkTool from "@/components/packages/ballpark-tool";
-import ComparisonTable from "@/components/packages/comparison-table";
+import ComparisonSlides from "@/components/packages/comparison-slides";
 import ByocPanel from "@/components/funnel/byoc-panel";
 import EventMotifCard from "@/components/event-motif-card";
+import StatTicker from "@/components/stat-ticker";
 import {
   ActionBar,
   FunnelSection,
@@ -22,7 +23,6 @@ import {
   buildAllServicesGraph,
   buildBreadcrumbList,
 } from "@/lib/schema";
-import { Radio, Volume2, Waves } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Packages",
@@ -31,21 +31,24 @@ export const metadata: Metadata = {
   alternates: { canonical: "/packages" },
 };
 
-const soundFacts = [
+const soundStats: Array<{ value: number; unit: string; label: string; note: string }> = [
   {
-    icon: Volume2,
-    title: "The speakers carry the room",
-    body: "Full-range speakers are rated up to 126 dB max volume and cover dialogue, commentary, and music from 40 Hz to 20 kHz.",
+    value: 126,
+    unit: "dB",
+    label: "Max SPL per speaker",
+    note: "Rated peak volume across every full-range unit.",
   },
   {
-    icon: Radio,
-    title: "Wireless linking keeps it clean",
-    body: "Linked speakers let us place sound where the guests are instead of blasting one corner of the yard.",
+    value: 20,
+    unit: "kHz",
+    label: "Top-end response",
+    note: "Clean dialogue, commentary, and music up to 20,000 Hz.",
   },
   {
-    icon: Waves,
-    title: "Subs add the low end",
-    body: "Subwoofer tiers add dual 8-inch low-frequency drivers with bass response down to 25 Hz for sports, fights, and music-heavy nights.",
+    value: 25,
+    unit: "Hz",
+    label: "Sub low-end floor",
+    note: "Dual 8-inch drivers reach down to 25 Hz for the bass-heavy nights.",
   },
 ];
 
@@ -113,17 +116,26 @@ export default function PackagesPage() {
               title="WHAT THE AUDIO UPGRADE ACTUALLY DOES."
               body="The specs matter because outdoor sound disappears fast. More coverage means guests can hear clearly without the whole yard feeling overdriven."
             />
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-              {soundFacts.map((fact) => {
-                const Icon = fact.icon;
-                return (
-                  <article key={fact.title} className="rounded-lg border border-white/10 bg-screening/70 p-5">
-                    <Icon size={22} className="mb-5 text-ember" aria-hidden="true" />
-                    <h3 className="font-heading text-heading-md text-projector">{fact.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-silver">{fact.body}</p>
-                  </article>
-                );
-              })}
+            <div className="relative overflow-hidden rounded-lg border border-white/10 bg-charcoal/40 p-8 sm:p-10 lg:p-12">
+              <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6">
+                {soundStats.map((stat, i) => (
+                  <div
+                    key={stat.label}
+                    className={`relative ${i > 0 ? "md:border-l md:border-white/10 md:pl-6" : ""}`}
+                  >
+                    <p className="text-caption text-ember mb-3">0{i + 1}</p>
+                    <p className="flex items-baseline gap-1 font-display leading-none tracking-wider text-projector">
+                      <StatTicker
+                        value={stat.value}
+                        className="text-[4.5rem] leading-none sm:text-[5.5rem]"
+                      />
+                      <span className="text-xl uppercase tracking-[0.2em] text-ember sm:text-2xl">{stat.unit}</span>
+                    </p>
+                    <p className="mt-4 text-heading-md font-semibold text-projector">{stat.label}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-silver">{stat.note}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </FunnelSection>
@@ -148,7 +160,7 @@ export default function PackagesPage() {
               title="SIDE BY SIDE."
               body="Same screen and setup rules across every tier. The differences are audio coverage and low-end support."
             />
-            <ComparisonTable />
+            <ComparisonSlides />
           </div>
         </FunnelSection>
 
