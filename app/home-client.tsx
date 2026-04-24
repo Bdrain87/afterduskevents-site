@@ -127,8 +127,8 @@ export default function HomeClient({ geo }: Props = {}) {
             <SectionHeader
               id="bring-heading"
               eyebrow="What we bring"
-              title="A REAL SCREEN. A CLEAN PLAN."
-              body="The event is built around one big screen, the right audio coverage, and a setup that does not depend on your outlet, wifi, or guesswork."
+              title="BIG SCREEN. TUNED SOUND. HANDLED SETUP."
+              body="One big screen, audio coverage matched to the crowd, and a setup that does not depend on your outlet, wifi, or guesswork."
             />
             <motion.ol
               className="divide-y divide-white/8 border-y border-white/8"
@@ -197,17 +197,15 @@ export default function HomeClient({ geo }: Props = {}) {
         </FunnelSection>
 
         <FunnelSection labelledBy="addons-heading">
-          <div className="mx-auto max-w-7xl">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <SectionHeader
-                id="addons-heading"
-                eyebrow="Add-ons"
-                title="STACK THE NIGHT."
-                body="Popcorn, karaoke with two mics, retro gaming, drone video, glow kit, backyard games, photo backdrop, string lights, patio heater. Quoted with the setup, not a la carte."
-                className="mb-0"
-              />
-              <TextCta href="/add-ons">Full add-ons catalog</TextCta>
-            </div>
+          <div className="mx-auto max-w-3xl">
+            <SectionHeader
+              id="addons-heading"
+              eyebrow="Add-ons"
+              title="STACK THE NIGHT."
+              body="Popcorn, karaoke with two mics, retro gaming, drone video, glow kit, backyard games, photo backdrop, string lights, patio heater. Quoted with the setup, not a la carte."
+              className="mb-6"
+            />
+            <TextCta href="/add-ons">Full add-ons catalog</TextCta>
           </div>
         </FunnelSection>
 
