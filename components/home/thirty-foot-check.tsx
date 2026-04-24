@@ -36,8 +36,8 @@ export default function ThirtyFootCheck() {
         <div className="lg:col-span-3 order-1 lg:order-2 relative">
           <MediaPanel className="relative aspect-[4/5] border-0 bg-transparent shadow-none sm:aspect-[5/6]">
             <Image
-              src="/images/setup/30ft-screen-branded.png"
-              alt="After Dusk Events 30 foot inflatable outdoor cinema screen with the company name on the base, person standing next to it for scale"
+              src="/images/setup/30ft-screen-section.png"
+              alt="After Dusk Events 30 foot inflatable outdoor cinema screen with the company name on the base, diagonal arrow showing the 30 ft span"
               fill
               priority
               sizes="(min-width: 1024px) 60vw, 100vw"
