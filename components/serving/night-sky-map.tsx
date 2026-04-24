@@ -23,33 +23,6 @@ const VB_CENTER = VB_SIZE / 2;
 const SERVICE_RADIUS_MI = 40;
 const OUTER_REFERENCE_MI = 80;
 
-// Cities with permanently rendered labels on the map. Other cities are dots
-// only with a hover/focus tooltip label.
-const ANCHOR_CITY_SLUGS = new Set<string>([
-  "detroit",
-  "ann-arbor",
-  "troy",
-  "grosse-pointe",
-  "flint",
-  "lansing",
-  "port-huron",
-  "monroe",
-]);
-
-// Cities that sit close enough to Canton to crowd its label. We hide their
-// labels entirely (still clickable) so Canton stays readable. Hover/focus
-// still reveals the name.
-const NEAR_CANTON_HIDE_LABEL = new Set<string>([
-  "wayne",
-  "plymouth",
-  "westland",
-  "northville",
-  "livonia",
-  "romulus",
-  "garden-city",
-  "belleville",
-]);
-
 function projectCity(city: City): { x: number; y: number } {
   const dLat = city.lat - CANTON_LAT;
   const dLng = city.lng - CANTON_LNG;
@@ -61,6 +34,31 @@ function projectCity(city: City): { x: number; y: number } {
 
 function cityZone(city: City): "service" | "travel" {
   return city.distanceMiles <= SERVICE_RADIUS_MI ? "service" : "travel";
+}
+
+/**
+ * Position a city's label radially outward from Canton so labels naturally
+ * fan away from the center cluster instead of overlapping each other.
+ *
+ * - Cities to the east: label sits to the right of the dot (textAnchor=start)
+ * - Cities to the west: label sits to the left  (textAnchor=end)
+ * - Cities directly above/below Canton: label centered on the dot
+ *
+ * Inner-cluster cities use a slightly smaller offset so their labels stay
+ * visually attached to their dots even with tight spacing.
+ */
+function labelPlacement(cx: number, cy: number, distanceMiles: number) {
+  const dx = cx - VB_CENTER;
+  const dy = cy - VB_CENTER;
+  const len = Math.max(0.0001, Math.hypot(dx, dy));
+  const offset = distanceMiles < 12 ? 1.8 : 2.4;
+  const ox = (dx / len) * offset;
+  const oy = (dy / len) * offset;
+  let anchor: "start" | "middle" | "end" = "middle";
+  if (dx > 1) anchor = "start";
+  else if (dx < -1) anchor = "end";
+  // Slight baseline drop for legibility
+  return { x: cx + ox, y: cy + oy + 0.7, anchor };
 }
 
 // --- Component ------------------------------------------------------------
@@ -154,16 +152,14 @@ export default function NightSkyMap() {
                 const zone = cityZone(c);
                 const isSelected = selected?.slug === c.slug;
                 const isHovered = hovered === c.slug;
-                const isAnchor = ANCHOR_CITY_SLUGS.has(c.slug);
-                const hideLabel = NEAR_CANTON_HIDE_LABEL.has(c.slug);
                 const dim = selected && !isSelected;
 
-                const baseR = zone === "service" ? 1.1 : 0.85;
-                const r = isSelected ? 2 : isHovered ? 1.7 : baseR;
+                const baseR = zone === "service" ? 1 : 0.8;
+                const r = isSelected ? 1.8 : isHovered ? 1.5 : baseR;
                 const baseAlpha = zone === "service" ? 0.92 : 0.55;
                 const alpha = dim ? 0.22 : isSelected ? 1 : baseAlpha;
 
-                const showLabel = !hideLabel && (isAnchor || isHovered || isSelected);
+                const label = labelPlacement(c.x, c.y, c.distanceMiles);
 
                 return (
                   <motion.g
@@ -195,7 +191,7 @@ export default function NightSkyMap() {
                     {/* Invisible touch target (~44px at typical render width) */}
                     <circle cx={c.x} cy={c.y} r={4.5} fill="transparent" />
                     {isSelected && (
-                      <circle cx={c.x} cy={c.y} r={3.5} fill="rgba(221, 84, 84, 0.2)" />
+                      <circle cx={c.x} cy={c.y} r={3.2} fill="rgba(221, 84, 84, 0.2)" />
                     )}
                     <circle
                       cx={c.x}
@@ -204,24 +200,25 @@ export default function NightSkyMap() {
                       fill={isSelected ? "#DD5454" : `rgba(245, 250, 250, ${alpha})`}
                       className="transition-all duration-200"
                     />
-                    {showLabel && (
-                      <text
-                        x={c.x + 2.4}
-                        y={c.y + 0.8}
-                        fontSize="2.1"
-                        fill={
-                          isSelected
-                            ? "#DD5454"
-                            : isHovered
-                            ? "#DD5454"
-                            : "rgba(184, 184, 184, 0.92)"
-                        }
-                        fontFamily="monospace"
-                        style={{ pointerEvents: "none" }}
-                      >
-                        {c.name}
-                      </text>
-                    )}
+                    <text
+                      x={label.x}
+                      y={label.y}
+                      fontSize="1.7"
+                      fill={
+                        isSelected
+                          ? "#DD5454"
+                          : isHovered
+                          ? "#DD5454"
+                          : dim
+                          ? "rgba(184, 184, 184, 0.4)"
+                          : "rgba(184, 184, 184, 0.85)"
+                      }
+                      fontFamily="monospace"
+                      textAnchor={label.anchor}
+                      style={{ pointerEvents: "none" }}
+                    >
+                      {c.name}
+                    </text>
                   </motion.g>
                 );
               })}
@@ -303,50 +300,37 @@ export default function NightSkyMap() {
 function CantonBeacon({ reduced }: { reduced: boolean | null }) {
   return (
     <g pointerEvents="none">
-      {/* Outer halo */}
+      {/* Soft glow halo */}
       <motion.circle
         cx={VB_CENTER}
         cy={VB_CENTER}
-        r={7}
-        fill="rgba(221, 84, 84, 0.18)"
+        r={4}
+        fill="rgba(221, 84, 84, 0.22)"
         initial={reduced ? undefined : { scale: 0, opacity: 0 }}
         animate={reduced ? undefined : { scale: 1, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
         style={{ transformOrigin: `${VB_CENTER}px ${VB_CENTER}px`, transformBox: "fill-box" }}
       />
-      {/* Punch-out: solid dark center so dots underneath don't bleed through */}
-      <circle cx={VB_CENTER} cy={VB_CENTER} r={4.2} fill="#0A0A0A" />
-      <circle cx={VB_CENTER} cy={VB_CENTER} r={3.8} fill="rgba(221, 84, 84, 0.35)" />
-      {/* Pulsing core */}
-      <circle cx={VB_CENTER} cy={VB_CENTER} r={2.4} fill="#DD5454">
+      {/* Pulsing core: bright ember dot */}
+      <circle cx={VB_CENTER} cy={VB_CENTER} r={1.7} fill="#DD5454">
         {!reduced && (
           <animate
             attributeName="r"
-            values="2.4;3;2.4"
+            values="1.7;2.1;1.7"
             dur="3.2s"
             repeatCount="indefinite"
           />
         )}
       </circle>
-      {/* Label: black pill above the beacon, ember text */}
-      <rect
-        x={VB_CENTER - 7.5}
-        y={VB_CENTER - 11.2}
-        width="15"
-        height="4.6"
-        rx="0.8"
-        fill="#0A0A0A"
-        stroke="rgba(221, 84, 84, 0.55)"
-        strokeWidth="0.25"
-      />
+      {/* Label centered just above the beacon, no background pill */}
       <text
         x={VB_CENTER}
-        y={VB_CENTER - 8}
-        fontSize="2.8"
+        y={VB_CENTER - 5.2}
+        fontSize="2.2"
         fill="#DD5454"
         fontFamily="monospace"
         textAnchor="middle"
-        style={{ fontWeight: 700, letterSpacing: "0.18em" }}
+        style={{ fontWeight: 700, letterSpacing: "0.2em" }}
       >
         CANTON
       </text>
