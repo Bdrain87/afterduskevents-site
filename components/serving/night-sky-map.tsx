@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowRight, X } from "lucide-react";
+import { X } from "lucide-react";
 import { cities, type City } from "@/lib/cities";
 
 // Canton center
@@ -213,17 +213,15 @@ export default function NightSkyMap() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href={`/serving/${selected.slug}`}
-                  className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold border border-white/20 text-silver hover:border-ember hover:text-ember transition-colors"
+                  className="inline-flex min-h-[44px] items-center px-5 py-3 text-sm font-semibold border border-white/20 text-silver hover:border-ember hover:text-ember transition-colors"
                 >
                   City page
-                  <ArrowRight size={14} aria-hidden="true" />
                 </Link>
                 <Link
                   href={`/contact?location=${encodeURIComponent(selected.name)}`}
-                  className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold bg-oxblood text-projector hover:bg-oxblood-deep transition-colors"
+                  className="inline-flex min-h-[44px] items-center px-5 py-3 text-sm font-semibold bg-oxblood text-projector hover:bg-oxblood-deep transition-colors"
                 >
                   Book {selected.name}
-                  <ArrowRight size={14} aria-hidden="true" />
                 </Link>
               </div>
             </div>

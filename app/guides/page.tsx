@@ -5,7 +5,6 @@ import Footer from "@/components/footer";
 import FadeIn from "@/components/fade-in";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList } from "@/lib/schema";
-import { ArrowRight } from "lucide-react";
 import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 
 export const metadata: Metadata = {
@@ -65,17 +64,13 @@ export default function GuidesIndexPage() {
               <FadeIn key={g.href} delay={i * 0.06}>
                 <Link
                   href={g.href}
-                  className="group flex items-start justify-between gap-6 rounded-lg p-6 bg-charcoal border border-white/10 hover:border-oxblood/40 transition-colors"
+                  className="group relative flex items-start gap-6 rounded-lg p-6 bg-charcoal border border-white/10 hover:border-oxblood/40 transition-colors overflow-hidden"
                 >
-                  <div>
+                  <span aria-hidden="true" className="mt-2 block h-px w-5 bg-ember transition-[width] duration-300 group-hover:w-12" />
+                  <div className="flex-1">
                     <h2 className="font-heading text-xl text-projector mb-2">{g.title}</h2>
                     <p className="text-steel text-sm leading-relaxed">{g.description}</p>
                   </div>
-                  <ArrowRight
-                    size={20}
-                    className="text-ember shrink-0 mt-1 transition-transform group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
                 </Link>
               </FadeIn>
             ))}

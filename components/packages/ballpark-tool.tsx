@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useCases, suggestTier } from "@/lib/packages";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 export default function BallparkTool() {
   const [useCaseSlug, setUseCaseSlug] = useState("");
@@ -78,10 +78,9 @@ export default function BallparkTool() {
             </p>
             <Link
               href={`/contact?package=${encodeURIComponent(result.name)}`}
-              className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-oxblood text-projector hover:bg-oxblood-deep transition-colors"
+              className="mt-4 inline-flex min-h-[44px] items-center px-5 py-2.5 text-sm font-semibold bg-oxblood text-projector hover:bg-oxblood-deep transition-colors"
             >
               Get a real quote
-              <ArrowRight size={14} aria-hidden="true" />
             </Link>
           </div>
         ) : (

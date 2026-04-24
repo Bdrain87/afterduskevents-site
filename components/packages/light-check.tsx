@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowRight } from "lucide-react";
 import { audioTiers } from "@/lib/packages";
 
 type TierSlug = (typeof audioTiers)[number]["slug"];
@@ -258,17 +257,15 @@ export default function LightCheck() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href={`/packages/${active.slug}`}
-                  className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold border border-white/20 text-silver hover:border-ember hover:text-ember transition-colors"
+                  className="inline-flex min-h-[44px] items-center px-5 py-3 text-sm font-semibold border border-white/20 text-silver hover:border-ember hover:text-ember transition-colors"
                 >
                   See example setup
-                  <ArrowRight size={14} aria-hidden="true" />
                 </Link>
                 <Link
                   href={`/contact?package=${encodeURIComponent(active.name)}`}
-                  className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold bg-oxblood text-projector hover:bg-oxblood-deep transition-colors"
+                  className="inline-flex min-h-[44px] items-center px-5 py-3 text-sm font-semibold bg-oxblood text-projector hover:bg-oxblood-deep transition-colors"
                 >
                   Request a Quote
-                  <ArrowRight size={14} aria-hidden="true" />
                 </Link>
               </div>
             </article>
