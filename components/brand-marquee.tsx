@@ -10,7 +10,6 @@ const SIGNALS = [
   "Real 30 ft Screen",
   "Concert-Grade Audio",
   "Battery Backup",
-  "Water-Ballast Setup",
   "Canton, MI",
 ] as const;
 

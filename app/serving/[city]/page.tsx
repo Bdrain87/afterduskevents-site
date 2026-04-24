@@ -113,7 +113,7 @@ export default async function CityPage({ params }: Params) {
                   ? "home base for After Dusk Events"
                   : `${city.distanceMiles} miles from our Canton home base, well inside our 60-mile service radius`}
                 . Every {city.name} booking is a 30 ft inflatable screen with one of four audio tiers,
-                set up on site with water ballast and a complete systems test before the first reel rolls.
+                set up on site with a complete systems test before the first reel rolls.
               </p>
               <p>
                 We run private events only: backyards, corporate gatherings, HOA
