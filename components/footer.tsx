@@ -30,7 +30,6 @@ export default function Footer() {
                 { href: "/packages", label: "Packages" },
                 { href: "/add-ons", label: "Add-Ons" },
                 { href: "/faq", label: "FAQ" },
-                { href: "/about", label: "About" },
                 { href: "/contact", label: "Contact" },
                 { href: "/serving", label: "Service area" },
               ].map((link) => (

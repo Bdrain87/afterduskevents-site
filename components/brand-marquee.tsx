@@ -6,10 +6,10 @@ const SIGNALS = [
   "SE Michigan",
   "60-Mile Radius",
   "Private Events Only",
-  "Starlink On-Site",
+  "Starlink Backup",
   "Real 30 ft Screen",
   "Concert-Grade Audio",
-  "Battery-Powered",
+  "Battery Backup",
   "Water-Ballast Setup",
   "Canton, MI",
 ] as const;
@@ -23,7 +23,7 @@ export default function BrandMarquee() {
   return (
     <div
       aria-label="Brand signals"
-      className="relative overflow-hidden border-y border-white/8 bg-screening/70 py-5"
+      className="relative overflow-hidden border-y border-white/8 bg-screening/70 py-5 motion-safe:animate-marquee-breathe"
     >
       <Marquee pauseOnHover className="[--duration:55s] [--gap:3.5rem]">
         {SIGNALS.map((signal) => (

@@ -37,7 +37,7 @@ export default function ServingIndexPage() {
               60 MILES OF CANTON.
             </h1>
             <p className="text-silver text-body-lg leading-relaxed max-w-[60ch]">
-              Every star is a city we serve. Canton is the bright one at the middle. Tap any city to see distance, a short note, and a direct booking link.
+              Canton sits in the middle. Every dot on the map is a city we serve. Click any one to see its distance from Canton and jump straight to a quote.
             </p>
           </div>
         </section>
@@ -65,7 +65,7 @@ export default function ServingIndexPage() {
               id="city-list-heading"
               className="font-display text-projector text-display-md tracking-wider leading-none mb-10"
             >
-              EVERY STAR ON THE MAP.
+              EVERY CITY WE SERVE.
             </h2>
             <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-6 gap-y-4">
               {cities.map((city) => (

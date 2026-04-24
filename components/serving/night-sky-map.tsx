@@ -12,8 +12,9 @@ const CANTON_LNG = -83.482;
 const MI_PER_DEG_LAT = 69;
 const MI_PER_DEG_LNG = 51;
 
-// viewBox in miles. Canton at center, 60 mi radius + 20 mi padding.
-const VB_SIZE = 160;
+// viewBox in miles. Canton at center plus ~100 mi of padding each way so the
+// travel-zone ring and the far cities (Port Huron, Lansing) are visible.
+const VB_SIZE = 220;
 const VB_CENTER = VB_SIZE / 2;
 const SERVICE_RADIUS_MI = 60;
 const TRAVEL_RADIUS_MI = 90;
@@ -55,10 +56,10 @@ export default function NightSkyMap() {
               viewBox={`0 0 ${VB_SIZE} ${VB_SIZE}`}
               className="w-full h-full"
               role="img"
-              aria-label="Southeast Michigan service area map. Canton at center, 60-mile radius highlighted, cities as stars."
+              aria-label="Southeast Michigan service area map. Canton at center with a 60-mile service radius and a 90-mile travel zone."
             >
               {/* Concentric range rings for visual rhythm */}
-              {[15, 30, 45].map((r) => (
+              {[20, 40].map((r) => (
                 <circle
                   key={r}
                   cx={VB_CENTER}
@@ -83,10 +84,10 @@ export default function NightSkyMap() {
               <circle
                 cx={VB_CENTER}
                 cy={VB_CENTER}
-                r={TRAVEL_RADIUS_MI < VB_CENTER ? TRAVEL_RADIUS_MI : VB_CENTER - 2}
+                r={TRAVEL_RADIUS_MI}
                 fill="none"
-                stroke="rgba(221, 84, 84, 0.1)"
-                strokeWidth="0.25"
+                stroke="rgba(221, 84, 84, 0.12)"
+                strokeWidth="0.3"
                 strokeDasharray="0.4 2"
               />
 
@@ -103,22 +104,10 @@ export default function NightSkyMap() {
                 r={1.8}
                 fill="#DD5454"
               />
-              {/* Slow orbit ring: a ember dot drifting around Canton */}
-              <g
-                style={{ transformOrigin: `${VB_CENTER}px ${VB_CENTER}px` }}
-                className="motion-safe:animate-[canton-orbit_22s_linear_infinite]"
-              >
-                <circle
-                  cx={VB_CENTER}
-                  cy={VB_CENTER - 6.5}
-                  r={0.65}
-                  fill="rgba(245, 241, 236, 0.75)"
-                />
-              </g>
               <text
                 x={VB_CENTER + 3}
                 y={VB_CENTER + 1.2}
-                fontSize="3.2"
+                fontSize="3"
                 fill="#DD5454"
                 fontFamily="monospace"
                 style={{ fontWeight: 600 }}
@@ -126,14 +115,14 @@ export default function NightSkyMap() {
                 CANTON
               </text>
 
-              {/* City stars */}
+              {/* City dots */}
               {projected.map((c) => {
                 if (c.slug === "canton") return null;
                 const inRadius = cityIsInRadius(c);
                 const travel = cityInTravelZone(c);
                 const isSelected = selected?.slug === c.slug;
-                const r = isSelected ? 2 : inRadius ? 1.4 : 1;
-                const alpha = inRadius ? 0.95 : travel ? 0.55 : 0.28;
+                const r = isSelected ? 1.8 : inRadius ? 1.2 : 0.9;
+                const alpha = inRadius ? 0.95 : travel ? 0.6 : 0.35;
                 return (
                   <g
                     key={c.slug}
@@ -153,8 +142,8 @@ export default function NightSkyMap() {
                       <circle
                         cx={c.x}
                         cy={c.y}
-                        r={3.5}
-                        fill="rgba(221, 84, 84, 0.18)"
+                        r={3}
+                        fill="rgba(221, 84, 84, 0.2)"
                       />
                     )}
                     <circle
@@ -164,31 +153,20 @@ export default function NightSkyMap() {
                       fill={isSelected ? "#DD5454" : `rgba(245, 250, 250, ${alpha})`}
                       className="transition-all duration-200"
                     />
-                    {inRadius && (
-                      <text
-                        x={c.x + 2}
-                        y={c.y + 0.8}
-                        fontSize="2.1"
-                        fill={isSelected ? "#DD5454" : "rgba(184, 184, 184, 0.85)"}
-                        fontFamily="monospace"
-                      >
-                        {c.name}
-                      </text>
-                    )}
                   </g>
                 );
               })}
             </svg>
 
             {/* Legend */}
-            <div className="absolute bottom-3 left-3 flex items-center gap-4 text-mono text-steel">
+            <div className="absolute bottom-3 left-3 flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-4 text-mono text-steel">
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-ember" aria-hidden="true" />
-                In radius
+                Service area (0 to 60 mi)
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-ember/40" aria-hidden="true" />
-                Travel zone
+                Travel zone (60 to 90 mi)
               </span>
             </div>
           </div>
@@ -201,7 +179,7 @@ export default function NightSkyMap() {
               <div className="flex items-start justify-between gap-3 mb-5">
                 <div>
                   <p className="text-caption text-ember mb-2">
-                    {cityIsInRadius(selected) ? "In radius" : cityInTravelZone(selected) ? "Travel zone" : "Beyond 90 mi"}
+                    {cityIsInRadius(selected) ? "Service area" : cityInTravelZone(selected) ? "Travel zone" : "Beyond 90 mi"}
                   </p>
                   <h3 className="font-display text-projector text-display-md tracking-wider leading-none">
                     {selected.name.toUpperCase()}
@@ -219,35 +197,33 @@ export default function NightSkyMap() {
                   <X size={18} />
                 </button>
               </div>
-              <p className="text-silver text-body leading-relaxed mb-6 flex-1">
-                {selected.blurb}
-              </p>
+              <div className="flex-1" />
               <div className="flex flex-wrap gap-3">
                 <Link
                   href={`/serving/${selected.slug}`}
                   className="inline-flex min-h-[44px] items-center px-5 py-3 text-sm font-semibold border border-white/20 text-silver hover:border-ember hover:text-ember transition-colors"
                 >
-                  City page
+                  {selected.name} page
                 </Link>
                 <Link
                   href={`/contact?location=${encodeURIComponent(selected.name)}`}
                   className="inline-flex min-h-[44px] items-center px-5 py-3 text-sm font-semibold bg-oxblood text-projector hover:bg-oxblood-deep transition-colors"
                 >
-                  Book {selected.name}
+                  Request a Quote
                 </Link>
               </div>
             </div>
           ) : (
             <div className="border border-white/10 bg-charcoal/40 backdrop-blur-sm p-8 h-full flex flex-col justify-center">
-              <p className="text-caption text-ember mb-4">Pick a city</p>
+              <p className="text-caption text-ember mb-4">Service map</p>
               <h3 className="font-display text-projector text-display-md tracking-wider leading-none mb-5">
-                TAP A STAR.
+                PICK A CITY.
               </h3>
               <p className="text-silver text-body leading-relaxed">
-                Each city in our service map is a star. Tap one for its distance from Canton, a quick blurb, and a direct booking link. Canton is the bright one at the center.
+                Canton sits in the middle. Every dot is a city in our service area. Click or tap one to see its distance from Canton and go straight to a quote.
               </p>
               <p className="text-mono text-steel mt-6">
-                60 mi radius: standard service · 60–90 mi: travel line on the quote.
+                0 to 60 mi: standard service · 60 to 90 mi: travel line added to the quote.
               </p>
             </div>
           )}

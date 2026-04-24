@@ -85,7 +85,7 @@ function CategoryBlock({ category }: { category: (typeof categories)[0] }) {
         {category.items.map((row) => (
           <li
             key={row.item}
-            className="group flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-8 py-5 pl-4 -ml-4 border-l-2 border-transparent hover:border-ember transition-colors"
+            className="group flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 py-5 pl-3 -ml-3 sm:pl-4 sm:-ml-4 border-l-2 border-transparent hover:border-ember transition-colors"
           >
             <p className="text-projector text-heading-md font-medium leading-snug flex-1">
               {row.item}

@@ -12,7 +12,6 @@ const links = [
   { href: "/add-ons", label: "Add-ons" },
   { href: "/serving", label: "Service Area" },
   { href: "/faq", label: "FAQ" },
-  { href: "/about", label: "About" },
 ];
 
 export default function Nav() {
