@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowRight, X } from "lucide-react";
+import { X } from "lucide-react";
 import { cities, type City } from "@/lib/cities";
 
 // Canton center
@@ -103,6 +103,18 @@ export default function NightSkyMap() {
                 r={1.8}
                 fill="#DD5454"
               />
+              {/* Slow orbit ring: a ember dot drifting around Canton */}
+              <g
+                style={{ transformOrigin: `${VB_CENTER}px ${VB_CENTER}px` }}
+                className="motion-safe:animate-[canton-orbit_22s_linear_infinite]"
+              >
+                <circle
+                  cx={VB_CENTER}
+                  cy={VB_CENTER - 6.5}
+                  r={0.65}
+                  fill="rgba(245, 241, 236, 0.75)"
+                />
+              </g>
               <text
                 x={VB_CENTER + 3}
                 y={VB_CENTER + 1.2}
@@ -213,17 +225,15 @@ export default function NightSkyMap() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href={`/serving/${selected.slug}`}
-                  className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold border border-white/20 text-silver hover:border-ember hover:text-ember transition-colors"
+                  className="inline-flex min-h-[44px] items-center px-5 py-3 text-sm font-semibold border border-white/20 text-silver hover:border-ember hover:text-ember transition-colors"
                 >
                   City page
-                  <ArrowRight size={14} aria-hidden="true" />
                 </Link>
                 <Link
                   href={`/contact?location=${encodeURIComponent(selected.name)}`}
-                  className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold bg-oxblood text-projector hover:bg-oxblood-deep transition-colors"
+                  className="inline-flex min-h-[44px] items-center px-5 py-3 text-sm font-semibold bg-oxblood text-projector hover:bg-oxblood-deep transition-colors"
                 >
                   Book {selected.name}
-                  <ArrowRight size={14} aria-hidden="true" />
                 </Link>
               </div>
             </div>

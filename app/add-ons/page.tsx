@@ -3,7 +3,6 @@ import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import MagneticButton from "@/components/magnetic-button";
-import { ArrowRight } from "lucide-react";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList } from "@/lib/schema";
 
@@ -195,10 +194,9 @@ export default function AddOnsPage() {
             <MagneticButton className="inline-flex">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
+                className="inline-flex min-h-[48px] items-center px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
               >
                 Get a Quote
-                <ArrowRight size={14} aria-hidden="true" />
               </Link>
             </MagneticButton>
           </div>

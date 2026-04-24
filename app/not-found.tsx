@@ -12,12 +12,16 @@ export default function NotFound() {
   return (
     <>
       <Nav />
-      <main className="flex-1 pt-16 flex items-center justify-center min-h-[calc(100vh-4rem)]">
+      <main className="flex-1 pt-16 flex items-center justify-center min-h-[calc(100vh-4rem)] relative overflow-hidden">
+        <span aria-hidden="true" className="signal-scanlines motion-reduce:hidden" />
         <div className="px-4 py-20 text-center max-w-xl mx-auto">
-          <p className="font-display text-[8rem] text-white/[0.06] leading-none select-none mb-4" aria-hidden="true">
+          <p
+            className="projector-flicker font-display text-[8rem] text-white/[0.08] leading-none select-none mb-4"
+            aria-hidden="true"
+          >
             404
           </p>
-          <h1 className="font-heading text-3xl text-projector mb-4">Page not found.</h1>
+          <h1 className="font-heading text-3xl text-projector mb-4">Signal lost.</h1>
           <p className="text-silver text-base leading-relaxed mb-10">
             That page does not exist. If you were looking for a package or quote, try the links below.
           </p>

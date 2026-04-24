@@ -1,7 +1,6 @@
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
 
 import { cn } from "@/lib/utils"
-import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
 
 function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
   return (
@@ -23,6 +22,25 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   )
 }
 
+/**
+ * Projector-bulb expand indicator: a steel-ringed circle that ignites in
+ * ember when the accordion row opens. Replaces the default chevron for
+ * an on-brand cinema feel. The bulb scales from 0.6 → 1 and crossfades
+ * from steel → ember via aria-expanded state (CSS-only).
+ */
+function ProjectorBulb() {
+  return (
+    <span
+      data-slot="accordion-trigger-icon"
+      aria-hidden="true"
+      className="relative ml-auto flex h-4 w-4 shrink-0 items-center justify-center"
+    >
+      <span className="absolute inset-0 rounded-full border border-steel/60 transition-colors group-aria-expanded/accordion-trigger:border-ember" />
+      <span className="block h-1.5 w-1.5 rounded-full bg-steel/60 transition-all duration-300 group-aria-expanded/accordion-trigger:h-2.5 group-aria-expanded/accordion-trigger:w-2.5 group-aria-expanded/accordion-trigger:bg-ember group-aria-expanded/accordion-trigger:shadow-[0_0_12px_rgba(221,84,84,0.65)]" />
+    </span>
+  )
+}
+
 function AccordionTrigger({
   className,
   children,
@@ -33,14 +51,13 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger relative flex flex-1 items-start justify-between rounded-lg border border-transparent py-2.5 text-left text-sm font-medium transition-all outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-ember",
+          "group/accordion-trigger relative flex flex-1 items-start justify-between gap-4 rounded-lg border border-transparent py-2.5 text-left text-sm font-medium transition-all outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50",
           className
         )}
         {...props}
       >
         {children}
-        <ChevronDownIcon data-slot="accordion-trigger-icon" className="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
-        <ChevronUpIcon data-slot="accordion-trigger-icon" className="pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline" />
+        <ProjectorBulb />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )

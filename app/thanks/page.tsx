@@ -24,6 +24,7 @@ export default function ThanksPage() {
               "radial-gradient(ellipse 50% 35% at 50% 48%, rgba(221,84,84,0.06) 0%, rgba(5,5,8,0.85) 60%, #050508 100%)",
           }}
         />
+        <span aria-hidden="true" className="ember-flare motion-reduce:hidden" />
         <div className="relative z-10 px-6 py-24 text-center max-w-2xl mx-auto thanks-fade">
           <p className="text-caption text-ember mb-6">Received</p>
           <h1 className="font-display text-projector text-display-lg tracking-wider leading-none mb-6">
@@ -34,7 +35,7 @@ export default function ThanksPage() {
           </p>
           <Link
             href="/"
-            className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-silver border border-white/20 hover:border-ember hover:text-ember transition-colors"
+            className="inline-flex min-h-[44px] items-center justify-center px-6 py-3 text-sm font-semibold text-silver border border-white/20 hover:border-ember hover:text-ember transition-colors"
           >
             Back to home
           </Link>

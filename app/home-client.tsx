@@ -1,18 +1,19 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import TrustStrip from "@/components/trust-strip";
 import NextEventCard from "@/components/next-event-card";
 import ThirtyFootCheck from "@/components/home/thirty-foot-check";
 import ByocPanel from "@/components/funnel/byoc-panel";
+import EventMotifCard from "@/components/event-motif-card";
+import HeroIgnition, { IgnitedWordmark } from "@/components/hero-ignition";
+import BrandMarquee from "@/components/brand-marquee";
 import {
   ActionBar,
   BookingStep,
   FunnelSection,
-  MediaPanel,
   PrimaryCta,
   QuotePanel,
   SectionHeader,
@@ -21,7 +22,7 @@ import {
 } from "@/components/funnel/layout";
 import { audioTiers, useCases } from "@/lib/packages";
 import type { NearestCityResult } from "@/lib/nearest-city";
-import { BatteryCharging, MapPin, ShieldCheck, Sparkles, Volume2 } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 type Props = {
   geo?: NearestCityResult | null;
@@ -31,22 +32,18 @@ const bringItems = [
   {
     title: "30 ft screen",
     body: "One real inflatable cinema screen for every booking. Big enough to be the centerpiece.",
-    icon: Sparkles,
   },
   {
     title: "Sound that fits",
     body: "Choose from one speaker up to four speakers with two subwoofers. The screen stays the same; coverage scales with audio.",
-    icon: Volume2,
   },
   {
     title: "Power + connectivity",
     body: "Generator, battery backup, and Starlink are part of the event kit so the venue is not carrying the night.",
-    icon: BatteryCharging,
   },
   {
     title: "Setup handled",
     body: "Water ballast setup, systems test, teardown, private-event rules, and insurance handled before guests settle in.",
-    icon: ShieldCheck,
   },
 ];
 
@@ -66,6 +63,7 @@ const bookingSteps = [
 ];
 
 export default function HomeClient({ geo }: Props = {}) {
+  const reduced = useReducedMotion();
   const locationLine =
     geo?.inRadius && geo.city.slug !== "canton"
       ? `Serving ${geo.city.name} from Canton, MI.`
@@ -73,46 +71,57 @@ export default function HomeClient({ geo }: Props = {}) {
         ? `We travel to ${geo.city.name}. Expect a travel line on the quote.`
         : "Private outdoor cinema rental across Southeast Michigan.";
 
+  const fadeUp = reduced
+    ? {}
+    : {
+        initial: { opacity: 0, y: 12 },
+        animate: { opacity: 1, y: 0 },
+      };
+
   return (
     <>
       <Nav />
       <main className="flex-1">
-        <section className="relative overflow-hidden px-6 pb-16 pt-28 sm:px-10 lg:px-16 lg:pb-24 lg:pt-36">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-6">
-              <p className="text-caption text-ember mb-4">Canton, MI · Private events only</p>
-              <h1 className="font-display text-display-xl leading-none tracking-wider text-projector">
-                AFTER DUSK EVENTS
-              </h1>
-              <p className="mt-5 max-w-[52ch] text-body-lg leading-relaxed text-silver">
-                30 ft outdoor cinema screen, scalable sound, and a setup crew that handles the night from arrival to teardown.
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-steel">{locationLine}</p>
-              <ActionBar className="mt-8">
-                <PrimaryCta href={geo?.inRadius ? `/contact?location=${encodeURIComponent(geo.city.name)}` : "/contact"}>
-                  {geo?.inRadius && geo.city.slug !== "canton" ? `Get a ${geo.city.name} Quote` : "Get a Quote"}
-                </PrimaryCta>
-                <TextCta href="/packages">Compare packages</TextCta>
-              </ActionBar>
-              <div className="mt-8">
-                <TrustStrip />
-              </div>
+        <HeroIgnition mediaAlt="30 foot inflatable outdoor cinema screen setup">
+          <motion.p
+            {...fadeUp}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 1.25 }}
+            className="text-caption text-ember mb-4"
+          >
+            Canton, MI · Private events only
+          </motion.p>
+          <h1 className="font-display text-display-xl leading-none tracking-wider text-projector">
+            <IgnitedWordmark text="AFTER DUSK EVENTS" />
+          </h1>
+          <motion.p
+            {...fadeUp}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 1.55 }}
+            className="mt-5 max-w-[52ch] text-body-lg leading-relaxed text-silver"
+          >
+            30 ft outdoor cinema screen, scalable sound, and a setup crew that handles the night from arrival to teardown.
+          </motion.p>
+          <motion.p
+            {...fadeUp}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 1.7 }}
+            className="mt-4 text-sm leading-relaxed text-steel"
+          >
+            {locationLine}
+          </motion.p>
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 1.85 }}
+          >
+            <ActionBar className="mt-8">
+              <PrimaryCta href={geo?.inRadius ? `/contact?location=${encodeURIComponent(geo.city.name)}` : "/contact"}>
+                {geo?.inRadius && geo.city.slug !== "canton" ? `Get a ${geo.city.name} Quote` : "Get a Quote"}
+              </PrimaryCta>
+              <TextCta href="/packages">Compare packages</TextCta>
+            </ActionBar>
+            <div className="mt-8">
+              <TrustStrip />
             </div>
-
-            <div className="lg:col-span-6">
-              <MediaPanel className="mx-auto aspect-[4/5] max-w-[560px] border-0 bg-transparent shadow-none lg:ml-auto">
-                <Image
-                  src="/images/setup/30ft-screen-studio.avif"
-                  alt="30 foot inflatable outdoor cinema screen setup"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="rounded-lg object-cover object-[50%_55%]"
-                />
-              </MediaPanel>
-            </div>
-          </div>
-        </section>
+          </motion.div>
+        </HeroIgnition>
 
         <NextEventCard />
 
@@ -124,18 +133,22 @@ export default function HomeClient({ geo }: Props = {}) {
               title="A REAL SCREEN. A CLEAN PLAN."
               body="The event is built around one big screen, the right audio coverage, and a setup that does not depend on your outlet, wifi, or guesswork."
             />
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {bringItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <article key={item.title} className="rounded-lg border border-white/10 bg-screening/70 p-5">
-                    <Icon size={22} className="mb-5 text-ember" aria-hidden="true" />
-                    <h3 className="font-heading text-heading-md text-projector">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-silver">{item.body}</p>
-                  </article>
-                );
-              })}
-            </div>
+            <ol className="divide-y divide-white/8 border-y border-white/8">
+              {bringItems.map((item, i) => (
+                <li
+                  key={item.title}
+                  className="group grid grid-cols-[auto_1fr] items-start gap-6 py-6 pl-4 -ml-4 border-l-2 border-transparent transition-colors hover:border-ember sm:grid-cols-[auto_1fr_2fr] sm:gap-10"
+                >
+                  <span className="font-display text-display-md leading-none tracking-wider text-steel transition-colors group-hover:text-ember">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="font-heading text-heading-md text-projector">{item.title}</h3>
+                  <p className="col-span-2 text-sm leading-relaxed text-silver sm:col-span-1">
+                    {item.body}
+                  </p>
+                </li>
+              ))}
+            </ol>
           </div>
         </FunnelSection>
 
@@ -173,33 +186,11 @@ export default function HomeClient({ geo }: Props = {}) {
             />
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {useCases.map((event) => (
-                <Link
+                <EventMotifCard
                   key={event.slug}
+                  event={event}
                   href={`/contact?useCase=${event.slug}`}
-                  className="group overflow-hidden rounded-lg border border-white/10 bg-charcoal/45 transition-colors hover:border-ember/45"
-                >
-                  <div className="relative aspect-[3/2] border-b border-white/10 bg-screening">
-                    <Image
-                      src={event.image}
-                      alt={event.imageAlt}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-5">
-                    <p className="text-caption text-steel mb-3">
-                      {audioTiers.find((tier) => tier.slug === event.recommendedTier)?.name}
-                    </p>
-                    <h3 className="font-display text-heading-lg leading-none tracking-wider text-projector">
-                      {event.name}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-silver">{event.desc}</p>
-                    <span className="mt-5 inline-flex text-[11px] uppercase tracking-[0.2em] text-ember">
-                      Start quote
-                    </span>
-                  </div>
-                </Link>
+                />
               ))}
             </div>
           </div>
@@ -225,6 +216,8 @@ export default function HomeClient({ geo }: Props = {}) {
             </div>
           </div>
         </FunnelSection>
+
+        <BrandMarquee />
 
         <FunnelSection labelledBy="service-heading">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">

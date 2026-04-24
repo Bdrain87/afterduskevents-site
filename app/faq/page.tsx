@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import FaqAccordion from "./faq-accordion";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList, buildFAQPage } from "@/lib/schema";
@@ -70,10 +69,9 @@ export default function FaqPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
+              className="inline-flex min-h-[48px] items-center px-7 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
             >
               Contact Blake
-              <ArrowRight size={14} aria-hidden="true" />
             </Link>
           </div>
         </section>

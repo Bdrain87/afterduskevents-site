@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { AudioTier } from "@/lib/packages";
 
@@ -126,52 +125,20 @@ export function TextCta({
   return (
     <Link
       href={href}
-      className="group inline-flex min-h-[48px] items-center gap-2 text-sm font-semibold text-ember transition-colors hover:text-projector"
+      className="group relative inline-flex min-h-[48px] items-center text-sm font-semibold text-ember transition-colors hover:text-projector"
     >
-      {children}
-      <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
-    </Link>
-  );
-}
-
-export function TierCard({
-  tier,
-  href,
-  compact = false,
-}: {
-  tier: AudioTier;
-  href: string;
-  compact?: boolean;
-}) {
-  return (
-    <Link
-      href={href}
-      className={cn(
-        "group block rounded-lg border border-white/10 bg-screening/70 p-5 transition-colors hover:border-ember/45",
-        tier.popular && "border-ember/40",
-      )}
-    >
-      <div className="mb-4 flex items-start justify-between gap-3">
-        <h3 className="font-display text-heading-lg leading-none tracking-wider text-projector">
-          {tier.name}
-        </h3>
-        {tier.popular && (
-          <span className="shrink-0 rounded-full border border-ember/40 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-ember">
-            Most booked
-          </span>
-        )}
-      </div>
-      <p className="text-sm leading-relaxed text-silver">{tier.plainBenefit}</p>
-      {!compact && (
-        <p className="mt-3 text-xs leading-relaxed text-steel">{tier.coverageNote}</p>
-      )}
-      <span className="mt-5 inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] text-ember">
-        See setup
-        <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+      <span className="relative">
+        {children}
+        <span
+          aria-hidden="true"
+          className="absolute -bottom-0.5 left-0 h-px w-0 bg-ember transition-[width] duration-300 ease-out group-hover:w-full"
+        />
       </span>
     </Link>
   );
 }
+
+export { default as TierCard } from "@/components/tier-card";
 
 export function QuotePanel({
   title,

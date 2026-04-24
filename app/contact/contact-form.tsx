@@ -7,6 +7,7 @@ import { useQueryState, parseAsInteger, parseAsString } from "nuqs";
 import { submitInquiry, type InquiryState } from "@/app/actions/inquiry";
 import ProgressIndicator from "./steps/progress-indicator";
 import { audioTiers, suggestTier, useCases } from "@/lib/packages";
+import MagneticButton from "@/components/magnetic-button";
 
 const initialState: InquiryState = {};
 
@@ -137,7 +138,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form action={formAction} className="space-y-6" noValidate>
+    <form action={formAction} className="space-y-6" noValidate data-dim-beam>
       <ProgressIndicator current={step} labels={["Basics", "Setup", "Contact"]} />
 
       {/* STEP 1. Event basics */}
@@ -416,21 +417,25 @@ export default function ContactForm() {
         )}
 
         {step < 3 ? (
-          <button
-            type="button"
-            onClick={next}
-            className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
-          >
-            Next
-          </button>
+          <MagneticButton>
+            <button
+              type="button"
+              onClick={next}
+              className="inline-flex min-h-[48px] items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
+            >
+              Next
+            </button>
+          </MagneticButton>
         ) : (
-          <button
-            type="submit"
-            disabled={isPending}
-            className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-projector bg-oxblood hover:bg-oxblood-deep disabled:opacity-60 disabled:cursor-not-allowed transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-oxblood"
-          >
-            {isPending ? "Sending..." : "Send Inquiry"}
-          </button>
+          <MagneticButton>
+            <button
+              type="submit"
+              disabled={isPending}
+              className="inline-flex min-h-[48px] items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-projector bg-oxblood hover:bg-oxblood-deep disabled:opacity-60 disabled:cursor-not-allowed transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-oxblood"
+            >
+              {isPending ? "Sending..." : "Send Inquiry"}
+            </button>
+          </MagneticButton>
         )}
       </div>
 

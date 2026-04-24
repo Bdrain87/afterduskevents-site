@@ -16,6 +16,7 @@ import { audioTiers } from "@/lib/packages";
 import { Check, MapPin } from "lucide-react";
 import Balancer from "react-wrap-balancer";
 import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
+import StatTicker from "@/components/stat-ticker";
 
 type Params = { params: Promise<{ city: string }> };
 
@@ -79,6 +80,15 @@ export default async function CityPage({ params }: Params) {
               <p className="text-silver text-lg leading-relaxed mt-6">
                 {city.blurb}
               </p>
+              {city.distanceMiles > 0 && (
+                <p className="mt-6 flex items-baseline gap-2 font-display tracking-wider text-projector">
+                  <StatTicker
+                    value={city.distanceMiles}
+                    className="text-display-md leading-none"
+                  />
+                  <span className="text-lg uppercase tracking-[0.2em] text-ember">mi from Canton</span>
+                </p>
+              )}
             </FadeIn>
             <FadeIn delay={0.2}>
               <MagneticButton className="inline-flex mt-8">

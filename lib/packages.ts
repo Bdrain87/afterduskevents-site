@@ -131,7 +131,16 @@ export const audioTiers: AudioTier[] = [
 /**
  * Event types. marketing framings, not distinct products.
  * Each one maps to a recommended audio tier for the ballpark tool.
+ * `motif` picks a procedural SVG treatment rendered by EventMotifCard.
  */
+export type EventMotif =
+  | "film-frame"
+  | "crt-glow"
+  | "stadium-bloom"
+  | "ring-halo"
+  | "confetti-beam"
+  | "string-lights";
+
 export type UseCase = {
   slug:
     | "movie-night"
@@ -142,8 +151,7 @@ export type UseCase = {
     | "celebration";
   name: string;
   desc: string;
-  image: string;
-  imageAlt: string;
+  motif: EventMotif;
   recommendedTier: AudioTier["slug"];
 };
 
@@ -152,48 +160,42 @@ export const useCases: UseCase[] = [
     slug: "movie-night",
     name: "Movie Night",
     desc: "A private outdoor cinema setup for your own movie, account, or playlist.",
-    image: "/images/events/movie-night.jpg",
-    imageAlt: "Blank outdoor movie screen with striped chairs in front of it",
+    motif: "film-frame",
     recommendedTier: "two-speakers",
   },
   {
     slug: "gaming",
     name: "Gaming Night",
     desc: "Plug-and-play retro games with wireless controllers, or your PS/Xbox with staff hookup.",
-    image: "/images/events/gaming-night.jpg",
-    imageAlt: "Friends on a couch playing video games with snacks and drinks",
+    motif: "crt-glow",
     recommendedTier: "two-speakers",
   },
   {
     slug: "sports",
     name: "Sports Watch Party",
     desc: "Big screen visibility with enough audio coverage for the whole yard.",
-    image: "/images/events/sports-watch.jpg",
-    imageAlt: "Friends in football gear cheering while watching a game together",
+    motif: "stadium-bloom",
     recommendedTier: "two-speakers-sub",
   },
   {
     slug: "fights",
     name: "Fight Night",
     desc: "Clear commentary, crowd energy, and low-end support for the walkouts.",
-    image: "/images/events/fight-night.jpg",
-    imageAlt: "Boxers fighting in a ring with a crowd watching ringside",
+    motif: "ring-halo",
     recommendedTier: "two-speakers-sub",
   },
   {
     slug: "graduation",
     name: "Graduation Party",
     desc: "Photo reels, speeches, slideshows, or a movie once the sun drops.",
-    image: "/images/events/graduation.jpg",
-    imageAlt: "Graduate in cap and gown celebrating outdoors on a sunny campus walkway",
+    motif: "confetti-beam",
     recommendedTier: "two-speakers",
   },
   {
     slug: "celebration",
     name: "Get-together",
     desc: "Birthdays, holidays, and private gatherings that need a focal point.",
-    image: "/images/events/celebration.jpg",
-    imageAlt: "Friends taking a selfie during an outdoor backyard dinner party",
+    motif: "string-lights",
     recommendedTier: "two-speakers",
   },
 ];
