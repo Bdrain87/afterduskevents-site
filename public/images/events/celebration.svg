@@ -1,16 +1,75 @@
 <svg width="960" height="640" viewBox="0 0 960 640" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="960" height="640" fill="#08080A"/>
-  <rect x="108" y="96" width="744" height="352" rx="16" fill="#111113" stroke="#2A2A2A" stroke-width="4"/>
-  <circle cx="277" cy="234" r="54" fill="#DD5454" fill-opacity="0.62"/>
-  <circle cx="480" cy="260" r="74" fill="#F5F1EC" fill-opacity="0.82"/>
-  <circle cx="683" cy="234" r="54" fill="#DD5454" fill-opacity="0.62"/>
-  <path d="M245 356C318 322 390 322 463 356C536 390 609 390 682 356" stroke="#DD5454" stroke-width="8" stroke-linecap="round"/>
-  <path d="M178 162C251 204 315 204 388 162C461 120 525 120 598 162C671 204 735 204 808 162" stroke="#F5F1EC" stroke-opacity="0.32" stroke-width="5" stroke-linecap="round"/>
-  <path d="M161 512H799" stroke="#DD5454" stroke-width="8" stroke-linecap="round"/>
-  <g fill="#F5F1EC" opacity="0.58">
-    <circle cx="287" cy="518" r="14"/>
-    <circle cx="382" cy="518" r="14"/>
-    <circle cx="578" cy="518" r="14"/>
-    <circle cx="673" cy="518" r="14"/>
+  <defs>
+    <linearGradient id="partyBg" x1="480" y1="0" x2="480" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#151019"/>
+      <stop offset="0.48" stop-color="#060608"/>
+      <stop offset="1" stop-color="#030404"/>
+    </linearGradient>
+    <linearGradient id="partyGround" x1="480" y1="402" x2="480" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#17231A"/>
+      <stop offset="1" stop-color="#050706"/>
+    </linearGradient>
+    <radialGradient id="partyGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(480 270) rotate(90) scale(270 520)">
+      <stop stop-color="#F5F1EC" stop-opacity="0.25"/>
+      <stop offset="0.52" stop-color="#D95858" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#D95858" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="partyBlur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+
+  <rect width="960" height="640" fill="url(#partyBg)"/>
+  <rect y="402" width="960" height="238" fill="url(#partyGround)"/>
+  <ellipse cx="480" cy="270" rx="392" ry="260" fill="url(#partyGlow)"/>
+
+  <g opacity="0.9">
+    <path d="M74 112C174 82 274 82 374 112C480 144 586 144 692 112C760 92 828 92 896 112" stroke="#6D7481" stroke-width="3" stroke-linecap="round"/>
+    <g filter="url(#partyBlur)">
+      <circle cx="128" cy="99" r="10" fill="#F5F1EC" opacity="0.75"/>
+      <circle cx="246" cy="91" r="10" fill="#D95858" opacity="0.75"/>
+      <circle cx="366" cy="109" r="10" fill="#5978A8" opacity="0.75"/>
+      <circle cx="598" cy="129" r="10" fill="#F5F1EC" opacity="0.75"/>
+      <circle cx="728" cy="111" r="10" fill="#D95858" opacity="0.75"/>
+      <circle cx="852" cy="105" r="10" fill="#F5F1EC" opacity="0.75"/>
+    </g>
+    <circle cx="128" cy="99" r="5" fill="#F5F1EC"/>
+    <circle cx="246" cy="91" r="5" fill="#D95858"/>
+    <circle cx="366" cy="109" r="5" fill="#5978A8"/>
+    <circle cx="598" cy="129" r="5" fill="#F5F1EC"/>
+    <circle cx="728" cy="111" r="5" fill="#D95858"/>
+    <circle cx="852" cy="105" r="5" fill="#F5F1EC"/>
+  </g>
+
+  <g>
+    <rect x="118" y="122" width="724" height="320" rx="30" fill="#070708"/>
+    <rect x="142" y="146" width="676" height="272" rx="16" stroke="#343438" stroke-width="8"/>
+    <rect x="168" y="172" width="624" height="220" rx="8" fill="#151113"/>
+    <circle cx="356" cy="282" r="56" fill="#D95858" opacity="0.62"/>
+    <circle cx="480" cy="280" r="78" fill="#F5F1EC" opacity="0.84"/>
+    <circle cx="604" cy="282" r="56" fill="#5978A8" opacity="0.58"/>
+    <path d="M260 338C330 304 402 304 472 338C542 372 614 372 700 330" stroke="#D95858" stroke-width="7" stroke-linecap="round"/>
+    <path d="M238 214C292 246 346 246 400 214C454 182 508 182 562 214C616 246 670 246 724 214" stroke="#F5F1EC" stroke-opacity="0.28" stroke-width="5" stroke-linecap="round"/>
+    <text x="480" y="258" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="5" fill="#151113">BACKYARD</text>
+    <text x="480" y="304" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="900" letter-spacing="5" fill="#151113">PREMIERE</text>
+  </g>
+
+  <g>
+    <path d="M164 520H324" stroke="#F5F1EC" stroke-opacity="0.24" stroke-width="5" stroke-linecap="round"/>
+    <path d="M184 520V586M304 520V586" stroke="#F5F1EC" stroke-opacity="0.18" stroke-width="5" stroke-linecap="round"/>
+    <rect x="178" y="474" width="132" height="48" rx="8" fill="#0A0B0C" stroke="#D95858" stroke-width="4"/>
+    <path d="M188 492H300" stroke="#F5F1EC" stroke-opacity="0.28" stroke-width="4"/>
+    <circle cx="704" cy="514" r="56" fill="#08090A" stroke="#F5F1EC" stroke-opacity="0.18" stroke-width="5"/>
+    <path d="M664 516C676 488 732 488 744 516C730 536 678 536 664 516Z" fill="#D95858" opacity="0.78"/>
+    <path d="M638 556H770" stroke="#D95858" stroke-opacity="0.62" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <g fill="#08090A">
+    <path d="M370 602C376 548 410 514 454 514C498 514 532 548 538 602H370Z"/>
+    <path d="M538 602C544 548 578 514 622 514C666 514 700 548 706 602H538Z"/>
+  </g>
+  <g fill="#F5F1EC" opacity="0.7">
+    <circle cx="454" cy="502" r="18"/>
+    <circle cx="622" cy="502" r="18"/>
   </g>
 </svg>

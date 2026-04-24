@@ -153,7 +153,7 @@ export const useCases: UseCase[] = [
     name: "Movie Night",
     desc: "A private outdoor cinema setup for your own movie, account, or playlist.",
     image: "/images/events/movie-night.svg",
-    imageAlt: "Outdoor movie night artwork with a large screen and seated crowd",
+    imageAlt: "Backyard movie night scene with an outdoor screen, string lights, and seated crowd",
     recommendedTier: "two-speakers",
   },
   {
@@ -161,7 +161,7 @@ export const useCases: UseCase[] = [
     name: "Gaming Night",
     desc: "Plug-and-play retro games with wireless controllers, or your PS/Xbox with staff hookup.",
     image: "/images/events/gaming-night.svg",
-    imageAlt: "Gaming night artwork with a large screen and controller",
+    imageAlt: "Backyard gaming night scene with an outdoor screen and wireless controller",
     recommendedTier: "two-speakers",
   },
   {
@@ -169,7 +169,7 @@ export const useCases: UseCase[] = [
     name: "Sports Watch Party",
     desc: "Big screen visibility with enough audio coverage for the whole yard.",
     image: "/images/events/sports-watch.svg",
-    imageAlt: "Sports watch party artwork with field lines on a large screen",
+    imageAlt: "Backyard sports watch party scene with a football field on a large outdoor screen",
     recommendedTier: "two-speakers-sub",
   },
   {
@@ -177,7 +177,7 @@ export const useCases: UseCase[] = [
     name: "Fight Night",
     desc: "Clear commentary, crowd energy, and low-end support for the walkouts.",
     image: "/images/events/fight-night.svg",
-    imageAlt: "Fight night artwork with boxing gloves on a large screen",
+    imageAlt: "Backyard fight night scene with a ring on a large outdoor screen and seated crowd",
     recommendedTier: "two-speakers-sub",
   },
   {
@@ -185,7 +185,7 @@ export const useCases: UseCase[] = [
     name: "Graduation Party",
     desc: "Photo reels, speeches, slideshows, or a movie once the sun drops.",
     image: "/images/events/graduation.svg",
-    imageAlt: "Graduation party artwork with a cap on a large screen",
+    imageAlt: "Graduation party scene with a slideshow screen, cap, balloons, and seated guests",
     recommendedTier: "two-speakers",
   },
   {
@@ -193,7 +193,7 @@ export const useCases: UseCase[] = [
     name: "Get-together",
     desc: "Birthdays, holidays, and private gatherings that need a focal point.",
     image: "/images/events/celebration.svg",
-    imageAlt: "Celebration artwork with party lights and a large screen",
+    imageAlt: "Backyard celebration scene with an outdoor screen, string lights, and party seating",
     recommendedTier: "two-speakers",
   },
 ];

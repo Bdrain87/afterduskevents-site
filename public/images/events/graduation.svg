@@ -1,16 +1,64 @@
 <svg width="960" height="640" viewBox="0 0 960 640" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="960" height="640" fill="#08080A"/>
-  <rect x="106" y="112" width="748" height="330" rx="16" fill="#111113" stroke="#2A2A2A" stroke-width="4"/>
-  <rect x="148" y="150" width="664" height="254" rx="10" fill="#18100F"/>
-  <path d="M480 182L662 260L480 338L298 260L480 182Z" fill="#F5F1EC"/>
-  <path d="M394 292V360C442 392 518 392 566 360V292" stroke="#DD5454" stroke-width="14" stroke-linecap="round"/>
-  <path d="M662 260V347" stroke="#DD5454" stroke-width="8" stroke-linecap="round"/>
-  <circle cx="662" cy="367" r="15" fill="#DD5454"/>
-  <path d="M150 508H810" stroke="#DD5454" stroke-width="8" stroke-linecap="round"/>
-  <g fill="#F5F1EC" opacity="0.58">
-    <circle cx="252" cy="514" r="14"/>
-    <circle cx="358" cy="514" r="14"/>
-    <circle cx="602" cy="514" r="14"/>
-    <circle cx="708" cy="514" r="14"/>
+  <defs>
+    <linearGradient id="gradBg" x1="480" y1="0" x2="480" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E1520"/>
+      <stop offset="0.5" stop-color="#06070A"/>
+      <stop offset="1" stop-color="#030404"/>
+    </linearGradient>
+    <linearGradient id="gradLawn" x1="480" y1="395" x2="480" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#13261A"/>
+      <stop offset="1" stop-color="#050706"/>
+    </linearGradient>
+    <radialGradient id="gradGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(480 250) rotate(90) scale(255 500)">
+      <stop stop-color="#F5F1EC" stop-opacity="0.29"/>
+      <stop offset="0.58" stop-color="#D95858" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#D95858" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="960" height="640" fill="url(#gradBg)"/>
+  <rect y="395" width="960" height="245" fill="url(#gradLawn)"/>
+  <ellipse cx="480" cy="250" rx="388" ry="260" fill="url(#gradGlow)"/>
+
+  <g opacity="0.82">
+    <path d="M74 112C178 82 282 82 386 112C492 143 598 143 704 112C760 96 816 93 872 104" stroke="#697481" stroke-width="3" stroke-linecap="round"/>
+    <path d="M118 126L142 164L166 126M262 124L286 162L310 124M608 124L632 162L656 124M762 118L786 156L810 118" fill="#D95858" opacity="0.85"/>
+    <path d="M190 118L214 156L238 118M430 124L454 162L478 124M698 116L722 154L746 116" fill="#F5F1EC" opacity="0.78"/>
+  </g>
+
+  <g>
+    <rect x="116" y="106" width="728" height="336" rx="30" fill="#070708"/>
+    <rect x="140" y="130" width="680" height="288" rx="16" stroke="#33363A" stroke-width="8"/>
+    <rect x="166" y="156" width="628" height="236" rx="8" fill="#151012"/>
+    <rect x="192" y="184" width="170" height="132" rx="8" fill="#F5F1EC" opacity="0.9"/>
+    <rect x="388" y="184" width="172" height="132" rx="8" fill="#0E1724" stroke="#F5F1EC" stroke-opacity="0.16" stroke-width="4"/>
+    <rect x="586" y="184" width="182" height="132" rx="8" fill="#F5F1EC" opacity="0.86"/>
+    <path d="M224 274C244 248 284 248 304 274C318 292 338 302 362 304V316H192V302C216 302 224 284 224 274Z" fill="#D95858" opacity="0.72"/>
+    <path d="M474 202L552 236L474 270L396 236L474 202Z" fill="#F5F1EC"/>
+    <path d="M438 260V304C460 318 488 318 510 304V260" stroke="#D95858" stroke-width="8" stroke-linecap="round"/>
+    <path d="M552 236V292" stroke="#D95858" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="552" cy="304" r="8" fill="#D95858"/>
+    <path d="M620 270C654 222 704 222 738 270C752 290 766 300 768 304V316H586V304C596 300 606 290 620 270Z" fill="#5978A8" opacity="0.45"/>
+    <text x="480" y="360" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="900" letter-spacing="7" fill="#F5F1EC">CLASS NIGHT</text>
+  </g>
+
+  <g>
+    <rect x="124" y="486" width="132" height="62" rx="8" fill="#0A0B0C" stroke="#D95858" stroke-width="4"/>
+    <path d="M142 508H238M142 528H238" stroke="#F5F1EC" stroke-opacity="0.22" stroke-width="4"/>
+    <path d="M704 488H844" stroke="#F5F1EC" stroke-opacity="0.28" stroke-width="5" stroke-linecap="round"/>
+    <path d="M724 488V566M824 488V566" stroke="#F5F1EC" stroke-opacity="0.2" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="714" cy="458" r="30" fill="#D95858" opacity="0.82"/>
+    <circle cx="830" cy="452" r="24" fill="#F5F1EC" opacity="0.82"/>
+    <path d="M714 488C710 512 704 536 696 560" stroke="#D95858" stroke-opacity="0.68" stroke-width="3"/>
+    <path d="M830 476C835 502 840 532 846 560" stroke="#F5F1EC" stroke-opacity="0.55" stroke-width="3"/>
+  </g>
+
+  <g fill="#08090A">
+    <path d="M334 602C340 550 372 518 414 518C456 518 488 550 494 602H334Z"/>
+    <path d="M504 602C510 550 542 518 584 518C626 518 658 550 664 602H504Z"/>
+  </g>
+  <g fill="#F5F1EC" opacity="0.72">
+    <circle cx="414" cy="506" r="17"/>
+    <circle cx="584" cy="506" r="17"/>
   </g>
 </svg>
