@@ -18,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: "Packages",
   description:
-    "One 30 ft inflatable screen. Three audio tiers. Private events only in Southeast Michigan. After Dusk Events, Canton, MI.",
+    "One 30 ft inflatable screen. Four audio tiers up to four speakers and two subwoofers. Private events only in Southeast Michigan. After Dusk Events, Canton, MI.",
   alternates: { canonical: "/packages" },
 };
 
@@ -57,7 +57,7 @@ export default function PackagesPage() {
             <h1 className="font-display text-projector text-display-lg tracking-wider leading-none mb-6">
               ONE SCREEN,
               <br />
-              THREE WAYS TO HEAR IT.
+              FOUR WAYS TO HEAR IT.
             </h1>
             <p className="text-silver text-body-lg leading-relaxed max-w-[60ch]">
               Every booking is a private, non-ticketed event on a 30 ft inflatable screen. Pick your audio. Add what you need. Setup, systems test, and teardown are ours.

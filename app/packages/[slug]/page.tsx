@@ -68,6 +68,16 @@ const ADDON_SUGGESTIONS: Record<AudioTier["slug"], { heading: string; items: str
       "Early setup, late teardown",
     ],
   },
+  "four-speakers-two-subs": {
+    heading: "Common add-ons for larger layouts",
+    items: [
+      "Drone video and photos",
+      "Blacklight + Neon Kit",
+      "Patio heater",
+      "Early setup, late teardown",
+      "Folding table package",
+    ],
+  },
 };
 
 export default async function TierPage({ params }: Params) {

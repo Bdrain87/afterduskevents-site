@@ -11,12 +11,14 @@ const shortLabel: Record<TierSlug, string> = {
   "single-speaker": "Single",
   "two-speakers": "Two",
   "two-speakers-sub": "Two + Sub",
+  "four-speakers-two-subs": "Four + 2",
 };
 
 const coverageRows: Record<TierSlug, number[]> = {
   "single-speaker": [4, 5, 6],
   "two-speakers": [5, 7, 9, 7],
   "two-speakers-sub": [6, 8, 10, 8, 6],
+  "four-speakers-two-subs": [6, 8, 10, 12, 10, 8],
 };
 
 const diagramCopy: Record<TierSlug, { kicker: string; body: string }> = {
@@ -31,6 +33,10 @@ const diagramCopy: Record<TierSlug, { kicker: string; body: string }> = {
   "two-speakers-sub": {
     kicker: "Full low end",
     body: "Stereo coverage plus sub support for fights, sports, and bigger crowds.",
+  },
+  "four-speakers-two-subs": {
+    kicker: "Maximum coverage",
+    body: "Four speakers and two subs for larger layouts that need real coverage front to back.",
   },
 };
 
@@ -62,8 +68,14 @@ function SpeakerBlock({ label, active = true }: { label: string; active?: boolea
 function CoverageDiagram({ slug }: { slug: TierSlug }) {
   const rows = coverageRows[slug];
   const copy = diagramCopy[slug];
-  const hasTwoSpeakers = slug !== "single-speaker";
-  const hasSub = slug === "two-speakers-sub";
+  const blocks: string[] =
+    slug === "single-speaker"
+      ? ["Spk"]
+      : slug === "two-speakers"
+        ? ["L", "R"]
+        : slug === "two-speakers-sub"
+          ? ["L", "Sub", "R"]
+          : ["L1", "L2", "Sub", "Sub", "R2", "R1"];
 
   return (
     <div className="relative overflow-hidden border border-white/10 bg-charcoal/50 p-6 sm:p-7 min-h-[390px]">
@@ -96,10 +108,10 @@ function CoverageDiagram({ slug }: { slug: TierSlug }) {
           ))}
         </div>
 
-        <div className="mt-9 flex items-end justify-center gap-5 sm:gap-7">
-          {hasTwoSpeakers ? <SpeakerBlock label="L" /> : <SpeakerBlock label="L" active={false} />}
-          <SpeakerBlock label={hasSub ? "Sub" : slug === "single-speaker" ? "Spk" : "AV"} active />
-          {hasTwoSpeakers ? <SpeakerBlock label="R" /> : <SpeakerBlock label="R" active={false} />}
+        <div className="mt-9 flex flex-wrap items-end justify-center gap-3 sm:gap-4">
+          {blocks.map((label, i) => (
+            <SpeakerBlock key={`${label}-${i}`} label={label} />
+          ))}
         </div>
 
         <div className="mt-8 border-t border-white/10 pt-5">
@@ -141,7 +153,7 @@ export default function LightCheck() {
             PICK YOUR SOUND.
           </h2>
           <p className="text-silver text-body-lg leading-relaxed mt-5 max-w-[50ch]">
-            Same 30-foot screen, three ways to hear it. Hover or tap each tier to see what lands in your yard.
+            Same 30-foot screen, four ways to hear it. Hover or tap each tier to see what lands in your yard.
           </p>
         </div>
 
@@ -150,7 +162,7 @@ export default function LightCheck() {
           <div className="lg:col-span-2">
             <CoverageDiagram slug={activeSlug} />
 
-            <div className="mt-4 grid grid-cols-3 gap-2">
+            <div className="mt-4 grid grid-cols-2 gap-2">
               {audioTiers.map((tier) => {
                 const isActive = tier.slug === activeSlug;
                 return (

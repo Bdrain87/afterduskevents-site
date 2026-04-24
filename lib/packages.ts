@@ -1,7 +1,7 @@
 /**
  * After Dusk Events real offering model:
  *   - One screen: 30 ft inflatable
- *   - Three audio tiers (the pricing axis): single speaker / two speakers / two speakers + Death From Below subwoofer
+ *   - Four audio tiers (the pricing axis): single speaker / two speakers / two speakers + subwoofer / four speakers + two subwoofers
  *   - Content rule: BYO content + logins (Netflix, Disney+, YouTube, gaming consoles, etc.)
  *
  * Event types below are marketing framings, not distinct SKUs. A booking = one audio tier + relevant add-ons.
@@ -11,9 +11,11 @@
  */
 
 export type AudioTier = {
-  slug: "single-speaker" | "two-speakers" | "two-speakers-sub";
+  slug: "single-speaker" | "two-speakers" | "two-speakers-sub" | "four-speakers-two-subs";
   name: string;
   popular?: boolean;
+  speakerCount: number;
+  subwooferCount: number;
   /** What's in the setup. Only list gear Blake has confirmed. */
   includes: string[];
   /** Use-case fit, shown on cards. */
@@ -24,6 +26,8 @@ export const audioTiers: AudioTier[] = [
   {
     slug: "single-speaker",
     name: "30 ft + Single Speaker",
+    speakerCount: 1,
+    subwooferCount: 0,
     includes: [
       "30 ft inflatable screen",
       "Single speaker",
@@ -36,6 +40,8 @@ export const audioTiers: AudioTier[] = [
     slug: "two-speakers",
     name: "30 ft + Two Speakers",
     popular: true,
+    speakerCount: 2,
+    subwooferCount: 0,
     includes: [
       "30 ft inflatable screen",
       "Two speakers",
@@ -47,6 +53,8 @@ export const audioTiers: AudioTier[] = [
   {
     slug: "two-speakers-sub",
     name: "30 ft + Two Speakers + Death From Below Sub",
+    speakerCount: 2,
+    subwooferCount: 1,
     includes: [
       "30 ft inflatable screen",
       "Two speakers",
@@ -55,6 +63,20 @@ export const audioTiers: AudioTier[] = [
       "Water ballast setup. no digging",
     ],
     best: "Fight nights, bass-heavy music, large crowds",
+  },
+  {
+    slug: "four-speakers-two-subs",
+    name: "30 ft + Four Speakers + Two Subwoofers",
+    speakerCount: 4,
+    subwooferCount: 2,
+    includes: [
+      "30 ft inflatable screen",
+      "Four speakers",
+      "Two subwoofers",
+      "BYO Content",
+      "Water ballast setup. no digging",
+    ],
+    best: "Large crowds, field layouts, high-energy events",
   },
 ];
 
@@ -117,10 +139,15 @@ export const useCases: UseCase[] = [
 /** Map event type → suggested audio tier (for the ballpark tool and multi-step form). */
 export function suggestTier(
   useCaseSlug: string,
-  _guestCount?: string,
+  guestCount?: string,
 ): AudioTier | null {
   const uc = useCases.find((u) => u.slug === useCaseSlug);
   if (!uc) return null;
+
+  if (guestCount === "150+") {
+    return audioTiers.find((t) => t.slug === "four-speakers-two-subs") ?? null;
+  }
+
   return audioTiers.find((t) => t.slug === uc.recommendedTier) ?? null;
 }
 

@@ -23,7 +23,7 @@ const systemPrompt = `You are Blake's after-hours concierge for After Dusk Event
 
 REAL OFFERING (the only facts you may use):
 • One screen size: 30 ft inflatable. Water ballast setup, no digging.
-• Three audio tiers: Single Speaker, Two Speakers, or Two Speakers + Death From Below subwoofer.
+• Four audio tiers: Single Speaker, Two Speakers, Two Speakers + Death From Below subwoofer, or Four Speakers + Two Subwoofers.
 • BYO Content rule: customer streams from their own accounts (Netflix, Disney+, YouTube, etc.). Karaoke uses YouTube karaoke tracks.
 • Gaming: 8-bit retro system + 4 wireless controllers (add-on), OR customer's PS/Xbox with staff hookup.
 • Power/connectivity: Generator, battery backup, Starlink on every event.
@@ -65,7 +65,7 @@ export async function POST(req: Request) {
     tools: {
       getAudioTiers: tool({
         description:
-          "Return the three real audio tiers (name, includes, best-for). Use this when explaining what setups exist.",
+          "Return the four real audio tiers (name, includes, best-for). Use this when explaining what setups exist.",
         inputSchema: z.object({}),
         execute: async () => {
           return {

@@ -2,25 +2,18 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { audioTiers } from "@/lib/packages";
 
-// Visual LED stack: 5 bars lit for two-speakers-sub, 3 for two-speakers,
-// 1 for single-speaker. Unlit bars render at 0.15 alpha.
-const ledsByTier: Record<string, number> = {
-  "single-speaker": 1,
-  "two-speakers": 3,
-  "two-speakers-sub": 5,
-};
-
 function LedStack({ lit }: { lit: number }) {
+  const bars = 7;
   return (
     <div aria-hidden="true" className="flex items-end gap-1 h-16 mb-5">
-      {Array.from({ length: 5 }).map((_, i) => {
+      {Array.from({ length: bars }).map((_, i) => {
         const on = i < lit;
         return (
           <span
             key={i}
             className="w-2.5 rounded-[2px] transition-colors"
             style={{
-              height: `${20 + i * 12}%`,
+              height: `${18 + i * 10}%`,
               background: on ? "#DD5454" : "rgba(245, 241, 236, 0.08)",
               boxShadow: on ? "0 0 10px rgba(221, 84, 84, 0.55)" : "none",
             }}
@@ -46,21 +39,21 @@ export default function PackagesTeaser() {
               id="packages-teaser-heading"
               className="font-display text-projector text-display-lg tracking-wider leading-none"
             >
-              ONE SCREEN. THREE WAYS TO HEAR IT.
+              ONE SCREEN. FOUR WAYS TO HEAR IT.
             </h2>
           </div>
           <Link
             href="/packages"
             className="inline-flex items-center gap-1.5 text-ember text-sm font-medium hover:text-projector transition-colors group"
           >
-            Compare all three
+            Compare all four
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
           {audioTiers.map((tier) => {
-            const lit = ledsByTier[tier.slug] ?? 1;
+            const lit = Math.min(7, tier.speakerCount + tier.subwooferCount * 2 + (tier.speakerCount > 1 ? 1 : 0));
             return (
               <Link
                 key={tier.slug}

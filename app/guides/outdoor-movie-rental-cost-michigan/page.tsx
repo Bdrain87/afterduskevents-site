@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Outdoor Movie Rental Cost in Michigan (2026)",
     description:
-      "What outdoor cinema rentals actually cost in Southeast Michigan: one 30 ft screen, three audio tiers.",
+      "What outdoor cinema rentals actually cost in Southeast Michigan: one 30 ft screen, four audio tiers.",
     url: `https://afterduskevents.com${SLUG}`,
   },
 };
@@ -33,7 +33,7 @@ const guideFaqs = [
   },
   {
     q: "What changes the price of a backyard movie rental?",
-    a: "The biggest factors are audio tier (single speaker, two speakers, or two speakers plus a Death From Below subwoofer), runtime, distance from Canton MI, and add-ons (karaoke with two mics, drone video, popcorn machine, backyard games, photo backdrop, patio heater, bug zapper, string lighting, early setup, late teardown).",
+    a: "The biggest factors are audio tier (single speaker, two speakers, two speakers plus a subwoofer, or four speakers plus two subwoofers), runtime, distance from Canton MI, and add-ons (karaoke with two mics, drone video, popcorn machine, backyard games, photo backdrop, patio heater, bug zapper, string lighting, early setup, late teardown).",
   },
   {
     q: "Do you charge a deposit?",
@@ -92,7 +92,7 @@ export default function GuidePage() {
 
             <FadeIn delay={0.05}>
               <p className="text-silver text-lg leading-relaxed mt-8">
-                After Dusk Events runs one 30 ft inflatable screen with three audio tiers. The
+                After Dusk Events runs one 30 ft inflatable screen with four audio tiers. The
                 pricing axis is audio, not screen size. Every booking is custom-quoted within
                 24 hours of inquiry. This guide walks through what changes the number.
               </p>
@@ -100,7 +100,7 @@ export default function GuidePage() {
 
             <FadeIn delay={0.1}>
               <h2 className="font-heading text-2xl text-projector mt-12 mb-4">
-                Three audio tiers, one screen
+                Four audio tiers, one screen
               </h2>
               <div className="overflow-x-auto rounded-lg border border-white/10">
                 <table className="w-full text-sm">
@@ -115,6 +115,7 @@ export default function GuidePage() {
                       { tier: "30 ft + Single Speaker", rec: "Smaller backyards, intimate gatherings" },
                       { tier: "30 ft + Two Speakers", rec: "Standard outdoor events, most bookings" },
                       { tier: "30 ft + Two Speakers + Death From Below Sub", rec: "Fight nights, bass-heavy music, large crowds" },
+                      { tier: "30 ft + Four Speakers + Two Subwoofers", rec: "Large layouts, fields, high-energy events" },
                     ].map((row, i) => (
                       <tr key={row.tier} className={`border-b border-white/5 ${i % 2 === 1 ? "bg-charcoal/40" : ""}`}>
                         <td className="px-5 py-3.5 text-ember font-semibold">{row.tier}</td>
@@ -135,7 +136,7 @@ export default function GuidePage() {
               </h2>
               <ul className="space-y-3 text-steel leading-relaxed">
                 {[
-                  ["Audio tier", "Single speaker, two speakers, or two speakers plus a Death From Below subwoofer. The subwoofer tier is the one to pick for fight nights and music-heavy events."],
+                  ["Audio tier", "Single speaker, two speakers, two speakers plus a subwoofer, or four speakers plus two subwoofers. Bigger sound setups are the call for fight nights, music-heavy events, and larger layouts."],
                   ["Runtime", "3 hour vs 4 hour vs 6+ hour events scale the price."],
                   ["Distance from Canton", "Inside 60 miles, no travel fee. Beyond, a travel line is added."],
                   ["Add-ons", "Karaoke with 2 wireless mics, drone video/photos, popcorn machine, cooler, cornhole / can jam / ladder ball, photo backdrop, ambient string lighting, blacklights + glow kit, patio heater, bug zapper, folding tables, early setup, late teardown."],

@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { useQueryState, parseAsInteger, parseAsString } from "nuqs";
 import { submitInquiry, type InquiryState } from "@/app/actions/inquiry";
 import ProgressIndicator from "./steps/progress-indicator";
-import { suggestTier, useCases } from "@/lib/packages";
+import { audioTiers, suggestTier, useCases } from "@/lib/packages";
 
 const initialState: InquiryState = {};
 
@@ -223,9 +223,11 @@ export default function ContactForm() {
           </label>
           <select id="packageInterest" name="packageInterest" defaultValue={prefilledPackage} className={selectClass}>
             <option value="">Not sure</option>
-            <option value="30 ft + Single Speaker">30 ft + Single Speaker</option>
-            <option value="30 ft + Two Speakers">30 ft + Two Speakers</option>
-            <option value="30 ft + Two Speakers + Death From Below Sub">30 ft + Two Speakers + Sub</option>
+            {audioTiers.map((tier) => (
+              <option key={tier.slug} value={tier.name}>
+                {tier.name}
+              </option>
+            ))}
           </select>
         </div>
       </fieldset>

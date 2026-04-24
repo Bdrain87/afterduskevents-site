@@ -128,7 +128,7 @@ export default function HomeClient({ geo }: Props = {}) {
         {/* 5. Event types marquee. Placeholder gradient cards; real photos TBD summer 2026. */}
         <EventTypesMarquee />
 
-        {/* 6. Packages teaser. Three LED stacks linking into /packages. */}
+        {/* 6. Packages teaser. Audio setup cards linking into /packages. */}
         <PackagesTeaser />
 
         {/* 7. Social proof (renders only when lib/testimonials has real entries) */}

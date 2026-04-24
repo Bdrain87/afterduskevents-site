@@ -30,11 +30,11 @@ const guideFaqs = [
   },
   {
     q: "What size screen do I need for 100 guests?",
-    a: "The 30 ft inflatable screen still handles the visual side. At 100 guests and above, the Two Speakers + Death From Below subwoofer tier is the call: bass that carries across a wider crowd, clean high-end for dialogue.",
+    a: "The 30 ft inflatable screen still handles the visual side. At 100 guests, two speakers plus a subwoofer is usually the call: bass that carries across a wider crowd, clean high-end for dialogue.",
   },
   {
     q: "What size screen do I need for 200+ guests?",
-    a: "The 30 ft inflatable screen handles visuals for 200+ guests. Sound is the deciding factor: Two Speakers + Death From Below subwoofer is the right tier. Larger crowds also benefit from early setup and late teardown add-ons for smoother flow.",
+    a: "The 30 ft inflatable screen handles visuals for 200+ guests. Sound is the deciding factor: four speakers plus two subwoofers gives larger layouts the coverage they need. Larger crowds also benefit from early setup and late teardown add-ons for smoother flow.",
   },
 ];
 
@@ -42,8 +42,8 @@ const sizingTable = [
   { guests: "Under 25", tier: "30 ft + Single Speaker", note: "Backyard movie nights, family events" },
   { guests: "25–50", tier: "30 ft + Two Speakers", note: "Tight backyards, birthdays, smaller gatherings" },
   { guests: "50–100", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Block parties, larger backyards, dance-floor events" },
-  { guests: "100–250", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Community events, fight nights, sports watch parties" },
-  { guests: "250+", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Custom quote. Contact for details on larger crowds." },
+  { guests: "100–150", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Community events, fight nights, sports watch parties" },
+  { guests: "150+", tier: "30 ft + Four Speakers + Two Subwoofers", note: "Large yards, fields, high-energy events, bigger crowds" },
 ];
 
 export default function GuidePage() {
@@ -55,7 +55,7 @@ export default function GuidePage() {
           buildArticle({
             headline: "What Size Outdoor Movie Screen Do I Need for My Guest Count? (2026)",
             description:
-              "Match guest count to audio tier for outdoor movie nights, sports watch parties, and private events. One screen size, three audio tiers.",
+              "Match guest count to audio tier for outdoor movie nights, sports watch parties, and private events. One screen size, four audio tiers.",
             slug: SLUG,
             datePublished: PUBLISHED,
             dateModified: UPDATED,
@@ -88,7 +88,7 @@ export default function GuidePage() {
               <p className="text-silver text-lg leading-relaxed mt-8">
                 Short answer: the 30 ft inflatable screen fits every private event we run, from
                 a 25-guest backyard to a 250-guest community night. What scales instead is
-                audio: we offer three tiers so the sound matches your crowd size and event type.
+                audio: we offer four tiers so the sound matches your crowd size and event type.
               </p>
             </FadeIn>
 
@@ -130,9 +130,9 @@ export default function GuidePage() {
               <p className="text-steel leading-relaxed mt-4">
                 Pick the single speaker tier for intimate gatherings where dialogue carries best
                 at conversational volume. Pick two speakers for standard outdoor events (most
-                bookings land here). Pick two speakers plus the Death From Below subwoofer for
-                anything bass-driven: fight nights, heavy soundtracks, or any
-                event 100+ guests where you want sound that fills the yard.
+                bookings land here). Pick two speakers plus the subwoofer for bass-driven events.
+                Pick four speakers plus two subwoofers for larger layouts where coverage matters
+                from the screen to the back row.
               </p>
             </FadeIn>
 

@@ -1,5 +1,5 @@
 /**
- * Side-by-side comparison of the three audio tiers.
+ * Side-by-side comparison of the audio tiers.
  *
  * Single screen size (30 ft). The pricing axis is audio only. Every tier includes
  * the same 30 ft inflatable screen, water-ballast setup, and BYO Content rule.
@@ -15,31 +15,27 @@ type Row = {
 const featureRows: Row[] = [
   {
     label: "Screen",
-    values: ["30 ft inflatable", "30 ft inflatable", "30 ft inflatable"],
+    values: audioTiers.map(() => "30 ft inflatable"),
   },
   {
     label: "Speakers",
-    values: ["1 speaker", "2 speakers", "2 speakers"],
+    values: audioTiers.map((tier) => `${tier.speakerCount} ${tier.speakerCount === 1 ? "speaker" : "speakers"}`),
   },
   {
-    label: "Death From Below subwoofer",
-    values: [false, false, true],
+    label: "Subwoofers",
+    values: audioTiers.map((tier) => tier.subwooferCount ? `${tier.subwooferCount} ${tier.subwooferCount === 1 ? "subwoofer" : "subwoofers"}` : false),
   },
   {
     label: "Water ballast setup",
-    values: [true, true, true],
+    values: audioTiers.map(() => true),
   },
   {
     label: "BYO Content",
-    values: [true, true, true],
+    values: audioTiers.map(() => true),
   },
   {
     label: "Best for",
-    values: [
-      "Smaller backyards, intimate gatherings",
-      "Standard outdoor events, most bookings",
-      "Fight nights, bass-heavy music",
-    ],
+    values: audioTiers.map((tier) => tier.best),
   },
 ];
 

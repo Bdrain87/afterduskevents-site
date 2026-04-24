@@ -27,7 +27,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What audio tiers do you offer?",
-    a: "Three tiers on the same 30 ft screen: single speaker, two speakers, or two speakers plus a Death From Below subwoofer. The subwoofer tier is the right call for fight nights and music-heavy events where bass matters.",
+    a: "Four tiers on the same 30 ft screen: single speaker, two speakers, two speakers plus a subwoofer, or four speakers plus two subwoofers. The bigger sound setups are the right call for fight nights, sports, music-heavy events, and larger layouts.",
   },
   {
     q: "Can we hook up our own console or laptop?",

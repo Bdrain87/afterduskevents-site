@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const city = getCity(slug);
   if (!city) return {};
   const title = `Outdoor Movie Rentals in ${city.name}, MI`;
-  const description = `Outdoor cinema and private event rentals serving ${city.name}, MI. 30 ft inflatable screen with three audio tiers up to a Death From Below subwoofer. Veteran-owned. Quote in 24 hours.`;
+  const description = `Outdoor cinema and private event rentals serving ${city.name}, MI. 30 ft inflatable screen with four audio tiers up to four speakers and two subwoofers. Veteran-owned. Quote in 24 hours.`;
   return {
     title,
     description,
@@ -105,7 +105,7 @@ export default async function CityPage({ params }: Params) {
                 {city.distanceMiles === 0
                   ? "home base for After Dusk Events"
                   : `${city.distanceMiles} miles from our Canton home base, well inside our 60-mile service radius`}
-                . Every {city.name} booking is a 30 ft inflatable screen with one of three audio tiers,
+                . Every {city.name} booking is a 30 ft inflatable screen with one of four audio tiers,
                 set up on site with water ballast and a complete systems test before the first reel rolls.
               </p>
               <p>
@@ -141,10 +141,10 @@ export default async function CityPage({ params }: Params) {
                 Audio tiers available in {city.name}
               </h2>
               <p className="text-steel text-sm mb-8">
-                One 30 ft screen. Three audio tiers. Every {city.name} booking is custom quoted around your event.
+                One 30 ft screen. Four audio tiers. Every {city.name} booking is custom quoted around your event.
               </p>
             </FadeIn>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
               {audioTiers.map((tier) => (
                 <div
                   key={tier.slug}
