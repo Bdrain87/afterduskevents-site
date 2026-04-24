@@ -102,10 +102,10 @@ export default function NightSkyMap() {
 
   return (
     <div className="relative">
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 lg:items-stretch">
         {/* Map */}
         <div className="lg:col-span-3 relative">
-          <div className="relative aspect-square w-full border border-white/10 bg-screening/40 backdrop-blur-sm overflow-hidden rounded-lg">
+          <div className="relative aspect-square lg:aspect-auto lg:h-full lg:min-h-[560px] lg:max-h-[680px] w-full border border-white/10 bg-screening/40 backdrop-blur-sm overflow-hidden rounded-lg">
             <svg
               viewBox={`0 0 ${VB_SIZE} ${VB_SIZE}`}
               className="w-full h-full"
@@ -304,7 +304,7 @@ export default function NightSkyMap() {
 
         {/* Right panel */}
         <aside className="lg:col-span-2" aria-live="polite">
-          <div className="h-full border border-white/10 bg-charcoal/55 backdrop-blur-sm rounded-lg p-6 sm:p-8 overflow-hidden relative">
+          <div className="h-full max-h-[720px] lg:max-h-none border border-white/10 bg-charcoal/55 backdrop-blur-sm rounded-lg p-6 sm:p-7 overflow-hidden relative flex flex-col">
             {selected ? (
               <SelectedDetail
                 key={selected.slug}
