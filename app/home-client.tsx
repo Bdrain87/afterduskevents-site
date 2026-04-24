@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import TrustStrip from "@/components/trust-strip";
 import NextEventCard from "@/components/next-event-card";
 import ThirtyFootCheck from "@/components/home/thirty-foot-check";
+import GearHighlights from "@/components/home/gear-highlights";
 import ByocPanel from "@/components/funnel/byoc-panel";
 import EventMotifCard from "@/components/event-motif-card";
 import HeroIgnition, { IgnitedWordmark } from "@/components/hero-ignition";
@@ -89,21 +90,21 @@ export default function HomeClient({ geo }: Props = {}) {
           </h1>
           <motion.p
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 2.05 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 3.55 }}
             className="mt-5 max-w-[52ch] text-body-lg leading-relaxed text-silver"
           >
             30 ft outdoor cinema screen, scalable sound, and a setup crew that handles the night from arrival to teardown.
           </motion.p>
           <motion.p
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 2.2 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 3.7 }}
             className="mt-4 text-sm leading-relaxed text-steel"
           >
             {locationLine}
           </motion.p>
           <motion.div
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 2.35 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 3.85 }}
           >
             <ActionBar className="mt-8">
               <MagneticButton>
@@ -170,6 +171,8 @@ export default function HomeClient({ geo }: Props = {}) {
         </FunnelSection>
 
         <ThirtyFootCheck />
+
+        <GearHighlights />
 
         <ByocPanel />
 

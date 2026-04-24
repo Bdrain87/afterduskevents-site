@@ -672,6 +672,19 @@ html[data-tod="night"] {
   animation: marquee-breathe 12s ease-in-out infinite;
 }
 
+/* Equalizer sound-bar pulse used in the home gear highlights column headers.
+   Bars scale vertically on their own beat via per-element animation-delay. */
+@keyframes sound-bar {
+  0%, 100% { transform: scaleY(0.3); opacity: 0.55; }
+  35%      { transform: scaleY(0.9); opacity: 0.95; }
+  65%      { transform: scaleY(0.55); opacity: 0.7;  }
+}
+.motion-safe\:animate-sound-bar {
+  height: 100%;
+  transform-origin: bottom;
+  animation: sound-bar 1.8s ease-in-out infinite;
+}
+
 /* View Transitions API. Projector bulb igniting between routes. */
 ::view-transition-old(root) {
   animation: 220ms cubic-bezier(0.65, 0, 0.35, 1) both projector-dim;
