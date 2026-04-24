@@ -103,6 +103,18 @@ export default function NightSkyMap() {
                 r={1.8}
                 fill="#DD5454"
               />
+              {/* Slow orbit ring: a ember dot drifting around Canton */}
+              <g
+                style={{ transformOrigin: `${VB_CENTER}px ${VB_CENTER}px` }}
+                className="motion-safe:animate-[canton-orbit_22s_linear_infinite]"
+              >
+                <circle
+                  cx={VB_CENTER}
+                  cy={VB_CENTER - 6.5}
+                  r={0.65}
+                  fill="rgba(245, 241, 236, 0.75)"
+                />
+              </g>
               <text
                 x={VB_CENTER + 3}
                 y={VB_CENTER + 1.2}

@@ -5,6 +5,8 @@ import Footer from "@/components/footer";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList, buildPerson } from "@/lib/schema";
 import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
+import MagneticButton from "@/components/magnetic-button";
+import StatTicker from "@/components/stat-ticker";
 
 export const metadata: Metadata = {
   title: "About",
@@ -31,6 +33,7 @@ export default function AboutPage() {
         {/* Header */}
         <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
           <PageAtmosphere variant="space" />
+          <span className="ember-pulse motion-reduce:hidden" aria-hidden="true" />
           <div className="relative z-10 mx-auto max-w-3xl">
             <p className="text-ember text-xs tracking-[0.3em] uppercase mb-4">
               Veteran-owned · Canton, MI
@@ -69,22 +72,42 @@ export default function AboutPage() {
 
               {/* Sidebar */}
               <div className="space-y-6">
-                <div className="border-l-2 border-white/10 pl-5 space-y-5">
+                <div className="border-l-2 border-white/10 pl-5 space-y-6">
                   <h2 className="font-display text-xs text-steel tracking-[0.25em] uppercase mb-4">
                     Quick facts
                   </h2>
-                  {[
-                    { label: "Service area", value: "60 miles of Canton, MI" },
-                    { label: "Ownership", value: "Veteran-owned and operated" },
-                    { label: "Coverage", value: "Insured. COI on request" },
-                  ].map((item) => (
-                    <div key={item.label}>
-                      <div className="text-steel text-xs uppercase tracking-[0.18em] mb-0.5">
-                        {item.label}
-                      </div>
-                      <div className="text-projector text-sm font-medium">{item.value}</div>
+                  <div>
+                    <div className="text-steel text-xs uppercase tracking-[0.18em] mb-1">
+                      Service radius
                     </div>
-                  ))}
+                    <div className="font-display text-display-md leading-none tracking-wider text-projector">
+                      <StatTicker value={60} />
+                      <span className="ml-1 text-lg uppercase tracking-[0.2em] text-ember">mi</span>
+                    </div>
+                    <div className="mt-1 text-xs text-steel">From Canton, MI</div>
+                  </div>
+                  <div>
+                    <div className="text-steel text-xs uppercase tracking-[0.18em] mb-1">
+                      Screen
+                    </div>
+                    <div className="font-display text-display-md leading-none tracking-wider text-projector">
+                      <StatTicker value={30} />
+                      <span className="ml-1 text-lg uppercase tracking-[0.2em] text-ember">ft</span>
+                    </div>
+                    <div className="mt-1 text-xs text-steel">Inflatable cinema screen</div>
+                  </div>
+                  <div>
+                    <div className="text-steel text-xs uppercase tracking-[0.18em] mb-1">
+                      Ownership
+                    </div>
+                    <div className="text-projector text-sm font-medium">Veteran-owned and operated</div>
+                  </div>
+                  <div>
+                    <div className="text-steel text-xs uppercase tracking-[0.18em] mb-1">
+                      Coverage
+                    </div>
+                    <div className="text-projector text-sm font-medium">Insured. COI on request</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -100,12 +123,14 @@ export default function AboutPage() {
             <p className="text-silver mb-8 leading-relaxed">
               Tell us what you are planning and we will put together a real quote within 24 hours.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(107,31,31,0.4)] transition-all duration-300 min-h-[44px]"
-            >
-              Get a Quote
-            </Link>
+            <MagneticButton className="inline-flex">
+              <Link
+                href="/contact"
+                className="inline-flex min-h-[48px] items-center justify-center px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep hover:shadow-[0_16px_32px_rgba(107,31,31,0.4)] transition-all duration-300"
+              >
+                Get a Quote
+              </Link>
+            </MagneticButton>
           </div>
         </section>
       </main>

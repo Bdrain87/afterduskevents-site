@@ -416,6 +416,82 @@ html[data-tod="night"] {
   to   { transform: scale(1.06) translate3d(-1%, -0.5%, 0); }
 }
 
+/* Night sky map: slow orbit around Canton */
+@keyframes canton-orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* /about hero ember pulse, slow aperture behind the headline */
+@keyframes ember-pulse {
+  0%, 100% { opacity: 0.28; transform: translate(-50%, -50%) scale(0.85); }
+  50%      { opacity: 0.6;  transform: translate(-50%, -50%) scale(1.12); }
+}
+.ember-pulse {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 680px;
+  max-height: 680px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(221,84,84,0.22) 0%, rgba(221,84,84,0.05) 45%, rgba(221,84,84,0) 70%);
+  filter: blur(18px);
+  animation: ember-pulse 10s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* /thanks final ember flare, single bloom after main fade lands */
+@keyframes ember-flare {
+  0%   { opacity: 0; transform: scale(0.85); }
+  45%  { opacity: 0.55; }
+  100% { opacity: 0; transform: scale(1.35); }
+}
+.ember-flare {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: 380px;
+  height: 380px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(221,84,84,0.45) 0%, rgba(221,84,84,0.08) 40%, rgba(221,84,84,0) 70%);
+  animation: ember-flare 3.2s ease-out 900ms 1 both;
+}
+
+/* /not-found projector flicker, runs a brief signal-loss on mount */
+@keyframes projector-flicker {
+  0%, 100% { opacity: 1;   text-shadow: 0 0 0 rgba(221, 84, 84, 0);    }
+  3%       { opacity: 0.2; text-shadow: 0 0 12px rgba(221, 84, 84, 0.4); }
+  6%       { opacity: 0.95; }
+  9%       { opacity: 0.35; }
+  12%      { opacity: 1;   }
+  78%      { opacity: 1;   }
+  80%      { opacity: 0.4; text-shadow: 0 0 12px rgba(221, 84, 84, 0.4); }
+  82%      { opacity: 1;   }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .projector-flicker {
+    animation: projector-flicker 7s ease-out 500ms infinite;
+  }
+}
+@keyframes signal-scanlines {
+  0%   { opacity: 0.6; }
+  100% { opacity: 0;   }
+}
+.signal-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(245, 241, 236, 0.06) 0 1px,
+    transparent 1px 3px
+  );
+  animation: signal-scanlines 900ms ease-out both;
+}
+
 /* Waveform breathing arcs used on package tier cards */
 @keyframes wave-breathe {
   0%, 100% { transform: scaleY(1);    stroke-opacity: var(--wave-base, 0.6); }
