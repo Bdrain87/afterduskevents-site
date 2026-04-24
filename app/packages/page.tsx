@@ -122,7 +122,7 @@ export default function PackagesPage() {
         >
           <div className="mx-auto max-w-7xl">
             <div className="mb-10">
-              <p className="text-caption text-ember mb-3">Six nights, one rig</p>
+              <p className="text-caption text-ember mb-3">Private events</p>
               <h2
                 id="use-cases-heading"
                 className="font-display text-projector text-display-md tracking-wider leading-none"

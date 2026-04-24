@@ -101,9 +101,9 @@ export default function EventTypesMarquee() {
     >
       <div className="mx-auto max-w-7xl px-6 sm:px-10 mb-10 flex items-end justify-between gap-6 flex-wrap">
         <div>
-          <p className="text-caption text-ember mb-3">Your event</p>
+          <p className="text-caption text-ember mb-3">Private events</p>
           <h2 id="events-marquee-heading" className="font-display text-projector text-display-lg tracking-wider leading-none">
-            SIX NIGHTS, ONE RIG.
+            ONE SCREEN. MANY WAYS TO USE IT.
           </h2>
         </div>
         <Link
