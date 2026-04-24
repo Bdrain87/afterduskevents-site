@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
@@ -197,14 +198,58 @@ export default function HomeClient({ geo }: Props = {}) {
         </FunnelSection>
 
         <FunnelSection labelledBy="addons-heading">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-5xl">
             <SectionHeader
               id="addons-heading"
               eyebrow="Add-ons"
               title="STACK THE NIGHT."
               body="Popcorn, karaoke with two mics, retro gaming, drone video, glow kit, backyard games, photo backdrop, string lights, patio heater. Quoted with the setup, not a la carte."
-              className="mb-6"
+              className="mb-8"
             />
+            <motion.ul
+              className="grid grid-cols-3 gap-3 sm:gap-5 mb-8 max-w-md sm:max-w-xl"
+              initial={reduced ? undefined : "hidden"}
+              whileInView={reduced ? undefined : "visible"}
+              viewport={{ once: true, margin: "-80px" }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+              }}
+            >
+              {[
+                { src: "/images/addons/gaming.png", label: "Gaming", alt: "Retro gaming kit add-on with controllers and a big inflatable screen" },
+                { src: "/images/addons/popcorn.png", label: "Popcorn", alt: "Popcorn machine add-on" },
+                { src: "/images/addons/glow-kit.png", label: "Glow kit", alt: "Glow kit add-on with neon balloons and glow sticks" },
+              ].map((item) => (
+                <motion.li
+                  key={item.label}
+                  variants={
+                    reduced
+                      ? undefined
+                      : {
+                          hidden: { opacity: 0, y: 10 },
+                          visible: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                          },
+                        }
+                  }
+                  className="flex flex-col"
+                >
+                  <div className="relative aspect-[3/4] overflow-hidden rounded-md border border-white/10 bg-charcoal/70 transition-colors hover:border-ember/40">
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      sizes="(min-width: 640px) 200px, 32vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="mt-2 text-caption text-steel">{item.label}</p>
+                </motion.li>
+              ))}
+            </motion.ul>
             <TextCta href="/add-ons">Full add-ons catalog</TextCta>
           </div>
         </FunnelSection>
