@@ -144,7 +144,7 @@ export function QuotePanel({
   title,
   body,
   href = "/contact",
-  ctaLabel = "Get a Quote",
+  ctaLabel = "Request a Quote",
 }: {
   title: string;
   body: string;

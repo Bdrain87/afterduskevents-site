@@ -90,26 +90,26 @@ export default function HomeClient({ geo }: Props = {}) {
           </h1>
           <motion.p
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 3.55 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 3.15 }}
             className="mt-5 max-w-[52ch] text-body-lg leading-relaxed text-silver"
           >
             30 ft outdoor cinema screen, scalable sound, and a setup crew that handles the night from arrival to teardown.
           </motion.p>
           <motion.p
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 3.7 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 3.3 }}
             className="mt-4 text-sm leading-relaxed text-steel"
           >
             {locationLine}
           </motion.p>
           <motion.div
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 3.85 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 3.45 }}
           >
             <ActionBar className="mt-8">
               <MagneticButton>
                 <PrimaryCta href={geo?.inRadius ? `/contact?location=${encodeURIComponent(geo.city.name)}` : "/contact"}>
-                  {geo?.inRadius && geo.city.slug !== "canton" ? `Get a ${geo.city.name} Quote` : "Get a Quote"}
+                  {geo?.inRadius && geo.city.slug !== "canton" ? `Request a ${geo.city.name} Quote` : "Request a Quote"}
                 </PrimaryCta>
               </MagneticButton>
               <TextCta href="/packages">Compare packages</TextCta>
@@ -307,7 +307,6 @@ export default function HomeClient({ geo }: Props = {}) {
             <QuotePanel
               title="REQUEST A QUOTE."
               body="Send the date, city, guest count, and event type. We will match the setup and reply with a real quote within 24 hours."
-              ctaLabel="Request a Quote"
             />
           </div>
         </FunnelSection>

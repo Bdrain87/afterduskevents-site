@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 
 interface FadeInProps {
@@ -22,6 +22,12 @@ export default function FadeIn({
   duration = 0.6,
   once = true,
 }: FadeInProps) {
+  const reduced = useReducedMotion();
+
+  if (reduced) {
+    return <div className={className}>{children}</div>;
+  }
+
   const dirMap = {
     up: { y: distance },
     down: { y: -distance },
@@ -54,6 +60,12 @@ export function FadeInGroup({
   stagger?: number;
   delay?: number;
 }) {
+  const reduced = useReducedMotion();
+
+  if (reduced) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={className}
@@ -83,6 +95,12 @@ export function FadeInItem({
   direction?: "up" | "down" | "none";
   distance?: number;
 }) {
+  const reduced = useReducedMotion();
+
+  if (reduced) {
+    return <div className={className}>{children}</div>;
+  }
+
   const dirMap = { up: { y: distance }, down: { y: -distance }, none: {} };
 
   return (

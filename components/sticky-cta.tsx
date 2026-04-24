@@ -56,7 +56,7 @@ export default function StickyCTA() {
               className="inline-flex items-center gap-2 rounded-full bg-oxblood text-projector px-5 py-3 text-sm font-semibold shadow-[0_8px_24px_rgba(107,31,31,0.45)] hover:bg-oxblood-deep transition-colors"
             >
               <MessageSquare size={16} aria-hidden="true" />
-              Get a Quote
+              Request a Quote
             </button>
           </Drawer.Trigger>
           <Drawer.Portal>
@@ -123,7 +123,7 @@ export default function StickyCTA() {
         className="hidden sm:inline-flex items-center gap-2 rounded-full bg-oxblood text-projector px-5 py-3 text-sm font-semibold shadow-[0_8px_24px_rgba(107,31,31,0.45)] hover:bg-oxblood-deep transition-colors"
       >
         <MessageSquare size={16} aria-hidden="true" />
-        Get a Quote
+        Request a Quote
       </Link>
     </div>
   );

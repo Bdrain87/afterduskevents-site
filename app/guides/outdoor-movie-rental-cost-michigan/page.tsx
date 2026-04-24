@@ -41,7 +41,7 @@ const guideFaqs = [
   },
   {
     q: "Is there a travel fee?",
-    a: "Inside 60 miles of Canton, MI, no separate travel fee is added. Beyond 60 miles, contact Blake for a custom quote with a travel line item.",
+    a: "Inside 60 miles of Canton, MI, no separate travel fee is added. Beyond 60 miles, contact us for a custom quote with a travel line item.",
   },
   {
     q: "Do you publish a price list?",
@@ -174,7 +174,7 @@ export default function GuidePage() {
                     href="/contact"
                     className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
                   >
-                    Get a Quote
+                    Request a Quote
                   </Link>
                 </MagneticButton>
               </div>

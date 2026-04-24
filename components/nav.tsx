@@ -70,7 +70,7 @@ export default function Nav() {
               href="/contact"
               className="ml-3 inline-flex items-center justify-center px-5 py-2 text-sm font-semibold text-projector bg-oxblood hover:bg-oxblood-deep hover:-translate-y-0.5 hover:shadow-[0_12px_24px_rgba(107,31,31,0.4)] transition-all duration-200 min-h-[40px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-oxblood"
             >
-              Get a Quote
+              Request a Quote
             </Link>
           </nav>
 
@@ -108,7 +108,7 @@ export default function Nav() {
               onClick={() => setOpen(false)}
               className="mt-8 inline-flex items-center justify-center px-6 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors min-h-[56px]"
             >
-              Get a Quote
+              Request a Quote
             </Link>
           </nav>
           <div className="px-6 pb-8">

@@ -293,16 +293,6 @@ html[data-tod="night"] {
   to   { height: 0; opacity: 0; }
 }
 
-/* Border beam. Animated glowing border for featured cards. */
-@property --beam-angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-@keyframes border-beam {
-  to { --beam-angle: 360deg; }
-}
-
 /* Scroll-driven kinetic headline. Per-word spans rise from below as the
    section enters view. Pure CSS, zero JS cost. Safari 26+ / Chrome 115+ /
    Firefox 147+ ship this natively. Older browsers: @supports fallback
@@ -539,35 +529,10 @@ html[data-tod="night"] {
   85%      { opacity: 0.2; }
 }
 
-/* Atmosphere: spotlight slow drift */
-@keyframes spotlight {
-  0%   { opacity: 0;   transform: translate(-72%, -62%) scale(0.5); }
-  100% { opacity: 1;   transform: translate(-50%, -40%) scale(1); }
-}
-.motion-safe\:animate-spotlight {
-  animation: spotlight 2s ease forwards;
-}
-
-/* Atmosphere: meteor diagonal streak */
-@keyframes meteor {
-  0%   { transform: rotate(215deg) translateX(0);    opacity: 1; }
-  70%  { opacity: 1; }
-  100% { transform: rotate(215deg) translateX(-500px); opacity: 0; }
-}
-.motion-safe\:animate-meteor {
-  animation: meteor linear infinite;
-}
-
 /* Hero image: slow Ken-Burns zoom */
 @keyframes ken-burns {
   from { transform: scale(1)    translate3d(0,0,0); }
   to   { transform: scale(1.06) translate3d(-1%, -0.5%, 0); }
-}
-
-/* Night sky map: slow orbit around Canton */
-@keyframes canton-orbit {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
 }
 
 /* /about hero ember pulse, slow aperture behind the headline */
@@ -700,6 +665,9 @@ html[data-tod="night"] {
   [style*="speaker-radiate"],
   [style*="sub-thump"],
   [style*="sub-pressure"] {
+    animation: none !important;
+  }
+  .ken-burns {
     animation: none !important;
   }
 }

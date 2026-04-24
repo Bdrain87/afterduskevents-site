@@ -36,7 +36,7 @@ export default function NotFound() {
               href="/contact"
               className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-ember border border-ember hover:bg-oxblood hover:border-oxblood hover:text-projector transition-colors min-h-[44px]"
             >
-              Get a Quote
+              Request a Quote
             </Link>
           </div>
         </div>
