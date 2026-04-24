@@ -98,7 +98,7 @@ function CoverageDiagram({ slug }: { slug: TierSlug }) {
 
         <div className="mt-9 flex items-end justify-center gap-5 sm:gap-7">
           {hasTwoSpeakers ? <SpeakerBlock label="L" /> : <SpeakerBlock label="L" active={false} />}
-          <SpeakerBlock label={hasSub ? "Sub" : slug === "single-speaker" ? "Spk" : "Rig"} active />
+          <SpeakerBlock label={hasSub ? "Sub" : slug === "single-speaker" ? "Spk" : "AV"} active />
           {hasTwoSpeakers ? <SpeakerBlock label="R" /> : <SpeakerBlock label="R" active={false} />}
         </div>
 

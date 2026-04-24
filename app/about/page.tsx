@@ -51,7 +51,8 @@ export default function AboutPage() {
               {/* Body copy */}
               <div className="lg:col-span-2 space-y-6 text-silver leading-relaxed text-base max-w-prose">
                 <p>
-                  Blake owns the gear, drives the truck, sets up the rig, runs the show, and tears it down.
+                  Blake owns the gear, drives the truck, sets up the screen and sound, runs the show,
+                  and tears it down.
                   No subcontractors on your lawn.
                 </p>
                 <p>

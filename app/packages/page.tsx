@@ -210,7 +210,7 @@ export default function PackagesPage() {
               NOT SURE WHICH FITS?
             </h2>
             <p className="text-silver text-body-lg leading-relaxed mb-10 max-w-[44ch]">
-              Tell us the event. We&apos;ll pick the rig.
+              Tell us the event. We&apos;ll match the setup.
             </p>
             <MagneticButton className="inline-flex">
               <Link

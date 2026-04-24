@@ -159,7 +159,7 @@ export default function HomeClient({ geo }: Props = {}) {
               NIGHT.
             </h2>
             <p className="text-silver text-body-lg leading-relaxed mb-10 max-w-[44ch]">
-              Tell us the event. We&apos;ll pick the rig.
+              Tell us the event. We&apos;ll match the setup.
             </p>
             <MagneticButton>
               <ShimmerButton onClick={() => (window.location.href = "/contact")}>
