@@ -79,7 +79,7 @@ export default function PackagesPage() {
               </p>
               <ActionBar className="mt-8">
                 <PrimaryCta href="/contact">Get a Quote</PrimaryCta>
-                <TextCta href="#tier-selector">Use the sound chooser</TextCta>
+                <TextCta href="#ballpark-heading">Use the sound chooser</TextCta>
               </ActionBar>
             </div>
             <div className="lg:col-span-4">
