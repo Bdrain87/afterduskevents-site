@@ -41,8 +41,8 @@ const guideFaqs = [
 const sizingTable = [
   { guests: "Under 25", tier: "30 ft + Single Speaker", note: "Backyard movie nights, family events" },
   { guests: "25–50", tier: "30 ft + Two Speakers", note: "Tight backyards, birthdays, smaller gatherings" },
-  { guests: "50–100", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Block parties, larger backyards, dance-floor events" },
-  { guests: "100–150", tier: "30 ft + Two Speakers + Death From Below Sub", note: "Community events, fight nights, sports watch parties" },
+  { guests: "50–100", tier: "30 ft + Two Speakers + Subwoofer", note: "Block parties, larger backyards, dance-floor events" },
+  { guests: "100–150", tier: "30 ft + Two Speakers + Subwoofer", note: "Community events, fight nights, sports watch parties" },
   { guests: "150+", tier: "30 ft + Four Speakers + Two Subwoofers", note: "Large yards, fields, high-energy events, bigger crowds" },
 ];
 

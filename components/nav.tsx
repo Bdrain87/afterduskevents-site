@@ -9,7 +9,8 @@ import LiveDuskClock from "./live-dusk-clock";
 
 const links = [
   { href: "/packages", label: "Packages" },
-  { href: "/add-ons", label: "Add-Ons" },
+  { href: "/add-ons", label: "Add-ons" },
+  { href: "/serving", label: "Service Area" },
   { href: "/faq", label: "FAQ" },
   { href: "/about", label: "About" },
 ];
@@ -45,7 +46,7 @@ export default function Nav() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
+          <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -73,7 +74,7 @@ export default function Nav() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden text-projector p-2 rounded-lg min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-oxblood"
+            className="lg:hidden text-projector p-2 rounded-lg min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-oxblood"
             onClick={() => setOpen(!open)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
@@ -86,7 +87,7 @@ export default function Nav() {
 
       {/* Mobile menu. Full-screen takeover */}
       {open && (
-        <div id="mobile-menu" className="md:hidden fixed inset-0 top-16 z-40 bg-screening flex flex-col">
+        <div id="mobile-menu" className="lg:hidden fixed inset-0 top-16 z-40 bg-screening flex flex-col">
           <nav className="flex flex-col px-6 py-8 flex-1" aria-label="Mobile navigation">
             {links.map((link) => (
               <Link

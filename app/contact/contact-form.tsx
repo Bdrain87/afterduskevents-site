@@ -22,23 +22,37 @@ function FieldError({ errors, field }: { errors?: Record<string, string[]>; fiel
 
 const labelClass = "block text-caption text-steel mb-2";
 const inputClass =
-  "w-full bg-screening/60 border border-white/10 text-projector placeholder-steel/70 px-4 py-3.5 text-base min-h-[56px] focus:outline-none focus:border-ember focus:ring-2 focus:ring-ember/40 hover:border-ember/40 transition-colors";
+  "w-full rounded-lg bg-screening/60 border border-white/10 text-projector placeholder-steel/70 px-4 py-3.5 text-base min-h-[56px] focus:outline-none focus:border-ember focus:ring-2 focus:ring-ember/40 hover:border-ember/40 transition-colors";
 const selectClass = `${inputClass} appearance-none`;
 
 type Step = 1 | 2 | 3;
+
+const addOnOptions = [
+  "Popcorn machine rental",
+  "YouTube karaoke + 2 wireless mics",
+  "Retro gaming kit",
+  "BYO console hookup",
+  "Drone video and photos",
+  "Ambient string lighting",
+  "Blacklight + Neon Kit",
+  "Patio heater",
+  "Backyard games",
+];
 
 export default function ContactForm() {
   const searchParams = useSearchParams();
   const prefilledPackage = searchParams.get("package") ?? "";
   const prefilledLocation = searchParams.get("location") ?? "";
   const prefilledEventDate = searchParams.get("eventDate") ?? "";
+  const prefilledUseCase = searchParams.get("useCase") ?? "";
+  const prefilledEventType = useCases.find((u) => u.slug === prefilledUseCase)?.name ?? "";
 
   const [state, formAction, isPending] = useActionState(submitInquiry, initialState);
 
   // URL-synced step + field state so refresh preserves progress and links are shareable.
   const [stepNum, setStep] = useQueryState("step", parseAsInteger.withDefault(1));
   const step = (stepNum >= 1 && stepNum <= 3 ? stepNum : 1) as Step;
-  const [eventType, setEventType] = useQueryState("et", parseAsString.withDefault(""));
+  const [eventType, setEventType] = useQueryState("et", parseAsString.withDefault(prefilledEventType));
   const [guestCount, setGuestCount] = useQueryState("guests", parseAsString.withDefault(""));
   const [stepError, setStepErrorState] = useQueryState("err", parseAsString.withDefault(""));
   const setStepError = (v: string | null) => setStepErrorState(v ?? "");
@@ -68,7 +82,14 @@ export default function ContactForm() {
     const uc = useCases.find((u) => u.name === eventType);
     if (!uc) return null;
     const tier = suggestTier(uc.slug, guestCount);
-    return tier ? { name: tier.name, best: tier.best } : null;
+    return tier
+      ? {
+          name: tier.name,
+          best: tier.best,
+          plainBenefit: tier.plainBenefit,
+          coverageNote: tier.coverageNote,
+        }
+      : null;
   }, [eventType, guestCount]);
 
   function validateStep(s: Step): string | null {
@@ -117,7 +138,7 @@ export default function ContactForm() {
 
   return (
     <form action={formAction} className="space-y-6" noValidate>
-      <ProgressIndicator current={step} />
+      <ProgressIndicator current={step} labels={["Basics", "Setup", "Contact"]} />
 
       {/* STEP 1. Event basics */}
       <fieldset className="space-y-6" hidden={step !== 1} aria-hidden={step !== 1}>
@@ -181,7 +202,7 @@ export default function ContactForm() {
 
       {/* STEP 2. Package + guest count */}
       <fieldset className="space-y-6" hidden={step !== 2} aria-hidden={step !== 2}>
-        <legend className="sr-only">Package + guest count</legend>
+        <legend className="sr-only">Setup builder</legend>
 
         <div>
           <label htmlFor="guestCount" className={labelClass}>
@@ -206,13 +227,16 @@ export default function ContactForm() {
         </div>
 
         {suggestion && (
-          <div className="rounded-lg border border-oxblood/40 bg-charcoal p-4">
+          <div className="rounded-lg border border-oxblood/40 bg-charcoal/70 p-5">
             <p className="text-xs uppercase tracking-wider text-ember font-semibold mb-1">
               Recommended setup
             </p>
             <p className="text-projector font-heading text-base">{suggestion.name}</p>
-            <p className="text-steel text-xs mt-1">
-              {suggestion.best}. Every event is custom-quoted around date, distance, and add-ons.
+            <p className="text-silver text-sm leading-relaxed mt-2">
+              {suggestion.plainBenefit}
+            </p>
+            <p className="text-steel text-xs leading-relaxed mt-2">
+              {suggestion.coverageNote} Every event is custom-quoted around date, distance, and add-ons.
             </p>
           </div>
         )}
@@ -229,6 +253,28 @@ export default function ContactForm() {
               </option>
             ))}
           </select>
+        </div>
+
+        <div>
+          <p className={labelClass}>
+            Add-ons you may want <span className="text-steel text-xs font-normal">(optional)</span>
+          </p>
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {addOnOptions.map((option) => (
+              <label
+                key={option}
+                className="flex min-h-[48px] items-start gap-3 rounded-lg border border-white/10 bg-screening/55 p-3 text-sm leading-snug text-silver transition-colors hover:border-ember/40"
+              >
+                <input
+                  name="addOns"
+                  type="checkbox"
+                  value={option}
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/15 bg-screening accent-oxblood focus:ring-oxblood"
+                />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
         </div>
       </fieldset>
 
@@ -363,7 +409,7 @@ export default function ContactForm() {
             onClick={back}
             className="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold text-steel border border-white/15 hover:text-projector hover:border-white/30 transition-colors"
           >
-            ← Back
+            Back
           </button>
         ) : (
           <span aria-hidden="true" />
@@ -375,7 +421,7 @@ export default function ContactForm() {
             onClick={next}
             className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
           >
-            Next →
+            Next
           </button>
         ) : (
           <button

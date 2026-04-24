@@ -23,9 +23,11 @@ const systemPrompt = `You are Blake's after-hours concierge for After Dusk Event
 
 REAL OFFERING (the only facts you may use):
 • One screen size: 30 ft inflatable. Water ballast setup, no digging.
-• Four audio tiers: Single Speaker, Two Speakers, Two Speakers + Death From Below subwoofer, or Four Speakers + Two Subwoofers.
+• Four audio tiers: Single Speaker, Two Speakers, Two Speakers + Subwoofer, or Four Speakers + Two Subwoofers.
+• Speaker specs in plain English: full-range speakers are loud enough for outdoor events, cover 40 Hz-20 kHz, can link wirelessly, and run on battery power.
+• Subwoofer specs in plain English: dual 8-inch low-frequency drivers, bass response down to 25 Hz, wireless SKAA connection, and battery-powered placement.
 • BYO Content rule: customer streams from their own accounts (Netflix, Disney+, YouTube, etc.). Karaoke uses YouTube karaoke tracks.
-• Gaming: 8-bit retro system + 4 wireless controllers (add-on), OR customer's PS/Xbox with staff hookup.
+• Gaming: retro gaming kit add-on with HDMI plug-and-play setup, 100,000+ classic-game library, 50+ classic systems, offline play, and four wireless controllers; OR customer's PS/Xbox with staff hookup.
 • Power/connectivity: Generator, battery backup, Starlink on every event.
 • Service radius: 60 miles of Canton. Travel-zone 60–90 mi has travel fee. Beyond 90 mi: flag.
 • Private events only. no tickets, no admission, no public advertising.
@@ -65,7 +67,7 @@ export async function POST(req: Request) {
     tools: {
       getAudioTiers: tool({
         description:
-          "Return the four real audio tiers (name, includes, best-for). Use this when explaining what setups exist.",
+          "Return the four real audio tiers. Use this when explaining what setups exist.",
         inputSchema: z.object({}),
         execute: async () => {
           return {
@@ -74,6 +76,10 @@ export async function POST(req: Request) {
               name: t.name,
               includes: t.includes,
               best: t.best,
+              plainBenefit: t.plainBenefit,
+              coverageNote: t.coverageNote,
+              soundProfile: t.soundProfile,
+              recommendedFor: t.recommendedFor,
               popular: !!t.popular,
             })),
           };
@@ -108,6 +114,9 @@ export async function POST(req: Request) {
               name: tier.name,
               includes: tier.includes,
               best: tier.best,
+              plainBenefit: tier.plainBenefit,
+              coverageNote: tier.coverageNote,
+              soundProfile: tier.soundProfile,
             },
           };
         },
@@ -176,7 +185,7 @@ export async function POST(req: Request) {
               "Photo area with backdrop",
             ],
             gaming: [
-              "8-bit retro system + 4 wireless controllers",
+              "Retro gaming kit with four wireless controllers",
               "BYO console hookup (PS / Xbox)",
               "Patio heater",
               "Cooler rental",

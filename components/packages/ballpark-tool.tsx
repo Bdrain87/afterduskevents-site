@@ -74,7 +74,7 @@ export default function BallparkTool() {
             </p>
             <p className="font-heading text-projector text-lg mb-2">{result.name}</p>
             <p className="text-steel text-sm leading-relaxed">
-              {result.best}. Every event is custom-quoted around your date, location, and add-ons.
+              {result.plainBenefit} {result.coverageNote} Every event is custom-quoted around your date, location, and add-ons.
             </p>
             <Link
               href={`/contact?package=${encodeURIComponent(result.name)}`}

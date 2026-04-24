@@ -1,0 +1,18 @@
+<svg width="960" height="640" viewBox="0 0 960 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="640" fill="#08080A"/>
+  <rect x="88" y="90" width="784" height="392" rx="16" fill="#111113" stroke="#2A2A2A" stroke-width="4"/>
+  <rect x="132" y="130" width="696" height="280" rx="10" fill="#0D2418"/>
+  <path d="M132 270H828M480 130V410" stroke="#F5F1EC" stroke-opacity="0.34" stroke-width="4"/>
+  <circle cx="480" cy="270" r="76" stroke="#F5F1EC" stroke-opacity="0.28" stroke-width="4"/>
+  <rect x="386" y="171" width="188" height="74" rx="8" fill="#08080A" stroke="#DD5454" stroke-width="3"/>
+  <text x="480" y="219" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#F5F1EC">LIVE</text>
+  <path d="M172 518H788" stroke="#DD5454" stroke-width="8" stroke-linecap="round"/>
+  <g fill="#F5F1EC" opacity="0.66">
+    <circle cx="254" cy="522" r="15"/>
+    <circle cx="337" cy="522" r="15"/>
+    <circle cx="420" cy="522" r="15"/>
+    <circle cx="540" cy="522" r="15"/>
+    <circle cx="623" cy="522" r="15"/>
+    <circle cx="706" cy="522" r="15"/>
+  </g>
+</svg>

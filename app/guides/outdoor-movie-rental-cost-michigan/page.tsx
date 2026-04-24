@@ -114,7 +114,7 @@ export default function GuidePage() {
                     {[
                       { tier: "30 ft + Single Speaker", rec: "Smaller backyards, intimate gatherings" },
                       { tier: "30 ft + Two Speakers", rec: "Standard outdoor events, most bookings" },
-                      { tier: "30 ft + Two Speakers + Death From Below Sub", rec: "Fight nights, bass-heavy music, large crowds" },
+                      { tier: "30 ft + Two Speakers + Subwoofer", rec: "Fight nights, bass-heavy music, large crowds" },
                       { tier: "30 ft + Four Speakers + Two Subwoofers", rec: "Large layouts, fields, high-energy events" },
                     ].map((row, i) => (
                       <tr key={row.tier} className={`border-b border-white/5 ${i % 2 === 1 ? "bg-charcoal/40" : ""}`}>

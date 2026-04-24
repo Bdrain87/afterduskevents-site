@@ -13,6 +13,7 @@ const schema = z.object({
   guestCount: z.string().min(1, "Guest count is required"),
   eventType: z.string().min(1, "Event type is required"),
   packageInterest: z.string().optional(),
+  addOns: z.string().optional(),
   details: z.string().max(500).optional(),
   referral: z.string().optional(),
   consent: z.string().min(1, "Consent is required"),
@@ -40,6 +41,7 @@ export async function submitInquiry(
     guestCount: formData.get("guestCount") as string,
     eventType: formData.get("eventType") as string,
     packageInterest: formData.get("packageInterest") as string,
+    addOns: formData.getAll("addOns").join(", "),
     details: formData.get("details") as string,
     referral: formData.get("referral") as string,
     consent: formData.get("consent") as string,
@@ -65,6 +67,7 @@ Location:      ${data.location}
 Guest Count:   ${data.guestCount}
 Event Type:    ${data.eventType}
 Package:       ${data.packageInterest || "Not specified"}
+Add-ons:       ${data.addOns || "None selected"}
 Referral:      ${data.referral || "Not provided"}
 
 Details:

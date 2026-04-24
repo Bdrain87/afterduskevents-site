@@ -34,6 +34,22 @@ const featureRows: Row[] = [
     values: audioTiers.map(() => true),
   },
   {
+    label: "Plain-English fit",
+    values: audioTiers.map((tier) => tier.plainBenefit),
+  },
+  {
+    label: "Coverage",
+    values: audioTiers.map((tier) => tier.coverageNote),
+  },
+  {
+    label: "Sound profile",
+    values: audioTiers.map((tier) => tier.soundProfile),
+  },
+  {
+    label: "Tech note",
+    values: audioTiers.map((tier) => tier.technicalNotes[0]),
+  },
+  {
     label: "Best for",
     values: audioTiers.map((tier) => tier.best),
   },
@@ -54,7 +70,7 @@ function Cell({ value }: { value: string | boolean }) {
       </span>
     );
   }
-  return <span className="text-projector text-sm">{value}</span>;
+  return <span className="text-projector text-sm leading-relaxed">{value}</span>;
 }
 
 export default function ComparisonTable() {

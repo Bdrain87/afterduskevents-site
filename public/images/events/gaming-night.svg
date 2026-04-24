@@ -1,0 +1,12 @@
+<svg width="960" height="640" viewBox="0 0 960 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="640" fill="#08080A"/>
+  <rect x="114" y="90" width="732" height="330" rx="16" fill="#111113" stroke="#2A2A2A" stroke-width="4"/>
+  <rect x="156" y="130" width="648" height="240" rx="10" fill="#121624"/>
+  <path d="M338 224H622M480 130V370" stroke="#DD5454" stroke-opacity="0.45" stroke-width="4"/>
+  <rect x="312" y="470" width="336" height="92" rx="46" fill="#1A1A1A" stroke="#DD5454" stroke-width="4"/>
+  <circle cx="388" cy="516" r="21" fill="#F5F1EC"/>
+  <circle cx="571" cy="503" r="12" fill="#DD5454"/>
+  <circle cx="609" cy="528" r="12" fill="#DD5454"/>
+  <path d="M455 516H505M480 491V541" stroke="#F5F1EC" stroke-width="10" stroke-linecap="round"/>
+  <text x="480" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="58" font-weight="700" fill="#F5F1EC">PRESS START</text>
+</svg>

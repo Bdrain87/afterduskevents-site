@@ -9,7 +9,7 @@ import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "After Dusk Events is a one-person, veteran-owned outdoor cinema outfit based in Canton, MI. Blake owns the gear, drives the truck, runs the show.",
+    "After Dusk Events is a veteran-owned outdoor cinema outfit based in Canton, MI. Blake leads the setup with a small trusted crew when the event calls for it.",
   alternates: { canonical: "/about" },
 };
 
@@ -36,10 +36,11 @@ export default function AboutPage() {
               Veteran-owned · Canton, MI
             </p>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl text-projector tracking-wider leading-none mb-6">
-              WE ARE ONE GUY AND A TRUCK.
+              BLAKE-LED. CREW WHEN IT COUNTS.
             </h1>
             <p className="text-silver text-lg leading-relaxed max-w-[52ch]">
-              After Dusk Events is a one-person outfit based in Canton, Michigan. Blake runs it.
+              After Dusk Events is based in Canton, Michigan. Blake leads the setup, and trusted
+              friends help when the event needs extra hands.
             </p>
           </div>
         </section>
@@ -51,9 +52,9 @@ export default function AboutPage() {
               {/* Body copy */}
               <div className="lg:col-span-2 space-y-6 text-silver leading-relaxed text-base max-w-prose">
                 <p>
-                  Blake owns the gear, drives the truck, sets up the screen and sound, runs the show,
-                  and tears it down.
-                  No subcontractors on your lawn.
+                  Blake owns the gear, plans the setup, and stays responsible for the screen, sound,
+                  systems test, and teardown. When a job needs more hands, he brings people he knows
+                  and trusts.
                 </p>
                 <p>
                   Most backyard movie setups are a projector on a sheet. This is not that. The screen is

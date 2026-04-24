@@ -1,0 +1,217 @@
+import Link from "next/link";
+import type { ReactNode } from "react";
+import { ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import type { AudioTier } from "@/lib/packages";
+
+type SectionProps = {
+  children: ReactNode;
+  id?: string;
+  labelledBy?: string;
+  className?: string;
+  tone?: "base" | "band" | "quiet";
+};
+
+export function FunnelSection({
+  children,
+  id,
+  labelledBy,
+  className,
+  tone = "base",
+}: SectionProps) {
+  return (
+    <section
+      id={id}
+      aria-labelledby={labelledBy}
+      className={cn(
+        "relative px-6 py-16 sm:px-10 sm:py-20 lg:px-16",
+        tone === "band" && "border-y border-white/8 bg-charcoal/35",
+        tone === "quiet" && "bg-screening",
+        className,
+      )}
+    >
+      {children}
+    </section>
+  );
+}
+
+export function SectionHeader({
+  eyebrow,
+  title,
+  body,
+  id,
+  align = "left",
+  className,
+}: {
+  eyebrow?: string;
+  title: ReactNode;
+  body?: ReactNode;
+  id?: string;
+  align?: "left" | "center";
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "mb-10 max-w-3xl",
+        align === "center" && "mx-auto text-center",
+        className,
+      )}
+    >
+      {eyebrow && <p className="text-caption text-ember mb-3">{eyebrow}</p>}
+      <h2
+        id={id}
+        className="font-display text-display-md text-projector tracking-wider leading-none"
+      >
+        {title}
+      </h2>
+      {body && <p className="mt-5 text-body-lg leading-relaxed text-silver">{body}</p>}
+    </div>
+  );
+}
+
+export function MediaPanel({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "relative overflow-hidden rounded-lg border border-white/10 bg-charcoal shadow-[0_24px_70px_rgba(0,0,0,0.35)]",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function ActionBar({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <div className={cn("flex flex-col gap-3 sm:flex-row sm:items-center", className)}>{children}</div>;
+}
+
+export function PrimaryCta({
+  href,
+  children,
+}: {
+  href: string;
+  children: ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-oxblood px-6 py-3 text-sm font-semibold text-projector transition-colors hover:bg-oxblood-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-ember"
+    >
+      {children}
+    </Link>
+  );
+}
+
+export function TextCta({
+  href,
+  children,
+}: {
+  href: string;
+  children: ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      className="group inline-flex min-h-[48px] items-center gap-2 text-sm font-semibold text-ember transition-colors hover:text-projector"
+    >
+      {children}
+      <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
+    </Link>
+  );
+}
+
+export function TierCard({
+  tier,
+  href,
+  compact = false,
+}: {
+  tier: AudioTier;
+  href: string;
+  compact?: boolean;
+}) {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "group block rounded-lg border border-white/10 bg-screening/70 p-5 transition-colors hover:border-ember/45",
+        tier.popular && "border-ember/40",
+      )}
+    >
+      <div className="mb-4 flex items-start justify-between gap-3">
+        <h3 className="font-display text-heading-lg leading-none tracking-wider text-projector">
+          {tier.name}
+        </h3>
+        {tier.popular && (
+          <span className="shrink-0 rounded-full border border-ember/40 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-ember">
+            Most booked
+          </span>
+        )}
+      </div>
+      <p className="text-sm leading-relaxed text-silver">{tier.plainBenefit}</p>
+      {!compact && (
+        <p className="mt-3 text-xs leading-relaxed text-steel">{tier.coverageNote}</p>
+      )}
+      <span className="mt-5 inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] text-ember">
+        See setup
+        <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+      </span>
+    </Link>
+  );
+}
+
+export function QuotePanel({
+  title,
+  body,
+  href = "/contact",
+}: {
+  title: string;
+  body: string;
+  href?: string;
+}) {
+  return (
+    <div className="rounded-lg border border-white/10 bg-charcoal/55 p-6 sm:p-8">
+      <p className="text-caption text-ember mb-3">Quote next</p>
+      <h2 className="font-display text-display-md leading-none tracking-wider text-projector">
+        {title}
+      </h2>
+      <p className="mt-4 max-w-[48ch] text-body leading-relaxed text-silver">{body}</p>
+      <div className="mt-6">
+        <PrimaryCta href={href}>Get a Quote</PrimaryCta>
+      </div>
+    </div>
+  );
+}
+
+export function BookingStep({
+  number,
+  title,
+  body,
+}: {
+  number: string;
+  title: string;
+  body: string;
+}) {
+  return (
+    <div className="rounded-lg border border-white/10 bg-screening/65 p-5">
+      <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full border border-ember/45 text-sm font-semibold text-ember">
+        {number}
+      </div>
+      <h3 className="font-heading text-heading-md text-projector">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-silver">{body}</p>
+    </div>
+  );
+}

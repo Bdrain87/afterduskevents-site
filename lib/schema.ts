@@ -172,10 +172,10 @@ export function buildService(tier: AudioTier): SchemaObject {
       geoMidpoint: { "@type": "GeoCoordinates", latitude: LAT, longitude: LNG },
       geoRadius: String(RADIUS_M),
     },
-    description: tier.includes.join(". "),
+    description: `${tier.plainBenefit} ${tier.coverageNote} ${tier.soundProfile}`,
     audience: {
       "@type": "Audience",
-      audienceType: tier.best,
+      audienceType: tier.recommendedFor.join(", "),
     },
     offers: {
       "@type": "Offer",
@@ -193,7 +193,7 @@ export function buildService(tier: AudioTier): SchemaObject {
         geoRadius: String(RADIUS_M),
       },
     },
-    isRelatedTo: tier.includes.slice(0, 3),
+    isRelatedTo: [...tier.includes.slice(0, 3), ...tier.technicalNotes.slice(0, 2)],
   };
 }
 

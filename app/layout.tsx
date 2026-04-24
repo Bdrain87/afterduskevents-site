@@ -4,9 +4,6 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
 import FilmGrain from "@/components/film-grain";
-import CursorBeam from "@/components/cursor-beam";
-import ScrollProgress from "@/components/scroll-progress";
-import LoadingScreen from "@/components/loading-screen";
 import LenisProvider from "@/components/lenis-provider";
 import StickyCTA from "@/components/sticky-cta";
 import ConciergeMount from "@/components/concierge/concierge-mount";
@@ -105,9 +102,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
         <TimeOfDayProvider />
         <AmbientSky />
-        <LoadingScreen />
-        <ScrollProgress />
-        <CursorBeam />
         <FilmGrain />
         <NuqsAdapter>
           <LenisProvider>

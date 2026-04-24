@@ -4,15 +4,22 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import FadeIn from "@/components/fade-in";
-import MagneticButton from "@/components/magnetic-button";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
+import ByocPanel from "@/components/funnel/byoc-panel";
+import {
+  ActionBar,
+  FunnelSection,
+  MediaPanel,
+  PrimaryCta,
+  QuotePanel,
+  SectionHeader,
+  TextCta,
+  TierCard,
+} from "@/components/funnel/layout";
 import { audioTiers, useCases, type AudioTier } from "@/lib/packages";
 import { buildService, buildBreadcrumbList } from "@/lib/schema";
-import { Check, ArrowRight } from "lucide-react";
-import Balancer from "react-wrap-balancer";
-import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
+import { Check } from "lucide-react";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -25,7 +32,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const tier = audioTiers.find((t) => t.slug === slug);
   if (!tier) return {};
   const title = `${tier.name} | After Dusk Events`;
-  const description = `${tier.name}. ${tier.best}. 30 ft inflatable screen, BYO Content, private events in Southeast Michigan.`;
+  const description = `${tier.name}. ${tier.plainBenefit} ${tier.coverageNote}`;
   return {
     title,
     description,
@@ -51,7 +58,7 @@ const ADDON_SUGGESTIONS: Record<AudioTier["slug"], { heading: string; items: str
   "two-speakers": {
     heading: "Common add-ons for standard events",
     items: [
-      "8-bit retro system + 4 wireless controllers",
+      "Retro gaming kit with four wireless controllers",
       "YouTube karaoke + 2 wireless mics",
       "Popcorn machine rental",
       "Drone video and photos",
@@ -59,7 +66,7 @@ const ADDON_SUGGESTIONS: Record<AudioTier["slug"], { heading: string; items: str
     ],
   },
   "two-speakers-sub": {
-    heading: "Common add-ons for fight nights and big-crowd events",
+    heading: "Common add-ons for sports, fights, and larger groups",
     items: [
       "YouTube karaoke + 2 wireless mics",
       "Drone video and photos",
@@ -97,184 +104,187 @@ export default async function TierPage({ params }: Params) {
           buildService(tier),
           buildBreadcrumbList([
             { name: "Home", href: "/" },
-            { name: "Setup", href: "/packages" },
+            { name: "Packages", href: "/packages" },
             { name: tier.name, href: `/packages/${tier.slug}` },
           ]),
         ]}
       />
       <Nav />
       <main className="flex-1 pt-16">
-        {/* Hero */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
-          <PageAtmosphere variant={tier.popular ? "ember" : "dusk"} />
-          <div className="relative z-10 mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <div>
-              <FadeIn>
-                <p className="text-ember text-xs tracking-[0.25em] uppercase mb-3">Audio tier</p>
-                <h1 className="font-display text-5xl sm:text-6xl text-projector tracking-wider leading-none mb-4">
-                  <Balancer>{tier.name}</Balancer>
-                </h1>
-                <span className="oxblood-rule" />
-              </FadeIn>
-              <FadeIn delay={0.1}>
-                <p className="text-silver text-lg leading-relaxed mt-6">
-                  {tier.best}. 30 ft inflatable screen, water ballast setup, bring your own content.
-                </p>
-              </FadeIn>
-              <FadeIn delay={0.2}>
-                <MagneticButton className="inline-flex mt-8">
-                  <Link
-                    href={`/contact?package=${encodeURIComponent(tier.name)}`}
-                    className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
-                    style={{ viewTransitionName: `tier-cta-${tier.slug}` }}
-                  >
-                    Request a Quote
-                  </Link>
-                </MagneticButton>
-              </FadeIn>
+        <FunnelSection className="pt-20 lg:pt-28">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-7">
+              <p className="text-caption text-ember mb-4">Audio tier</p>
+              <h1 className="font-display text-display-lg leading-none tracking-wider text-projector">
+                {tier.name}
+              </h1>
+              <p className="mt-6 max-w-[58ch] text-body-lg leading-relaxed text-silver">
+                {tier.plainBenefit}
+              </p>
+              <p className="mt-4 max-w-[58ch] text-sm leading-relaxed text-steel">
+                {tier.coverageNote}
+              </p>
+              <ActionBar className="mt-8">
+                <PrimaryCta href={`/contact?package=${encodeURIComponent(tier.name)}`}>
+                  Request This Setup
+                </PrimaryCta>
+                <TextCta href="/packages">Compare all tiers</TextCta>
+              </ActionBar>
             </div>
-            <FadeIn delay={0.15}>
-              <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-screening">
+            <div className="lg:col-span-5">
+              <MediaPanel className="aspect-[4/5]">
                 <Image
                   src="/images/setup/30ft-screen-studio.avif"
-                  alt="30 ft inflatable outdoor cinema screen, studio render"
+                  alt="30 foot inflatable outdoor cinema screen setup"
                   fill
                   priority
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="object-cover dusk-grade"
-                  style={{ viewTransitionName: `tier-image-${tier.slug}` }}
+                  sizes="(min-width: 1024px) 42vw, 100vw"
+                  className="object-contain p-4"
                 />
+              </MediaPanel>
+            </div>
+          </div>
+        </FunnelSection>
+
+        <FunnelSection labelledBy="includes-heading" tone="band">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-5">
+              <SectionHeader
+                id="includes-heading"
+                eyebrow="What this tier does"
+                title="COVERAGE FIRST."
+                body={tier.soundProfile}
+                className="mb-0"
+              />
+            </div>
+            <div className="lg:col-span-7">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                {tier.includes.map((item) => (
+                  <div key={item} className="flex items-start gap-3 rounded-lg border border-white/10 bg-screening/70 p-4">
+                    <Check size={18} className="mt-0.5 shrink-0 text-ember" aria-hidden="true" />
+                    <span className="text-sm leading-relaxed text-projector">{item}</span>
+                  </div>
+                ))}
               </div>
-            </FadeIn>
+            </div>
           </div>
-        </section>
+        </FunnelSection>
 
-        {/* Includes */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="includes-heading">
-          <div className="mx-auto max-w-3xl">
-            <FadeIn>
-              <h2 id="includes-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-6">
-                What&apos;s included.
-              </h2>
-            </FadeIn>
-            <ul className="space-y-3">
-              {tier.includes.map((item, i) => (
-                <FadeIn key={item} delay={i * 0.04}>
-                  <li className="flex items-start gap-3 text-projector text-base">
-                    <Check size={18} className="text-ember mt-1 shrink-0" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                </FadeIn>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* Fits these events */}
-        {fitUseCases.length > 0 && (
-          <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="fits-heading">
-            <div className="mx-auto max-w-5xl">
-              <FadeIn>
-                <h2 id="fits-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-6">
-                  Fits these events.
-                </h2>
-              </FadeIn>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {fitUseCases.map((uc) => (
-                  <li key={uc.slug}>
-                    <Link
-                      href={`/packages#${uc.slug}`}
-                      className="group flex items-start justify-between gap-3 rounded-lg p-5 bg-screening border border-white/10 hover:border-oxblood/40 transition-colors"
-                    >
-                      <div>
-                        <p className="font-heading text-base text-projector">{uc.name}</p>
-                        <p className="text-steel text-xs mt-1">{uc.desc}</p>
-                      </div>
-                      <ArrowRight size={16} className="text-ember mt-0.5 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                    </Link>
+        <FunnelSection labelledBy="details-heading">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <SectionHeader
+                id="details-heading"
+                eyebrow="Plain-English specs"
+                title="WHY THIS PACKAGE SOUNDS DIFFERENT."
+                body="These are the useful details, translated for planning an event instead of shopping for gear."
+              />
+              <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {tier.technicalNotes.map((note) => (
+                  <li key={note} className="rounded-lg border border-white/10 bg-charcoal/45 p-4 text-sm leading-relaxed text-silver">
+                    {note}
                   </li>
                 ))}
               </ul>
             </div>
-          </section>
-        )}
+            <div className="lg:col-span-5">
+              <div className="rounded-lg border border-white/10 bg-charcoal/45 p-6">
+                <p className="text-caption text-ember mb-3">Recommended for</p>
+                <div className="flex flex-wrap gap-2">
+                  {tier.recommendedFor.map((item) => (
+                    <span key={item} className="rounded-full border border-white/10 px-3 py-1 text-xs text-silver">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </FunnelSection>
 
-        {/* Add-on suggestions */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="addons-heading">
-          <div className="mx-auto max-w-3xl">
-            <FadeIn>
-              <h2 id="addons-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-3">
-                {addons.heading}.
-              </h2>
-              <p className="text-steel text-sm mb-6">
-                All add-ons are quoted together with your setup. No set prices.
-              </p>
-            </FadeIn>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <ByocPanel />
+
+        <FunnelSection labelledBy="fits-heading" tone="band">
+          <div className="mx-auto max-w-7xl">
+            <SectionHeader
+              id="fits-heading"
+              eyebrow="Event fit"
+              title="WHERE THIS TIER MAKES SENSE."
+              body="These are examples, not hard rules. Guest count, layout, and the kind of audio matter."
+            />
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {fitUseCases.map((uc) => (
+                <Link
+                  key={uc.slug}
+                  href={`/contact?useCase=${uc.slug}&package=${encodeURIComponent(tier.name)}`}
+                  className="rounded-lg border border-white/10 bg-screening/70 p-5 transition-colors hover:border-ember/45"
+                >
+                  <h3 className="font-display text-heading-lg leading-none tracking-wider text-projector">
+                    {uc.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-silver">{uc.desc}</p>
+                </Link>
+              ))}
+              {fitUseCases.length === 0 &&
+                tier.recommendedFor.map((item) => (
+                  <div key={item} className="rounded-lg border border-white/10 bg-screening/70 p-5">
+                    <h3 className="font-heading text-heading-md text-projector">{item}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-silver">
+                      A good fit when the seating area spreads out and coverage matters front to back.
+                    </p>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </FunnelSection>
+
+        <FunnelSection labelledBy="addons-heading">
+          <div className="mx-auto max-w-4xl">
+            <SectionHeader
+              id="addons-heading"
+              eyebrow="Add-ons"
+              title={`${addons.heading.toUpperCase()}.`}
+              body="Add-ons are quoted with the setup, so the final number reflects the full event instead of a cart of disconnected rentals."
+            />
+            <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {addons.items.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-steel text-sm">
-                  <Check size={14} className="text-ember mt-0.5 shrink-0" aria-hidden="true" />
+                <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-silver">
+                  <Check size={16} className="mt-0.5 shrink-0 text-ember" aria-hidden="true" />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
-            <Link
-              href="/add-ons"
-              className="mt-6 inline-flex items-center gap-2 text-ember underline-offset-4 hover:underline text-sm"
-            >
-              Full add-on catalog
-              <ArrowRight size={14} aria-hidden="true" />
-            </Link>
+            <div className="mt-6">
+              <TextCta href="/add-ons">Full add-on catalog</TextCta>
+            </div>
           </div>
-        </section>
+        </FunnelSection>
 
-        {/* Other tiers */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="other-tiers-heading">
-          <div className="mx-auto max-w-5xl">
-            <FadeIn>
-              <h2 id="other-tiers-heading" className="font-display tracking-wider text-3xl sm:text-4xl text-projector mb-6">
-                Other audio tiers.
-              </h2>
-            </FadeIn>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <FunnelSection labelledBy="other-tiers-heading" tone="band">
+          <div className="mx-auto max-w-7xl">
+            <SectionHeader
+              id="other-tiers-heading"
+              eyebrow="Other packages"
+              title="COMPARE THE REST."
+            />
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               {otherTiers.map((t) => (
-                <Link
-                  key={t.slug}
-                  href={`/packages/${t.slug}`}
-                  className="group flex items-start justify-between gap-3 rounded-lg p-5 bg-screening border border-white/10 hover:border-oxblood/40 transition-colors"
-                >
-                  <div>
-                    <p
-                      className="font-heading text-base text-projector"
-                      style={{ viewTransitionName: `tier-name-${t.slug}` }}
-                    >
-                      {t.name}
-                    </p>
-                    <p className="text-steel text-xs mt-1">Best for: {t.best}</p>
-                  </div>
-                  <ArrowRight size={16} className="text-ember mt-0.5 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                </Link>
+                <TierCard key={t.slug} tier={t} href={`/packages/${t.slug}`} compact />
               ))}
             </div>
           </div>
-        </section>
+        </FunnelSection>
 
-        {/* CTA */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl space-y-6">
+        <FunnelSection>
+          <div className="mx-auto max-w-4xl space-y-6">
             <PrivateEventsNotice />
-            <div className="text-center pt-4">
-              <MagneticButton className="inline-flex">
-                <Link
-                  href={`/contact?package=${encodeURIComponent(tier.name)}`}
-                  className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
-                >
-                  Get a Quote
-                </Link>
-              </MagneticButton>
-            </div>
+            <QuotePanel
+              title="READY TO CHECK THE DATE?"
+              body="Send the city, guest count, and event type. We will confirm whether this setup is the right fit before quoting."
+              href={`/contact?package=${encodeURIComponent(tier.name)}`}
+            />
           </div>
-        </section>
+        </FunnelSection>
       </main>
       <Footer />
     </>

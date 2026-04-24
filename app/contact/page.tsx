@@ -7,13 +7,30 @@ import FormSkeleton from "@/components/skeletons/form-skeleton";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import { buildBreadcrumbList } from "@/lib/schema";
+import { BookingStep, FunnelSection, SectionHeader } from "@/components/funnel/layout";
+import ByocPanel from "@/components/funnel/byoc-panel";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Get a Quote",
   description:
-    "Request a quote for your private outdoor cinema event. After Dusk Events serves Southeast Michigan within 60 miles of Canton. Response within 24 hours.",
+    "Request a custom quote for a private outdoor cinema event. After Dusk Events serves Southeast Michigan within 60 miles of Canton. Response within 24 hours.",
   alternates: { canonical: "/contact" },
 };
+
+const quoteSteps = [
+  {
+    title: "Event basics",
+    body: "Date, location, event type, and guest count tell us the scale of the night.",
+  },
+  {
+    title: "Setup match",
+    body: "The form recommends an audio tier and lets you flag useful add-ons.",
+  },
+  {
+    title: "Real quote",
+    body: "Blake reviews the details and replies with a custom quote within 24 hours.",
+  },
+];
 
 export default function ContactPage() {
   return (
@@ -27,34 +44,41 @@ export default function ContactPage() {
       />
       <Nav />
       <main className="flex-1 pt-16">
-        {/* Header */}
-        <section
-          className="relative overflow-hidden px-6 sm:px-10 lg:px-16"
-          style={{ paddingTop: "96px", paddingBottom: "48px" }}
-        >
-          <div className="relative z-10 mx-auto max-w-3xl">
-            <p className="text-caption text-ember mb-4">Book the night</p>
-            <h1 className="font-display text-projector text-display-md tracking-wider leading-none mb-6">
-              LET US RUN YOUR NIGHT.
-            </h1>
-            <p className="text-silver text-body-lg leading-relaxed max-w-[48ch]">
-              We respond within 24 hours with a real quote.
-            </p>
-          </div>
-        </section>
+        <FunnelSection className="pt-20 lg:pt-28">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-5">
+              <SectionHeader
+                eyebrow="Get a quote"
+                title="BUILD THE NIGHT."
+                body="Send the facts that affect the setup: date, city, guest count, event type, audio interest, and add-ons. We respond within 24 hours with a real quote."
+                className="mb-8"
+              />
+              <div className="space-y-4">
+                {quoteSteps.map((step, index) => (
+                  <BookingStep
+                    key={step.title}
+                    number={`0${index + 1}`}
+                    title={step.title}
+                    body={step.body}
+                  />
+                ))}
+              </div>
+            </div>
 
-        {/* Form */}
-        <section
-          className="relative px-6 sm:px-10 lg:px-16"
-          style={{ paddingTop: "24px", paddingBottom: "128px" }}
-        >
-          <div className="mx-auto max-w-2xl space-y-8">
-            <PrivateEventsNotice />
-            <Suspense fallback={<FormSkeleton />}>
-              <ContactForm />
-            </Suspense>
+            <div className="lg:col-span-7">
+              <div className="rounded-lg border border-white/10 bg-charcoal/50 p-5 sm:p-7">
+                <PrivateEventsNotice />
+                <div className="mt-8">
+                  <Suspense fallback={<FormSkeleton />}>
+                    <ContactForm />
+                  </Suspense>
+                </div>
+              </div>
+            </div>
           </div>
-        </section>
+        </FunnelSection>
+
+        <ByocPanel />
       </main>
       <Footer />
     </>

@@ -1,3 +1,5 @@
+import { audioTiers } from "./packages";
+
 export type Faq = {
   q: string;
   a: string;
@@ -8,6 +10,10 @@ export type Faq = {
  * Anything Blake hasn't confirmed (power solution brand, rain-reschedule policy specifics,
  * exact deposit terms, etc.) stays out of this file until he supplies it.
  */
+const audioTierSummary = audioTiers
+  .map((tier) => `${tier.name}: ${tier.plainBenefit}`)
+  .join(" ");
+
 export const faqs: Faq[] = [
   {
     q: "How does pricing work?",
@@ -23,15 +29,19 @@ export const faqs: Faq[] = [
   },
   {
     q: "Do we bring our own content?",
-    a: "Yes. Stream from your own accounts: Netflix, Disney+, YouTube, Apple TV+, HBO Max, or whatever you subscribe to. Same rule applies to karaoke: we use YouTube karaoke tracks with our 2 wireless mics as an add-on. For console gaming you either use our 8-bit retro system with 4 wireless controllers, or you bring your own PlayStation or Xbox and staff connects it for you.",
+    a: "Yes. Stream from your own accounts: Netflix, Disney+, YouTube, Apple TV+, HBO Max, or whatever you subscribe to. Same rule applies to karaoke: we use YouTube karaoke tracks with our 2 wireless mics as an add-on. For console gaming you can add the retro gaming kit with four wireless controllers, or you can bring your own PlayStation or Xbox and staff connects it for you.",
   },
   {
     q: "What audio tiers do you offer?",
-    a: "Four tiers on the same 30 ft screen: single speaker, two speakers, two speakers plus a subwoofer, or four speakers plus two subwoofers. The bigger sound setups are the right call for fight nights, sports, music-heavy events, and larger layouts.",
+    a: `Four tiers on the same 30 ft screen. ${audioTierSummary} Bigger sound setups are the right call for fight nights, sports, music-heavy events, larger yards, and larger crowds.`,
   },
   {
     q: "Can we hook up our own console or laptop?",
     a: "Yes. Staff connects your PlayStation, Xbox, or laptop for you. A BYO Console Hookup Waiver is signed at the event. Priced at quote.",
+  },
+  {
+    q: "What is included with the retro gaming add-on?",
+    a: "The retro gaming kit is plug-and-play over HDMI, includes a 100,000+ classic-game library across 50+ classic systems, supports offline play, and can be set up with four wireless controllers for multiplayer nights.",
   },
   {
     q: "Do you offer karaoke?",

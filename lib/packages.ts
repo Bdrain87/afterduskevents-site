@@ -16,6 +16,16 @@ export type AudioTier = {
   popular?: boolean;
   speakerCount: number;
   subwooferCount: number;
+  /** Plain-English sales promise for package cards and recommendations. */
+  plainBenefit: string;
+  /** How this setup covers the space, written for non-audio people. */
+  coverageNote: string;
+  /** What the customer should expect to hear/feel. */
+  soundProfile: string;
+  /** Small technical details for detail pages and comparison views. */
+  technicalNotes: string[];
+  /** Practical event fits that can be shown as chips. */
+  recommendedFor: string[];
   /** What's in the setup. Only list gear Blake has confirmed. */
   includes: string[];
   /** Use-case fit, shown on cards. */
@@ -28,6 +38,15 @@ export const audioTiers: AudioTier[] = [
     name: "30 ft + Single Speaker",
     speakerCount: 1,
     subwooferCount: 0,
+    plainBenefit: "Simple, clean sound for smaller groups seated close to the screen.",
+    coverageNote: "Best when everyone is gathered in one main viewing area.",
+    soundProfile: "Clear dialogue and enough punch for a calm backyard movie night.",
+    technicalNotes: [
+      "Speaker system is manufacturer-rated up to 126 dB max volume.",
+      "Full-range speaker response covers 40 Hz-20 kHz.",
+      "Battery-powered audio keeps setup flexible when outlets are not nearby.",
+    ],
+    recommendedFor: ["Small yards", "Family movie nights", "Groups under 25"],
     includes: [
       "30 ft inflatable screen",
       "Single speaker",
@@ -42,6 +61,15 @@ export const audioTiers: AudioTier[] = [
     popular: true,
     speakerCount: 2,
     subwooferCount: 0,
+    plainBenefit: "Wider left/right coverage for most private events.",
+    coverageNote: "Two speakers spread the sound so guests do not need to sit in one tight cluster.",
+    soundProfile: "Balanced dialogue, sports audio, and music at a comfortable outdoor volume.",
+    technicalNotes: [
+      "Each speaker is manufacturer-rated up to 126 dB max volume.",
+      "Full-range speaker response covers 40 Hz-20 kHz.",
+      "Wireless speaker linking supports a clean left/right layout.",
+    ],
+    recommendedFor: ["Most backyards", "Graduations", "Sports watch parties", "25-75 guests"],
     includes: [
       "30 ft inflatable screen",
       "Two speakers",
@@ -52,13 +80,23 @@ export const audioTiers: AudioTier[] = [
   },
   {
     slug: "two-speakers-sub",
-    name: "30 ft + Two Speakers + Death From Below Sub",
+    name: "30 ft + Two Speakers + Subwoofer",
     speakerCount: 2,
     subwooferCount: 1,
+    plainBenefit: "Adds real low-end support for events where the audio matters more.",
+    coverageNote: "Stereo speakers carry the main sound while the subwoofer fills in the low end.",
+    soundProfile: "Cleaner bass for fights, sports, music, and bigger outdoor groups.",
+    technicalNotes: [
+      "Subwoofer uses dual 8-inch low-frequency drivers.",
+      "Subwoofer response reaches 25 Hz-180 Hz for deeper low-end support.",
+      "Wireless SKAA connection keeps the subwoofer placement flexible.",
+      "Battery-powered subwoofer can run away from wall power.",
+    ],
+    recommendedFor: ["Fight nights", "Sports", "Music-heavy events", "75-150 guests"],
     includes: [
       "30 ft inflatable screen",
       "Two speakers",
-      "Death From Below subwoofer",
+      "Subwoofer",
       "BYO Content",
       "Water ballast setup. no digging",
     ],
@@ -69,6 +107,16 @@ export const audioTiers: AudioTier[] = [
     name: "30 ft + Four Speakers + Two Subwoofers",
     speakerCount: 4,
     subwooferCount: 2,
+    plainBenefit: "Maximum coverage for big yards, field layouts, and high-energy crowds.",
+    coverageNote: "Four speakers help cover the space front to back while two subs support the low end.",
+    soundProfile: "The fullest setup: more even coverage, stronger bass, and better reach across a larger layout.",
+    technicalNotes: [
+      "Four linked full-range speakers support wider outdoor coverage.",
+      "Each full-range speaker is manufacturer-rated up to 126 dB max volume.",
+      "Two wireless subwoofers add dual-driver low-end support down to 25 Hz.",
+      "Battery-powered speakers and subs keep the layout flexible.",
+    ],
+    recommendedFor: ["Large yards", "Fields", "150+ guests", "High-energy events"],
     includes: [
       "30 ft inflatable screen",
       "Four speakers",
@@ -94,6 +142,8 @@ export type UseCase = {
     | "celebration";
   name: string;
   desc: string;
+  image: string;
+  imageAlt: string;
   recommendedTier: AudioTier["slug"];
 };
 
@@ -101,37 +151,49 @@ export const useCases: UseCase[] = [
   {
     slug: "movie-night",
     name: "Movie Night",
-    desc: "Your yard. Our cinema. Bring your own content.",
+    desc: "A private outdoor cinema setup for your own movie, account, or playlist.",
+    image: "/images/events/movie-night.svg",
+    imageAlt: "Outdoor movie night artwork with a large screen and seated crowd",
     recommendedTier: "two-speakers",
   },
   {
     slug: "gaming",
     name: "Gaming Night",
-    desc: "8-bit retro with 4 wireless controllers, or your PS/Xbox with staff hookup.",
+    desc: "Plug-and-play retro games with wireless controllers, or your PS/Xbox with staff hookup.",
+    image: "/images/events/gaming-night.svg",
+    imageAlt: "Gaming night artwork with a large screen and controller",
     recommendedTier: "two-speakers",
   },
   {
     slug: "sports",
     name: "Sports Watch Party",
-    desc: "Game day, bigger than any bar.",
+    desc: "Big screen visibility with enough audio coverage for the whole yard.",
+    image: "/images/events/sports-watch.svg",
+    imageAlt: "Sports watch party artwork with field lines on a large screen",
     recommendedTier: "two-speakers-sub",
   },
   {
     slug: "fights",
     name: "Fight Night",
-    desc: "UFC, boxing, WWE. Built for the bass drop.",
+    desc: "Clear commentary, crowd energy, and low-end support for the walkouts.",
+    image: "/images/events/fight-night.svg",
+    imageAlt: "Fight night artwork with boxing gloves on a large screen",
     recommendedTier: "two-speakers-sub",
   },
   {
     slug: "graduation",
     name: "Graduation Party",
-    desc: "Photo reel and a movie all night.",
+    desc: "Photo reels, speeches, slideshows, or a movie once the sun drops.",
+    image: "/images/events/graduation.svg",
+    imageAlt: "Graduation party artwork with a cap on a large screen",
     recommendedTier: "two-speakers",
   },
   {
     slug: "celebration",
     name: "Get-together",
-    desc: "Birthdays, holidays, any private gathering.",
+    desc: "Birthdays, holidays, and private gatherings that need a focal point.",
+    image: "/images/events/celebration.svg",
+    imageAlt: "Celebration artwork with party lights and a large screen",
     recommendedTier: "two-speakers",
   },
 ];

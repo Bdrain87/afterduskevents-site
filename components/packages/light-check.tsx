@@ -24,7 +24,7 @@ const coverageRows: Record<TierSlug, number[]> = {
 const diagramCopy: Record<TierSlug, { kicker: string; body: string }> = {
   "single-speaker": {
     kicker: "Compact yard",
-    body: "One clean speaker for smaller groups near the screen.",
+    body: "Simple coverage for smaller groups near the screen.",
   },
   "two-speakers": {
     kicker: "Balanced coverage",
@@ -32,7 +32,7 @@ const diagramCopy: Record<TierSlug, { kicker: string; body: string }> = {
   },
   "two-speakers-sub": {
     kicker: "Full low end",
-    body: "Stereo coverage plus sub support for fights, sports, and bigger crowds.",
+    body: "Stereo coverage plus sub support for fights, sports, and bigger groups.",
   },
   "four-speakers-two-subs": {
     kicker: "Maximum coverage",
@@ -145,7 +145,7 @@ export default function LightCheck() {
     >
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 max-w-2xl">
-          <p className="text-caption text-ember mb-3">Light check</p>
+          <p className="text-caption text-ember mb-3">Sound chooser</p>
           <h2
             id="light-check-heading"
             className="font-display text-projector text-display-lg tracking-wider leading-none"
@@ -153,7 +153,7 @@ export default function LightCheck() {
             PICK YOUR SOUND.
           </h2>
           <p className="text-silver text-body-lg leading-relaxed mt-5 max-w-[50ch]">
-            Same 30-foot screen, four ways to hear it. Hover or tap each tier to see what lands in your yard.
+            Same 30-foot screen, four levels of coverage. Tap a tier to see what changes in the yard.
           </p>
         </div>
 
@@ -223,6 +223,13 @@ export default function LightCheck() {
                 Why no fixed price?
               </p>
 
+              <p className="text-silver text-body leading-relaxed mb-5">
+                {active.plainBenefit}
+              </p>
+              <p className="text-steel text-sm leading-relaxed mb-6">
+                {active.coverageNote}
+              </p>
+
               <p className="text-caption text-steel mb-3">In the box</p>
               <ul className="space-y-2 mb-6">
                 {active.includes.map((item) => (
@@ -233,8 +240,20 @@ export default function LightCheck() {
                 ))}
               </ul>
 
-              <p className="text-caption text-steel mb-2">Best for</p>
-              <p className="text-silver text-sm mb-8">{active.best}.</p>
+              <p className="text-caption text-steel mb-2">Sound profile</p>
+              <p className="text-silver text-sm mb-6">{active.soundProfile}</p>
+
+              <p className="text-caption text-steel mb-3">Best for</p>
+              <div className="mb-8 flex flex-wrap gap-2">
+                {active.recommendedFor.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-white/10 px-3 py-1 text-xs text-silver"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
 
               <div className="flex flex-wrap gap-3">
                 <Link
