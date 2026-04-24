@@ -416,6 +416,35 @@ html[data-tod="night"] {
   to   { transform: scale(1.06) translate3d(-1%, -0.5%, 0); }
 }
 
+/* Event motif keyframes + hover intensification */
+@keyframes crt-scan {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(6px); }
+}
+@keyframes ring-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);    opacity: 0.75; }
+  50%      { transform: translate(-50%, -50%) scale(1.08); opacity: 1;    }
+}
+@keyframes confetti-drift {
+  from { transform: translate3d(0, 0, 0);            opacity: 0.05; }
+  20%  { opacity: 0.75; }
+  to   { transform: translate3d(-60px, 80px, 0);     opacity: 0;    }
+}
+@keyframes bulb-flicker {
+  0%, 100% { opacity: 1; }
+  40%      { opacity: 0.65; }
+  55%      { opacity: 0.95; }
+  70%      { opacity: 0.45; }
+  80%      { opacity: 1;    }
+}
+/* Card-scoped motif intensification on hover. */
+.group:hover .motif-center { opacity: 1; }
+.group:hover .motif-corners { stroke: #F5F1EC; }
+.group:hover .motif-pulse   { filter: saturate(1.4); }
+.motif-center { transition: opacity 500ms ease-out; }
+.motif-bg     { transition: filter 500ms ease-out; }
+.group:hover .motif-bg { filter: saturate(1.15) brightness(1.06); }
+
 /* Marquee continuous scroll (Magic UI pattern) */
 @keyframes marquee {
   from { transform: translateX(0); }

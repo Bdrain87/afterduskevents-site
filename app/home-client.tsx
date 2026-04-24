@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import TrustStrip from "@/components/trust-strip";
 import NextEventCard from "@/components/next-event-card";
 import ThirtyFootCheck from "@/components/home/thirty-foot-check";
 import ByocPanel from "@/components/funnel/byoc-panel";
+import EventMotifCard from "@/components/event-motif-card";
 import {
   ActionBar,
   BookingStep,
@@ -21,7 +21,7 @@ import {
 } from "@/components/funnel/layout";
 import { audioTiers, useCases } from "@/lib/packages";
 import type { NearestCityResult } from "@/lib/nearest-city";
-import { BatteryCharging, MapPin, ShieldCheck, Sparkles, Volume2 } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 type Props = {
   geo?: NearestCityResult | null;
@@ -31,22 +31,18 @@ const bringItems = [
   {
     title: "30 ft screen",
     body: "One real inflatable cinema screen for every booking. Big enough to be the centerpiece.",
-    icon: Sparkles,
   },
   {
     title: "Sound that fits",
     body: "Choose from one speaker up to four speakers with two subwoofers. The screen stays the same; coverage scales with audio.",
-    icon: Volume2,
   },
   {
     title: "Power + connectivity",
     body: "Generator, battery backup, and Starlink are part of the event kit so the venue is not carrying the night.",
-    icon: BatteryCharging,
   },
   {
     title: "Setup handled",
     body: "Water ballast setup, systems test, teardown, private-event rules, and insurance handled before guests settle in.",
-    icon: ShieldCheck,
   },
 ];
 
@@ -124,18 +120,22 @@ export default function HomeClient({ geo }: Props = {}) {
               title="A REAL SCREEN. A CLEAN PLAN."
               body="The event is built around one big screen, the right audio coverage, and a setup that does not depend on your outlet, wifi, or guesswork."
             />
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {bringItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <article key={item.title} className="rounded-lg border border-white/10 bg-screening/70 p-5">
-                    <Icon size={22} className="mb-5 text-ember" aria-hidden="true" />
-                    <h3 className="font-heading text-heading-md text-projector">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-silver">{item.body}</p>
-                  </article>
-                );
-              })}
-            </div>
+            <ol className="divide-y divide-white/8 border-y border-white/8">
+              {bringItems.map((item, i) => (
+                <li
+                  key={item.title}
+                  className="group grid grid-cols-[auto_1fr] items-start gap-6 py-6 pl-4 -ml-4 border-l-2 border-transparent transition-colors hover:border-ember sm:grid-cols-[auto_1fr_2fr] sm:gap-10"
+                >
+                  <span className="font-display text-display-md leading-none tracking-wider text-steel transition-colors group-hover:text-ember">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="font-heading text-heading-md text-projector">{item.title}</h3>
+                  <p className="col-span-2 text-sm leading-relaxed text-silver sm:col-span-1">
+                    {item.body}
+                  </p>
+                </li>
+              ))}
+            </ol>
           </div>
         </FunnelSection>
 
@@ -173,33 +173,11 @@ export default function HomeClient({ geo }: Props = {}) {
             />
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {useCases.map((event) => (
-                <Link
+                <EventMotifCard
                   key={event.slug}
+                  event={event}
                   href={`/contact?useCase=${event.slug}`}
-                  className="group overflow-hidden rounded-lg border border-white/10 bg-charcoal/45 transition-colors hover:border-ember/45"
-                >
-                  <div className="relative aspect-[3/2] border-b border-white/10 bg-screening">
-                    <Image
-                      src={event.image}
-                      alt={event.imageAlt}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-5">
-                    <p className="text-caption text-steel mb-3">
-                      {audioTiers.find((tier) => tier.slug === event.recommendedTier)?.name}
-                    </p>
-                    <h3 className="font-display text-heading-lg leading-none tracking-wider text-projector">
-                      {event.name}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-silver">{event.desc}</p>
-                    <span className="mt-5 inline-flex text-[11px] uppercase tracking-[0.2em] text-ember">
-                      Start quote
-                    </span>
-                  </div>
-                </Link>
+                />
               ))}
             </div>
           </div>

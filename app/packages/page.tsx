@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
-import Image from "next/image";
 import LightCheck from "@/components/packages/light-check";
 import BallparkTool from "@/components/packages/ballpark-tool";
 import ComparisonTable from "@/components/packages/comparison-table";
 import ByocPanel from "@/components/funnel/byoc-panel";
+import EventMotifCard from "@/components/event-motif-card";
 import {
   ActionBar,
   FunnelSection,
@@ -23,7 +22,7 @@ import {
   buildAllServicesGraph,
   buildBreadcrumbList,
 } from "@/lib/schema";
-import { ArrowRight, Radio, Volume2, Waves } from "lucide-react";
+import { Radio, Volume2, Waves } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Packages",
@@ -162,38 +161,13 @@ export default function PackagesPage() {
               body="Most events start from the two-speaker tier. Sports, fights, music, and larger crowds usually benefit from subwoofer support."
             />
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {useCases.map((uc) => {
-                const tier = audioTiers.find((t) => t.slug === uc.recommendedTier);
-                return (
-                  <Link
-                    key={uc.slug}
-                    id={uc.slug}
-                    href={`/contact?useCase=${uc.slug}`}
-                    className="group overflow-hidden rounded-lg border border-white/10 bg-charcoal/45 transition-colors hover:border-ember/45"
-                  >
-                    <div className="relative aspect-[3/2] border-b border-white/10 bg-screening">
-                      <Image
-                        src={uc.image}
-                        alt={uc.imageAlt}
-                        fill
-                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="p-5">
-                      <p className="text-caption text-steel mb-3">{tier?.name}</p>
-                      <h3 className="font-display text-heading-lg leading-none tracking-wider text-projector">
-                        {uc.name}
-                      </h3>
-                      <p className="mt-3 text-sm leading-relaxed text-silver">{uc.desc}</p>
-                      <span className="mt-5 inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] text-ember">
-                        Start quote
-                        <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                      </span>
-                    </div>
-                  </Link>
-                );
-              })}
+              {useCases.map((uc) => (
+                <EventMotifCard
+                  key={uc.slug}
+                  event={uc}
+                  href={`/contact?useCase=${uc.slug}`}
+                />
+              ))}
             </div>
           </div>
         </FunnelSection>
