@@ -24,11 +24,11 @@ export default function BrandMarquee() {
       aria-label="Brand signals"
       className="relative overflow-hidden border-y border-white/8 bg-screening/70 py-5 motion-safe:animate-marquee-breathe"
     >
-      <Marquee pauseOnHover className="[--duration:55s] [--gap:3.5rem]">
+      <Marquee pauseOnHover className="[--duration:55s] [--gap:2rem]">
         {SIGNALS.map((signal) => (
           <span
             key={signal}
-            className="flex shrink-0 items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-silver"
+            className="flex shrink-0 items-center gap-[var(--gap)] text-[11px] uppercase tracking-[0.3em] text-silver"
           >
             <span aria-hidden="true" className="block h-1 w-1 rounded-full bg-ember" />
             {signal}
