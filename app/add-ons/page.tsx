@@ -12,7 +12,7 @@ import { buildBreadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Add-Ons",
   description:
-    "Customize your outdoor cinema event: karaoke, drone video, gaming, backyard games, popcorn, photo backdrop, string lights, patio heater, and more. After Dusk Events, Canton, MI.",
+    "Add entertainment, concessions, atmosphere, comfort, and service extras to your outdoor cinema event. After Dusk Events, Canton, MI.",
   alternates: { canonical: "/add-ons" },
 };
 
@@ -119,10 +119,10 @@ export default function AddOnsPage() {
         <FunnelSection className="pt-20 lg:pt-28">
           <div className="mx-auto max-w-5xl">
             <h1 className="font-display text-projector text-display-lg tracking-wider leading-none">
-              CUSTOMIZE YOUR EVENT.
+              ADD WHAT FITS THE NIGHT.
             </h1>
             <p className="mt-6 max-w-[58ch] text-body-lg leading-relaxed text-silver">
-              Every add-on is quoted with your setup. Nothing is pay-per-ticket. Tell us what you&apos;re thinking and we&apos;ll write a real total.
+              Add games, karaoke, concessions, lighting, comfort, or extra service time. We price the full setup around your event so everything works together.
             </p>
           </div>
         </FunnelSection>
@@ -168,7 +168,7 @@ export default function AddOnsPage() {
           <div className="mx-auto max-w-4xl">
             <QuotePanel
               title="READY TO BUILD YOUR EVENT?"
-              body="Tell us what you're thinking and we'll put together a real quote."
+              body="Tell us what you want to add and we will fold it into your event quote."
             />
           </div>
         </FunnelSection>
