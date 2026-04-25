@@ -48,8 +48,8 @@ export const faqs: Faq[] = [
     a: "Yes, as an add-on: YouTube karaoke plus two wireless mics. BYO content rule applies: you pick the tracks.",
   },
   {
-    q: "Can you handle cold weather and bugs?",
-    a: "Patio heater and bug zapper are both available as add-ons. Ask at quote time.",
+    q: "Can you handle cold weather, bugs, and airflow?",
+    a: "Patio heaters, bug zappers, and fans are available as add-ons. Ask at quote time.",
   },
   {
     q: "Do you need to stake the screen?",

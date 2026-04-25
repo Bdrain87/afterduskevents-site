@@ -70,7 +70,7 @@ const ADDON_SUGGESTIONS: Record<AudioTier["slug"], { heading: string; items: str
       "YouTube karaoke + 2 wireless mics",
       "Drone video and photos",
       "Blacklight + Neon Kit",
-      "Patio heater",
+      "Patio heaters / bug zappers / fans",
       "Early setup, late teardown",
     ],
   },
@@ -79,7 +79,7 @@ const ADDON_SUGGESTIONS: Record<AudioTier["slug"], { heading: string; items: str
     items: [
       "Drone video and photos",
       "Blacklight + Neon Kit",
-      "Patio heater",
+      "Patio heaters / bug zappers / fans",
       "Early setup, late teardown",
       "Folding table package",
     ],

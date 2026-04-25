@@ -203,7 +203,7 @@ export default function HomeClient({ geo }: Props = {}) {
               id="addons-heading"
               eyebrow="Add-ons"
               title="STACK THE NIGHT."
-              body="Popcorn, karaoke with two mics, retro gaming, drone video, glow kit, backyard games, photo backdrop, string lights, patio heater. Quoted with the setup, not a la carte."
+              body="Popcorn, karaoke with two mics, retro gaming, drone video, glow kit, backyard games, photo backdrop, string lights, patio heaters, bug zappers, fans. Quoted with the setup, not a la carte."
               align="center"
               className="mb-8"
             />

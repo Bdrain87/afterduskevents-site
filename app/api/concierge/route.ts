@@ -186,7 +186,7 @@ export async function POST(req: Request) {
             gaming: [
               "Retro gaming kit with four wireless controllers",
               "BYO console hookup (PS / Xbox)",
-              "Patio heater",
+              "Patio heaters / bug zappers / fans",
               "Cooler rental",
             ],
             sports: [

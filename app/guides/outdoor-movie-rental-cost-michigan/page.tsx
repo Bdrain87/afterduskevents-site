@@ -35,7 +35,7 @@ const guideFaqs = [
   },
   {
     q: "What changes the price of a backyard movie rental?",
-    a: "The biggest factors are audio tier (single speaker, two speakers, two speakers plus a subwoofer, or four speakers plus two subwoofers), runtime, distance from Canton MI, and add-ons (karaoke with two mics, drone video, popcorn machine, backyard games, photo backdrop, patio heater, bug zapper, string lighting, early setup, late teardown).",
+    a: "The biggest factors are audio tier (single speaker, two speakers, two speakers plus a subwoofer, or four speakers plus two subwoofers), runtime, distance from Canton MI, and add-ons (karaoke with two mics, drone video, popcorn machine, backyard games, photo backdrop, patio heaters, bug zappers, fans, string lighting, early setup, late teardown).",
   },
   {
     q: "Do you charge a deposit?",
@@ -137,7 +137,7 @@ export default function GuidePage() {
                   ["Audio tier", "Single speaker, two speakers, two speakers plus a subwoofer, or four speakers plus two subwoofers. Bigger sound setups are the call for fight nights, music-heavy events, and larger layouts."],
                   ["Runtime", "3 hour vs 4 hour vs 6+ hour events scale the price."],
                   ["Distance from Canton", "Inside 40 miles, no travel fee. Beyond 40 miles, an additional travel charge is added."],
-                  ["Add-ons", "Karaoke with 2 wireless mics, drone video/photos, popcorn machine, cooler, cornhole / can jam / ladder ball, photo backdrop, ambient string lighting, blacklights + glow kit, patio heater, bug zapper, folding tables, early setup, late teardown."],
+                  ["Add-ons", "Karaoke with 2 wireless mics, drone video/photos, popcorn machine, cooler, cornhole / can jam / ladder ball, photo backdrop, ambient string lighting, blacklights + glow kit, patio heaters, bug zappers, fans, folding tables, early setup, late teardown."],
                   ["Console hookup", "BYO PlayStation or Xbox with staff hookup is a paid add-on (waiver signed at event)."],
                 ].map(([title, body]) => (
                   <li key={title}>

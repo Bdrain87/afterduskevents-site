@@ -36,7 +36,7 @@ const addOnOptions = [
   "Drone video and photos",
   "Ambient string lighting",
   "Blacklight + Neon Kit",
-  "Patio heater",
+  "Patio heaters / bug zappers / fans",
   "Backyard games",
 ];
 

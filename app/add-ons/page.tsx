@@ -49,8 +49,9 @@ const categories = [
   {
     name: "Comfort",
     items: [
-      { item: "Patio heater", bestFor: "Cool-weather evenings" },
-      { item: "Bug zapper", bestFor: "Any outdoor event, summer months" },
+      { item: "Patio heaters", bestFor: "Cool-weather evenings" },
+      { item: "Bug zappers", bestFor: "Any outdoor event, summer months" },
+      { item: "Fans", bestFor: "Warm-weather airflow" },
     ],
   },
   {
