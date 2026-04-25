@@ -375,15 +375,15 @@ html[data-tod="night"] {
 }
 @media (prefers-reduced-motion: no-preference) {
   .brand-logo-mark {
-    animation: brand-logo-breathe 1.7s ease-out 180ms 1 both;
+    animation: brand-logo-breathe 0.6s ease-out 0ms 1 both;
   }
   .brand-wordmark__main {
     animation:
-      brand-wordmark-sheen 2.3s cubic-bezier(0.16, 1, 0.3, 1) 180ms 1 both,
-      brand-wordmark-signal 2.7s ease-out 180ms 1 both;
+      brand-wordmark-sheen 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0ms 1 both,
+      brand-wordmark-signal 0.7s ease-out 0ms 1 both;
   }
   .brand-wordmark::before {
-    animation: brand-wordmark-rule 2.3s cubic-bezier(0.16, 1, 0.3, 1) 180ms 1 both;
+    animation: brand-wordmark-rule 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0ms 1 both;
   }
 }
 @keyframes brand-logo-breathe {
@@ -449,11 +449,11 @@ html[data-tod="night"] {
 @media (prefers-reduced-motion: no-preference) {
   .brand-hero-wordmark {
     animation:
-      brand-wordmark-sheen 2.8s cubic-bezier(0.16, 1, 0.3, 1) 0.72s 1 both,
-      brand-hero-signal 3.2s ease-out 0.64s 1 both;
+      brand-wordmark-sheen 0.8s cubic-bezier(0.16, 1, 0.3, 1) 80ms 1 both,
+      brand-hero-signal 0.9s ease-out 80ms 1 both;
   }
   .brand-hero-wordmark::after {
-    animation: brand-hero-rule 2.8s cubic-bezier(0.16, 1, 0.3, 1) 0.72s 1 both;
+    animation: brand-hero-rule 0.8s cubic-bezier(0.16, 1, 0.3, 1) 80ms 1 both;
   }
 }
 @keyframes brand-hero-signal {
