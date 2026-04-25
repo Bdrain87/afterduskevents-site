@@ -23,7 +23,7 @@ export function FunnelSection({
       id={id}
       aria-labelledby={labelledBy}
       className={cn(
-        "relative px-6 py-16 sm:px-10 sm:py-20 lg:px-16",
+        "relative px-4 py-16 sm:px-10 sm:py-20 lg:px-16",
         tone === "band" && "border-y border-white/8 bg-charcoal/35",
         tone === "quiet" && "bg-screening",
         className,
@@ -52,7 +52,7 @@ export function SectionHeader({
   return (
     <div
       className={cn(
-        "mb-10 max-w-3xl",
+        "mb-10 max-w-3xl min-w-0",
         align === "center" && "mx-auto text-center",
         className,
       )}
@@ -60,11 +60,11 @@ export function SectionHeader({
       {eyebrow && <p className="text-caption text-ember mb-3">{eyebrow}</p>}
       <h2
         id={id}
-        className="font-display text-display-md text-projector tracking-wider leading-none"
+        className="max-w-full break-words font-display text-display-md text-projector tracking-wide leading-none sm:tracking-wider"
       >
         {title}
       </h2>
-      {body && <p className="mt-5 text-body-lg leading-relaxed text-silver">{body}</p>}
+      {body && <p className="mt-5 max-w-full break-words text-body-lg leading-relaxed text-silver">{body}</p>}
     </div>
   );
 }
@@ -154,12 +154,12 @@ export function QuotePanel({
   eyebrow?: string;
 }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-charcoal/55 p-6 sm:p-8">
+    <div className="min-w-0 overflow-hidden rounded-lg border border-white/10 bg-charcoal/55 p-5 sm:p-8">
       <p className="text-caption text-ember mb-3">{eyebrow}</p>
-      <h2 className="font-display text-display-md leading-none tracking-wider text-projector">
+      <h2 className="max-w-full break-words font-display text-display-md leading-none tracking-wide text-projector sm:tracking-wider">
         {title}
       </h2>
-      <p className="mt-4 max-w-[48ch] text-body leading-relaxed text-silver">{body}</p>
+      <p className="mt-4 max-w-[48ch] break-words text-body leading-relaxed text-silver">{body}</p>
       <div className="mt-6">
         <PrimaryCta href={href}>{ctaLabel}</PrimaryCta>
       </div>
@@ -177,12 +177,12 @@ export function BookingStep({
   body: string;
 }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-screening/65 p-5">
+    <div className="min-w-0 overflow-hidden rounded-lg border border-white/10 bg-screening/65 p-5">
       <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full border border-ember/45 text-sm font-semibold text-ember">
         {number}
       </div>
-      <h3 className="font-heading text-heading-md text-projector">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-silver">{body}</p>
+      <h3 className="break-words font-heading text-heading-md text-projector">{title}</h3>
+      <p className="mt-2 break-words text-sm leading-relaxed text-silver">{body}</p>
     </div>
   );
 }

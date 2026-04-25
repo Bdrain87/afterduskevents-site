@@ -15,9 +15,9 @@ const DEFAULT_LABELS: [string, string, string] = ["Event", "Package", "Contact"]
  */
 export default function ProgressIndicator({ current, labels = DEFAULT_LABELS }: Props) {
   return (
-    <div className="mb-10">
+    <div className="mb-10 min-w-0 max-w-full">
       <ol
-        className="relative flex items-stretch gap-2 rounded-lg border border-white/10 bg-charcoal/70 px-3 py-3 sm:gap-3"
+        className="relative flex max-w-full items-stretch gap-1.5 overflow-hidden rounded-lg border border-white/10 bg-charcoal/70 px-2 py-3 sm:gap-3 sm:px-3"
         aria-label="Form progress"
       >
         {labels.map((label, i) => {
@@ -27,11 +27,11 @@ export default function ProgressIndicator({ current, labels = DEFAULT_LABELS }: 
           return (
             <li
               key={label}
-              className="relative flex flex-1 flex-col items-center justify-center"
+              className="relative flex min-w-0 flex-1 flex-col items-center justify-center"
               aria-current={isActive ? "step" : undefined}
             >
               {/* Sprockets top */}
-              <span className="absolute inset-x-3 top-0 flex justify-between" aria-hidden="true">
+              <span className="absolute inset-x-2 top-0 flex justify-between sm:inset-x-3" aria-hidden="true">
                 {Array.from({ length: 4 }).map((_, j) => (
                   <span
                     key={`t-${j}`}
@@ -44,7 +44,7 @@ export default function ProgressIndicator({ current, labels = DEFAULT_LABELS }: 
               {/* Frame body */}
               <span
                 className={[
-                  "flex h-12 w-full flex-col items-center justify-center gap-0.5 rounded-lg border text-xs transition-all",
+                  "flex h-11 w-full min-w-0 max-w-full flex-col items-center justify-center gap-0.5 rounded-lg border text-xs transition-all sm:h-12",
                   isActive
                     ? "border-ember bg-ember/10 text-ember shadow-[0_0_24px_rgba(221,84,84,0.35)]"
                     : isComplete
@@ -52,15 +52,15 @@ export default function ProgressIndicator({ current, labels = DEFAULT_LABELS }: 
                       : "border-white/10 bg-screening/40 text-steel",
                 ].join(" ")}
               >
-                <span className="font-display text-sm leading-none tracking-[0.2em]">
+                <span className="font-display text-sm leading-none tracking-[0.12em] sm:tracking-[0.2em]">
                   {isComplete ? "✓" : `0${step}`}
                 </span>
-                <span className="hidden text-[10px] uppercase tracking-[0.18em] sm:block">
+                <span className="hidden max-w-full truncate text-[10px] uppercase tracking-[0.14em] sm:block">
                   {label}
                 </span>
               </span>
               {/* Sprockets bottom */}
-              <span className="absolute inset-x-3 bottom-0 flex justify-between" aria-hidden="true">
+              <span className="absolute inset-x-2 bottom-0 flex justify-between sm:inset-x-3" aria-hidden="true">
                 {Array.from({ length: 4 }).map((_, j) => (
                   <span
                     key={`b-${j}`}

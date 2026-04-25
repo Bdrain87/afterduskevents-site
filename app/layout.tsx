@@ -96,7 +96,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       data-build-id={BUILD_ID}
       className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-screening text-projector">
+      <body className="min-h-full overflow-x-hidden flex flex-col bg-screening text-projector">
         <SchemaMarkup
           id="site-schema"
           data={[

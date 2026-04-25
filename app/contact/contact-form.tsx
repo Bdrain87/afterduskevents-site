@@ -21,9 +21,9 @@ function FieldError({ errors, field }: { errors?: Record<string, string[]>; fiel
   );
 }
 
-const labelClass = "block text-caption text-steel mb-2";
+const labelClass = "mb-2 block max-w-full break-words text-caption text-steel";
 const inputClass =
-  "w-full rounded-lg bg-screening/60 border border-white/10 text-projector placeholder-steel/70 px-4 py-3.5 text-base min-h-[56px] focus:outline-none focus:border-ember focus:ring-2 focus:ring-ember/40 hover:border-ember/40 transition-colors";
+  "min-h-[56px] w-full min-w-0 max-w-full rounded-lg border border-white/10 bg-screening/60 px-4 py-3.5 text-base text-projector placeholder-steel/70 transition-colors hover:border-ember/40 focus:border-ember focus:outline-none focus:ring-2 focus:ring-ember/40";
 const selectClass = `${inputClass} appearance-none`;
 
 type Step = 1 | 2 | 3;
@@ -36,7 +36,7 @@ const addOnOptions = [
   "Drone video and photos",
   "Ambient string lighting",
   "Blacklight + Neon Kit",
-  "Patio heaters / bug zappers / fans",
+  "Patio heaters, bug zappers, fans",
   "Backyard games",
 ];
 
@@ -138,7 +138,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form action={formAction} className="space-y-6" noValidate data-dim-beam>
+    <form action={formAction} className="min-w-0 space-y-6" noValidate data-dim-beam>
       <ProgressIndicator current={step} labels={["Basics", "Setup", "Contact"]} />
 
       {/* STEP 1. Event basics */}
@@ -228,15 +228,15 @@ export default function ContactForm() {
         </div>
 
         {suggestion && (
-          <div className="rounded-lg border border-oxblood/40 bg-charcoal/70 p-5">
+          <div className="min-w-0 overflow-hidden rounded-lg border border-oxblood/40 bg-charcoal/70 p-4 sm:p-5">
             <p className="text-xs uppercase tracking-wider text-ember font-semibold mb-1">
               Recommended setup
             </p>
-            <p className="text-projector font-heading text-base">{suggestion.name}</p>
-            <p className="text-silver text-sm leading-relaxed mt-2">
+            <p className="break-words text-base font-heading text-projector">{suggestion.name}</p>
+            <p className="mt-2 break-words text-sm leading-relaxed text-silver">
               {suggestion.plainBenefit}
             </p>
-            <p className="text-steel text-xs leading-relaxed mt-2">
+            <p className="mt-2 break-words text-xs leading-relaxed text-steel">
               {suggestion.coverageNote} Every event is custom-quoted around date, distance, and add-ons.
             </p>
           </div>
@@ -260,11 +260,11 @@ export default function ContactForm() {
           <p className={labelClass}>
             Add-ons you may want <span className="text-steel text-xs font-normal">(optional)</span>
           </p>
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+          <div className="grid min-w-0 grid-cols-1 gap-2 sm:grid-cols-2">
             {addOnOptions.map((option) => (
               <label
                 key={option}
-                className="flex min-h-[48px] items-start gap-3 rounded-lg border border-white/10 bg-screening/55 p-3 text-sm leading-snug text-silver transition-colors hover:border-ember/40"
+                className="flex min-h-[48px] min-w-0 max-w-full items-start gap-3 overflow-hidden rounded-lg border border-white/10 bg-screening/55 p-3 text-left text-sm leading-snug text-silver transition-colors hover:border-ember/40"
               >
                 <input
                   name="addOns"
@@ -272,7 +272,7 @@ export default function ContactForm() {
                   value={option}
                   className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/15 bg-screening accent-oxblood focus:ring-oxblood"
                 />
-                <span>{option}</span>
+                <span className="min-w-0 break-words text-left">{option}</span>
               </label>
             ))}
           </div>
@@ -358,7 +358,7 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <div className="flex items-start gap-3">
+          <div className="flex min-w-0 items-start gap-3">
             <input
               id="consent"
               name="consent"
@@ -368,7 +368,7 @@ export default function ContactForm() {
               className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/15 bg-screening accent-oxblood focus:ring-oxblood"
               aria-describedby={state.errors?.consent ? "consent-error" : undefined}
             />
-            <label htmlFor="consent" className="text-sm text-steel leading-relaxed cursor-pointer">
+            <label htmlFor="consent" className="min-w-0 cursor-pointer break-words text-sm leading-relaxed text-steel">
               I agree to receive a reply by email, phone, or text.{" "}
               <span className="text-ember" aria-hidden="true">*</span>
             </label>
@@ -377,7 +377,7 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <div className="flex items-start gap-3">
+          <div className="flex min-w-0 items-start gap-3">
             <input
               id="privateConfirm"
               name="privateConfirm"
@@ -387,7 +387,7 @@ export default function ContactForm() {
               className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/15 bg-screening accent-oxblood focus:ring-oxblood"
               aria-describedby={state.errors?.privateConfirm ? "privateConfirm-error" : undefined}
             />
-            <label htmlFor="privateConfirm" className="text-sm text-steel leading-relaxed cursor-pointer">
+            <label htmlFor="privateConfirm" className="min-w-0 cursor-pointer break-words text-sm leading-relaxed text-steel">
               I confirm this event is private, non-ticketed, and will not charge admission.{" "}
               <span className="text-ember" aria-hidden="true">*</span>
             </label>
@@ -403,12 +403,12 @@ export default function ContactForm() {
       )}
 
       {/* Step navigation */}
-      <div className="flex items-center justify-between gap-4 pt-2">
+      <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
         {step > 1 ? (
           <button
             type="button"
             onClick={back}
-            className="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold text-steel border border-white/15 hover:text-projector hover:border-white/30 transition-colors"
+            className="inline-flex min-h-[48px] min-w-[88px] items-center justify-center rounded-lg border border-white/15 px-5 py-2.5 text-sm font-semibold text-steel transition-colors hover:border-white/30 hover:text-projector"
           >
             Back
           </button>
@@ -421,7 +421,7 @@ export default function ContactForm() {
             <button
               type="button"
               onClick={next}
-              className="inline-flex min-h-[48px] items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
+              className="inline-flex min-h-[48px] min-w-[104px] items-center justify-center rounded-lg bg-oxblood px-6 py-3 text-sm font-semibold text-projector transition-colors hover:bg-oxblood-deep"
             >
               Next
             </button>
@@ -431,7 +431,7 @@ export default function ContactForm() {
             <button
               type="submit"
               disabled={isPending}
-              className="inline-flex min-h-[48px] items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-projector bg-oxblood hover:bg-oxblood-deep disabled:opacity-60 disabled:cursor-not-allowed transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-oxblood"
+              className="inline-flex min-h-[48px] min-w-[132px] items-center justify-center rounded-lg bg-oxblood px-6 py-3 text-sm font-semibold text-projector transition-colors hover:bg-oxblood-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-oxblood disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isPending ? "Sending..." : "Send Inquiry"}
             </button>

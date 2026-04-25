@@ -46,7 +46,7 @@ export default function ContactPage() {
       <main className="flex-1 pt-16">
         <FunnelSection className="pt-20 lg:pt-28">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-5">
+            <div className="min-w-0 lg:col-span-5">
               <SectionHeader
                 eyebrow="Get a quote"
                 title="BUILD THE NIGHT."
@@ -65,8 +65,8 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="lg:col-span-7">
-              <div className="rounded-lg border border-white/10 bg-charcoal/50 p-5 sm:p-7">
+            <div className="min-w-0 lg:col-span-7">
+              <div className="max-w-full overflow-hidden rounded-lg border border-white/10 bg-charcoal/50 p-4 sm:p-7">
                 <PrivateEventsNotice />
                 <div className="mt-8">
                   <Suspense fallback={<FormSkeleton />}>
