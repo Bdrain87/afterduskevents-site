@@ -34,7 +34,7 @@ const categories = [
     name: "Concessions",
     items: [
       { item: "Popcorn machine rental", bestFor: "Movie nights, birthdays, classic cinema feel" },
-      { item: "Cooler rental (you supply drinks, ice, popcorn supplies)", bestFor: "Outdoor events" },
+      { item: "Cooler rental", bestFor: "Outdoor events" },
     ],
   },
   {
