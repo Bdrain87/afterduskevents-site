@@ -57,9 +57,9 @@ const categories = [
   {
     name: "Seating & surfaces",
     items: [
-      { item: "Folding table, 6 ft", bestFor: "Food service, concessions, gift table" },
-      { item: "Folding table, 4 ft", bestFor: "Smaller concessions" },
-      { item: "Folding table, 4 ft round", bestFor: "Dinner service, round-table seating" },
+      { item: "6 ft folding table", bestFor: "" },
+      { item: "4 ft folding table", bestFor: "" },
+      { item: "4 ft round folding table", bestFor: "" },
     ],
   },
   {
@@ -95,9 +95,11 @@ function CategoryBlock({ category }: { category: (typeof categories)[0] }) {
             <p className="text-projector text-heading-md font-medium leading-snug flex-1">
               {row.item}
             </p>
-            <p className="text-caption text-steel sm:text-right sm:max-w-[34ch]">
-              {row.bestFor}
-            </p>
+            {row.bestFor ? (
+              <p className="text-caption text-steel sm:text-right sm:max-w-[34ch]">
+                {row.bestFor}
+              </p>
+            ) : null}
           </li>
         ))}
       </ul>
