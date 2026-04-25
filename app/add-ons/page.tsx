@@ -27,6 +27,7 @@ const categories = [
       { item: "Cornhole", bestFor: "Daytime / pre-event activation" },
       { item: "Can jam", bestFor: "Daytime / pre-event activation" },
       { item: "Ladder ball", bestFor: "Daytime / pre-event activation" },
+      { item: "And more", bestFor: "Ask about other event extras" },
     ],
   },
   {
