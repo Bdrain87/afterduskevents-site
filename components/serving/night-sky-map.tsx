@@ -21,26 +21,14 @@ const OUTER_REFERENCE_MI = 80;
 type ProjectedCity = City & { x: number; y: number };
 type LabelAnchor = "start" | "middle" | "end";
 
-const ROUTE_SLUGS = [
-  "plymouth",
-  "ann-arbor",
-  "detroit",
-  "birmingham",
-  "monroe",
-  "flint",
-  "port-huron",
-];
-
 const FEATURED_LABELS: Record<string, { dx: number; dy: number; anchor: LabelAnchor }> = {
-  plymouth: { dx: -1.4, dy: -5.5, anchor: "end" },
-  novi: { dx: -2.2, dy: -6.6, anchor: "end" },
-  "ann-arbor": { dx: -4.2, dy: 4.8, anchor: "end" },
-  detroit: { dx: 3.7, dy: 0.8, anchor: "start" },
-  birmingham: { dx: 3, dy: -2.8, anchor: "start" },
-  monroe: { dx: 2.8, dy: 4.7, anchor: "start" },
-  flint: { dx: -2.5, dy: -3.6, anchor: "end" },
-  lansing: { dx: -3.2, dy: 0.9, anchor: "end" },
-  "port-huron": { dx: 3.1, dy: -1.1, anchor: "start" },
+  "ann-arbor": { dx: -6.5, dy: 5.6, anchor: "end" },
+  detroit: { dx: 5.8, dy: 2.6, anchor: "start" },
+  birmingham: { dx: 5.4, dy: -3.7, anchor: "start" },
+  monroe: { dx: 4.8, dy: 6.2, anchor: "start" },
+  flint: { dx: -4.6, dy: -5.2, anchor: "end" },
+  lansing: { dx: -4.8, dy: 1.2, anchor: "end" },
+  "port-huron": { dx: 5.1, dy: -1.6, anchor: "start" },
 };
 
 function projectCity(city: City): { x: number; y: number } {
@@ -90,14 +78,6 @@ export default function NightSkyMap() {
     [],
   );
 
-  const routeCities = useMemo(
-    () =>
-      ROUTE_SLUGS.map((slug) => projected.find((c) => c.slug === slug)).filter(
-        Boolean,
-      ) as ProjectedCity[],
-    [projected],
-  );
-
   const nearbyInCounty = useMemo(() => {
     if (!selected) return [];
     return projected
@@ -124,7 +104,7 @@ export default function NightSkyMap() {
               }}
             />
 
-            <div className="absolute left-4 top-4 z-10 flex flex-wrap gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-steel">
+            <div className="absolute left-4 top-4 z-10 hidden flex-wrap gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-steel sm:flex">
               <span className="rounded-full border border-ember/35 bg-oxblood/20 px-3 py-1 text-ember">
                 Canton base
               </span>
@@ -148,10 +128,6 @@ export default function NightSkyMap() {
                   <stop offset="46%" stopColor="rgba(221,84,84,0.08)" />
                   <stop offset="100%" stopColor="rgba(221,84,84,0)" />
                 </radialGradient>
-                <linearGradient id="route-line" x1="0%" x2="100%" y1="0%" y2="0%">
-                  <stop offset="0%" stopColor="rgba(221,84,84,0.95)" />
-                  <stop offset="100%" stopColor="rgba(245,241,236,0.26)" />
-                </linearGradient>
                 <filter id="ember-glow" x="-80%" y="-80%" width="260%" height="260%">
                   <feGaussianBlur stdDeviation="1.7" result="blur" />
                   <feMerge>
@@ -196,39 +172,12 @@ export default function NightSkyMap() {
                 delay={0.24}
               />
 
-              <MapLabel x={VB_CENTER} y={VB_CENTER - SERVICE_RADIUS_MI - 3.4} fill="#DD5454">
-                40 MI CORE SERVICE
-              </MapLabel>
-              <MapLabel
-                x={VB_CENTER}
-                y={VB_CENTER - OUTER_REFERENCE_MI - 4.2}
-                fill="rgba(221,84,84,0.54)"
-              >
-                TRAVEL QUOTED BEYOND
-              </MapLabel>
-
-              <g pointerEvents="none">
-                {routeCities.map((city, index) => (
-                  <motion.line
-                    key={city.slug}
-                    x1={VB_CENTER}
-                    y1={VB_CENTER}
-                    x2={city.x}
-                    y2={city.y}
-                    stroke="url(#route-line)"
-                    strokeWidth="0.28"
-                    strokeDasharray="1.2 1.8"
-                    opacity={0.26}
-                    initial={reduced ? undefined : { pathLength: 0 }}
-                    animate={reduced ? undefined : { pathLength: 1 }}
-                    transition={{
-                      duration: 0.9,
-                      delay: 0.45 + index * 0.07,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                  />
-                ))}
-              </g>
+              <MapPill x={VB_CENTER} y={VB_CENTER - SERVICE_RADIUS_MI - 4.4}>
+                40 MILE CORE
+              </MapPill>
+              <MapPill x={VB_CENTER} y={VB_CENTER - OUTER_REFERENCE_MI - 5.2} muted>
+                TRAVEL BEYOND
+              </MapPill>
 
               {selectedProjected && selectedProjected.slug !== "canton" && (
                 <SelectedRoute city={selectedProjected} reduced={reduced} />
@@ -312,8 +261,8 @@ function CityNode({
   const label = labelPlacement(city);
   const showLabel = isSelected || isHovered || isFeatured;
   const nodeColor = zone === "service" ? "#F5F1EC" : "#DD5454";
-  const dotOpacity = isDimmed ? 0.22 : zone === "service" ? 0.82 : 0.54;
-  const radius = isSelected ? 2.45 : isHovered ? 2 : zone === "service" ? 1.08 : 0.86;
+  const dotOpacity = isDimmed ? 0.18 : isFeatured ? 0.9 : zone === "service" ? 0.62 : 0.5;
+  const radius = isSelected ? 2.75 : isHovered ? 2.25 : isFeatured ? 1.45 : zone === "service" ? 1.02 : 1;
 
   return (
     <motion.g
@@ -361,33 +310,25 @@ function CityNode({
         filter={isSelected || isHovered ? "url(#ember-glow)" : undefined}
       />
       {showLabel && (
-        <text
+        <CityLabel
+          name={city.name}
           x={label.x}
           y={label.y}
-          fontSize={isSelected || isHovered ? "2.7" : "2.15"}
-          fill={
-            isSelected || isHovered
-              ? "#F5F1EC"
-              : isDimmed
-                ? "rgba(184,184,184,0.32)"
-                : "rgba(184,184,184,0.72)"
-          }
-          fontFamily="monospace"
-          textAnchor={label.anchor}
-          style={{
-            fontWeight: isSelected || isHovered ? 700 : 500,
-            letterSpacing: "0.03em",
-            pointerEvents: "none",
-          }}
-        >
-          {city.name}
-        </text>
+          anchor={label.anchor}
+          active={isSelected || isHovered}
+          dimmed={isDimmed}
+        />
       )}
     </motion.g>
   );
 }
 
 function CantonBeacon({ reduced }: { reduced: boolean | null }) {
+  const label = "CANTON BASE";
+  const width = label.length * 2.35 + 7;
+  const x = VB_CENTER - width / 2;
+  const y = VB_CENTER + 6.2;
+
   return (
     <g pointerEvents="none">
       <motion.circle
@@ -402,16 +343,26 @@ function CantonBeacon({ reduced }: { reduced: boolean | null }) {
       />
       <circle cx={VB_CENTER} cy={VB_CENTER} r={4.6} fill="rgba(221,84,84,0.22)" />
       <circle cx={VB_CENTER} cy={VB_CENTER} r={2.25} fill="#DD5454" filter="url(#ember-glow)" />
+      <rect
+        x={x}
+        y={y}
+        width={width}
+        height="8.3"
+        rx="2.2"
+        fill="rgba(10,10,10,0.9)"
+        stroke="rgba(221,84,84,0.52)"
+        strokeWidth="0.22"
+      />
       <text
         x={VB_CENTER}
-        y={VB_CENTER - 8.5}
-        fontSize="2.6"
+        y={y + 5.5}
+        fontSize="3.6"
         fill="#DD5454"
         fontFamily="monospace"
         textAnchor="middle"
-        style={{ fontWeight: 800, letterSpacing: "0.18em" }}
+        style={{ fontWeight: 800, letterSpacing: "0.12em" }}
       >
-        CANTON
+        {label}
       </text>
     </g>
   );
@@ -449,29 +400,92 @@ function Ring({
   );
 }
 
-function MapLabel({
+function CityLabel({
+  name,
   x,
   y,
-  fill,
+  anchor,
+  active,
+  dimmed,
+}: {
+  name: string;
+  x: number;
+  y: number;
+  anchor: LabelAnchor;
+  active: boolean;
+  dimmed: boolean;
+}) {
+  const fontSize = active ? 4.8 : 4.15;
+  const width = Math.max(18, name.length * (active ? 2.45 : 2.16) + 6.2);
+  const height = active ? 9.2 : 8.1;
+  const rectX =
+    anchor === "start" ? x - 2.3 : anchor === "end" ? x - width + 2.3 : x - width / 2;
+  const textX = anchor === "start" ? rectX + 3 : anchor === "end" ? rectX + width - 3 : x;
+
+  return (
+    <g pointerEvents="none" opacity={dimmed ? 0.52 : 1}>
+      <rect
+        x={rectX}
+        y={y - height + 1.2}
+        width={width}
+        height={height}
+        rx="2"
+        fill="rgba(10,10,10,0.88)"
+        stroke={active ? "rgba(245,241,236,0.42)" : "rgba(245,241,236,0.16)"}
+        strokeWidth="0.2"
+      />
+      <text
+        x={textX}
+        y={y - 2}
+        fontSize={fontSize}
+        fill={active ? "#F5F1EC" : "rgba(245,241,236,0.82)"}
+        fontFamily="monospace"
+        textAnchor={anchor}
+        style={{ fontWeight: active ? 800 : 700, letterSpacing: "0.02em" }}
+      >
+        {name}
+      </text>
+    </g>
+  );
+}
+
+function MapPill({
+  x,
+  y,
+  muted = false,
   children,
 }: {
   x: number;
   y: number;
-  fill: string;
+  muted?: boolean;
   children: ReactNode;
 }) {
+  const text = String(children);
+  const width = text.length * 2.7 + 9;
   return (
-    <text
-      x={x}
-      y={y}
-      fontSize="2.3"
-      fill={fill}
-      fontFamily="monospace"
-      textAnchor="middle"
-      style={{ fontWeight: 800, letterSpacing: "0.18em" }}
-    >
-      {children}
-    </text>
+    <g pointerEvents="none">
+      <rect
+        x={x - width / 2}
+        y={y - 5.8}
+        width={width}
+        height="8.6"
+        rx="2.2"
+        fill="rgba(10,10,10,0.86)"
+        stroke={muted ? "rgba(221,84,84,0.26)" : "rgba(221,84,84,0.62)"}
+        strokeWidth="0.22"
+      />
+      <text
+        x={x}
+        y={y - 0.7}
+        fontSize="3.55"
+        fill={muted ? "rgba(221,84,84,0.76)" : "#DD5454"}
+        fontFamily="monospace"
+        textAnchor="middle"
+        style={{ fontWeight: 800, letterSpacing: "0.14em" }}
+      >
+        {children}
+      </text>
+    </g>
   );
 }
 
