@@ -23,20 +23,43 @@ const coverageRows: Record<TierSlug, number[]> = {
 const diagramCopy: Record<TierSlug, { kicker: string; body: string }> = {
   "single-speaker": {
     kicker: "Compact yard",
-    body: "Simple coverage for smaller groups near the screen.",
+    body: "One main speaker starts up front and aims back at the seating area.",
   },
   "two-speakers": {
     kicker: "Balanced coverage",
-    body: "Left and right speakers spread the room without pushing volume.",
+    body: "Left and right mains flank the screen and aim into the audience.",
   },
   "two-speakers-sub": {
     kicker: "Stronger bass",
-    body: "Stereo coverage plus sub support for fights, sports, and bigger groups.",
+    body: "Mains stay up front, with sub support placed near the front of the setup.",
   },
   "four-speakers-two-subs": {
     kicker: "Maximum coverage",
-    body: "Four speakers and two subs for larger layouts that need real coverage front to back.",
+    body: "Front mains carry the show; extra speakers become delay-aligned side fills when the yard needs reach.",
   },
+};
+
+const placements: Record<TierSlug, { label: string; top: string; left: string; tone?: "main" | "sub" | "fill" }[]> = {
+  "single-speaker": [
+    { label: "MAIN", top: "18%", left: "50%" },
+  ],
+  "two-speakers": [
+    { label: "L", top: "18%", left: "24%" },
+    { label: "R", top: "18%", left: "76%" },
+  ],
+  "two-speakers-sub": [
+    { label: "L", top: "18%", left: "22%" },
+    { label: "SUB", top: "29%", left: "50%", tone: "sub" },
+    { label: "R", top: "18%", left: "78%" },
+  ],
+  "four-speakers-two-subs": [
+    { label: "L", top: "17%", left: "20%" },
+    { label: "R", top: "17%", left: "80%" },
+    { label: "SUB", top: "30%", left: "42%", tone: "sub" },
+    { label: "SUB", top: "30%", left: "58%", tone: "sub" },
+    { label: "FILL L", top: "64%", left: "15%", tone: "fill" },
+    { label: "FILL R", top: "64%", left: "85%", tone: "fill" },
+  ],
 };
 
 function CoverageDot({ active, delay }: { active: boolean; delay: number }) {
@@ -50,13 +73,26 @@ function CoverageDot({ active, delay }: { active: boolean; delay: number }) {
   );
 }
 
-function SpeakerBlock({ label, active = true }: { label: string; active?: boolean }) {
+function SpeakerBlock({
+  label,
+  active = true,
+  tone = "main",
+}: {
+  label: string;
+  active?: boolean;
+  tone?: "main" | "sub" | "fill";
+}) {
+  const activeClass =
+    tone === "sub"
+      ? "border-ember/55 bg-oxblood/40 text-projector shadow-[0_0_30px_rgba(221,84,84,0.16)]"
+      : tone === "fill"
+        ? "border-ember/35 bg-oxblood/20 text-silver shadow-[0_0_22px_rgba(221,84,84,0.08)]"
+        : "border-ember/50 bg-oxblood/30 text-projector shadow-[0_0_28px_rgba(221,84,84,0.12)]";
+
   return (
     <span
-      className={`flex h-11 w-14 items-center justify-center rounded-lg border text-[10px] font-semibold tracking-[0.18em] uppercase ${
-        active
-          ? "border-ember/50 bg-oxblood/30 text-projector shadow-[0_0_28px_rgba(221,84,84,0.12)]"
-          : "border-white/10 bg-screening text-steel"
+      className={`flex h-10 w-14 items-center justify-center rounded-lg border text-center text-[9px] font-semibold leading-none tracking-[0.14em] uppercase sm:h-11 sm:w-16 sm:text-[10px] ${
+        active ? activeClass : "border-white/10 bg-screening text-steel"
       }`}
     >
       {label}
@@ -67,14 +103,7 @@ function SpeakerBlock({ label, active = true }: { label: string; active?: boolea
 function CoverageDiagram({ slug }: { slug: TierSlug }) {
   const rows = coverageRows[slug];
   const copy = diagramCopy[slug];
-  const blocks: string[] =
-    slug === "single-speaker"
-      ? ["Spk"]
-      : slug === "two-speakers"
-        ? ["L", "R"]
-        : slug === "two-speakers-sub"
-          ? ["L", "Sub", "R"]
-          : ["L1", "L2", "Sub", "Sub", "R2", "R1"];
+  const speakerPlacements = placements[slug];
 
   return (
     <div className="relative min-h-[390px] overflow-hidden rounded-lg border border-white/10 bg-charcoal/50 p-6 sm:p-7">
@@ -89,31 +118,39 @@ function CoverageDiagram({ slug }: { slug: TierSlug }) {
 
       <div className="relative">
         <div className="mx-auto mb-2 h-2 w-[78%] bg-projector/80 shadow-[0_0_26px_rgba(245,241,236,0.22)]" />
-        <p className="mb-10 text-center text-[10px] tracking-[0.22em] uppercase text-steel">
+        <p className="mb-4 text-center text-[10px] tracking-[0.22em] uppercase text-steel">
           30 ft screen
         </p>
 
-        <div className="flex min-h-[138px] flex-col items-center justify-center gap-4">
-          {rows.map((count, rowIndex) => (
-            <div key={rowIndex} className="flex justify-center gap-3">
-              {Array.from({ length: count }).map((_, dotIndex) => (
-                <CoverageDot
-                  key={dotIndex}
-                  active
-                  delay={(rowIndex * count + dotIndex) * 12}
-                />
-              ))}
-            </div>
+        <div className="relative min-h-[238px]">
+          <p className="absolute left-1/2 top-0 -translate-x-1/2 text-[9px] uppercase tracking-[0.18em] text-steel/80">
+            front mains
+          </p>
+          {speakerPlacements.map((speaker, i) => (
+            <span
+              key={`${speaker.label}-${i}`}
+              className="absolute -translate-x-1/2 -translate-y-1/2"
+              style={{ top: speaker.top, left: speaker.left }}
+            >
+              <SpeakerBlock label={speaker.label} tone={speaker.tone} />
+            </span>
           ))}
+          <div className="absolute inset-x-0 top-[43%] flex flex-col items-center justify-center gap-4">
+            {rows.map((count, rowIndex) => (
+              <div key={rowIndex} className="flex justify-center gap-3">
+                {Array.from({ length: count }).map((_, dotIndex) => (
+                  <CoverageDot
+                    key={dotIndex}
+                    active
+                    delay={(rowIndex * count + dotIndex) * 12}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-9 flex flex-wrap items-end justify-center gap-3 sm:gap-4">
-          {blocks.map((label, i) => (
-            <SpeakerBlock key={`${label}-${i}`} label={label} />
-          ))}
-        </div>
-
-        <div className="mt-8 border-t border-white/10 pt-5">
+        <div className="mt-5 border-t border-white/10 pt-5">
           <p className="font-display text-heading-md tracking-wider text-projector">
             {copy.kicker}
           </p>
