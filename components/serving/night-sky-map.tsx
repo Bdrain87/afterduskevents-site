@@ -253,9 +253,15 @@ export default function NightSkyMap() {
               <CantonBeacon reduced={reduced} />
             </svg>
 
-            <div className="pointer-events-none absolute bottom-4 left-4 right-4 z-10 flex flex-col gap-2 text-mono text-steel sm:flex-row sm:items-center sm:justify-between">
-              <span>Tap a city dot for distance and quote links.</span>
-              <span>{cities.length - 1} service-area cities shown</span>
+            <div className="pointer-events-none absolute bottom-4 left-4 right-4 z-10 flex flex-col gap-2 text-sm leading-relaxed text-silver sm:flex-row sm:items-center sm:gap-6">
+              <span className="flex items-center gap-2">
+                <span className="block h-1.5 w-1.5 rounded-full bg-ember" aria-hidden="true" />
+                Within 40 mi (no travel charge)
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="block h-1.5 w-1.5 rounded-full bg-ember" aria-hidden="true" />
+                Beyond 40 mi (+ travel charge)
+              </span>
             </div>
           </div>
         </div>
