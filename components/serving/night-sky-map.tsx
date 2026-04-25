@@ -531,13 +531,13 @@ function EmptyState({ reduced }: { reduced: boolean | null }) {
       <p className="text-body leading-relaxed text-silver mb-6">
         Tap a dot on the map to see distance from Canton, service-zone notes, and quote links.
       </p>
-      <div className="space-y-3 text-mono text-steel">
+      <div className="space-y-3 text-sm leading-relaxed text-silver">
         <p className="flex items-center gap-2">
-          <span className="block h-1.5 w-1.5 rounded-full bg-projector" aria-hidden="true" />
+          <span className="block h-1.5 w-1.5 rounded-full bg-ember" aria-hidden="true" />
           Bright dots are inside the 40-mile core area.
         </p>
         <p className="flex items-center gap-2">
-          <span className="block h-1.5 w-1.5 rounded-full bg-ember/60" aria-hidden="true" />
+          <span className="block h-1.5 w-1.5 rounded-full bg-ember" aria-hidden="true" />
           Ember dots are travel-quoted cities beyond the core.
         </p>
       </div>
