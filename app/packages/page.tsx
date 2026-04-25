@@ -118,11 +118,11 @@ export default function PackagesPage() {
               title="WHAT YOUR QUOTE IS ACTUALLY BUYING."
               body="The quote covers the full premium setup: 4K projection, a real 30 ft screen, clean outdoor sound, and bass support when the night calls for it."
             />
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
               {gearProofs.map((proof) => (
                 <article
                   key={proof.label}
-                  className="rounded-lg border border-white/10 bg-screening/70 p-5 shadow-[0_18px_44px_rgba(0,0,0,0.22)]"
+                  className="rounded-lg border border-white/10 bg-screening/70 p-4 shadow-[0_18px_44px_rgba(0,0,0,0.22)]"
                 >
                   <p className="text-caption text-ember">{proof.label}</p>
                   <h3 className="mt-4 font-display text-heading-lg leading-none tracking-wider text-projector">
