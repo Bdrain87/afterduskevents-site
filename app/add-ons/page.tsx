@@ -60,6 +60,7 @@ const categories = [
       { item: "6 ft folding table", bestFor: "" },
       { item: "4 ft folding table", bestFor: "" },
       { item: "4 ft round folding table", bestFor: "" },
+      { item: "Folding chairs", bestFor: "" },
     ],
   },
   {
