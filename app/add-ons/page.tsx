@@ -3,9 +3,8 @@ import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import {
-  ActionBar,
   FunnelSection,
-  PrimaryCta,
+  QuotePanel,
   SectionHeader,
 } from "@/components/funnel/layout";
 import { buildBreadcrumbList } from "@/lib/schema";
@@ -21,7 +20,7 @@ const categories = [
   {
     name: "Entertainment",
     items: [
-      { item: "Retro gaming kit: HDMI plug-and-play, 100,000+ classic-game library, 50+ classic systems, 4 wireless controllers", bestFor: "Birthdays, family nights, casual gaming" },
+      { item: "Retro gaming kit: 100,000+ classic-game library, 50+ classic systems, 4 wireless controllers", bestFor: "Birthdays, family nights, casual gaming" },
       { item: "BYO console hookup (PlayStation / Xbox, staff-connected)", bestFor: "Gamers bringing their own gear" },
       { item: "YouTube karaoke + 2 wireless mics", bestFor: "Any event, any age" },
       { item: "Drone video and photos (staff-operated only)", bestFor: "Big events, memories you want recorded" },
@@ -165,18 +164,12 @@ export default function AddOnsPage() {
           </div>
         </FunnelSection>
 
-        <FunnelSection labelledBy="addons-cta-heading">
-          <div className="mx-auto max-w-3xl">
-            <SectionHeader
-              id="addons-cta-heading"
-              eyebrow="Quote next"
+        <FunnelSection>
+          <div className="mx-auto max-w-4xl">
+            <QuotePanel
               title="READY TO BUILD YOUR EVENT?"
               body="Tell us what you're thinking and we'll put together a real quote."
-              className="mb-8"
             />
-            <ActionBar>
-              <PrimaryCta href="/contact">Request a Quote</PrimaryCta>
-            </ActionBar>
           </div>
         </FunnelSection>
       </main>

@@ -4,10 +4,8 @@ import Footer from "@/components/footer";
 import NightSkyMap from "@/components/serving/night-sky-map";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import {
-  ActionBar,
   FunnelSection,
-  PrimaryCta,
-  SectionHeader,
+  QuotePanel,
 } from "@/components/funnel/layout";
 import { buildBreadcrumbList } from "@/lib/schema";
 
@@ -48,18 +46,12 @@ export default function ServingIndexPage() {
           </div>
         </FunnelSection>
 
-        <FunnelSection labelledBy="serving-cta-heading" tone="band">
-          <div className="mx-auto max-w-3xl">
-            <SectionHeader
-              id="serving-cta-heading"
-              eyebrow="Outside the 40"
+        <FunnelSection tone="band">
+          <div className="mx-auto max-w-4xl">
+            <QuotePanel
               title="OUTSIDE THE 40?"
               body="We still come. The quote includes a travel charge that scales with the distance. Send the date and city and we will price it."
-              className="mb-8"
             />
-            <ActionBar>
-              <PrimaryCta href="/contact">Request a Quote</PrimaryCta>
-            </ActionBar>
           </div>
         </FunnelSection>
       </main>

@@ -4,10 +4,8 @@ import Footer from "@/components/footer";
 import FaqAccordion from "./faq-accordion";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import {
-  ActionBar,
   FunnelSection,
-  PrimaryCta,
-  SectionHeader,
+  QuotePanel,
 } from "@/components/funnel/layout";
 import { buildBreadcrumbList, buildFAQPage } from "@/lib/schema";
 
@@ -51,18 +49,14 @@ export default function FaqPage() {
           </div>
         </FunnelSection>
 
-        <FunnelSection labelledBy="faq-cta-heading" tone="band">
-          <div className="mx-auto max-w-3xl">
-            <SectionHeader
-              id="faq-cta-heading"
+        <FunnelSection tone="band">
+          <div className="mx-auto max-w-4xl">
+            <QuotePanel
               eyebrow="Still curious"
               title="STILL HAVE A QUESTION?"
               body="Send it over. We usually reply within 24 hours."
-              className="mb-8"
+              ctaLabel="Contact us"
             />
-            <ActionBar>
-              <PrimaryCta href="/contact">Contact us</PrimaryCta>
-            </ActionBar>
           </div>
         </FunnelSection>
       </main>

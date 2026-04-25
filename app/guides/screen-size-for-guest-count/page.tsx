@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import FadeIn from "@/components/fade-in";
-import MagneticButton from "@/components/magnetic-button";
 import SchemaMarkup from "@/components/seo/schema-markup";
+import {
+  FunnelSection,
+  QuotePanel,
+} from "@/components/funnel/layout";
 import { buildArticle, buildBreadcrumbList, buildFAQPage } from "@/lib/schema";
 import Balancer from "react-wrap-balancer";
 
@@ -70,20 +72,20 @@ export default function GuidePage() {
       />
       <Nav />
       <main className="flex-1 pt-16">
-        <article className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl">
+        <FunnelSection className="pt-20 lg:pt-28">
+          <article className="mx-auto max-w-3xl">
             <FadeIn>
-              <p className="text-ember text-xs tracking-[0.2em] uppercase mb-3">Guide</p>
-              <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4 leading-tight">
-                <Balancer>What size outdoor movie screen do I need for my guest count?</Balancer>
+              <p className="text-caption text-ember mb-4">Guide</p>
+              <h1 className="font-display text-projector text-display-lg tracking-wider leading-none">
+                <Balancer>WHAT SIZE OUTDOOR MOVIE SCREEN DO I NEED FOR MY GUEST COUNT?</Balancer>
               </h1>
-              <p className="text-steel text-xs uppercase tracking-wider">
+              <p className="mt-6 text-steel text-xs uppercase tracking-wider">
                 Updated <time dateTime={UPDATED}>April 2026</time>
               </p>
             </FadeIn>
 
             <FadeIn delay={0.05}>
-              <p className="text-silver text-lg leading-relaxed mt-8">
+              <p className="text-silver text-body-lg leading-relaxed mt-8">
                 Short answer: the 30 ft inflatable screen fits every private event we run, from
                 a 25-guest backyard to a 250-guest community night. What scales instead is
                 audio: we offer four tiers so the sound matches your crowd size and event type.
@@ -91,7 +93,7 @@ export default function GuidePage() {
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <h2 className="font-heading text-2xl text-projector mt-12 mb-4">Audio tier by guest count</h2>
+              <h2 className="font-heading text-heading-lg text-projector mt-12 mb-4">Audio tier by guest count</h2>
               <div className="overflow-x-auto rounded-lg border border-white/10">
                 <table className="w-full text-sm">
                   <thead>
@@ -106,7 +108,7 @@ export default function GuidePage() {
                       <tr key={row.guests} className={`border-b border-white/5 ${i % 2 === 1 ? "bg-charcoal/40" : ""}`}>
                         <td className="px-5 py-3.5 text-projector font-medium">{row.guests}</td>
                         <td className="px-5 py-3.5 text-ember">{row.tier}</td>
-                        <td className="px-5 py-3.5 text-steel">{row.note}</td>
+                        <td className="px-5 py-3.5 text-silver">{row.note}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -116,17 +118,17 @@ export default function GuidePage() {
             </FadeIn>
 
             <FadeIn delay={0.15}>
-              <h2 className="font-heading text-2xl text-projector mt-12 mb-4">
+              <h2 className="font-heading text-heading-lg text-projector mt-12 mb-4">
                 Why one screen size works
               </h2>
-              <p className="text-steel leading-relaxed">
+              <p className="text-silver leading-relaxed">
                 A 30 ft inflatable screen is the right visual scale for the entire spectrum of
                 private events we run. Backyard movie nights feel cinematic at that size without
                 overwhelming the space. Larger community events, fight nights, and sports watch parties all
-                benefit from the same screen. The screen is the "wow" that makes a backyard
+                benefit from the same screen. The screen is the &quot;wow&quot; that makes a backyard
                 feel like an amphitheater. The variable is sound.
               </p>
-              <p className="text-steel leading-relaxed mt-4">
+              <p className="text-silver leading-relaxed mt-4">
                 Pick the single speaker tier for intimate gatherings where dialogue carries best
                 at conversational volume. Pick two speakers for standard outdoor events (most
                 bookings land here). Pick two speakers plus the subwoofer for bass-driven events.
@@ -136,39 +138,29 @@ export default function GuidePage() {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <h2 className="font-heading text-2xl text-projector mt-12 mb-4">
+              <h2 className="font-heading text-heading-lg text-projector mt-12 mb-4">
                 Common questions
               </h2>
               <div className="space-y-6">
                 {guideFaqs.map((f) => (
                   <div key={f.q} className="border-b border-white/10 pb-5">
                     <h3 className="font-heading text-base text-projector mb-2">{f.q}</h3>
-                    <p className="text-steel text-sm leading-relaxed">{f.a}</p>
+                    <p className="text-silver text-sm leading-relaxed">{f.a}</p>
                   </div>
                 ))}
               </div>
             </FadeIn>
+          </article>
+        </FunnelSection>
 
-            <FadeIn delay={0.25}>
-              <div className="mt-16 text-center">
-                <h2 className="font-heading text-2xl text-projector mb-4">
-                  Not sure which tier fits?
-                </h2>
-                <p className="text-steel mb-8 text-sm leading-relaxed max-w-xl mx-auto">
-                  Tell us your guest count and event type. We will recommend the right audio tier.
-                </p>
-                <MagneticButton className="inline-flex">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
-                  >
-                    Request a Quote
-                  </Link>
-                </MagneticButton>
-              </div>
-            </FadeIn>
+        <FunnelSection tone="band">
+          <div className="mx-auto max-w-4xl">
+            <QuotePanel
+              title="NOT SURE WHICH TIER FITS?"
+              body="Tell us your guest count and event type. We will recommend the right audio tier."
+            />
           </div>
-        </article>
+        </FunnelSection>
       </main>
       <Footer />
     </>

@@ -145,15 +145,17 @@ export function QuotePanel({
   body,
   href = "/contact",
   ctaLabel = "Request a Quote",
+  eyebrow = "Quote next",
 }: {
   title: string;
   body: string;
   href?: string;
   ctaLabel?: string;
+  eyebrow?: string;
 }) {
   return (
     <div className="rounded-lg border border-white/10 bg-charcoal/55 p-6 sm:p-8">
-      <p className="text-caption text-ember mb-3">Quote next</p>
+      <p className="text-caption text-ember mb-3">{eyebrow}</p>
       <h2 className="font-display text-display-md leading-none tracking-wider text-projector">
         {title}
       </h2>
