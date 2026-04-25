@@ -33,7 +33,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What audio tiers do you offer?",
-    a: `Four tiers on the same 30 ft screen. ${audioTierSummary} Bigger sound setups are the right call for fight nights, sports, music-heavy events, larger yards, and larger crowds.`,
+    a: `Four tiers on the same 30 ft screen. ${audioTierSummary} The speaker tiers use Soundboks 4 speakers, and the subwoofer tiers add SKAA Death From Below Mk2 subs. In plain terms: clearer voices, stronger bass, cleaner placement, and better coverage for the crowd.`,
   },
   {
     q: "Can we hook up our own console or laptop?",

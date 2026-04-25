@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const city = getCity(slug);
   if (!city) return {};
   const title = `Outdoor Movie Rentals in ${city.name}, MI`;
-  const description = `Outdoor cinema and private event rentals serving ${city.name}, MI. 30 ft inflatable screen with four audio tiers up to four speakers and two subwoofers. Veteran-owned. Quote in 24 hours.`;
+  const description = `Outdoor cinema and private event rentals serving ${city.name}, MI. 30 ft inflatable screen with Soundboks 4 audio tiers and SKAA subwoofer support. Veteran-owned. Quote in 24 hours.`;
   return {
     title,
     description,

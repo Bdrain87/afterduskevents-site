@@ -26,9 +26,27 @@ import {
 export const metadata: Metadata = {
   title: "Packages",
   description:
-    "Compare After Dusk Events outdoor cinema packages: one 30 ft screen with four audio tiers up to four speakers and two subwoofers. Custom quotes for private events in Southeast Michigan.",
+    "Compare After Dusk Events outdoor cinema packages: one 30 ft screen with Soundboks 4 speakers and SKAA subwoofer support. Custom quotes for private events in Southeast Michigan.",
   alternates: { canonical: "/packages" },
 };
+
+const gearProofs = [
+  {
+    label: "Soundboks 4 speakers",
+    title: "Clean reach outside",
+    body: "These are not little Bluetooth boxes on a table. They are loud, battery-powered outdoor speakers with the headroom to keep dialogue and music clear across open space.",
+  },
+  {
+    label: "SKAA Death From Below Mk2 subs",
+    title: "Bass people feel",
+    body: "The subwoofer handles the low end: walkout music, movie scores, sports hits, and dance tracks. That gives the event weight without burying the voices.",
+  },
+  {
+    label: "Wireless layout",
+    title: "Cleaner setup",
+    body: "SKAA wireless linking lets us place sound where the crowd needs it instead of dragging cable runs through the middle of the party.",
+  },
+] as const;
 
 export default function PackagesPage() {
   return (
@@ -77,6 +95,31 @@ export default function PackagesPage() {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
               {audioTiers.map((tier) => (
                 <TierCard key={tier.slug} tier={tier} href={`/packages/${tier.slug}`} />
+              ))}
+            </div>
+          </div>
+        </FunnelSection>
+
+        <FunnelSection labelledBy="gear-proof-heading">
+          <div className="mx-auto max-w-7xl">
+            <SectionHeader
+              id="gear-proof-heading"
+              eyebrow="Gear proof"
+              title="WHAT YOUR QUOTE IS ACTUALLY BUYING."
+              body="The screen gets attention, but the sound is what separates a real event from a backyard setup. Here is the simple version of the gear advantage."
+            />
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {gearProofs.map((proof) => (
+                <article
+                  key={proof.label}
+                  className="rounded-lg border border-white/10 bg-screening/70 p-5 shadow-[0_18px_44px_rgba(0,0,0,0.22)]"
+                >
+                  <p className="text-caption text-ember">{proof.label}</p>
+                  <h3 className="mt-4 font-display text-heading-lg leading-none tracking-wider text-projector">
+                    {proof.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-silver">{proof.body}</p>
+                </article>
               ))}
             </div>
           </div>

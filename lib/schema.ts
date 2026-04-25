@@ -66,7 +66,7 @@ export function buildLocalBusiness(): SchemaObject {
     name: BUSINESS_NAME,
     alternateName: BRAND,
     description:
-      "Outdoor cinema and event rentals for private events in Southeast Michigan. 30-foot inflatable screen, four audio tiers up to four speakers and two subwoofers. Veteran-owned, fully insured, serving 40 miles of Canton, MI with travel beyond by quote.",
+      "Outdoor cinema and event rentals for private events in Southeast Michigan. 30-foot inflatable screen, Soundboks 4 audio tiers, and SKAA subwoofer support. Veteran-owned, fully insured, serving 40 miles of Canton, MI with travel beyond by quote.",
     url: SITE_URL,
     logo: LOGO_URL,
     image: OG_IMAGE,

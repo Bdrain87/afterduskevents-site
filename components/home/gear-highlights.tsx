@@ -7,24 +7,40 @@ import {
 } from "@/components/funnel/layout";
 
 /**
- * Home-page sound highlights. Customer-POV outcomes (what guests hear + feel),
- * no specs, no brand names, no decorative imagery — purely typographic so the
- * section reads like the rest of the site (the "What we bring" numbered list,
- * the add-ons teaser, the booking-flow steps).
+ * Home-page sound highlights. This is product proof, translated into what
+ * guests actually notice: clear words, real bass, and a cleaner layout.
  */
 
+const GEAR_PROOFS = [
+  {
+    stat: "126 dB",
+    label: "Soundboks 4 headroom",
+    body: "That means the speakers are not fighting for their life outside. We can keep voices clear across a yard without making the front row suffer.",
+  },
+  {
+    stat: "25 Hz",
+    label: "SKAA subwoofer low end",
+    body: "That is the deep bass zone. Walkout music, movie scores, big game moments, and dance tracks feel physical instead of thin.",
+  },
+  {
+    stat: "SKAA",
+    label: "Wireless event audio",
+    body: "The speakers and subs can link without cable runs through the middle of the party, so placement follows the crowd instead of the nearest outlet.",
+  },
+] as const;
+
 const SPEAKER_OUTCOMES = [
-  "The back row hears it as clean as the front row.",
-  "Dialogue stays crisp. guests can follow the movie, not struggle through it.",
-  "Scales from a quiet patio to a yard full of a fight-crowd.",
-  "Handles the full mix: score, voices, crowd noise, hits.",
+  "Soundboks 4 speakers throw clean sound across open air instead of fading halfway through the yard.",
+  "Dialogue stays crisp, so guests can follow the movie, game, or fight without shouting over the setup.",
+  "Battery power and wireless linking let us build the layout around the crowd, not around cable reach.",
+  "Enough headroom for score, voices, crowd noise, walkout music, and big moments without harsh distortion.",
 ];
 
 const SUB_OUTCOMES = [
-  "Bass hits in the chest, not just the ears. same feel as a real theater.",
-  "Walk-ins land. home-run calls hit. punchlines in music drop right.",
-  "Fills a big yard, not just the middle.",
-  "The difference between “outdoor movie” and “outdoor event.”",
+  "SKAA Death From Below Mk2 subs handle the part small speakers cannot fake: real low-end impact.",
+  "Walkout music lands. Home-run calls hit. Movie scores and dance tracks have weight.",
+  "Dedicated bass lets the speakers focus on clear voices while the subs carry the punch.",
+  "It is the difference between hearing the event and feeling like you are inside it.",
 ];
 
 const listVariants = {
@@ -97,19 +113,35 @@ export default function GearHighlights() {
         <SectionHeader
           id="sound-outcomes-heading"
           eyebrow="The sound"
-          title="HEARD FROM THE BACK. FELT IN THE CHEST."
-          body="A backyard movie usually sounds like a backyard movie. Your night should not. The setup is picked so guests in the last row hear what the first row hears, and the bass lands like you are inside a theater."
+          title="THIS IS NOT RENTAL-STORE SOUND."
+          body="We build the audio around Soundboks 4 speakers and SKAA Death From Below Mk2 subwoofers. Plain English: guests hear the words, feel the big moments, and the setup looks intentional."
         />
+        <div className="mb-12 grid gap-4 md:grid-cols-3">
+          {GEAR_PROOFS.map((proof) => (
+            <article
+              key={proof.label}
+              className="rounded-lg border border-white/10 bg-charcoal/55 p-5 shadow-[0_18px_50px_rgba(0,0,0,0.22)]"
+            >
+              <p className="font-display text-display-md leading-none tracking-wider text-ember">
+                {proof.stat}
+              </p>
+              <h3 className="mt-3 font-heading text-heading-sm text-projector">
+                {proof.label}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-silver">{proof.body}</p>
+            </article>
+          ))}
+        </div>
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <SoundColumn
             number="01"
-            eyebrow="Speakers"
+            eyebrow="Soundboks 4"
             title="EVERYONE HEARS IT."
             items={SPEAKER_OUTCOMES}
           />
           <SoundColumn
             number="02"
-            eyebrow="Subwoofers"
+            eyebrow="SKAA subwoofers"
             title="EVERYONE FEELS IT."
             items={SUB_OUTCOMES}
           />

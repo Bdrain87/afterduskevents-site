@@ -1,7 +1,7 @@
 /**
  * After Dusk Events real offering model:
  *   - One screen: 30 ft inflatable
- *   - Four audio tiers (the pricing axis): single speaker / two speakers / two speakers + subwoofer / four speakers + two subwoofers
+ *   - Four audio tiers (the pricing axis): Soundboks 4 speakers with optional SKAA Death From Below Mk2 subwoofers
  *   - Content rule: BYO content + logins (Netflix, Disney+, YouTube, gaming consoles, etc.)
  *
  * Event types below are marketing framings, not distinct SKUs. A booking = one audio tier + relevant add-ons.
@@ -36,13 +36,13 @@ export const audioTiers: AudioTier[] = [
     name: "30 ft + Single Speaker",
     speakerCount: 1,
     subwooferCount: 0,
-    plainBenefit: "Simple, clean sound for smaller groups seated close to the screen.",
-    coverageNote: "Best when everyone is gathered in one main viewing area.",
-    soundProfile: "Clear dialogue and enough punch for a calm backyard movie night.",
+    plainBenefit: "A real Soundboks 4 speaker for smaller groups seated close to the screen.",
+    coverageNote: "Best when everyone is gathered in one main viewing area and needs clear dialogue, not overkill.",
+    soundProfile: "Clean voices and enough punch for a calm backyard movie night.",
     recommendedFor: ["Small yards", "Family movie nights", "Groups under 25"],
     includes: [
       "30 ft inflatable screen",
-      "Single speaker",
+      "Soundboks 4 speaker",
       "BYO Content",
       "Ground anchors drilled on site",
     ],
@@ -54,13 +54,13 @@ export const audioTiers: AudioTier[] = [
     popular: true,
     speakerCount: 2,
     subwooferCount: 0,
-    plainBenefit: "Wider left/right coverage for most private events.",
+    plainBenefit: "Two Soundboks 4 speakers give most private events wider, cleaner coverage.",
     coverageNote: "Two speakers spread the sound so guests do not need to sit in one tight cluster.",
-    soundProfile: "Balanced dialogue, sports audio, and music at a comfortable outdoor volume.",
+    soundProfile: "Clear dialogue, sports audio, and music with enough headroom for outdoor space.",
     recommendedFor: ["Most backyards", "Graduations", "Sports watch parties", "25-75 guests"],
     includes: [
       "30 ft inflatable screen",
-      "Two speakers",
+      "Two Soundboks 4 speakers",
       "BYO Content",
       "Ground anchors drilled on site",
     ],
@@ -71,14 +71,14 @@ export const audioTiers: AudioTier[] = [
     name: "30 ft + Two Speakers + Subwoofer",
     speakerCount: 2,
     subwooferCount: 1,
-    plainBenefit: "Adds stronger bass for events where the audio matters more.",
-    coverageNote: "Stereo speakers carry the main sound while the subwoofer adds bass.",
-    soundProfile: "Cleaner bass for fights, sports, music, and bigger outdoor groups.",
+    plainBenefit: "Adds a SKAA Death From Below Mk2 subwoofer for events where sound should hit harder.",
+    coverageNote: "Two Soundboks 4 speakers carry the main sound while the subwoofer handles the low end.",
+    soundProfile: "Cleaner voices plus deeper bass for fights, sports, music, and bigger outdoor groups.",
     recommendedFor: ["Fight nights", "Sports", "Music-heavy events", "75-150 guests"],
     includes: [
       "30 ft inflatable screen",
-      "Two speakers",
-      "Subwoofer",
+      "Two Soundboks 4 speakers",
+      "SKAA Death From Below Mk2 subwoofer",
       "BYO Content",
       "Ground anchors drilled on site",
     ],
@@ -89,14 +89,14 @@ export const audioTiers: AudioTier[] = [
     name: "30 ft + Four Speakers + Two Subwoofers",
     speakerCount: 4,
     subwooferCount: 2,
-    plainBenefit: "Maximum coverage for big yards, field layouts, and high-energy crowds.",
-    coverageNote: "Four speakers help cover the space front to back while two subs add stronger bass.",
+    plainBenefit: "Four Soundboks 4 speakers and two SKAA subs for the biggest, highest-energy layouts.",
+    coverageNote: "Four speakers cover the space front to back while two dedicated subs add weight without muddying voices.",
     soundProfile: "The fullest setup: more even coverage, stronger bass, and better reach across a larger layout.",
     recommendedFor: ["Large yards", "Fields", "150+ guests", "High-energy events"],
     includes: [
       "30 ft inflatable screen",
-      "Four speakers",
-      "Two subwoofers",
+      "Four Soundboks 4 speakers",
+      "Two SKAA Death From Below Mk2 subwoofers",
       "BYO Content",
       "Ground anchors drilled on site",
     ],
