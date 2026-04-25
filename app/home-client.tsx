@@ -91,21 +91,21 @@ export default function HomeClient({ geo }: Props = {}) {
           </h1>
           <motion.p
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 3.15 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 2.15 }}
             className="mt-5 max-w-[52ch] text-body-lg leading-relaxed text-silver"
           >
             30 ft outdoor cinema screen, scalable sound, and a setup crew that handles the night from arrival to teardown.
           </motion.p>
           <motion.p
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 3.3 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 2.3 }}
             className="mt-4 text-sm leading-relaxed text-steel"
           >
             {locationLine}
           </motion.p>
           <motion.div
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 3.45 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 2.45 }}
           >
             <ActionBar className="mt-8">
               <MagneticButton>

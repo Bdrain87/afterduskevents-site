@@ -53,6 +53,8 @@ export default function HeroIgnition({ children, mediaAlt }: Props) {
  */
 export function IgnitedWordmark({ text, className }: { text: string; className?: string }) {
   const reduced = useReducedMotion();
+  const letterStartDelay = 0.26;
+  const letterStagger = 0.07;
 
   if (reduced) {
     return <span className={className}>{text}</span>;
@@ -80,9 +82,9 @@ export function IgnitedWordmark({ text, className }: { text: string; className?:
               return (
                 <motion.span
                   key={ci}
-                  initial={{ opacity: 0, y: "0.3em" }}
+                  initial={{ opacity: 0.28, y: "0.12em" }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.9 + i * 0.08 }}
+                  transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1], delay: letterStartDelay + i * letterStagger }}
                   style={{ display: "inline-block" }}
                 >
                   {ch}

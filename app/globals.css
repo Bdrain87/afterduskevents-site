@@ -449,11 +449,11 @@ html[data-tod="night"] {
 @media (prefers-reduced-motion: no-preference) {
   .brand-hero-wordmark {
     animation:
-      brand-wordmark-sheen 2.6s cubic-bezier(0.16, 1, 0.3, 1) 1.45s 1 both,
-      brand-hero-signal 3s ease-out 1.35s 1 both;
+      brand-wordmark-sheen 2.8s cubic-bezier(0.16, 1, 0.3, 1) 0.72s 1 both,
+      brand-hero-signal 3.2s ease-out 0.64s 1 both;
   }
   .brand-hero-wordmark::after {
-    animation: brand-hero-rule 2.6s cubic-bezier(0.16, 1, 0.3, 1) 1.45s 1 both;
+    animation: brand-hero-rule 2.8s cubic-bezier(0.16, 1, 0.3, 1) 0.72s 1 both;
   }
 }
 @keyframes brand-hero-signal {
