@@ -79,6 +79,16 @@ const bundles = [
     bestFor: "Teen birthdays, graduations, bachelorettes, post-prom, Halloween",
     featured: true,
   },
+  {
+    name: "Backyard Games Kit",
+    includes: "Cornhole, can jam, ladder ball, and folding tables grouped with the setup.",
+    bestFor: "Daytime arrivals, family nights, graduations, casual backyard events",
+  },
+  {
+    name: "Comfort Kit",
+    includes: "Patio heaters, bug zappers, and fans added around the event layout.",
+    bestFor: "Longer outdoor events, summer nights, cool-weather evenings",
+  },
 ];
 
 function CategoryBlock({ category }: { category: (typeof categories)[0] }) {
@@ -145,10 +155,10 @@ export default function AddOnsPage() {
             <SectionHeader
               id="bundles-heading"
               eyebrow="Pre-built"
-              title="FEATURED BUNDLE."
-              body="One favorite combo, priced as one line. Ask about bundle pricing."
+              title="BUNDLE OPTIONS."
+              body="Common add-on combos that can be quoted with your setup."
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               {bundles.map((b) => (
                 <div
                   key={b.name}
