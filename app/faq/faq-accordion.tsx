@@ -10,7 +10,7 @@ import { faqs } from "@/lib/faqs";
 
 export default function FaqAccordion() {
   return (
-    <Accordion multiple={false} className="divide-y divide-white/10 border-t border-b border-white/10">
+    <Accordion multiple={false} className="divide-y divide-white/10 overflow-hidden rounded-lg border border-white/10">
       {faqs.map((faq, i) => (
         <AccordionItem
           key={i}

@@ -53,7 +53,7 @@ function CoverageDot({ active, delay }: { active: boolean; delay: number }) {
 function SpeakerBlock({ label, active = true }: { label: string; active?: boolean }) {
   return (
     <span
-      className={`flex h-11 w-14 items-center justify-center border text-[10px] font-semibold tracking-[0.18em] uppercase ${
+      className={`flex h-11 w-14 items-center justify-center rounded-lg border text-[10px] font-semibold tracking-[0.18em] uppercase ${
         active
           ? "border-ember/50 bg-oxblood/30 text-projector shadow-[0_0_28px_rgba(221,84,84,0.12)]"
           : "border-white/10 bg-screening text-steel"
@@ -77,7 +77,7 @@ function CoverageDiagram({ slug }: { slug: TierSlug }) {
           : ["L1", "L2", "Sub", "Sub", "R2", "R1"];
 
   return (
-    <div className="relative overflow-hidden border border-white/10 bg-charcoal/50 p-6 sm:p-7 min-h-[390px]">
+    <div className="relative min-h-[390px] overflow-hidden rounded-lg border border-white/10 bg-charcoal/50 p-6 sm:p-7">
       <div
         aria-hidden="true"
         className="absolute inset-0 opacity-80"
@@ -174,7 +174,7 @@ export default function LightCheck() {
                     onFocus={() => setActiveSlug(tier.slug)}
                     aria-pressed={isActive}
                     aria-label={`Select ${tier.name}`}
-                    className={`group border px-3 py-3 text-left transition-colors ${
+                    className={`group rounded-lg border px-3 py-3 text-left transition-colors ${
                       isActive
                         ? "border-ember/60 bg-oxblood/25"
                         : "border-white/10 bg-screening/55 hover:border-white/25"
@@ -203,11 +203,11 @@ export default function LightCheck() {
           <div className="lg:col-span-3">
             <article
               key={active.slug}
-              className="border border-white/10 bg-charcoal/60 backdrop-blur-sm p-8 sm:p-10"
+              className="rounded-lg border border-white/10 bg-charcoal/60 p-8 backdrop-blur-sm sm:p-10"
               style={{ animation: "light-check-in 380ms ease-out" }}
             >
               {active.popular && (
-                <span className="inline-flex items-center text-ember text-[11px] font-semibold tracking-[0.2em] uppercase border border-ember/40 px-2.5 py-0.5 mb-5">
+                <span className="mb-5 inline-flex items-center rounded-full border border-ember/40 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-ember">
                   Most booked
                 </span>
               )}
@@ -257,13 +257,13 @@ export default function LightCheck() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href={`/packages/${active.slug}`}
-                  className="inline-flex min-h-[44px] items-center px-5 py-3 text-sm font-semibold border border-white/20 text-silver hover:border-ember hover:text-ember transition-colors"
+                  className="inline-flex min-h-[44px] items-center rounded-lg border border-white/20 px-5 py-3 text-sm font-semibold text-silver transition-colors hover:border-ember hover:text-ember"
                 >
                   See example setup
                 </Link>
                 <Link
                   href={`/contact?package=${encodeURIComponent(active.name)}`}
-                  className="inline-flex min-h-[44px] items-center px-5 py-3 text-sm font-semibold bg-oxblood text-projector hover:bg-oxblood-deep transition-colors"
+                  className="inline-flex min-h-[44px] items-center rounded-lg bg-oxblood px-5 py-3 text-sm font-semibold text-projector transition-colors hover:bg-oxblood-deep"
                 >
                   Request a Quote
                 </Link>

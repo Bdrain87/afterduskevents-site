@@ -1,6 +1,6 @@
 export function PrivateEventsNotice() {
   return (
-    <details className="group border-l-2 border-oxblood/60 bg-charcoal/40 backdrop-blur-sm px-5 py-4 text-sm text-silver">
+    <details className="group rounded-lg border border-white/10 border-l-2 border-l-oxblood/60 bg-charcoal/40 px-5 py-4 text-sm text-silver backdrop-blur-sm">
       <summary className="flex items-center justify-between gap-4 cursor-pointer list-none marker:hidden">
         <span className="text-ember font-semibold">Why we only do private events</span>
         <span

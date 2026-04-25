@@ -33,7 +33,7 @@ export default function TermsPage() {
               event, a separate Service Agreement will govern that engagement.
             </p>
 
-            <div className="border-l-4 border-oxblood bg-oxblood/5 px-5 py-5 rounded-r-lg">
+            <div className="rounded-lg border-l-4 border-oxblood bg-oxblood/5 px-5 py-5">
               <h2 className="font-heading text-heading-lg text-projector mb-2">Private Events Only (Exhibit C)</h2>
               <p className="text-sm leading-relaxed">
                 All services provided by After Dusk Events LLC are for private, non-ticketed,

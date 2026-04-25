@@ -17,7 +17,7 @@ export default function ProgressIndicator({ current, labels = DEFAULT_LABELS }: 
   return (
     <div className="mb-10">
       <ol
-        className="relative flex items-stretch gap-2 rounded-sm border-y border-white/10 bg-charcoal/70 py-3 sm:gap-3"
+        className="relative flex items-stretch gap-2 rounded-lg border border-white/10 bg-charcoal/70 px-3 py-3 sm:gap-3"
         aria-label="Form progress"
       >
         {labels.map((label, i) => {
@@ -44,7 +44,7 @@ export default function ProgressIndicator({ current, labels = DEFAULT_LABELS }: 
               {/* Frame body */}
               <span
                 className={[
-                  "flex h-12 w-full flex-col items-center justify-center gap-0.5 border text-xs transition-all",
+                  "flex h-12 w-full flex-col items-center justify-center gap-0.5 rounded-lg border text-xs transition-all",
                   isActive
                     ? "border-ember bg-ember/10 text-ember shadow-[0_0_24px_rgba(221,84,84,0.35)]"
                     : isComplete
