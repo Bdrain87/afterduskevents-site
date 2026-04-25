@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import FadeIn from "@/components/fade-in";
-import MagneticButton from "@/components/magnetic-button";
 import SchemaMarkup from "@/components/seo/schema-markup";
+import {
+  FunnelSection,
+  QuotePanel,
+} from "@/components/funnel/layout";
 import { buildArticle, buildBreadcrumbList, buildFAQPage } from "@/lib/schema";
 import Balancer from "react-wrap-balancer";
 
@@ -73,22 +75,20 @@ export default function GuidePage() {
       />
       <Nav />
       <main className="flex-1 pt-16">
-        <article className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl">
+        <FunnelSection className="pt-20 lg:pt-28">
+          <article className="mx-auto max-w-3xl">
             <FadeIn>
-              <p className="text-ember text-xs tracking-[0.2em] uppercase mb-3">
-                Guide
-              </p>
-              <h1 className="font-heading text-4xl sm:text-5xl text-projector mb-4 leading-tight">
-                <Balancer>How much does an outdoor movie rental cost in Michigan? (2026)</Balancer>
+              <p className="text-caption text-ember mb-4">Guide</p>
+              <h1 className="font-display text-projector text-display-lg tracking-wider leading-none">
+                <Balancer>HOW MUCH DOES AN OUTDOOR MOVIE RENTAL COST IN MICHIGAN?</Balancer>
               </h1>
-              <p className="text-steel text-xs uppercase tracking-wider">
+              <p className="mt-6 text-steel text-xs uppercase tracking-wider">
                 Updated <time dateTime={UPDATED}>April 2026</time>
               </p>
             </FadeIn>
 
             <FadeIn delay={0.05}>
-              <p className="text-silver text-lg leading-relaxed mt-8">
+              <p className="text-silver text-body-lg leading-relaxed mt-8">
                 After Dusk Events runs one 30 ft inflatable screen with four audio tiers. The
                 pricing axis is audio, not screen size. Every booking is custom-quoted within
                 24 hours of inquiry. This guide walks through what changes the number.
@@ -96,7 +96,7 @@ export default function GuidePage() {
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <h2 className="font-heading text-2xl text-projector mt-12 mb-4">
+              <h2 className="font-heading text-heading-lg text-projector mt-12 mb-4">
                 Four audio tiers, one screen
               </h2>
               <div className="overflow-x-auto rounded-lg border border-white/10">
@@ -116,7 +116,7 @@ export default function GuidePage() {
                     ].map((row, i) => (
                       <tr key={row.tier} className={`border-b border-white/5 ${i % 2 === 1 ? "bg-charcoal/40" : ""}`}>
                         <td className="px-5 py-3.5 text-ember font-semibold">{row.tier}</td>
-                        <td className="px-5 py-3.5 text-steel">{row.rec}</td>
+                        <td className="px-5 py-3.5 text-silver">{row.rec}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -129,10 +129,10 @@ export default function GuidePage() {
             </FadeIn>
 
             <FadeIn delay={0.15}>
-              <h2 className="font-heading text-2xl text-projector mt-12 mb-4">
+              <h2 className="font-heading text-heading-lg text-projector mt-12 mb-4">
                 What changes the price
               </h2>
-              <ul className="space-y-3 text-steel leading-relaxed">
+              <ul className="space-y-3 text-silver leading-relaxed">
                 {[
                   ["Audio tier", "Single speaker, two speakers, two speakers plus a subwoofer, or four speakers plus two subwoofers. Bigger sound setups are the call for fight nights, music-heavy events, and larger layouts."],
                   ["Runtime", "3 hour vs 4 hour vs 6+ hour events scale the price."],
@@ -148,39 +148,29 @@ export default function GuidePage() {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <h2 className="font-heading text-2xl text-projector mt-12 mb-4">
+              <h2 className="font-heading text-heading-lg text-projector mt-12 mb-4">
                 Common questions
               </h2>
               <div className="space-y-6">
                 {guideFaqs.map((f) => (
                   <div key={f.q} className="border-b border-white/10 pb-5">
                     <h3 className="font-heading text-base text-projector mb-2">{f.q}</h3>
-                    <p className="text-steel text-sm leading-relaxed">{f.a}</p>
+                    <p className="text-silver text-sm leading-relaxed">{f.a}</p>
                   </div>
                 ))}
               </div>
             </FadeIn>
+          </article>
+        </FunnelSection>
 
-            <FadeIn delay={0.25}>
-              <div className="mt-16 text-center">
-                <h2 className="font-heading text-2xl text-projector mb-4">
-                  Get a real quote for your event
-                </h2>
-                <p className="text-steel mb-8 text-sm leading-relaxed max-w-xl mx-auto">
-                  Tell us the date, location, and guest count. You will get a real number within 24 hours.
-                </p>
-                <MagneticButton className="inline-flex">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
-                  >
-                    Request a Quote
-                  </Link>
-                </MagneticButton>
-              </div>
-            </FadeIn>
+        <FunnelSection tone="band">
+          <div className="mx-auto max-w-4xl">
+            <QuotePanel
+              title="GET A REAL QUOTE."
+              body="Tell us the date, location, and guest count. You will get a real number within 24 hours."
+            />
           </div>
-        </article>
+        </FunnelSection>
       </main>
       <Footer />
     </>

@@ -68,7 +68,7 @@ export default function Nav() {
             ))}
             <Link
               href="/contact"
-              className="ml-3 inline-flex items-center justify-center px-5 py-2 text-sm font-semibold text-projector bg-oxblood hover:bg-oxblood-deep hover:-translate-y-0.5 hover:shadow-[0_12px_24px_rgba(107,31,31,0.4)] transition-all duration-200 min-h-[40px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-oxblood"
+              className="ml-3 inline-flex items-center justify-center rounded-lg px-5 py-2 text-sm font-semibold text-projector bg-oxblood hover:bg-oxblood-deep hover:-translate-y-0.5 hover:shadow-[0_12px_24px_rgba(107,31,31,0.4)] transition-all duration-200 min-h-[40px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-oxblood"
             >
               Request a Quote
             </Link>
@@ -106,7 +106,7 @@ export default function Nav() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-8 inline-flex items-center justify-center px-6 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors min-h-[56px]"
+              className="mt-8 inline-flex items-center justify-center rounded-lg px-6 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors min-h-[56px]"
             >
               Request a Quote
             </Link>

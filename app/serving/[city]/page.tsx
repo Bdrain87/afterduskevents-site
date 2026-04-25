@@ -4,9 +4,15 @@ import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import FadeIn from "@/components/fade-in";
-import MagneticButton from "@/components/magnetic-button";
 import { PrivateEventsNotice } from "@/components/private-events-notice";
 import SchemaMarkup from "@/components/seo/schema-markup";
+import {
+  ActionBar,
+  FunnelSection,
+  PrimaryCta,
+  SectionHeader,
+  TierCard,
+} from "@/components/funnel/layout";
 import { cities, getCity } from "@/lib/cities";
 import {
   buildBreadcrumbList,
@@ -15,7 +21,6 @@ import {
 import { audioTiers } from "@/lib/packages";
 import { Check, MapPin } from "lucide-react";
 import Balancer from "react-wrap-balancer";
-import PageAtmosphere from "@/components/atmosphere/page-atmosphere";
 import StatTicker from "@/components/stat-ticker";
 
 type Params = { params: Promise<{ city: string }> };
@@ -47,6 +52,8 @@ export default async function CityPage({ params }: Params) {
   const city = getCity(slug);
   if (!city) notFound();
 
+  const locationParam = encodeURIComponent(city.name);
+
   return (
     <>
       <SchemaMarkup
@@ -62,19 +69,16 @@ export default async function CityPage({ params }: Params) {
       />
       <Nav />
       <main className="flex-1 pt-16">
-        {/* Hero */}
-        <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-charcoal overflow-hidden">
-          <PageAtmosphere variant="dusk" />
-          <div className="relative z-10 mx-auto max-w-3xl">
+        <FunnelSection className="pt-20 lg:pt-28">
+          <div className="mx-auto max-w-5xl">
             <FadeIn>
-              <p className="text-ember text-xs tracking-[0.2em] uppercase mb-3 inline-flex items-center gap-2">
+              <p className="text-caption text-ember mb-4 inline-flex items-center gap-2">
                 <MapPin size={14} aria-hidden="true" />
                 {city.county} County, MI
               </p>
-              <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl text-projector tracking-wider leading-none mb-2">
+              <h1 className="font-display text-projector text-display-lg tracking-wider leading-none">
                 <Balancer>OUTDOOR MOVIE RENTALS IN {city.name.toUpperCase()}, MI</Balancer>
               </h1>
-              <span className="oxblood-rule" />
             </FadeIn>
             <FadeIn delay={0.1}>
               {city.distanceMiles > 0 && (
@@ -88,24 +92,23 @@ export default async function CityPage({ params }: Params) {
               )}
             </FadeIn>
             <FadeIn delay={0.2}>
-              <MagneticButton className="inline-flex mt-8">
-                <Link
-                  href={`/contact?location=${encodeURIComponent(city.name)}`}
-                  className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
-                >
+              <ActionBar className="mt-8">
+                <PrimaryCta href={`/contact?location=${locationParam}`}>
                   Get a {city.name} Quote
-                </Link>
-              </MagneticButton>
+                </PrimaryCta>
+              </ActionBar>
             </FadeIn>
           </div>
-        </section>
+        </FunnelSection>
 
-        {/* What we do here */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl space-y-6 text-steel leading-relaxed">
+        <FunnelSection labelledBy="city-overview-heading">
+          <div className="mx-auto max-w-3xl space-y-6 text-silver leading-relaxed">
             <FadeIn>
-              <h2 className="font-heading text-2xl text-projector mb-3">
-                Outdoor cinema, built for {city.name}
+              <h2
+                id="city-overview-heading"
+                className="font-display text-projector text-display-md tracking-wider leading-none mb-6"
+              >
+                OUTDOOR CINEMA, BUILT FOR {city.name.toUpperCase()}.
               </h2>
               <p>
                 {city.name} is{" "}
@@ -124,7 +127,7 @@ export default async function CityPage({ params }: Params) {
 
             {city.featuredVenues && city.featuredVenues.length > 0 && (
               <FadeIn delay={0.1}>
-                <h3 className="font-heading text-lg text-projector mt-6 mb-2">
+                <h3 className="font-heading text-heading-md text-projector mt-6 mb-3">
                   Local venues we have set up at or near
                 </h3>
                 <ul className="space-y-1.5">
@@ -138,56 +141,37 @@ export default async function CityPage({ params }: Params) {
               </FadeIn>
             )}
           </div>
-        </section>
+        </FunnelSection>
 
-        {/* Audio tiers */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal" aria-labelledby="city-tiers-heading">
+        <FunnelSection labelledBy="city-tiers-heading" tone="band">
           <div className="mx-auto max-w-7xl">
-            <FadeIn>
-              <h2 id="city-tiers-heading" className="font-heading text-2xl sm:text-3xl text-projector mb-3">
-                Audio tiers available in {city.name}
-              </h2>
-              <p className="text-steel text-sm mb-8">
-                One 30 ft screen. Four audio tiers. Every {city.name} booking is custom quoted around your event.
-              </p>
-            </FadeIn>
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+            <SectionHeader
+              id="city-tiers-heading"
+              eyebrow="Audio tiers"
+              title={`AUDIO TIERS AVAILABLE IN ${city.name.toUpperCase()}.`}
+              body={`One 30 ft screen. Four audio tiers. Every ${city.name} booking is custom quoted around your event.`}
+            />
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
               {audioTiers.map((tier) => (
-                <div
+                <TierCard
                   key={tier.slug}
-                  className={`rounded-lg p-6 flex flex-col bg-screening ${
-                    tier.popular
-                      ? "ring-2 ring-oxblood"
-                      : "border border-white/10 hover:border-white/20 transition-colors"
-                  }`}
-                >
-                  <h3 className="font-heading text-lg text-projector mb-1">{tier.name}</h3>
-                  <p className="text-steel text-xs leading-relaxed mb-4">{tier.plainBenefit}</p>
-                  <Link
-                    href={`/contact?package=${encodeURIComponent(tier.name)}&location=${encodeURIComponent(city.name)}`}
-                    className={`mt-auto inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors ${
-                      tier.popular
-                        ? "bg-oxblood text-projector hover:bg-oxblood-deep"
-                        : "border border-ember text-ember hover:bg-oxblood hover:border-oxblood hover:text-projector"
-                    }`}
-                  >
-                    Quote for {city.name}
-                  </Link>
-                </div>
+                  tier={tier}
+                  href={`/contact?package=${encodeURIComponent(tier.name)}&location=${locationParam}`}
+                  compact
+                />
               ))}
             </div>
           </div>
-        </section>
+        </FunnelSection>
 
-        {/* Other cities served */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="other-cities-heading">
+        <FunnelSection labelledBy="other-cities-heading">
           <div className="mx-auto max-w-5xl">
-            <FadeIn>
-              <h2 id="other-cities-heading" className="font-heading text-2xl text-projector mb-2">
-                Also serving
-              </h2>
-              <p className="text-steel text-sm mb-6">Standard service within 40 miles of Canton, MI. Beyond that, a travel charge is added.</p>
-            </FadeIn>
+            <SectionHeader
+              id="other-cities-heading"
+              eyebrow="Also serving"
+              title="OTHER CITIES."
+              body="Standard service within 40 miles of Canton, MI. Beyond that, a travel charge is added."
+            />
             <ul className="flex flex-wrap gap-3">
               {cities
                 .filter((c) => c.slug !== city.slug)
@@ -195,7 +179,7 @@ export default async function CityPage({ params }: Params) {
                   <li key={c.slug}>
                     <Link
                       href={`/serving/${c.slug}`}
-                      className="inline-flex items-center gap-1.5 text-sm text-steel hover:text-projector border border-white/10 hover:border-oxblood/40 rounded-full px-4 py-1.5 transition-colors"
+                      className="inline-flex items-center gap-1.5 text-sm text-silver hover:text-projector border border-white/10 hover:border-ember/40 rounded-full px-4 py-1.5 transition-colors"
                     >
                       <MapPin size={12} className="text-ember" aria-hidden="true" />
                       {c.name}
@@ -204,24 +188,18 @@ export default async function CityPage({ params }: Params) {
                 ))}
             </ul>
           </div>
-        </section>
+        </FunnelSection>
 
-        {/* Private events + CTA */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-charcoal">
+        <FunnelSection tone="band">
           <div className="mx-auto max-w-3xl space-y-6">
             <PrivateEventsNotice />
-            <div className="text-center pt-4">
-              <MagneticButton className="inline-flex">
-                <Link
-                  href={`/contact?location=${encodeURIComponent(city.name)}`}
-                  className="inline-flex items-center justify-center rounded-lg px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
-                >
-                  Get a {city.name} Quote
-                </Link>
-              </MagneticButton>
-            </div>
+            <ActionBar>
+              <PrimaryCta href={`/contact?location=${locationParam}`}>
+                Get a {city.name} Quote
+              </PrimaryCta>
+            </ActionBar>
           </div>
-        </section>
+        </FunnelSection>
       </main>
       <Footer />
     </>

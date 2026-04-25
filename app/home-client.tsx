@@ -84,7 +84,7 @@ export default function HomeClient({ geo }: Props = {}) {
   return (
     <>
       <Nav />
-      <main className="flex-1">
+      <main className="flex-1 pt-16">
         <HeroIgnition mediaAlt="30 foot inflatable outdoor cinema screen setup">
           <h1 className="font-display text-display-xl leading-none text-projector">
             <IgnitedWordmark text="AFTER DUSK EVENTS" className="brand-hero-wordmark wordmark-glow" />
@@ -198,16 +198,17 @@ export default function HomeClient({ geo }: Props = {}) {
         </FunnelSection>
 
         <FunnelSection labelledBy="addons-heading">
-          <div className="mx-auto max-w-5xl">
+          <div className="mx-auto max-w-5xl text-center">
             <SectionHeader
               id="addons-heading"
               eyebrow="Add-ons"
               title="STACK THE NIGHT."
               body="Popcorn, karaoke with two mics, retro gaming, drone video, glow kit, backyard games, photo backdrop, string lights, patio heater. Quoted with the setup, not a la carte."
+              align="center"
               className="mb-8"
             />
             <motion.ul
-              className="grid grid-cols-3 gap-3 sm:gap-5 mb-8 max-w-md sm:max-w-xl"
+              className="mx-auto grid grid-cols-3 gap-3 sm:gap-5 mb-8 max-w-md sm:max-w-xl"
               initial={reduced ? undefined : "hidden"}
               whileInView={reduced ? undefined : "visible"}
               viewport={{ once: true, margin: "-80px" }}
@@ -250,7 +251,9 @@ export default function HomeClient({ geo }: Props = {}) {
                 </motion.li>
               ))}
             </motion.ul>
-            <TextCta href="/add-ons">Full add-ons catalog</TextCta>
+            <div className="flex justify-center">
+              <TextCta href="/add-ons">Full add-ons catalog</TextCta>
+            </div>
           </div>
         </FunnelSection>
 

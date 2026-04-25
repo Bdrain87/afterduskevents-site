@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import MagneticButton from "@/components/magnetic-button";
 import SchemaMarkup from "@/components/seo/schema-markup";
+import {
+  FunnelSection,
+  QuotePanel,
+  SectionHeader,
+} from "@/components/funnel/layout";
 import { buildBreadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -17,7 +20,7 @@ const categories = [
   {
     name: "Entertainment",
     items: [
-      { item: "Retro gaming kit: HDMI plug-and-play, 100,000+ classic-game library, 50+ classic systems, 4 wireless controllers", bestFor: "Birthdays, family nights, casual gaming" },
+      { item: "Retro gaming kit: 100,000+ classic-game library, 50+ classic systems, 4 wireless controllers", bestFor: "Birthdays, family nights, casual gaming" },
       { item: "BYO console hookup (PlayStation / Xbox, staff-connected)", bestFor: "Gamers bringing their own gear" },
       { item: "YouTube karaoke + 2 wireless mics", bestFor: "Any event, any age" },
       { item: "Drone video and photos (staff-operated only)", bestFor: "Big events, memories you want recorded" },
@@ -113,56 +116,38 @@ export default function AddOnsPage() {
       />
       <Nav />
       <main className="flex-1 pt-16">
-        {/* Header */}
-        <section
-          className="relative overflow-hidden px-6 sm:px-10 lg:px-16"
-          style={{ paddingTop: "96px", paddingBottom: "64px" }}
-        >
-          <div className="relative z-10 mx-auto max-w-5xl">
-            <p className="text-caption text-ember mb-4">Customize your event</p>
-            <h1 className="font-display text-projector text-display-lg tracking-wider leading-none mb-6">
-              PILE IT ON.
+        <FunnelSection className="pt-20 lg:pt-28">
+          <div className="mx-auto max-w-5xl">
+            <h1 className="font-display text-projector text-display-lg tracking-wider leading-none">
+              CUSTOMIZE YOUR EVENT.
             </h1>
-            <p className="text-silver text-body-lg leading-relaxed max-w-[58ch]">
+            <p className="mt-6 max-w-[58ch] text-body-lg leading-relaxed text-silver">
               Every add-on is quoted with your setup. Nothing is pay-per-ticket. Tell us what you&apos;re thinking and we&apos;ll write a real total.
             </p>
           </div>
-        </section>
+        </FunnelSection>
 
-        {/* Categories */}
-        <section
-          className="relative px-6 sm:px-10 lg:px-16"
-          style={{ paddingTop: "32px", paddingBottom: "96px" }}
-        >
+        <FunnelSection>
           <div className="mx-auto max-w-5xl">
             {categories.map((cat) => (
               <CategoryBlock key={cat.name} category={cat} />
             ))}
           </div>
-        </section>
+        </FunnelSection>
 
-        {/* Bundles */}
-        <section
-          aria-labelledby="bundles-heading"
-          className="relative px-6 sm:px-10 lg:px-16 border-t border-white/8 bg-charcoal/30 backdrop-blur-sm"
-          style={{ paddingTop: "96px", paddingBottom: "96px" }}
-        >
+        <FunnelSection labelledBy="bundles-heading" tone="band">
           <div className="mx-auto max-w-5xl">
-            <p className="text-caption text-ember mb-3">Pre-built</p>
-            <h2
+            <SectionHeader
               id="bundles-heading"
-              className="font-display text-projector text-display-md tracking-wider leading-none mb-3"
-            >
-              BUNDLES.
-            </h2>
-            <p className="text-silver text-body mb-10 max-w-[54ch]">
-              A few favorite combos priced as one line. Ask about bundle pricing.
-            </p>
+              eyebrow="Pre-built"
+              title="FEATURED BUNDLE."
+              body="One favorite combo, priced as one line. Ask about bundle pricing."
+            />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {bundles.map((b) => (
                 <div
                   key={b.name}
-                  className={`relative p-8 border ${
+                  className={`relative rounded-lg p-8 border ${
                     b.featured
                       ? "border-ember/50 bg-screening shadow-[0_24px_48px_rgba(0,0,0,0.4)]"
                       : "border-white/10 bg-screening/60"
@@ -177,30 +162,16 @@ export default function AddOnsPage() {
               ))}
             </div>
           </div>
-        </section>
+        </FunnelSection>
 
-        {/* CTA */}
-        <section
-          className="relative px-6 sm:px-10 lg:px-16"
-          style={{ paddingTop: "96px", paddingBottom: "128px" }}
-        >
-          <div className="mx-auto max-w-3xl">
-            <h2 className="font-display text-projector text-display-lg tracking-wider leading-none mb-6">
-              READY TO BUILD YOUR EVENT?
-            </h2>
-            <p className="text-silver text-body-lg leading-relaxed mb-10 max-w-[44ch]">
-              Tell us what you&apos;re thinking and we&apos;ll put together a real quote.
-            </p>
-            <MagneticButton className="inline-flex">
-              <Link
-                href="/contact"
-                className="inline-flex min-h-[48px] items-center px-8 py-4 text-base font-semibold text-projector bg-oxblood hover:bg-oxblood-deep transition-colors"
-              >
-                Request a Quote
-              </Link>
-            </MagneticButton>
+        <FunnelSection>
+          <div className="mx-auto max-w-4xl">
+            <QuotePanel
+              title="READY TO BUILD YOUR EVENT?"
+              body="Tell us what you're thinking and we'll put together a real quote."
+            />
           </div>
-        </section>
+        </FunnelSection>
       </main>
       <Footer />
     </>
