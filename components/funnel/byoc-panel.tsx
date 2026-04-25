@@ -54,7 +54,7 @@ export default function ByocPanel() {
                   </span>
                 ))}
               </div>
-              <div className="-mx-6 hidden sm:block">
+              <div className="relative -mx-5 hidden sm:-mx-6 sm:block">
                 <Marquee pauseOnHover className="[--duration:38s] [--gap:0.75rem]">
                   {services.map((service) => (
                     <span
@@ -65,14 +65,14 @@ export default function ByocPanel() {
                     </span>
                   ))}
                 </Marquee>
-                {/* Edge fades */}
+                {/* Edge fades — sit at the panel's inner edge so the falloff hits the border, not before it */}
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-[#160909] to-transparent"
+                  className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#180b0b] via-[#180b0b]/85 to-transparent"
                 />
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[#121010] to-transparent"
+                  className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#141010] via-[#141010]/85 to-transparent"
                 />
               </div>
             </div>

@@ -134,11 +134,11 @@ export default function GearHighlights() {
           title="THEATER PICTURE. EVENT SOUND."
           body="The setup is a 4K theater-quality projector on a real 30 ft screen, backed by Soundboks 4 speakers and SKAA Death From Below Mk2 subwoofers. Plain English: it looks sharp, sounds clean, hits hard, and feels like an actual event."
         />
-        <div className="mb-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mb-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {GEAR_PROOFS.map((proof) => (
             <article
               key={proof.label}
-              className="rounded-lg border border-white/10 bg-charcoal/55 p-5 shadow-[0_18px_50px_rgba(0,0,0,0.22)]"
+              className="rounded-lg border border-white/10 bg-charcoal/55 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.22)]"
             >
               <p className="font-display text-display-md leading-none tracking-wider text-ember">
                 {proof.stat}
