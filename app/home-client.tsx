@@ -33,8 +33,8 @@ type Props = {
 
 const bringItems = [
   {
-    title: "30 ft screen",
-    body: "One real inflatable cinema screen for every booking. Big enough to be the centerpiece.",
+    title: "4K picture",
+    body: "A theater-quality 4K projector on a real 30 ft inflatable cinema screen. Big, sharp, and built to be the centerpiece.",
   },
   {
     title: "Sound that fits",
@@ -94,7 +94,7 @@ export default function HomeClient({ geo }: Props = {}) {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 2.15 }}
             className="mt-5 max-w-[52ch] text-body-lg leading-relaxed text-silver"
           >
-            30 ft outdoor cinema screen, scalable sound, and a setup crew that handles the night from arrival to teardown.
+            4K outdoor cinema projection, a 30 ft screen, scalable sound, and a setup crew that handles the night from arrival to teardown.
           </motion.p>
           <motion.p
             {...fadeUp}
@@ -129,7 +129,7 @@ export default function HomeClient({ geo }: Props = {}) {
               id="bring-heading"
               eyebrow="What we bring"
               title="THE SETUP IS OURS. THE NIGHT IS YOURS."
-              body="One big screen, audio coverage matched to the crowd, and a setup that does not depend on your outlet, wifi, or guesswork."
+              body="4K theater-quality projection, one big screen, audio coverage matched to the crowd, and a setup that does not depend on your outlet, wifi, or guesswork."
             />
             <motion.ol
               className="divide-y divide-white/8 border-y border-white/8"
@@ -307,7 +307,7 @@ export default function HomeClient({ geo }: Props = {}) {
               id="booking-heading"
               eyebrow="How booking works"
               title="FROM FIRST MESSAGE TO SHOWTIME."
-              body="Send the basics, get a setup recommendation, then we handle the screen, sound, and teardown."
+              body="Send the basics, get a setup recommendation, then we handle the 4K projection, screen, sound, and teardown."
             />
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               {bookingSteps.map((step, index) => (

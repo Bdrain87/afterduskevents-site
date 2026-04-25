@@ -31,7 +31,7 @@ export default function ByocPanel() {
             id="byoc-heading"
             eyebrow="Bring your own content"
             title="NEW MOVIE. SEASON DROP. WATCH PARTY."
-            body="You bring the account, playlist, disc, laptop, or console. We bring the screen, audio, power, and connection plan for a private viewing party."
+            body="You bring the account, playlist, disc, laptop, or console. We bring the 4K projection, screen, audio, power, and connection plan for a private viewing party."
             className="mb-0"
           />
         </div>

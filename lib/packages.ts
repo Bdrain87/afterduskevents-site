@@ -1,6 +1,6 @@
 /**
  * After Dusk Events real offering model:
- *   - One screen: 30 ft inflatable
+ *   - Picture: 4K theater-quality projector + 30 ft inflatable screen
  *   - Four audio tiers (the pricing axis): Soundboks 4 speakers with optional SKAA Death From Below Mk2 subwoofers
  *   - Content rule: BYO content + logins (Netflix, Disney+, YouTube, gaming consoles, etc.)
  *
@@ -41,6 +41,7 @@ export const audioTiers: AudioTier[] = [
     soundProfile: "Clean voices and enough punch for a calm backyard movie night.",
     recommendedFor: ["Small yards", "Family movie nights", "Groups under 25"],
     includes: [
+      "4K theater-quality projector",
       "30 ft inflatable screen",
       "Soundboks 4 speaker",
       "BYO Content",
@@ -59,6 +60,7 @@ export const audioTiers: AudioTier[] = [
     soundProfile: "Clear dialogue, sports audio, and music with enough headroom for outdoor space.",
     recommendedFor: ["Most backyards", "Graduations", "Sports watch parties", "25-75 guests"],
     includes: [
+      "4K theater-quality projector",
       "30 ft inflatable screen",
       "Two Soundboks 4 speakers",
       "BYO Content",
@@ -76,6 +78,7 @@ export const audioTiers: AudioTier[] = [
     soundProfile: "Cleaner voices plus deeper bass for fights, sports, music, and bigger outdoor groups.",
     recommendedFor: ["Fight nights", "Sports", "Music-heavy events", "75-150 guests"],
     includes: [
+      "4K theater-quality projector",
       "30 ft inflatable screen",
       "Two Soundboks 4 speakers",
       "SKAA Death From Below Mk2 subwoofer",
@@ -94,6 +97,7 @@ export const audioTiers: AudioTier[] = [
     soundProfile: "The fullest setup: more even coverage, stronger bass, and better reach across a larger layout.",
     recommendedFor: ["Large yards", "Fields", "150+ guests", "High-energy events"],
     includes: [
+      "4K theater-quality projector",
       "30 ft inflatable screen",
       "Four Soundboks 4 speakers",
       "Two SKAA Death From Below Mk2 subwoofers",

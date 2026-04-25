@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const city = getCity(slug);
   if (!city) return {};
   const title = `Outdoor Movie Rentals in ${city.name}, MI`;
-  const description = `Outdoor cinema and private event rentals serving ${city.name}, MI. 30 ft inflatable screen with Soundboks 4 audio tiers and SKAA subwoofer support. Veteran-owned. Quote in 24 hours.`;
+  const description = `Outdoor cinema and private event rentals serving ${city.name}, MI. 4K theater-quality projection, a 30 ft inflatable screen, Soundboks 4 audio tiers, and SKAA subwoofer support. Veteran-owned. Quote in 24 hours.`;
   return {
     title,
     description,
@@ -115,7 +115,7 @@ export default async function CityPage({ params }: Params) {
                 {city.distanceMiles === 0
                   ? "home base for After Dusk Events"
                   : `${city.distanceMiles} miles from our Canton home base${city.distanceMiles <= 40 ? ", well inside our 40-mile service radius" : ", outside the 40-mile core radius (an additional travel charge is added to the quote)"}`}
-                . Every {city.name} booking is a 30 ft inflatable screen with one of four audio tiers,
+                . Every {city.name} booking is a 4K theater-quality projector, a 30 ft inflatable screen, and one of four audio tiers,
                 set up on site with a complete systems test before the first reel rolls.
               </p>
               <p>
@@ -149,7 +149,7 @@ export default async function CityPage({ params }: Params) {
               id="city-tiers-heading"
               eyebrow="Audio tiers"
               title={`AUDIO TIERS AVAILABLE IN ${city.name.toUpperCase()}.`}
-              body={`One 30 ft screen. Four audio tiers. Every ${city.name} booking is custom quoted around your event.`}
+              body={`One 4K projector. One 30 ft screen. Four audio tiers. Every ${city.name} booking is custom quoted around your event.`}
             />
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
               {audioTiers.map((tier) => (

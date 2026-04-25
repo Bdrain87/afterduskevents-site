@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Outdoor Movie Rental Cost in Michigan (2026)",
     description:
-      "What outdoor cinema rentals actually cost in Southeast Michigan: one 30 ft screen, four audio tiers.",
+      "What outdoor cinema rentals actually cost in Southeast Michigan: 4K projection, one 30 ft screen, four audio tiers.",
     url: `https://afterduskevents.com${SLUG}`,
   },
 };
@@ -89,8 +89,8 @@ export default function GuidePage() {
 
             <FadeIn delay={0.05}>
               <p className="text-silver text-body-lg leading-relaxed mt-8">
-                After Dusk Events runs one 30 ft inflatable screen with four audio tiers. The
-                pricing axis is audio, not screen size. Every booking is custom-quoted within
+                After Dusk Events runs one 4K theater-quality projector and one 30 ft inflatable screen with four audio tiers. The
+                pricing axis is audio, not picture quality. Every booking is custom-quoted within
                 24 hours of inquiry. This guide walks through what changes the number.
               </p>
             </FadeIn>

@@ -7,11 +7,22 @@ import {
 } from "@/components/funnel/layout";
 
 /**
- * Home-page sound highlights. This is product proof, translated into what
- * guests actually notice: clear words, real bass, and a cleaner layout.
+ * Home-page gear highlights. Product proof, translated into what guests
+ * actually notice: a theater-quality picture, clear words, real bass, and a
+ * cleaner layout.
  */
 
 const GEAR_PROOFS = [
+  {
+    stat: "4K",
+    label: "Theater-quality projection",
+    body: "The picture side is not an office projector pointed at a sheet. You are getting a sharp 4K image built for a real outdoor cinema setup.",
+  },
+  {
+    stat: "30 ft",
+    label: "Real cinema scale",
+    body: "The screen is big enough to become the centerpiece of the night, so guests are watching an event, not crowding around a TV.",
+  },
   {
     stat: "126 dB",
     label: "Soundboks 4 headroom",
@@ -28,6 +39,13 @@ const GEAR_PROOFS = [
     body: "The speakers and subs can link without cable runs through the middle of the party, so placement follows the crowd instead of the nearest outlet.",
   },
 ] as const;
+
+const PICTURE_OUTCOMES = [
+  "4K projection gives the image real detail, so movies, games, sports, and slideshows look intentional.",
+  "The 30 ft screen gives the night scale before anyone hears a single speaker.",
+  "Focus, placement, source connection, and system testing are handled before guests settle in.",
+  "Your quote covers the full picture system, not just a screen rental.",
+];
 
 const SPEAKER_OUTCOMES = [
   "Soundboks 4 speakers throw clean sound across open air instead of fading halfway through the yard.",
@@ -112,11 +130,11 @@ export default function GearHighlights() {
       <div className="mx-auto max-w-7xl">
         <SectionHeader
           id="sound-outcomes-heading"
-          eyebrow="The sound"
-          title="THIS IS NOT RENTAL-STORE SOUND."
-          body="We build the audio around Soundboks 4 speakers and SKAA Death From Below Mk2 subwoofers. Plain English: guests hear the words, feel the big moments, and the setup looks intentional."
+          eyebrow="The gear"
+          title="THEATER PICTURE. EVENT SOUND."
+          body="The setup is a 4K theater-quality projector on a real 30 ft screen, backed by Soundboks 4 speakers and SKAA Death From Below Mk2 subwoofers. Plain English: it looks sharp, sounds clean, hits hard, and feels like an actual event."
         />
-        <div className="mb-12 grid gap-4 md:grid-cols-3">
+        <div className="mb-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {GEAR_PROOFS.map((proof) => (
             <article
               key={proof.label}
@@ -132,15 +150,21 @@ export default function GearHighlights() {
             </article>
           ))}
         </div>
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-3 lg:gap-12">
           <SoundColumn
             number="01"
+            eyebrow="4K projection"
+            title="EVERYONE SEES IT."
+            items={PICTURE_OUTCOMES}
+          />
+          <SoundColumn
+            number="02"
             eyebrow="Soundboks 4"
             title="EVERYONE HEARS IT."
             items={SPEAKER_OUTCOMES}
           />
           <SoundColumn
-            number="02"
+            number="03"
             eyebrow="SKAA subwoofers"
             title="EVERYONE FEELS IT."
             items={SUB_OUTCOMES}

@@ -33,7 +33,11 @@ export const faqs: Faq[] = [
   },
   {
     q: "What audio tiers do you offer?",
-    a: `Four tiers on the same 30 ft screen. ${audioTierSummary} The speaker tiers use Soundboks 4 speakers, and the subwoofer tiers add SKAA Death From Below Mk2 subs. In plain terms: clearer voices, stronger bass, cleaner placement, and better coverage for the crowd.`,
+    a: `Four tiers on the same 4K projector and 30 ft screen setup. ${audioTierSummary} The speaker tiers use Soundboks 4 speakers, and the subwoofer tiers add SKAA Death From Below Mk2 subs. In plain terms: clearer voices, stronger bass, cleaner placement, and better coverage for the crowd.`,
+  },
+  {
+    q: "What does the picture setup include?",
+    a: "Every booking includes a 4K theater-quality projector and a 30 ft inflatable cinema screen. The picture side stays premium across every package; the package choice changes the audio coverage and bass.",
   },
   {
     q: "Can we hook up our own console or laptop?",

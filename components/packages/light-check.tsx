@@ -189,7 +189,7 @@ export default function LightCheck() {
             PICK YOUR SOUND.
           </h2>
           <p className="text-silver text-body-lg leading-relaxed mt-5 max-w-[50ch]">
-            Same 30-foot screen, four levels of coverage. Tap a tier to see what changes in the yard.
+            Same 4K projector and 30-foot screen, four levels of coverage. Tap a tier to see what changes in the yard.
           </p>
         </div>
 

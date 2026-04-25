@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     template: "%s | After Dusk Events",
   },
   description:
-    "Premium outdoor cinema and event rentals for private events in Southeast Michigan. 30-foot screen, concert-grade sound, veteran-owned. 40 miles of Canton, MI with travel beyond by quote.",
+    "Premium outdoor cinema and event rentals for private events in Southeast Michigan. 4K theater-quality projection, 30-foot screen, concert-grade sound, veteran-owned. 40 miles of Canton, MI with travel beyond by quote.",
   keywords: [
     "outdoor movie rental Michigan",
     "backyard movie night Canton",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     siteName: "After Dusk Events",
     title: "Outdoor Cinema and Event Rentals | After Dusk Events | Canton, MI",
     description:
-      "Premium outdoor cinema and event rentals for private events in Southeast Michigan. 30-foot screen, concert-grade sound, veteran-owned.",
+      "Premium outdoor cinema and event rentals for private events in Southeast Michigan. 4K theater-quality projection, 30-foot screen, concert-grade sound, veteran-owned.",
     images: [{ url: "/og-image.png", width: 1282, height: 836, alt: "After Dusk Events" }],
   },
   twitter: {

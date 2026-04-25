@@ -19,15 +19,15 @@ export default function ThirtyFootCheck() {
       <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
         {/* Copy: 2 cols */}
         <div className="lg:col-span-2 order-2 lg:order-1">
-          <p className="text-caption text-ember mb-4">The screen</p>
+          <p className="text-caption text-ember mb-4">The picture</p>
           <h2
             id="thirty-ft-heading"
             className="font-display text-projector text-display-xl tracking-wider mb-6"
           >
-            30 FEET.
+            4K ON 30 FEET.
           </h2>
           <p className="text-silver text-body-lg leading-relaxed mb-6 max-w-[44ch]">
-            One screen size for every event we run. We drill ground anchors for a stable setup, then handle crowd size through audio coverage, not a smaller screen.
+            Every booking gets the big-screen treatment: a 4K theater-quality projector, one 30 ft inflatable cinema screen, and a stable ground-anchor setup. Crowd size changes the audio tier, not the picture quality.
           </p>
           <TextCta href="/packages">Pick your audio tier</TextCta>
         </div>
