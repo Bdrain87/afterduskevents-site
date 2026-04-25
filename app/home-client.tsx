@@ -244,7 +244,7 @@ export default function HomeClient({ geo }: Props = {}) {
                       alt={item.alt}
                       fill
                       sizes="(min-width: 640px) 200px, 32vw"
-                      className="object-cover"
+                      className="object-contain object-bottom"
                     />
                   </div>
                   <p className="mt-2 text-caption text-steel">{item.label}</p>
