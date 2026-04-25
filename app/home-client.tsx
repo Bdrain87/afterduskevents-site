@@ -305,9 +305,9 @@ export default function HomeClient({ geo }: Props = {}) {
           <div className="mx-auto max-w-7xl">
             <SectionHeader
               id="booking-heading"
-              eyebrow="Booking flow"
-              title="FROM IDEA TO SCREEN TEST."
-              body="Simple steps, clear responsibilities, and a tested setup before people show up."
+              eyebrow="How booking works"
+              title="FROM FIRST MESSAGE TO SHOWTIME."
+              body="Send the basics, get a setup recommendation, then we handle the screen, sound, and teardown."
             />
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               {bookingSteps.map((step, index) => (
