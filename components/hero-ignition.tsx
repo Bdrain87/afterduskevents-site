@@ -20,7 +20,7 @@ export default function HeroIgnition({ children, mediaAlt }: Props) {
   const reduced = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden px-6 pb-16 pt-24 sm:px-10 sm:pt-28 lg:px-16 lg:pb-24 lg:pt-36">
+    <section className="relative overflow-hidden px-6 pb-16 pt-20 sm:px-10 lg:px-16 lg:pb-24 lg:pt-28">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-12">
         <div className="lg:col-span-6">{children}</div>
         <div className="lg:col-span-6">

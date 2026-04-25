@@ -63,12 +63,12 @@ function EventScene({ slug }: { slug: UseCase["slug"] }) {
       className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_50%_45%,rgba(221,84,84,0.22),transparent_42%),linear-gradient(135deg,#161616_0%,#0b0b0b_62%,#180d0d_100%)]"
     >
       <div className="absolute inset-6 rounded-lg border border-white/8" />
-      <div className="absolute inset-x-10 top-9 h-px bg-white/8" />
-      <div className="absolute inset-x-10 bottom-9 h-px bg-white/8" />
-      <div className="absolute bottom-7 h-px w-28 bg-ember/70" />
-      <div className="relative flex h-28 w-28 items-center justify-center rounded-full border border-ember/35 bg-black/30 shadow-[0_0_50px_rgba(221,84,84,0.25)] transition-transform duration-300 group-hover:scale-[1.03]">
+      <div className="absolute inset-x-8 top-6 h-px bg-white/8" />
+      <div className="absolute inset-x-8 bottom-6 h-px bg-white/8" />
+      <div className="absolute bottom-5 h-px w-20 bg-ember/70" />
+      <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-ember/35 bg-black/30 shadow-[0_0_40px_rgba(221,84,84,0.25)] transition-transform duration-300 group-hover:scale-[1.03]">
         <Icon
-          className="h-16 w-16 text-projector"
+          className="h-11 w-11 text-projector"
           strokeWidth={1.75}
         />
       </div>
@@ -84,18 +84,18 @@ export default function EventMotifCard({ event, href, ctaLabel = "Start quote" }
       href={href}
       className="group relative block overflow-hidden rounded-lg border border-white/10 bg-[#101010] transition-all duration-300 hover:border-ember/45 hover:bg-charcoal/80 hover:shadow-[0_24px_60px_rgba(0,0,0,0.36)]"
     >
-      <div className="relative aspect-[16/10] border-b border-white/10 bg-screening">
+      <div className="relative aspect-[2/1] border-b border-white/10 bg-screening">
         <EventScene slug={event.slug} />
       </div>
-      <div className="relative p-5">
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-steel">
+      <div className="relative p-4">
+        <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-steel">
           {tier?.name}
         </p>
         <h3 className="font-heading text-heading-md text-projector">
           {event.name}
         </h3>
-        <p className="mt-3 text-sm leading-relaxed text-silver">{event.desc}</p>
-        <span className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-ember">
+        <p className="mt-2 text-sm leading-relaxed text-silver">{event.desc}</p>
+        <span className="mt-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-ember">
           <span aria-hidden="true" className="block h-px w-6 bg-ember transition-[width] duration-300 group-hover:w-12" />
           {ctaLabel}
         </span>

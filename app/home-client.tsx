@@ -84,7 +84,7 @@ export default function HomeClient({ geo }: Props = {}) {
   return (
     <>
       <Nav />
-      <main className="flex-1">
+      <main className="flex-1 pt-16">
         <HeroIgnition mediaAlt="30 foot inflatable outdoor cinema screen setup">
           <h1 className="font-display text-display-xl leading-none text-projector">
             <IgnitedWordmark text="AFTER DUSK EVENTS" className="brand-hero-wordmark wordmark-glow" />
