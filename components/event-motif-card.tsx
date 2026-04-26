@@ -12,8 +12,6 @@ import { audioTiers, useCases, type UseCase } from "@/lib/packages";
 type Props = {
   event: UseCase;
   href: string;
-  /** Optional override for the small CTA label. Defaults to "Start quote". */
-  ctaLabel?: string;
 };
 
 function BoxingGloveIcon(props: SVGProps<SVGSVGElement>) {
@@ -76,12 +74,16 @@ function EventScene({ slug }: { slug: UseCase["slug"] }) {
   );
 }
 
-export default function EventMotifCard({ event, href, ctaLabel = "Start quote" }: Props) {
+export default function EventMotifCard({ event, href }: Props) {
   const tier = audioTiers.find((t) => t.slug === event.recommendedTier);
 
   return (
     <Link
       href={href}
+      // The whole card is the link target; the hover state (border/bg/shadow
+      // shift) plus the animated ember bar below the body copy provides the
+      // affordance without repeating "Start quote" 6x down the page.
+      aria-label={`Start a quote for a ${event.name} setup`}
       className="group relative block overflow-hidden rounded-lg border border-white/10 bg-[#101010] transition-all duration-300 hover:border-ember/45 hover:bg-charcoal/80 hover:shadow-[0_24px_60px_rgba(0,0,0,0.36)]"
     >
       <div className="relative aspect-[2/1] border-b border-white/10 bg-screening">
@@ -95,10 +97,10 @@ export default function EventMotifCard({ event, href, ctaLabel = "Start quote" }
           {event.name}
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-silver">{event.desc}</p>
-        <span className="mt-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-ember">
-          <span aria-hidden="true" className="block h-px w-6 bg-ember transition-[width] duration-300 group-hover:w-12" />
-          {ctaLabel}
-        </span>
+        <span
+          aria-hidden="true"
+          className="mt-4 block h-px w-6 bg-ember transition-[width] duration-300 group-hover:w-12"
+        />
       </div>
     </Link>
   );
