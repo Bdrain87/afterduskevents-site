@@ -1,15 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { Fragment } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { Fragment, useEffect, useState } from "react";
+import { motion } from "motion/react";
+import { DUR, EASE, useReducedMotionLive } from "@/lib/motion";
 
 /**
- * Home hero.
- * - The 30 ft studio render eases in without an interstitial splash.
- * - Headline renders letter-by-letter via motion stagger.
- *
- * All copy, layout, and alt text match the previous hero verbatim.
+ * Home hero. The 30 ft studio render fades in from a soft blur after
+ * hydration so SSR users never see a half-rendered "snap." Headline
+ * renders letter-by-letter via motion stagger.
  */
 type Props = {
   children: React.ReactNode;
@@ -17,7 +16,13 @@ type Props = {
 };
 
 export default function HeroIgnition({ children, mediaAlt }: Props) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionLive();
+  // Hydrate-then-animate: the SSR markup is fully visible. After hydration
+  // we re-trigger the blur-in so the entrance reads the same as the headline.
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   return (
     <section className="relative overflow-hidden px-6 pb-16 pt-20 sm:px-10 lg:px-16 lg:pb-24 lg:pt-28">
@@ -26,9 +31,11 @@ export default function HeroIgnition({ children, mediaAlt }: Props) {
         <div className="lg:col-span-6">
           <motion.div
             className="relative mx-auto aspect-[4/5] max-w-[560px] overflow-hidden rounded-lg lg:ml-auto"
-            initial={reduced ? false : { opacity: 0, y: 18, filter: "blur(14px) brightness(0.4)" }}
-            animate={reduced ? undefined : { opacity: 1, y: 0, filter: "blur(0px) brightness(1)" }}
-            transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+            // SSR users see the image fully visible. After hydration, motion-
+            // permitted clients get a brief brightness sweep.
+            initial={!reduced && hydrated ? { opacity: 0, y: 14, filter: "brightness(0.55)" } : false}
+            animate={{ opacity: 1, y: 0, filter: "brightness(1)" }}
+            transition={{ duration: DUR.hero, ease: EASE.snappy, delay: 0.1 }}
           >
             <Image
               src="/images/setup/30ft-screen-hero.png"
@@ -52,9 +59,9 @@ export default function HeroIgnition({ children, mediaAlt }: Props) {
  * Falls back to a single static span for reduced-motion visitors.
  */
 export function IgnitedWordmark({ text, className }: { text: string; className?: string }) {
-  const reduced = useReducedMotion();
-  const letterStartDelay = 0.26;
-  const letterStagger = 0.07;
+  const reduced = useReducedMotionLive();
+  const letterStartDelay = 0.12;
+  const letterStagger = 0.05;
 
   if (reduced) {
     return <span className={className}>{text}</span>;
@@ -84,7 +91,11 @@ export function IgnitedWordmark({ text, className }: { text: string; className?:
                   key={ci}
                   initial={{ opacity: 0.28, y: "0.12em" }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1], delay: letterStartDelay + i * letterStagger }}
+                  transition={{
+                    duration: DUR.slow,
+                    ease: EASE.snappy,
+                    delay: letterStartDelay + i * letterStagger,
+                  }}
                   style={{ display: "inline-block" }}
                 >
                   {ch}

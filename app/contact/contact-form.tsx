@@ -21,7 +21,15 @@ function FieldError({ errors, field }: { errors?: Record<string, string[]>; fiel
   );
 }
 
-const labelClass = "mb-2 block max-w-full break-words text-caption text-steel";
+const labelClass = "mb-2 block max-w-full break-words text-caption text-silver";
+
+const todayISO = () => {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+};
 const inputClass =
   "min-h-[56px] w-full min-w-0 max-w-full rounded-lg border border-white/10 bg-screening/60 px-4 py-3.5 text-base text-projector placeholder-steel/70 transition-colors hover:border-ember/40 focus:border-ember focus:outline-none focus:ring-2 focus:ring-ember/40";
 const selectClass = `${inputClass} appearance-none`;
@@ -65,6 +73,8 @@ export default function ContactForm() {
   }, [state.message]);
 
   // If server returns errors after submit, jump back to the relevant step
+  // and move keyboard focus to the first invalid field so screen-reader users
+  // and keyboard users get a clear cue (not a silent jump).
   useEffect(() => {
     if (!state.errors) return;
     const fields = Object.keys(state.errors);
@@ -75,6 +85,16 @@ export default function ContactForm() {
     } else {
       setStep(3);
     }
+    // Defer to next tick so the target step is in the DOM.
+    const t = window.setTimeout(() => {
+      const first = fields[0];
+      const el = first ? document.getElementById(first) : null;
+      if (el && "focus" in el) {
+        (el as HTMLElement).focus({ preventScroll: false });
+        el.scrollIntoView({ block: "center", behavior: "smooth" });
+      }
+    }, 60);
+    return () => window.clearTimeout(t);
   }, [state.errors]);
 
   const suggestion = useMemo(() => {
@@ -154,6 +174,8 @@ export default function ContactForm() {
             name="eventDate"
             type="date"
             required
+            aria-required="true"
+            min={todayISO()}
             defaultValue={prefilledEventDate}
             className={`${inputClass} [color-scheme:dark]`}
             aria-describedby={state.errors?.eventDate ? "eventDate-error" : undefined}
@@ -170,6 +192,7 @@ export default function ContactForm() {
             name="location"
             type="text"
             required
+            aria-required="true"
             placeholder="e.g. Canton, MI 48188"
             defaultValue={prefilledLocation}
             className={inputClass}
@@ -186,6 +209,7 @@ export default function ContactForm() {
             id="eventType"
             name="eventType"
             required
+            aria-required="true"
             value={eventType}
             onChange={(e) => setEventType(e.target.value)}
             className={selectClass}
@@ -213,6 +237,7 @@ export default function ContactForm() {
             id="guestCount"
             name="guestCount"
             required
+            aria-required="true"
             value={guestCount}
             onChange={(e) => setGuestCount(e.target.value)}
             className={selectClass}
@@ -292,6 +317,7 @@ export default function ContactForm() {
             name="name"
             type="text"
             required
+            aria-required="true"
             autoComplete="name"
             className={inputClass}
             aria-describedby={state.errors?.name ? "name-error" : undefined}
@@ -308,6 +334,8 @@ export default function ContactForm() {
             name="email"
             type="email"
             required
+            aria-required="true"
+            inputMode="email"
             autoComplete="email"
             className={inputClass}
             aria-describedby={state.errors?.email ? "email-error" : undefined}
@@ -323,6 +351,7 @@ export default function ContactForm() {
             id="phone"
             name="phone"
             type="tel"
+            inputMode="tel"
             autoComplete="tel"
             className={inputClass}
             placeholder="(734) 555-0100"
@@ -352,9 +381,16 @@ export default function ContactForm() {
           <input id="referral" name="referral" type="text" className={inputClass} />
         </div>
 
-        {/* Honeypot */}
-        <div className="hidden" aria-hidden="true">
-          <input name="_trap" type="text" tabIndex={-1} autoComplete="off" />
+        {/* Honeypot. Off-screen rather than display:none so simple bots
+            that skip hidden fields still fill it. */}
+        <div
+          aria-hidden="true"
+          style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}
+        >
+          <label>
+            Leave this field empty
+            <input name="_trap" type="text" tabIndex={-1} autoComplete="off" />
+          </label>
         </div>
 
         <div>

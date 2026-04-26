@@ -2,9 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
-  experimental: {
-    viewTransition: true,
-  },
   // Silence the workspace-root warning by pinning Turbopack to the cwd at startup.
   // (Stays a string literal to avoid runtime APIs in next.config.)
   turbopack: {

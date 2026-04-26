@@ -49,8 +49,10 @@ export default function CursorBeam() {
     };
 
     const tick = () => {
-      cx += (tx - cx) * 0.2;
-      cy += (ty - cy) * 0.2;
+      // Tighter follow: ~32% lerp per frame keeps the cone close to the
+      // cursor without snapping. 0.2 caused visible lag on fast moves.
+      cx += (tx - cx) * 0.32;
+      cy += (ty - cy) * 0.32;
       const dx = cx - PROJECTOR_X;
       const dy = cy - PROJECTOR_Y;
       const angle = (Math.atan2(dy, dx) * 180) / Math.PI + 90;
@@ -105,18 +107,18 @@ export default function CursorBeam() {
           opacity: "calc(var(--atmo-beam-opacity, 1) * 0.6)",
         }}
       >
-        {Array.from({ length: 5 }).map((_, i) => (
+        {Array.from({ length: 3 }).map((_, i) => (
           <span
             key={i}
             className="absolute rounded-full beam-dust"
             style={{
               width: 2,
               height: 2,
-              background: "rgba(245, 241, 236, 0.65)",
-              left: `${10 + i * 22}%`,
-              top: `${15 + ((i * 37) % 70)}%`,
-              animationDelay: `${i * 1.4}s`,
-              animationDuration: `${9 + i * 1.3}s`,
+              background: "rgba(245, 241, 236, 0.7)",
+              left: `${15 + i * 30}%`,
+              top: `${18 + ((i * 41) % 60)}%`,
+              animationDelay: `${i * 2}s`,
+              animationDuration: "6s",
             }}
           />
         ))}

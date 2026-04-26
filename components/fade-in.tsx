@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { ReactNode } from "react";
+import { DUR, EASE, STAGGER, useReducedMotionLive } from "@/lib/motion";
 
 interface FadeInProps {
   children: ReactNode;
@@ -19,10 +20,10 @@ export default function FadeIn({
   delay = 0,
   direction = "up",
   distance = 24,
-  duration = 0.6,
+  duration = DUR.slow,
   once = true,
 }: FadeInProps) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionLive();
 
   if (reduced) {
     return <div className={className}>{children}</div>;
@@ -42,7 +43,7 @@ export default function FadeIn({
       initial={{ opacity: 0, ...dirMap[direction] }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once, margin: "-60px" }}
-      transition={{ duration, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ duration, delay, ease: EASE.subtle }}
     >
       {children}
     </motion.div>
@@ -52,7 +53,7 @@ export default function FadeIn({
 export function FadeInGroup({
   children,
   className,
-  stagger = 0.1,
+  stagger = STAGGER,
   delay = 0,
 }: {
   children: ReactNode;
@@ -60,7 +61,7 @@ export function FadeInGroup({
   stagger?: number;
   delay?: number;
 }) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionLive();
 
   if (reduced) {
     return <div className={className}>{children}</div>;
@@ -95,7 +96,7 @@ export function FadeInItem({
   direction?: "up" | "down" | "none";
   distance?: number;
 }) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionLive();
 
   if (reduced) {
     return <div className={className}>{children}</div>;
@@ -111,7 +112,7 @@ export function FadeInItem({
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+          transition: { duration: DUR.slow, ease: EASE.subtle },
         },
       }}
     >

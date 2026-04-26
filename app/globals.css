@@ -183,7 +183,7 @@ html[data-tod="night"] {
   }
   /* Slow Ken-Burns zoom for hero images */
   .ken-burns {
-    animation: ken-burns 18s ease-out forwards;
+    animation: ken-burns 12s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     will-change: transform;
   }
   /* CSS noise texture via pseudo. No JS needed. */
@@ -291,6 +291,42 @@ html[data-tod="night"] {
 @keyframes accordion-up {
   from { height: var(--accordion-panel-height); opacity: 1; }
   to   { height: 0; opacity: 0; }
+}
+[data-state="open"][data-accordion-panel],
+[data-accordion-panel][data-open] {
+  animation: accordion-down 280ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+[data-state="closed"][data-accordion-panel] {
+  animation: accordion-up 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Skip-to-content link: only visible on keyboard focus. */
+.skip-to-content {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 9999;
+  transform: translateY(-200%);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--color-oxblood, #6B1F1F);
+  color: var(--color-projector, #FAFAFA);
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.skip-to-content:focus,
+.skip-to-content:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--color-ember, #DD5454);
+  outline-offset: 2px;
+}
+
+/* Film grain layer: opacity transitions when time-of-day shifts. */
+.film-grain-layer {
+  transition: opacity 600ms cubic-bezier(0.32, 0.72, 0.44, 1);
 }
 
 /* Scroll-driven kinetic headline. Per-word spans rise from below as the
@@ -634,7 +670,7 @@ html[data-tod="night"] {
   50%      { opacity: 1;    }
 }
 .motion-safe\:animate-marquee-breathe {
-  animation: marquee-breathe 12s ease-in-out infinite;
+  animation: marquee-breathe 8s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -643,32 +679,11 @@ html[data-tod="night"] {
   }
 }
 
-/* View Transitions API. Projector bulb igniting between routes. */
-::view-transition-old(root) {
-  animation: 220ms cubic-bezier(0.65, 0, 0.35, 1) both projector-dim;
-}
-::view-transition-new(root) {
-  animation: 520ms cubic-bezier(0.16, 1, 0.3, 1) 60ms both projector-ignite;
-}
-@keyframes projector-dim {
-  from { opacity: 1; filter: brightness(1); }
-  to   { opacity: 0; filter: brightness(0.4); }
-}
-@keyframes projector-ignite {
-  0%   { opacity: 0; filter: brightness(0.1) blur(12px); transform: scale(1.02); }
-  40%  { opacity: 1; filter: brightness(1.35) blur(2px); }
-  100% { opacity: 1; filter: brightness(1) blur(0); transform: scale(1); }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation: none !important;
   }
   /* Scroll + view timelines ignore animation-duration. Explicitly cancel
      scroll-driven animations so content renders in final state. */

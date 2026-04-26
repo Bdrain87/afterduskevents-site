@@ -76,8 +76,10 @@ export default function Nav() {
                 >
                   {link.label}
                   <span
-                    className={`absolute bottom-0 left-4 right-4 h-[2px] bg-ember rounded-full transition-transform duration-200 origin-left ${
-                      pathname.startsWith(link.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    className={`absolute bottom-0 left-4 right-4 h-[2px] bg-ember rounded-full transition-[transform,opacity] duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] origin-left ${
+                      pathname.startsWith(link.href)
+                        ? "scale-x-100 opacity-100"
+                        : "scale-x-50 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
                     }`}
                     aria-hidden="true"
                   />
@@ -94,11 +96,11 @@ export default function Nav() {
             <button
               className="lg:hidden text-projector p-2 rounded-lg min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-oxblood"
               onClick={() => setOpen((prev) => !prev)}
-              aria-label="Open menu"
+              aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls="mobile-menu"
             >
-              <Menu size={22} />
+              {open ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>

@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useSpring } from "motion/react";
 import type { ReactNode } from "react";
+import { DUR, EASE } from "@/lib/motion";
 
 interface MagneticButtonProps {
   children: ReactNode;
@@ -48,10 +49,8 @@ export default function MagneticButton({
       className={className}
     >
       <motion.span
-        style={{
-          scale: isHovered ? 1.03 : 1,
-          transition: "scale 0.2s ease",
-        }}
+        animate={{ scale: isHovered ? 1.03 : 1 }}
+        transition={{ duration: DUR.fast, ease: EASE.snappy }}
         className="flex"
       >
         {children}

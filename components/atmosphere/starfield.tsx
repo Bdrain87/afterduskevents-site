@@ -69,7 +69,8 @@ export default function Starfield({
     if (!ctx) return;
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reducedMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let reduced = reducedMQ.matches;
 
     let width = 0;
     let height = 0;
@@ -295,16 +296,48 @@ export default function Starfield({
       raf = requestAnimationFrame(step);
     }
 
+    function startLoop() {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(step);
+    }
+    function stopLoop() {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+    }
+
     if (reduced) {
       ctx.clearRect(0, 0, width, height);
       drawStars(0);
     } else {
-      raf = requestAnimationFrame(step);
+      startLoop();
     }
 
+    const onVis = () => {
+      if (document.visibilityState === "hidden") {
+        stopLoop();
+      } else if (!reduced) {
+        startLoop();
+      }
+    };
+    document.addEventListener("visibilitychange", onVis);
+
+    const onReducedChange = () => {
+      reduced = reducedMQ.matches;
+      if (reduced) {
+        stopLoop();
+        ctx!.clearRect(0, 0, width, height);
+        drawStars(0);
+      } else {
+        startLoop();
+      }
+    };
+    reducedMQ.addEventListener("change", onReducedChange);
+
     return () => {
-      cancelAnimationFrame(raf);
+      stopLoop();
       resizeObserver.disconnect();
+      document.removeEventListener("visibilitychange", onVis);
+      reducedMQ.removeEventListener("change", onReducedChange);
     };
   }, [quantity, maxSize, color, vy, shootingStars, meteorMeanIntervalMs]);
 

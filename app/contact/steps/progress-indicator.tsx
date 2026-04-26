@@ -35,7 +35,7 @@ export default function ProgressIndicator({ current, labels = DEFAULT_LABELS }: 
                 {Array.from({ length: 4 }).map((_, j) => (
                   <span
                     key={`t-${j}`}
-                    className={`block h-1 w-1.5 rounded-sm ${
+                    className={`block h-1 w-1.5 rounded-sm transition-colors duration-200 ${
                       isActive || isComplete ? "bg-ember/70" : "bg-white/10"
                     }`}
                   />
@@ -64,7 +64,7 @@ export default function ProgressIndicator({ current, labels = DEFAULT_LABELS }: 
                 {Array.from({ length: 4 }).map((_, j) => (
                   <span
                     key={`b-${j}`}
-                    className={`block h-1 w-1.5 rounded-sm ${
+                    className={`block h-1 w-1.5 rounded-sm transition-colors duration-200 ${
                       isActive || isComplete ? "bg-ember/70" : "bg-white/10"
                     }`}
                   />

@@ -36,7 +36,7 @@ export default function TierCard({ tier, href, compact = false }: Props) {
       // without repeating "See setup" under every card.
       aria-label={`See the ${tier.name} setup`}
       className={cn(
-        "group relative block h-full rounded-lg border border-white/10 bg-screening/70 p-5 transition-all duration-300 hover:border-ember/45",
+        "group relative block h-full rounded-lg border border-white/10 bg-screening/70 p-5 transition-[border-color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-ember/45 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember/70",
         tier.popular && "border-ember/40",
       )}
       style={haloStyle}

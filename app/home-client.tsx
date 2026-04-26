@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { DUR, EASE, STAGGER, useReducedMotionLive } from "@/lib/motion";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import TrustStrip from "@/components/trust-strip";
@@ -66,7 +67,7 @@ const bookingSteps = [
 ];
 
 export default function HomeClient({ geo }: Props = {}) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionLive();
   const locationLine =
     geo?.inRadius && geo.city.slug !== "canton"
       ? `Serving ${geo.city.name} from Canton, MI.`
@@ -91,21 +92,21 @@ export default function HomeClient({ geo }: Props = {}) {
           </h1>
           <motion.p
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 2.15 }}
+            transition={{ duration: DUR.slow, ease: EASE.snappy, delay: reduced ? 0 : 1.05 }}
             className="mt-5 max-w-[52ch] text-body-lg leading-relaxed text-silver"
           >
             4K outdoor cinema projection, a 30 ft screen, scalable sound, and a setup crew that handles the night from arrival to teardown.
           </motion.p>
           <motion.p
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 2.3 }}
-            className="mt-4 text-sm leading-relaxed text-steel"
+            transition={{ duration: DUR.slow, ease: EASE.snappy, delay: reduced ? 0 : 1.2 }}
+            className="mt-4 text-sm leading-relaxed text-silver"
           >
             {locationLine}
           </motion.p>
           <motion.div
             {...fadeUp}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: reduced ? 0 : 2.45 }}
+            transition={{ duration: DUR.slow, ease: EASE.snappy, delay: reduced ? 0 : 1.35 }}
           >
             <ActionBar className="mt-8">
               <MagneticButton>
@@ -138,7 +139,7 @@ export default function HomeClient({ geo }: Props = {}) {
               viewport={{ once: true, margin: "-80px" }}
               variants={{
                 hidden: {},
-                visible: { transition: { staggerChildren: 0.09 } },
+                visible: { transition: { staggerChildren: STAGGER } },
               }}
             >
               {bringItems.map((item, i) => (
@@ -152,7 +153,7 @@ export default function HomeClient({ geo }: Props = {}) {
                           visible: {
                             opacity: 1,
                             y: 0,
-                            transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+                            transition: { duration: DUR.slow, ease: EASE.snappy },
                           },
                         }
                   }
@@ -214,7 +215,7 @@ export default function HomeClient({ geo }: Props = {}) {
               viewport={{ once: true, margin: "-80px" }}
               variants={{
                 hidden: {},
-                visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+                visible: { transition: { staggerChildren: STAGGER } },
               }}
             >
               {[
@@ -232,7 +233,7 @@ export default function HomeClient({ geo }: Props = {}) {
                           visible: {
                             opacity: 1,
                             y: 0,
-                            transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                            transition: { duration: DUR.base, ease: EASE.snappy },
                           },
                         }
                   }
@@ -272,7 +273,7 @@ export default function HomeClient({ geo }: Props = {}) {
               viewport={{ once: true, margin: "-80px" }}
               variants={{
                 hidden: {},
-                visible: { transition: { staggerChildren: 0.07 } },
+                visible: { transition: { staggerChildren: STAGGER } },
               }}
             >
               {useCases.map((event) => (
@@ -286,7 +287,7 @@ export default function HomeClient({ geo }: Props = {}) {
                           visible: {
                             opacity: 1,
                             y: 0,
-                            transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                            transition: { duration: DUR.base, ease: EASE.snappy },
                           },
                         }
                   }
