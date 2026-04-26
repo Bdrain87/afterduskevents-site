@@ -4,6 +4,10 @@ import { z } from "zod";
 import { audioTiers, useCases, suggestTier } from "@/lib/packages";
 import { cities, getCity } from "@/lib/cities";
 import { findNearestCity } from "@/lib/nearest-city";
+import { aiLimit, getClientIp } from "@/lib/rate-limit";
+
+const MAX_MESSAGES = 20;
+const MAX_MESSAGE_BYTES = 4 * 1024;
 
 /**
  * Streaming concierge chat. Claude Opus 4.7 with deterministic tool calls
@@ -45,6 +49,14 @@ TONE: Direct, warm, no corporate speak, no marketing fluff. Short sentences. Ope
 WORKFLOW: When a visitor describes their event, call the tools to classify the use case + recommend the right audio tier + relevant add-ons. Do NOT compute pricing. Offer to start their inquiry.`;
 
 export async function POST(req: Request) {
+  // Server-side mirror of the client gate so a stale/forked client can't keep
+  // hitting the API after the flag flips off.
+  if (process.env.NEXT_PUBLIC_CONCIERGE_ENABLED !== "true") {
+    return new Response(JSON.stringify({ error: "Concierge disabled." }), {
+      status: 403,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
   if (!process.env.ANTHROPIC_API_KEY) {
     return new Response(
       JSON.stringify({ error: "Concierge is not configured. Set ANTHROPIC_API_KEY." }),
@@ -52,7 +64,50 @@ export async function POST(req: Request) {
     );
   }
 
-  const { messages }: { messages: UIMessage[] } = await req.json();
+  const ip = getClientIp(req);
+  const limit = aiLimit(ip);
+  if (!limit.ok) {
+    return new Response(JSON.stringify({ error: "Too many requests." }), {
+      status: 429,
+      headers: {
+        "Content-Type": "application/json",
+        "Retry-After": String(limit.retryAfter ?? 60),
+      },
+    });
+  }
+
+  let body: { messages?: UIMessage[] };
+  try {
+    body = await req.json();
+  } catch {
+    return new Response(JSON.stringify({ error: "Invalid JSON." }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+  const messages = body.messages;
+  if (!Array.isArray(messages) || messages.length === 0) {
+    return new Response(JSON.stringify({ error: "messages[] required." }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+  if (messages.length > MAX_MESSAGES) {
+    return new Response(JSON.stringify({ error: "Conversation too long." }), {
+      status: 413,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+  for (const m of messages) {
+    const size = JSON.stringify(m).length;
+    if (size > MAX_MESSAGE_BYTES) {
+      return new Response(JSON.stringify({ error: "Message too large." }), {
+        status: 413,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+  }
+
   const modelMessages = await convertToModelMessages(messages);
 
   const result = streamText({

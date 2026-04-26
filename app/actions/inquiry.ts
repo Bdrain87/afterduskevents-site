@@ -1,21 +1,29 @@
 "use server";
 
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { Resend } from "resend";
 import { z } from "zod";
+import { getClientIp, inquiryLimit } from "@/lib/rate-limit";
+
+const noNewlines = (s: string) => s.replace(/[\r\n]+/g, " ").trim();
 
 const schema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Valid email required"),
-  phone: z.string().optional(),
-  eventDate: z.string().min(1, "Event date is required"),
-  location: z.string().min(1, "Event location is required"),
-  guestCount: z.string().min(1, "Guest count is required"),
-  eventType: z.string().min(1, "Event type is required"),
-  packageInterest: z.string().optional(),
-  addOns: z.string().optional(),
+  name: z.string().trim().min(1, "Name is required").max(120, "Name too long").transform(noNewlines),
+  email: z.string().email("Valid email required").max(254),
+  phone: z.string().max(40).optional(),
+  eventDate: z
+    .string()
+    .min(1, "Event date is required")
+    .max(40)
+    .transform(noNewlines),
+  location: z.string().min(1, "Event location is required").max(200),
+  guestCount: z.string().min(1, "Guest count is required").max(40),
+  eventType: z.string().min(1, "Event type is required").max(80),
+  packageInterest: z.string().max(80).optional(),
+  addOns: z.string().max(800).optional(),
   details: z.string().max(500).optional(),
-  referral: z.string().optional(),
+  referral: z.string().max(120).optional(),
   consent: z.string().min(1, "Consent is required"),
   privateConfirm: z.literal("yes", { message: "You must confirm this is a private, non-ticketed event" }),
 });
@@ -31,6 +39,16 @@ export async function submitInquiry(
 ): Promise<InquiryState> {
   // Honeypot check
   if (formData.get("_trap")) return { message: "Submission rejected." };
+
+  // Rate-limit by IP. In-memory bucket; replaced by Upstash in a follow-up.
+  const h = await headers();
+  const ip = getClientIp({ headers: h });
+  const rl = inquiryLimit(ip);
+  if (!rl.ok) {
+    return {
+      message: `Too many inquiries from your network. Try again in about ${rl.retryAfter ?? 60} seconds.`,
+    };
+  }
 
   const raw = {
     name: formData.get("name") as string,
@@ -94,6 +112,12 @@ Submitted: ${new Date().toISOString()}
         message: "There was a problem sending your inquiry. Please try again or email us directly at hello@afterduskevents.com.",
       };
     }
+  } else if (process.env.NODE_ENV === "production") {
+    // In prod, missing key is a real failure — silent redirect would lose
+    // the lead without the team ever seeing it.
+    return {
+      message: "Email service is temporarily unavailable. Please email us directly at hello@afterduskevents.com.",
+    };
   } else {
     console.log("RESEND_API_KEY not set. Inquiry:\n", emailBody);
   }

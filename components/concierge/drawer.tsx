@@ -73,7 +73,7 @@ export default function ConciergeDrawer() {
             <Drawer.Close asChild>
               <button
                 aria-label="Close"
-                className="text-steel hover:text-projector transition-colors p-1"
+                className="text-silver hover:text-projector transition-colors p-1 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember"
               >
                 <X size={18} />
               </button>

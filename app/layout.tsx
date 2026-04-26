@@ -100,6 +100,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       className={`${inter.variable} ${montserrat.variable} ${bebasNeue.variable} h-full antialiased`}
     >
       <body className="min-h-full overflow-x-hidden flex flex-col bg-screening text-projector">
+        <a href="#main" className="skip-to-content">Skip to main content</a>
         <SchemaMarkup
           id="site-schema"
           data={[
@@ -114,7 +115,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <CursorBeam />
         <BuildRefreshWatcher buildId={BUILD_ID} />
         <NuqsAdapter>
-          {children}
+          <div id="main">{children}</div>
         </NuqsAdapter>
         <StickyCTA />
         <ConciergeMount />
