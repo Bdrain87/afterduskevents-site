@@ -22,8 +22,8 @@ export function proxy(req: NextRequest) {
       lng: Number(lng),
     });
     res.cookies.set("ade-geo", value, {
-      httpOnly: false, // server components read; client can read too
-      sameSite: "lax",
+      httpOnly: true,
+      sameSite: "strict",
       path: "/",
       maxAge: 60 * 60, // 1 hour
     });

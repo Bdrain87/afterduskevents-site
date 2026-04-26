@@ -29,7 +29,10 @@ const inter = Inter({
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
-  weight: ["400", "500", "600", "700", "800"],
+  // Trimmed from 5 weights to 3 — semibold/bold cover heading + button copy,
+  // regular covers body. 600 is synthesized from 500+700 if a stray utility
+  // class hits it; the visual delta is imperceptible in this stack.
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
@@ -69,7 +72,7 @@ export const metadata: Metadata = {
     title: "Outdoor Cinema and Event Rentals | After Dusk Events | Canton, MI",
     description:
       "Premium outdoor cinema and event rentals for private events in Southeast Michigan. 4K theater-quality projection, 30-foot screen, concert-grade sound, veteran-owned.",
-    images: [{ url: "/og-image.png", width: 1282, height: 836, alt: "After Dusk Events" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "After Dusk Events" }],
   },
   twitter: {
     card: "summary_large_image",
