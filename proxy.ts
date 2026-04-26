@@ -2,9 +2,13 @@ import { NextResponse, type NextRequest } from "next/server";
 
 /**
  * Next.js 16 proxy (successor to middleware.ts). Reads Vercel geo headers
- * and writes a small cookie so server components can personalize the hero
- * without another network call. Cookie value is the resolved nearest-city
- * slug plus miles; server components compute the UI from there.
+ * and writes a small ade-geo cookie so server components can personalize
+ * the hero without another network call.
+ *
+ * CSP is set as a static header in next.config.ts so layout/pages can stay
+ * statically prerendered. Promoting CSP from Report-Only to enforcing with
+ * per-request nonces would force dynamic rendering on every route — a real
+ * cost for marginal hardening when 'unsafe-inline' is already report-flagged.
  */
 export function proxy(req: NextRequest) {
   const res = NextResponse.next();

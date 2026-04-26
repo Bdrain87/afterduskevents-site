@@ -23,9 +23,10 @@ const nextConfig: NextConfig = {
   // optimizer output, public/ files with extensions) keep a long cache because
   // their URLs change on every deploy.
   async headers() {
-    // CSP runs in Report-Only mode for now so we can observe inline-script /
-    // analytics violations without breaking Clarity, Vercel Live, or the
-    // JSON-LD <script> tag. Promote to enforcing once telemetry is clean.
+    // CSP runs in Report-Only mode. Promoting to enforcing with nonces would
+    // force every route to render dynamically (the layout would have to read
+    // request headers for the nonce). The trade-off favors static rendering
+    // here; tighten when traffic justifies the dynamic cost.
     const cspReportOnly = [
       "default-src 'self'",
       "base-uri 'self'",
@@ -35,8 +36,9 @@ const nextConfig: NextConfig = {
       "img-src 'self' data: blob: https:",
       "font-src 'self' https://fonts.gstatic.com data:",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.clarity.ms https://*.clarity.ms https://va.vercel-scripts.com https://vercel.live",
-      "connect-src 'self' https://www.clarity.ms https://*.clarity.ms https://api.resend.com https://api.anthropic.com https://*.vercel.app https://vitals.vercel-insights.com https://va.vercel-scripts.com",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.clarity.ms https://*.clarity.ms https://va.vercel-scripts.com https://vercel.live https://challenges.cloudflare.com",
+      "connect-src 'self' https://www.clarity.ms https://*.clarity.ms https://api.resend.com https://api.anthropic.com https://*.vercel.app https://vitals.vercel-insights.com https://va.vercel-scripts.com https://challenges.cloudflare.com",
+      "frame-src https://challenges.cloudflare.com",
       "media-src 'self' data: blob:",
       "worker-src 'self' blob:",
       "manifest-src 'self'",

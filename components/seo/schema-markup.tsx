@@ -3,9 +3,10 @@ import type { SchemaObject } from "@/lib/schema";
 type Props = {
   data: SchemaObject | SchemaObject[];
   id?: string;
+  nonce?: string;
 };
 
-export default function SchemaMarkup({ data, id }: Props) {
+export default function SchemaMarkup({ data, id, nonce }: Props) {
   const payload = Array.isArray(data) ? data : [data];
   // Escape `<` so a stray `</script>` in any future user-derived input can't
   // close the tag early. Inputs today are all build-time literals; this is
@@ -18,6 +19,7 @@ export default function SchemaMarkup({ data, id }: Props) {
     <script
       type="application/ld+json"
       id={id}
+      nonce={nonce}
       dangerouslySetInnerHTML={{ __html: json }}
     />
   );

@@ -8,6 +8,7 @@ import { submitInquiry, type InquiryState } from "@/app/actions/inquiry";
 import ProgressIndicator from "./steps/progress-indicator";
 import { audioTiers, suggestTier, useCases } from "@/lib/packages";
 import MagneticButton from "@/components/magnetic-button";
+import Turnstile from "@/components/turnstile";
 
 const initialState: InquiryState = {};
 
@@ -405,7 +406,7 @@ export default function ContactForm() {
               className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/15 bg-screening accent-oxblood focus:ring-oxblood"
               aria-describedby={state.errors?.consent ? "consent-error" : undefined}
             />
-            <label htmlFor="consent" className="min-w-0 cursor-pointer break-words text-sm leading-relaxed text-steel">
+            <label htmlFor="consent" className="min-w-0 cursor-pointer break-words text-sm leading-relaxed text-silver">
               I agree to receive a reply by email, phone, or text.{" "}
               <span className="text-ember" aria-hidden="true">*</span>
             </label>
@@ -424,7 +425,7 @@ export default function ContactForm() {
               className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/15 bg-screening accent-oxblood focus:ring-oxblood"
               aria-describedby={state.errors?.privateConfirm ? "privateConfirm-error" : undefined}
             />
-            <label htmlFor="privateConfirm" className="min-w-0 cursor-pointer break-words text-sm leading-relaxed text-steel">
+            <label htmlFor="privateConfirm" className="min-w-0 cursor-pointer break-words text-sm leading-relaxed text-silver">
               I confirm this event is private, non-ticketed, and will not charge admission.{" "}
               <span className="text-ember" aria-hidden="true">*</span>
             </label>
@@ -432,6 +433,8 @@ export default function ContactForm() {
           <FieldError errors={state.errors} field="privateConfirm" />
         </div>
       </fieldset>
+
+      {step === 3 && <Turnstile />}
 
       {stepError && (
         <p className="text-xs text-ember" role="alert">
