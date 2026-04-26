@@ -65,7 +65,7 @@ export async function POST(req: Request) {
   }
 
   const ip = getClientIp(req);
-  const limit = aiLimit(ip);
+  const limit = await aiLimit(ip);
   if (!limit.ok) {
     return new Response(JSON.stringify({ error: "Too many requests." }), {
       status: 429,
@@ -187,8 +187,22 @@ export async function POST(req: Request) {
         }),
         execute: async ({ city, lat, lng }) => {
           if (city) {
-            const slug = city.toLowerCase().replace(/\s+/g, "-");
-            const known = getCity(slug) ?? cities.find((c) => c.name.toLowerCase() === city.toLowerCase());
+            // Robust normalization: strip punctuation, collapse whitespace,
+            // lowercase. "St. Clair Shores" / "St Clair Shores" / "Saint Clair
+            // Shores" all match the same slug.
+            const normalize = (s: string) =>
+              s
+                .toLowerCase()
+                .replace(/\bsaint\b/g, "st")
+                .replace(/[.,'"]/g, "")
+                .replace(/\s+/g, "-")
+                .replace(/-+/g, "-")
+                .replace(/^-|-$/g, "");
+            const slug = normalize(city);
+            const cityNorm = normalize(city).replace(/-/g, " ");
+            const known =
+              getCity(slug) ??
+              cities.find((c) => normalize(c.name).replace(/-/g, " ") === cityNorm);
             if (known) {
               return {
                 ok: true,

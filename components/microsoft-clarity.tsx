@@ -11,7 +11,7 @@ export default function MicrosoftClarity() {
   const id = process.env.NEXT_PUBLIC_CLARITY_ID;
   if (!id) return null;
   return (
-    <Script id="ms-clarity" strategy="afterInteractive">
+    <Script id="ms-clarity" strategy="lazyOnload">
       {`
         (function(c,l,a,r,i,t,y){
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

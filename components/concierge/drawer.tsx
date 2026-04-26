@@ -85,7 +85,7 @@ export default function ConciergeDrawer() {
               <div className="space-y-4">
                 <p className="text-steel text-sm leading-relaxed">
                   Tell us about your event. Our concierge will recommend the right audio tier and
-                  flag add-ons that fit. For final pricing, we always send a custom quote. within
+                  flag add-ons that fit. For final pricing, we always send a custom quote within
                   24 hours.
                 </p>
                 <ul className="space-y-2">

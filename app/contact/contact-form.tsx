@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useMemo } from "react";
+import { useActionState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { useQueryState, parseAsInteger, parseAsString } from "nuqs";
@@ -97,7 +97,8 @@ export default function ContactForm() {
     return () => window.clearTimeout(t);
   }, [state.errors]);
 
-  const suggestion = useMemo(() => {
+  // reactCompiler handles memoization automatically.
+  const suggestion = (() => {
     if (!eventType) return null;
     // eventType value is the UseCase.name (e.g. "Movie Night"); look up the matching slug.
     const uc = useCases.find((u) => u.name === eventType);
@@ -111,7 +112,7 @@ export default function ContactForm() {
           coverageNote: tier.coverageNote,
         }
       : null;
-  }, [eventType, guestCount]);
+  })();
 
   function validateStep(s: Step): string | null {
     if (s === 1) {

@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { Resend } from "resend";
 import { z } from "zod";
-import { getClientIp, inquiryLimit } from "@/lib/rate-limit";
+import { getClientIp, inquiryLimit, verifyTurnstile } from "@/lib/rate-limit";
 
 const noNewlines = (s: string) => s.replace(/[\r\n]+/g, " ").trim();
 
@@ -40,14 +40,21 @@ export async function submitInquiry(
   // Honeypot check
   if (formData.get("_trap")) return { message: "Submission rejected." };
 
-  // Rate-limit by IP. In-memory bucket; replaced by Upstash in a follow-up.
+  // Rate-limit by IP (Upstash when env vars set; in-memory fallback otherwise).
   const h = await headers();
   const ip = getClientIp({ headers: h });
-  const rl = inquiryLimit(ip);
+  const rl = await inquiryLimit(ip);
   if (!rl.ok) {
     return {
       message: `Too many inquiries from your network. Try again in about ${rl.retryAfter ?? 60} seconds.`,
     };
+  }
+
+  // Cloudflare Turnstile verification. No-op until CLOUDFLARE_TURNSTILE_SECRET
+  // is set; once set, the contact form must submit a "cf-turnstile-response".
+  const captcha = await verifyTurnstile(formData.get("cf-turnstile-response") as string | null, ip);
+  if (!captcha.ok) {
+    return { message: "Captcha verification failed. Please retry the challenge." };
   }
 
   const raw = {
