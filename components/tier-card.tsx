@@ -30,6 +30,11 @@ export default function TierCard({ tier, href, compact = false }: Props) {
   const card = (
     <Link
       href={href}
+      // Whole card is the link target; the hover state (border ember,
+      // tilt scale, halo spread) carries the affordance, and the
+      // animated ember bar at the bottom provides the visual flourish
+      // without repeating "See setup" under every card.
+      aria-label={`See the ${tier.name} setup`}
       className={cn(
         "group relative block h-full rounded-lg border border-white/10 bg-screening/70 p-5 transition-all duration-300 hover:border-ember/45",
         tier.popular && "border-ember/40",
@@ -62,10 +67,10 @@ export default function TierCard({ tier, href, compact = false }: Props) {
       {!compact && (
         <p className="mt-3 text-xs leading-relaxed text-steel">{tier.coverageNote}</p>
       )}
-      <span className="mt-5 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-ember">
-        <span aria-hidden="true" className="block h-px w-6 bg-ember transition-[width] duration-300 group-hover:w-10" />
-        See setup
-      </span>
+      <span
+        aria-hidden="true"
+        className="mt-5 block h-px w-6 bg-ember transition-[width] duration-300 group-hover:w-10"
+      />
     </Link>
   );
 
