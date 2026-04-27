@@ -447,10 +447,33 @@ html[data-tod="night"] {
   position: relative;
   display: inline-block;
   letter-spacing: 0;
-  filter:
-    drop-shadow(0 0 14px rgba(245, 241, 236, 0.22))
-    drop-shadow(0 0 36px rgba(221, 84, 84, 0.4))
-    drop-shadow(0 0 80px rgba(221, 84, 84, 0.22));
+  /* Tight cream inner glow only — defines the letterforms without
+     bleeding a soft halo into the surrounding space. The visible glow
+     comes from the ::before aperture sitting behind the wordmark. */
+  filter: drop-shadow(0 0 8px rgba(245, 241, 236, 0.45));
+}
+/* Aperture: a defined ember light source positioned behind the wordmark
+   via z-index: -1. Reads as a film-projector aperture/iris. Sized to
+   extend ~10% horizontally and 30% vertically beyond the wordmark
+   bounding box so the glow bleeds out around the letters. */
+.brand-hero-wordmark::before {
+  content: "";
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  top: -30%;
+  bottom: -30%;
+  background: radial-gradient(
+    ellipse 55% 60% at 50% 50%,
+    rgba(221, 84, 84, 0.5) 0%,
+    rgba(221, 84, 84, 0.18) 35%,
+    rgba(221, 84, 84, 0) 65%
+  );
+  z-index: -1;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  /* Static visible state for reduced-motion and pre-animation paint. */
+  opacity: 0.7;
 }
 @supports ((background-clip: text) or (-webkit-background-clip: text)) {
   .brand-hero-wordmark {
@@ -487,10 +510,12 @@ html[data-tod="night"] {
 }
 @media (prefers-reduced-motion: no-preference) {
   .brand-hero-wordmark {
+    animation: brand-wordmark-sheen 0.8s cubic-bezier(0.16, 1, 0.3, 1) 80ms 1 both;
+  }
+  .brand-hero-wordmark::before {
     animation:
-      brand-wordmark-sheen 0.8s cubic-bezier(0.16, 1, 0.3, 1) 80ms 1 both,
-      brand-hero-signal 0.9s ease-out 80ms 1 both,
-      brand-hero-idle 11s ease-in-out 1.05s infinite;
+      aperture-ignite 1s cubic-bezier(0.16, 1, 0.3, 1) 80ms 1 both,
+      aperture-breathe 7s ease-in-out 1.08s infinite;
   }
   .brand-hero-wordmark::after {
     animation:
@@ -498,36 +523,26 @@ html[data-tod="night"] {
       brand-hero-rule-idle 11s ease-in-out 1.05s infinite;
   }
 }
-@keyframes brand-hero-signal {
-  0%, 100% { filter: drop-shadow(0 0 18px rgba(245, 241, 236, 0.22)) drop-shadow(0 0 56px rgba(221, 84, 84, 0.36)) drop-shadow(0 0 90px rgba(221, 84, 84, 0.2)); }
-  42%      { filter: drop-shadow(0 0 28px rgba(245, 241, 236, 0.32)) drop-shadow(0 0 80px rgba(221, 84, 84, 0.5)) drop-shadow(0 0 110px rgba(221, 84, 84, 0.28)); }
-  46%      { filter: drop-shadow(0 0 14px rgba(245, 241, 236, 0.18)) drop-shadow(0 0 42px rgba(221, 84, 84, 0.28)) drop-shadow(0 0 80px rgba(221, 84, 84, 0.16)); }
-  49%      { filter: drop-shadow(0 0 36px rgba(245, 241, 236, 0.42)) drop-shadow(0 0 110px rgba(221, 84, 84, 0.6)) drop-shadow(0 0 150px rgba(221, 84, 84, 0.34)); }
-}
 @keyframes brand-hero-rule {
   0%   { opacity: 0.24; transform: scaleX(0.14); }
   56%  { opacity: 0.95; transform: scaleX(1); }
   100% { opacity: 0.62; transform: scaleX(0.56); }
 }
 
-/* Slow infinite breathing that picks up where brand-hero-signal lands.
-   Starts ~1.05s after page load (after the ignition flicker) and runs
-   indefinitely. The 0% / 100% filter matches brand-hero-signal's resting
-   state so there's no snap when the loop takes over. Reduced-motion users
-   skip this block entirely (it lives inside @media no-preference). */
-@keyframes brand-hero-idle {
-  0%, 100% {
-    filter:
-      drop-shadow(0 0 18px rgba(245, 241, 236, 0.22))
-      drop-shadow(0 0 56px rgba(221, 84, 84, 0.36))
-      drop-shadow(0 0 90px rgba(221, 84, 84, 0.2));
-  }
-  50% {
-    filter:
-      drop-shadow(0 0 28px rgba(245, 241, 236, 0.36))
-      drop-shadow(0 0 90px rgba(221, 84, 84, 0.55))
-      drop-shadow(0 0 130px rgba(221, 84, 84, 0.32));
-  }
+/* Aperture ignition: fades the ember backdrop in from invisible to its
+   breathing baseline over 1s. Replaces the old brand-hero-signal flicker
+   that used drop-shadow filters on the wordmark itself. */
+@keyframes aperture-ignite {
+  0%   { opacity: 0;   transform: scale(0.7); }
+  60%  { opacity: 1;   transform: scale(1.08); }
+  100% { opacity: 0.7; transform: scale(1); }
+}
+
+/* Slow infinite breath on the aperture. Starts at 1.08s, after ignite
+   settles. 7s cycle. */
+@keyframes aperture-breathe {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.06); }
 }
 
 /* Ongoing soft-sway on the rule under the wordmark. Picks up from the
