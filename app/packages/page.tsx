@@ -76,8 +76,10 @@ export default function PackagesPage() {
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-8">
               <p className="text-caption text-ember mb-4">Packages</p>
-              <h1 className="font-display text-display-lg leading-none tracking-wider text-projector">
-                ONE 30 FT SCREEN. FOUR WAYS TO HEAR IT.
+              <h1 className="font-display text-display-lg leading-none tracking-wider text-projector text-balance">
+                ONE 30 FT SCREEN.
+                <br />
+                FOUR WAYS TO HEAR IT.
               </h1>
               <p className="mt-6 max-w-[64ch] text-body-lg leading-relaxed text-silver">
                 Every booking uses the same 4K theater-quality projector and big screen. Your package choice is the audio coverage: how wide the seating area is, how many guests are coming, and whether the night needs stronger bass.
