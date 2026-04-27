@@ -189,9 +189,7 @@ export default async function TierPage({ params }: Params) {
           </div>
         </FunnelSection>
 
-        <ByocPanel />
-
-        <FunnelSection labelledBy="fits-heading" tone="band">
+        <FunnelSection labelledBy="fits-heading">
           <div className="mx-auto max-w-7xl">
             <SectionHeader
               id="fits-heading"
@@ -224,6 +222,8 @@ export default async function TierPage({ params }: Params) {
             </div>
           </div>
         </FunnelSection>
+
+        <ByocPanel />
 
         <FunnelSection labelledBy="addons-heading">
           <div className="mx-auto max-w-4xl">
