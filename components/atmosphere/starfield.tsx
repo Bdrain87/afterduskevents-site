@@ -90,8 +90,11 @@ export default function Starfield({
         const sizeBias = Math.pow(Math.random(), 2.5);
         const r = Math.max(0.3, sizeBias * maxSize);
         const baseAlpha = 0.25 + Math.random() * 0.75;
-        const twinkles = Math.random() < 0.15;
-        const doubleFlare = twinkles && Math.random() < 0.1;
+        // ~30% of stars scintillate (was 15%). Real night skies have more
+        // visible twinkle than 1-in-6; just keep peaks varied so they don't
+        // pulse in unison.
+        const twinkles = Math.random() < 0.3;
+        const doubleFlare = twinkles && Math.random() < 0.18;
         return {
           x: Math.random() * width,
           y: Math.random() * height,
@@ -103,7 +106,8 @@ export default function Starfield({
           flareStart: -Infinity,
           flareDur: 0,
           flarePeak: 0,
-          nextFlareAt: now + 1500 + Math.random() * 4500,
+          // Wider entry-jitter so the first flares don't bunch into a wave.
+          nextFlareAt: now + 600 + Math.random() * 5400,
           secondFlareAt: -Infinity,
         };
       });
@@ -156,11 +160,15 @@ export default function Starfield({
 
     function startFlare(s: Star, t: number) {
       s.flareStart = t;
-      s.flareDur = 280 + Math.random() * 240;
-      s.flarePeak = 0.4 + Math.random() * 0.45;
-      s.nextFlareAt = t + s.flareDur + 2000 + Math.random() * 8000;
+      // Wider duration variance — quick blinks alongside slow swells so the
+      // pattern reads as random, not mechanical.
+      s.flareDur = 220 + Math.random() * 420;
+      s.flarePeak = 0.4 + Math.random() * 0.55;
+      // Tighter spacing between flares (was 2000 + 8000 = 2-10s, now 1200 +
+      // 5500 = 1.2-6.7s). More activity, still not a strobe.
+      s.nextFlareAt = t + s.flareDur + 1200 + Math.random() * 5500;
       if (s.doubleFlare) {
-        s.secondFlareAt = t + s.flareDur + 80 + Math.random() * 80;
+        s.secondFlareAt = t + s.flareDur + 60 + Math.random() * 140;
       }
     }
 
