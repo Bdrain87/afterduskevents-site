@@ -90,27 +90,12 @@ const bundles = [
   },
 ];
 
-function CategoryBlock({
-  category,
-  index,
-}: {
-  category: (typeof categories)[0];
-  index: number;
-}) {
+function CategoryBlock({ category }: { category: (typeof categories)[0] }) {
   return (
     <div className="mb-16 last:mb-0">
-      <div className="mb-3 flex items-baseline gap-4">
-        <span
-          aria-hidden="true"
-          className="font-display text-display-md leading-none tracking-wider text-ember"
-        >
-          {String(index + 1).padStart(2, "0")}
-        </span>
-        <h2 className="font-display text-projector text-display-md tracking-wider leading-none">
-          {category.name.toUpperCase()}.
-        </h2>
-      </div>
-      <span aria-hidden="true" className="mb-6 block h-px w-12 bg-ember" />
+      <h2 className="font-display text-ember text-display-md tracking-wider leading-none mb-6">
+        {category.name.toUpperCase()}.
+      </h2>
       <ul className="divide-y divide-white/8 border-t border-white/8">
         {category.items.map((row) => (
           <li
@@ -183,8 +168,8 @@ export default function AddOnsPage() {
 
         <FunnelSection>
           <div className="mx-auto max-w-5xl">
-            {categories.map((cat, i) => (
-              <CategoryBlock key={cat.name} category={cat} index={i} />
+            {categories.map((cat) => (
+              <CategoryBlock key={cat.name} category={cat} />
             ))}
           </div>
         </FunnelSection>
