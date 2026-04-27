@@ -18,6 +18,12 @@ type Props = {
   className?: string;
 };
 
+/** Envelope flavor picked per-flare so adjacent twinkles look distinct.
+ *  0 = quick blink (snappy triangle, ~120-260ms)
+ *  1 = standard scintillation (sharp rise + gentle decay, ~300-650ms)
+ *  2 = slow swell (smooth sine, ~800-1500ms) */
+type EnvelopeKind = 0 | 1 | 2;
+
 type Star = {
   x: number;
   y: number;
@@ -29,6 +35,8 @@ type Star = {
   flareStart: number;
   flareDur: number;
   flarePeak: number;
+  flareSizeBoost: number;
+  flareKind: EnvelopeKind;
   nextFlareAt: number;
   secondFlareAt: number;
 };
@@ -90,11 +98,11 @@ export default function Starfield({
         const sizeBias = Math.pow(Math.random(), 2.5);
         const r = Math.max(0.3, sizeBias * maxSize);
         const baseAlpha = 0.25 + Math.random() * 0.75;
-        // ~30% of stars scintillate (was 15%). Real night skies have more
-        // visible twinkle than 1-in-6; just keep peaks varied so they don't
-        // pulse in unison.
-        const twinkles = Math.random() < 0.3;
-        const doubleFlare = twinkles && Math.random() < 0.18;
+        // ~45% of stars scintillate. With three envelope flavors picked at
+        // each flare, the result reads as a busy random sky — quick blinks
+        // mixed with slow swells, never in unison.
+        const twinkles = Math.random() < 0.45;
+        const doubleFlare = twinkles && Math.random() < 0.22;
         return {
           x: Math.random() * width,
           y: Math.random() * height,
@@ -106,8 +114,11 @@ export default function Starfield({
           flareStart: -Infinity,
           flareDur: 0,
           flarePeak: 0,
-          // Wider entry-jitter so the first flares don't bunch into a wave.
-          nextFlareAt: now + 600 + Math.random() * 5400,
+          flareSizeBoost: 0,
+          flareKind: 1,
+          // Very wide entry-jitter so first flares spread across the full
+          // first 6 seconds instead of bunching into an opening wave.
+          nextFlareAt: now + 200 + Math.random() * 5800,
           secondFlareAt: -Infinity,
         };
       });
@@ -150,25 +161,52 @@ export default function Starfield({
     }
     const [cr, cg, cb] = parseRGB(color);
 
-    // Sharp rise (first 30%), gentle decay (last 70%). Mimics scintillation.
-    function flareEnvelope(elapsed: number, dur: number): number {
+    /** Three envelope shapes picked at random per flare so the sky never
+     *  looks like every star uses the same blink curve. Quick blinks read
+     *  as scintillation; slow swells read as a star "burning up" briefly. */
+    function flareEnvelope(elapsed: number, dur: number, kind: EnvelopeKind): number {
       if (elapsed <= 0 || elapsed >= dur) return 0;
       const t = elapsed / dur;
+      if (kind === 0) {
+        // Quick triangle, peak at 40%
+        if (t < 0.4) return t / 0.4;
+        return 1 - (t - 0.4) / 0.6;
+      }
+      if (kind === 2) {
+        // Smooth sine swell — gentle rise, peak at 50%, gentle fall
+        return Math.sin(t * Math.PI);
+      }
+      // Standard: sharp 30% rise, gentle 70% decay (same as old shape)
       if (t < 0.3) return t / 0.3;
       return 1 - (t - 0.3) / 0.7;
     }
 
     function startFlare(s: Star, t: number) {
       s.flareStart = t;
-      // Wider duration variance — quick blinks alongside slow swells so the
-      // pattern reads as random, not mechanical.
-      s.flareDur = 220 + Math.random() * 420;
-      s.flarePeak = 0.4 + Math.random() * 0.55;
-      // Tighter spacing between flares (was 2000 + 8000 = 2-10s, now 1200 +
-      // 5500 = 1.2-6.7s). More activity, still not a strobe.
-      s.nextFlareAt = t + s.flareDur + 1200 + Math.random() * 5500;
+      // Pick a random envelope flavor with weighted distribution: most
+      // flares are standard, ~25% are quick blinks, ~15% are slow swells.
+      const pick = Math.random();
+      if (pick < 0.25) {
+        s.flareKind = 0;
+        s.flareDur = 120 + Math.random() * 140;
+        s.flarePeak = 0.55 + Math.random() * 0.45;
+        s.flareSizeBoost = 0.4 + Math.random() * 0.4;
+      } else if (pick < 0.85) {
+        s.flareKind = 1;
+        s.flareDur = 300 + Math.random() * 350;
+        s.flarePeak = 0.45 + Math.random() * 0.5;
+        s.flareSizeBoost = 0.3 + Math.random() * 0.45;
+      } else {
+        s.flareKind = 2;
+        s.flareDur = 800 + Math.random() * 700;
+        s.flarePeak = 0.32 + Math.random() * 0.4;
+        s.flareSizeBoost = 0.5 + Math.random() * 0.6;
+      }
+      // Tighter spacing — 0.8 to 5.8s gap. With 45% of stars active, this
+      // keeps the sky visibly busy without strobing.
+      s.nextFlareAt = t + s.flareDur + 800 + Math.random() * 5000;
       if (s.doubleFlare) {
-        s.secondFlareAt = t + s.flareDur + 60 + Math.random() * 140;
+        s.secondFlareAt = t + s.flareDur + 50 + Math.random() * 200;
       }
     }
 
@@ -213,11 +251,18 @@ export default function Starfield({
     function drawStars(t: number) {
       for (const s of stars) {
         let alpha = s.baseAlpha;
+        let r = s.r;
+        let envelope = 0;
         if (!reduced && s.twinkles) {
           if (s.secondFlareAt > 0 && t >= s.secondFlareAt) {
+            // Second flash within a double — give it its own random
+            // envelope so it doesn't mirror the first.
+            const pick = Math.random();
             s.flareStart = t;
-            s.flareDur = 180 + Math.random() * 120;
-            s.flarePeak = 0.35 + Math.random() * 0.35;
+            s.flareKind = pick < 0.5 ? 0 : 1;
+            s.flareDur = s.flareKind === 0 ? 100 + Math.random() * 140 : 200 + Math.random() * 220;
+            s.flarePeak = 0.4 + Math.random() * 0.4;
+            s.flareSizeBoost = 0.3 + Math.random() * 0.4;
             s.secondFlareAt = -Infinity;
           } else if (
             t >= s.nextFlareAt &&
@@ -226,18 +271,25 @@ export default function Starfield({
             startFlare(s, t);
           }
           if (t >= s.flareStart && t <= s.flareStart + s.flareDur) {
-            const e = flareEnvelope(t - s.flareStart, s.flareDur);
-            alpha = Math.max(0, Math.min(1, s.baseAlpha + e * s.flarePeak));
+            envelope = flareEnvelope(t - s.flareStart, s.flareDur, s.flareKind);
+            alpha = Math.max(0, Math.min(1, s.baseAlpha + envelope * s.flarePeak));
+            // Pulse the radius with the envelope. This is the part that
+            // actually reads as "twinkle" — a star that grows then shrinks
+            // looks alive in a way that pure alpha modulation does not.
+            r = s.r * (1 + envelope * s.flareSizeBoost);
           }
         }
         ctx!.beginPath();
-        ctx!.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx!.arc(s.x, s.y, r, 0, Math.PI * 2);
         ctx!.fillStyle = `rgba(${cr}, ${cg}, ${cb}, ${alpha})`;
         ctx!.fill();
-        if (s.r > maxSize * 0.65) {
+        // Halo for the brighter / actively-flaring stars. The flare check
+        // means even small stars get a momentary halo at peak twinkle.
+        if (s.r > maxSize * 0.65 || envelope > 0.35) {
+          const haloAlpha = alpha * (0.12 + envelope * 0.18);
           ctx!.beginPath();
-          ctx!.arc(s.x, s.y, s.r * 2.4, 0, Math.PI * 2);
-          ctx!.fillStyle = `rgba(${cr}, ${cg}, ${cb}, ${alpha * 0.12})`;
+          ctx!.arc(s.x, s.y, r * 2.4, 0, Math.PI * 2);
+          ctx!.fillStyle = `rgba(${cr}, ${cg}, ${cb}, ${haloAlpha})`;
           ctx!.fill();
         }
       }
