@@ -13,7 +13,7 @@ export default function NextEventCard() {
 
   return (
     <section
-      className="relative z-10 border-y border-oxblood/20 bg-charcoal/40 backdrop-blur-sm"
+      className="relative z-10 border-y border-oxblood/35 bg-charcoal/40 backdrop-blur-sm"
       aria-labelledby="next-open-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12 py-10">

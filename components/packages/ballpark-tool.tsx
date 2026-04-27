@@ -2,7 +2,9 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { useCases, suggestTier } from "@/lib/packages";
+import { DUR, EASE } from "@/lib/motion";
 import { Sparkles } from "lucide-react";
 
 export default function BallparkTool() {
@@ -68,7 +70,13 @@ export default function BallparkTool() {
 
       <div className="mt-6">
         {result ? (
-          <div className="rounded-lg border border-white/10 border-l-2 border-l-oxblood bg-screening p-5 pl-6">
+          <motion.div
+            key={result.slug}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: DUR.base, ease: EASE.snappy }}
+            className="rounded-lg border border-white/10 border-l-2 border-l-oxblood bg-screening p-5 pl-6"
+          >
             <p className="text-xs uppercase tracking-wider text-ember font-semibold mb-1">
               Recommended setup
             </p>
@@ -82,7 +90,7 @@ export default function BallparkTool() {
             >
               Get your personalized quote
             </Link>
-          </div>
+          </motion.div>
         ) : (
           <p className="text-steel text-sm">Pick an event type to see a recommendation.</p>
         )}

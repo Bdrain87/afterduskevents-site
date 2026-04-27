@@ -177,8 +177,8 @@ export function BookingStep({
   body: string;
 }) {
   return (
-    <div className="min-w-0 overflow-hidden rounded-lg border border-white/10 bg-screening/65 p-5">
-      <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full border border-ember/45 text-sm font-semibold text-ember">
+    <div className="group min-w-0 overflow-hidden rounded-lg border border-white/10 bg-screening/65 p-5 transition-colors duration-300 hover:border-ember/30">
+      <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full border border-ember/45 text-sm font-semibold text-ember transition-[border-color,box-shadow] duration-300 group-hover:border-ember group-hover:shadow-[0_0_18px_rgba(221,84,84,0.25)]">
         {number}
       </div>
       <h3 className="break-words font-heading text-heading-md text-projector">{title}</h3>

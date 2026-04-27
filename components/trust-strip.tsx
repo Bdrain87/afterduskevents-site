@@ -1,3 +1,8 @@
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
+import { DUR, EASE } from "@/lib/motion";
+
 type Props = {
   className?: string;
 };
@@ -26,6 +31,8 @@ function MiniAmericanFlag() {
 }
 
 export default function TrustStrip({ className }: Props) {
+  const reduced = useReducedMotion();
+
   return (
     <div
       className={[
@@ -34,7 +41,18 @@ export default function TrustStrip({ className }: Props) {
       ].join(" ")}
     >
       {items.map((label, i) => (
-        <span key={label} className="inline-flex items-center gap-5">
+        <motion.span
+          key={label}
+          initial={reduced ? false : { opacity: 0, y: 4 }}
+          whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{
+            duration: DUR.base,
+            ease: EASE.snappy,
+            delay: reduced ? 0 : i * 0.08,
+          }}
+          className="inline-flex items-center gap-5"
+        >
           {i > 0 && (
             <span className="text-white/20 hidden sm:inline select-none" aria-hidden="true">
               ·
@@ -44,7 +62,7 @@ export default function TrustStrip({ className }: Props) {
             {i === 0 && <MiniAmericanFlag />}
             {label}
           </span>
-        </span>
+        </motion.span>
       ))}
     </div>
   );

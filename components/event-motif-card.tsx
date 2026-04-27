@@ -64,7 +64,7 @@ function EventScene({ slug }: { slug: UseCase["slug"] }) {
       <div className="absolute inset-x-8 top-6 h-px bg-white/8" />
       <div className="absolute inset-x-8 bottom-6 h-px bg-white/8" />
       <div className="absolute bottom-5 h-px w-20 bg-ember/70" />
-      <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-ember/35 bg-black/30 shadow-[0_0_40px_rgba(221,84,84,0.25)] transition-transform duration-300 group-hover:scale-[1.03]">
+      <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-ember/35 bg-black/30 shadow-[0_0_40px_rgba(221,84,84,0.25)] transition-[transform,box-shadow,border-color] duration-300 group-hover:scale-[1.03] group-hover:border-ember/55 group-hover:shadow-[0_0_56px_rgba(221,84,84,0.4)]">
         <Icon
           className="h-11 w-11 text-projector"
           strokeWidth={1.75}
