@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "motion/react";
 import { DUR, EASE, STAGGER, useReducedMotionLive } from "@/lib/motion";
 import Nav from "@/components/nav";
@@ -12,7 +11,6 @@ import GearHighlights from "@/components/home/gear-highlights";
 import ByocPanel from "@/components/funnel/byoc-panel";
 import EventMotifCard from "@/components/event-motif-card";
 import HeroIgnition, { IgnitedWordmark } from "@/components/hero-ignition";
-import BrandMarquee from "@/components/brand-marquee";
 import MagneticButton from "@/components/magnetic-button";
 import {
   ActionBar,
@@ -176,8 +174,6 @@ export default function HomeClient({ geo }: Props = {}) {
 
         <GearHighlights />
 
-        <ByocPanel />
-
         <FunnelSection labelledBy="sound-heading" tone="band">
           <div className="mx-auto max-w-7xl">
             <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
@@ -198,65 +194,7 @@ export default function HomeClient({ geo }: Props = {}) {
           </div>
         </FunnelSection>
 
-        <FunnelSection labelledBy="addons-heading">
-          <div className="mx-auto max-w-5xl text-center">
-            <SectionHeader
-              id="addons-heading"
-              eyebrow="Add-ons"
-              title="STACK THE NIGHT."
-              body="Popcorn, karaoke with two mics, retro gaming, drone video, glow kit, backyard games, photo backdrop, string lights, patio heaters, bug zappers, fans. Quoted with the setup, not a la carte."
-              align="center"
-              className="mb-8"
-            />
-            <motion.ul
-              className="mx-auto grid grid-cols-3 gap-3 sm:gap-5 mb-8 max-w-md sm:max-w-xl"
-              initial={reduced ? undefined : "hidden"}
-              whileInView={reduced ? undefined : "visible"}
-              viewport={{ once: true, margin: "-80px" }}
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: STAGGER } },
-              }}
-            >
-              {[
-                { src: "/images/addons/gaming.png", label: "Gaming", alt: "Retro gaming kit add-on with controllers and a big inflatable screen" },
-                { src: "/images/addons/popcorn.png", label: "Popcorn", alt: "Popcorn machine add-on" },
-                { src: "/images/addons/glow-kit.png", label: "Glow kit", alt: "Glow kit add-on with neon balloons and glow sticks" },
-              ].map((item) => (
-                <motion.li
-                  key={item.label}
-                  variants={
-                    reduced
-                      ? undefined
-                      : {
-                          hidden: { opacity: 0, y: 10 },
-                          visible: {
-                            opacity: 1,
-                            y: 0,
-                            transition: { duration: DUR.base, ease: EASE.snappy },
-                          },
-                        }
-                  }
-                  className="flex flex-col"
-                >
-                  <div className="relative aspect-[3/4] overflow-hidden rounded-md border border-white/10 bg-charcoal/70 transition-colors hover:border-ember/40">
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      fill
-                      sizes="(min-width: 640px) 200px, 32vw"
-                      className="object-contain object-bottom"
-                    />
-                  </div>
-                  <p className="mt-2 text-caption text-steel">{item.label}</p>
-                </motion.li>
-              ))}
-            </motion.ul>
-            <div className="flex justify-center">
-              <TextCta href="/add-ons">Full add-ons catalog</TextCta>
-            </div>
-          </div>
-        </FunnelSection>
+        <ByocPanel />
 
         <FunnelSection labelledBy="events-heading">
           <div className="mx-auto max-w-7xl">
@@ -322,8 +260,6 @@ export default function HomeClient({ geo }: Props = {}) {
             </div>
           </div>
         </FunnelSection>
-
-        <BrandMarquee />
 
         <FunnelSection labelledBy="service-heading">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
