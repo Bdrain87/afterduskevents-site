@@ -161,7 +161,7 @@ export default function AddOnsPage() {
               {bundles.map((b) => (
                 <div
                   key={b.name}
-                  className="relative rounded-lg p-8 border border-white/10 bg-screening/60"
+                  className="ade-fade-up-on-view relative rounded-lg p-8 border border-white/10 bg-screening/60 before:absolute before:left-6 before:right-6 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-ember/35 before:to-transparent"
                 >
                   <h3 className="font-display text-heading-lg text-projector tracking-wider mb-3">
                     {b.name}

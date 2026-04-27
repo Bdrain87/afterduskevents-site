@@ -48,7 +48,7 @@ export default function ByocPanel() {
                 {mobileServices.map((service) => (
                   <span
                     key={service}
-                    className="min-w-0 rounded-lg border border-ember/35 bg-oxblood/25 px-3 py-3 text-center text-xs font-semibold text-cream shadow-[0_0_24px_rgba(107,31,31,0.16)]"
+                    className="min-w-0 rounded-lg border border-ember/35 bg-oxblood/25 px-3 py-3 text-center text-xs font-semibold text-cream shadow-[0_0_24px_rgba(107,31,31,0.16)] transition-colors hover:border-ember/70 hover:bg-ember/15 hover:text-projector"
                   >
                     {service}
                   </span>

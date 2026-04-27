@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import { audioTiers } from "@/lib/packages";
 import Waveform from "@/components/packages/waveform";
@@ -40,12 +41,14 @@ export default function ComparisonSlides() {
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex gap-4">
             {audioTiers.map((tier) => (
-              <article
+              <Link
                 key={tier.slug}
-                className="flex min-w-[85%] flex-col rounded-lg border border-white/10 bg-screening/70 p-6 sm:min-w-[70%]"
+                href={`/packages/${tier.slug}`}
+                aria-label={`See the ${tier.name} setup`}
+                className="group flex min-w-[85%] flex-col rounded-lg border border-white/10 bg-screening/70 p-6 transition-[border-color,background-color,box-shadow] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-ember/45 hover:bg-charcoal/70 hover:shadow-[0_18px_44px_rgba(107,31,31,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember/70 sm:min-w-[70%]"
               >
                 <TierContent tier={tier} />
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -71,12 +74,14 @@ export default function ComparisonSlides() {
       {/* Desktop: 4-col grid */}
       <div className="hidden gap-4 lg:grid lg:grid-cols-4">
         {audioTiers.map((tier) => (
-          <article
+          <Link
             key={tier.slug}
-            className="flex flex-col rounded-lg border border-white/10 bg-screening/70 p-6"
+            href={`/packages/${tier.slug}`}
+            aria-label={`See the ${tier.name} setup`}
+            className="group flex flex-col rounded-lg border border-white/10 bg-screening/70 p-6 transition-[border-color,background-color,box-shadow] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-ember/45 hover:bg-charcoal/70 hover:shadow-[0_18px_44px_rgba(107,31,31,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember/70"
           >
             <TierContent tier={tier} />
-          </article>
+          </Link>
         ))}
       </div>
     </div>
@@ -88,7 +93,7 @@ function TierContent({ tier }: { tier: (typeof audioTiers)[number] }) {
   return (
     <>
       {/* Waveform */}
-      <div className="mb-5 h-28 rounded-md border border-white/5 bg-charcoal/40">
+      <div className="mb-5 h-28 rounded-md border border-white/5 bg-charcoal/40 transition-colors duration-300 group-hover:border-white/15 group-hover:bg-charcoal/60">
         <Waveform
           speakers={tier.speakerCount}
           subs={tier.subwooferCount}
@@ -144,6 +149,12 @@ function TierContent({ tier }: { tier: (typeof audioTiers)[number] }) {
           </li>
         ))}
       </ul>
+
+      {/* Ember affordance — grows on hover, mirrors TierCard */}
+      <span
+        aria-hidden="true"
+        className="mt-4 block h-px w-6 bg-ember transition-[width] duration-300 group-hover:w-10"
+      />
     </>
   );
 }

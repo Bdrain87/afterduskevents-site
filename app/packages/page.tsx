@@ -122,7 +122,7 @@ export default function PackagesPage() {
               {gearProofs.map((proof) => (
                 <article
                   key={proof.label}
-                  className="rounded-lg border border-white/10 bg-screening/70 p-4 shadow-[0_18px_44px_rgba(0,0,0,0.22)]"
+                  className="ade-fade-up-on-view rounded-lg border border-white/10 bg-screening/70 p-4 shadow-[0_18px_44px_rgba(0,0,0,0.22)]"
                 >
                   <p className="text-caption text-ember">{proof.label}</p>
                   <h3 className="mt-4 font-display text-heading-lg leading-none tracking-wider text-projector">

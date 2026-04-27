@@ -337,8 +337,12 @@ export default function HomeClient({ geo }: Props = {}) {
               />
             </div>
             <div className="lg:col-span-5">
-              <div className="rounded-lg border border-white/10 bg-charcoal/45 p-6">
-                <MapPin size={22} className="mb-4 text-ember" aria-hidden="true" />
+              <div className="group rounded-lg border border-white/10 bg-charcoal/45 p-6 transition-colors duration-300 hover:border-ember/35">
+                <MapPin
+                  size={22}
+                  className="mb-4 text-ember transition-[filter] duration-300 group-hover:[filter:drop-shadow(0_0_12px_rgba(221,84,84,0.45))]"
+                  aria-hidden="true"
+                />
                 <p className="font-heading text-heading-md text-projector">40-mile core service radius</p>
                 <p className="mt-2 text-sm leading-relaxed text-silver">
                   Detroit, Ann Arbor, Plymouth, Northville, Novi, Birmingham, and surrounding Southeast Michigan cities.
