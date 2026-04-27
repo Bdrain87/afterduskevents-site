@@ -6,7 +6,6 @@ import SchemaMarkup from "@/components/seo/schema-markup";
 import LightCheck from "@/components/packages/light-check";
 import BallparkTool from "@/components/packages/ballpark-tool";
 import ComparisonSlides from "@/components/packages/comparison-slides";
-import ByocPanel from "@/components/funnel/byoc-panel";
 import EventMotifCard from "@/components/event-motif-card";
 import {
   ActionBar,
@@ -110,6 +109,30 @@ export default function PackagesPage() {
           </div>
         </FunnelSection>
 
+        <FunnelSection labelledBy="comparison-heading">
+          <div className="mx-auto max-w-7xl">
+            <SectionHeader
+              id="comparison-heading"
+              eyebrow="Compare"
+              title="SIDE BY SIDE."
+              body="Same 4K projection, same screen, same setup rules across every tier. The differences are audio coverage and bass."
+            />
+            <ComparisonSlides />
+          </div>
+        </FunnelSection>
+
+        <FunnelSection labelledBy="ballpark-heading" tone="band">
+          <div className="mx-auto max-w-3xl">
+            <SectionHeader
+              id="ballpark-heading"
+              eyebrow="Still not sure?"
+              title="TWO QUESTIONS, ONE RECOMMENDATION."
+              body="Use this as a starting point. We still review the layout, distance, add-ons, and timing before quoting."
+            />
+            <BallparkTool />
+          </div>
+        </FunnelSection>
+
         <FunnelSection labelledBy="gear-proof-heading">
           <div className="mx-auto max-w-7xl">
             <SectionHeader
@@ -137,33 +160,7 @@ export default function PackagesPage() {
 
         <LightCheck />
 
-        <ByocPanel />
-
-        <FunnelSection labelledBy="ballpark-heading">
-          <div className="mx-auto max-w-3xl">
-            <SectionHeader
-              id="ballpark-heading"
-              eyebrow="Still not sure?"
-              title="TWO QUESTIONS, ONE RECOMMENDATION."
-              body="Use this as a starting point. We still review the layout, distance, add-ons, and timing before quoting."
-            />
-            <BallparkTool />
-          </div>
-        </FunnelSection>
-
-        <FunnelSection labelledBy="comparison-heading" tone="band">
-          <div className="mx-auto max-w-7xl">
-            <SectionHeader
-              id="comparison-heading"
-              eyebrow="Compare"
-              title="SIDE BY SIDE."
-              body="Same 4K projection, same screen, same setup rules across every tier. The differences are audio coverage and bass."
-            />
-            <ComparisonSlides />
-          </div>
-        </FunnelSection>
-
-        <FunnelSection labelledBy="event-fit-heading">
+        <FunnelSection labelledBy="event-fit-heading" tone="band">
           <div className="mx-auto max-w-7xl">
             <SectionHeader
               id="event-fit-heading"
