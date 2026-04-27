@@ -77,7 +77,6 @@ const bundles = [
     name: "Blacklight + Neon Kit",
     includes: "Blacklights, glow sticks, glow bracelets, and glow necklaces priced as one line.",
     bestFor: "Teen birthdays, graduations, bachelorettes, post-prom, Halloween",
-    featured: true,
   },
   {
     name: "Backyard Games Kit",
@@ -162,11 +161,7 @@ export default function AddOnsPage() {
               {bundles.map((b) => (
                 <div
                   key={b.name}
-                  className={`relative rounded-lg p-8 border ${
-                    b.featured
-                      ? "border-ember/50 bg-screening shadow-[0_24px_48px_rgba(0,0,0,0.4)]"
-                      : "border-white/10 bg-screening/60"
-                  }`}
+                  className="relative rounded-lg p-8 border border-white/10 bg-screening/60"
                 >
                   <h3 className="font-display text-heading-lg text-projector tracking-wider mb-3">
                     {b.name}
