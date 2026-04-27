@@ -141,14 +141,6 @@ export default function AddOnsPage() {
           </div>
         </FunnelSection>
 
-        <FunnelSection>
-          <div className="mx-auto max-w-5xl">
-            {categories.map((cat) => (
-              <CategoryBlock key={cat.name} category={cat} />
-            ))}
-          </div>
-        </FunnelSection>
-
         <FunnelSection labelledBy="bundles-heading" tone="band">
           <div className="mx-auto max-w-5xl">
             <SectionHeader
@@ -171,6 +163,14 @@ export default function AddOnsPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </FunnelSection>
+
+        <FunnelSection>
+          <div className="mx-auto max-w-5xl">
+            {categories.map((cat) => (
+              <CategoryBlock key={cat.name} category={cat} />
+            ))}
           </div>
         </FunnelSection>
 
