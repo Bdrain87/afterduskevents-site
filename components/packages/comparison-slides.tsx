@@ -89,7 +89,6 @@ export default function ComparisonSlides() {
 }
 
 function TierContent({ tier }: { tier: (typeof audioTiers)[number] }) {
-  const totalUnits = tier.speakerCount + tier.subwooferCount;
   return (
     <>
       {/* Waveform */}
@@ -115,13 +114,11 @@ function TierContent({ tier }: { tier: (typeof audioTiers)[number] }) {
 
       {/* Spec line */}
       <p className="text-caption text-steel mb-4">
-        {totalUnits} {totalUnits === 1 ? "unit" : "units"}
-        <span className="mx-2 text-white/20">·</span>
         {tier.speakerCount} speaker{tier.speakerCount === 1 ? "" : "s"}
         {tier.subwooferCount > 0 && (
           <>
             <span className="mx-2 text-white/20">·</span>
-            {tier.subwooferCount} sub{tier.subwooferCount === 1 ? "" : "s"}
+            {tier.subwooferCount} subwoofer{tier.subwooferCount === 1 ? "" : "s"}
           </>
         )}
       </p>

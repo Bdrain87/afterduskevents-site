@@ -37,7 +37,7 @@ const bringItems = [
   },
   {
     title: "Sound that fits",
-    body: "Choose from one Soundboks 4 speaker up to four Soundboks 4 speakers with two SKAA subwoofers. The screen stays the same; coverage scales with real audio gear.",
+    body: "Choose from one speaker up to four speakers with two subwoofers. The screen stays the same; coverage scales with real audio gear.",
   },
   {
     title: "Power + connectivity",
