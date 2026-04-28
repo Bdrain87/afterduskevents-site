@@ -33,7 +33,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What audio tiers do you offer?",
-    a: `Four tiers on the same 4K projector and 30 ft screen setup. ${audioTierSummary} The speaker tiers use Soundboks 4 speakers, and the subwoofer tiers add SKAA Death From Below Mk2 subs. In plain terms: clearer voices, stronger bass, cleaner placement, and better coverage for the crowd.`,
+    a: `Four tiers on the same 4K projector and 30 ft screen setup. ${audioTierSummary} In plain terms: clearer voices, stronger bass, cleaner placement, and better coverage for the crowd.`,
   },
   {
     q: "What does the picture setup include?",
@@ -45,7 +45,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What is included with the retro gaming add-on?",
-    a: "The retro gaming kit is plug-and-play over HDMI, includes a 100,000+ classic-game library across 50+ classic systems, supports offline play, and can be set up with four wireless controllers for multiplayer nights.",
+    a: "The retro gaming kit includes a 100,000+ classic-game library across 50+ classic systems, supports offline play, and can be set up with four wireless controllers for multiplayer nights.",
   },
   {
     q: "Do you offer karaoke?",
