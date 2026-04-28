@@ -60,7 +60,7 @@
      Line-height pairs with each: display 0.92, heading 1.15, body 1.65. */
   --text-display-hero: 10rem;        /* 160px. reserved for hero wordmark */
   --text-display-hero--line-height: 0.92;
-  --text-display-xl: 6.5rem;         /* 104px. section titles like "30 FT." */
+  --text-display-xl: 6.5rem;         /* 104px. section titles like "35 FT." */
   --text-display-xl--line-height: 0.92;
   --text-display-lg: 4.5rem;         /* 72px. statement headlines */
   --text-display-lg--line-height: 0.95;

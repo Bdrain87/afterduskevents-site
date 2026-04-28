@@ -25,7 +25,7 @@ import {
 export const metadata: Metadata = {
   title: "Packages",
   description:
-    "Compare After Dusk Events outdoor cinema packages: a 30 ft screen, 4K theater-quality projection, Soundboks 4 speakers, and SKAA subwoofer support. Custom quotes for private events in Southeast Michigan.",
+    "Compare After Dusk Events outdoor cinema packages: a 35 ft screen, 4K theater-quality projection, Soundboks 4 speakers, and SKAA subwoofer support. Custom quotes for private events in Southeast Michigan.",
   alternates: { canonical: "/packages" },
 };
 
@@ -36,7 +36,7 @@ const gearProofs = [
     body: "The visual side is not a basic backyard projector. The 4K projector gives movies, games, sports, and slideshows a cleaner, sharper image on the big screen.",
   },
   {
-    label: "30 ft cinema screen",
+    label: "35 ft cinema screen",
     title: "Real scale",
     body: "The screen is big enough to become the centerpiece of the night, so the crowd feels like they are at an event instead of watching someone’s TV outside.",
   },
@@ -77,7 +77,7 @@ export default function PackagesPage() {
             <div className="lg:col-span-8">
               <p className="text-caption text-ember mb-4">Packages</p>
               <h1 className="font-display text-display-lg leading-none tracking-wider text-projector text-balance">
-                ONE 30 FT SCREEN.
+                ONE 35 FT SCREEN.
                 <br />
                 FOUR WAYS TO HEAR IT.
               </h1>
@@ -101,7 +101,7 @@ export default function PackagesPage() {
               id="quick-pick-heading"
               eyebrow="Quick pick"
               title="START WITH THE CROWD."
-              body="These are not four different picture setups. Every tier gets the 4K projector and 30 ft screen; the difference is how much sound coverage and bass the event needs."
+              body="These are not four different picture setups. Every tier gets the 4K projector and 35 ft screen; the difference is how much sound coverage and bass the event needs."
             />
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
               {audioTiers.map((tier) => (
@@ -141,7 +141,7 @@ export default function PackagesPage() {
               id="gear-proof-heading"
               eyebrow="Gear proof"
               title="WHAT YOUR QUOTE IS ACTUALLY BUYING."
-              body="The quote covers the full premium setup: 4K projection, a real 30 ft screen, clean outdoor sound, and bass support when the night calls for it."
+              body="The quote covers the full premium setup: 4K projection, a real 35 ft screen, clean outdoor sound, and bass support when the night calls for it."
             />
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
               {gearProofs.map((proof) => (

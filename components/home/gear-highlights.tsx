@@ -19,7 +19,7 @@ const GEAR_PROOFS = [
     body: "The picture side is not an office projector pointed at a sheet. You are getting a sharp 4K image built for a real outdoor cinema setup.",
   },
   {
-    stat: "30 ft",
+    stat: "35 ft",
     label: "Real cinema scale",
     body: "The screen is big enough to become the centerpiece of the night, so guests are watching an event, not crowding around a TV.",
   },
@@ -42,7 +42,7 @@ const GEAR_PROOFS = [
 
 const PICTURE_OUTCOMES = [
   "4K projection gives the image real detail, so movies, games, sports, and slideshows look intentional.",
-  "The 30 ft screen gives the night scale before anyone hears a single speaker.",
+  "The 35 ft screen gives the night scale before anyone hears a single speaker.",
   "Focus, placement, source connection, and system testing are handled before guests settle in.",
   "Your quote covers the full picture system, not just a screen rental.",
 ];
@@ -132,7 +132,7 @@ export default function GearHighlights() {
           id="sound-outcomes-heading"
           eyebrow="The gear"
           title="THEATER PICTURE. EVENT SOUND."
-          body="The setup is a 4K theater-quality projector on a real 30 ft screen, backed by Soundboks 4 speakers and SKAA Death From Below Mk2 subwoofers. Plain English: it looks sharp, sounds clean, hits hard, and feels like an actual event."
+          body="The setup is a 4K theater-quality projector on a real 35 ft screen, backed by Soundboks 4 speakers and SKAA Death From Below Mk2 subwoofers. Plain English: it looks sharp, sounds clean, hits hard, and feels like an actual event."
         />
         <div className="mb-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {GEAR_PROOFS.map((proof) => (

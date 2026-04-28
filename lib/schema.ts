@@ -66,7 +66,7 @@ export function buildLocalBusiness(): SchemaObject {
     name: BUSINESS_NAME,
     alternateName: BRAND,
     description:
-      "Outdoor cinema and event rentals for private events in Southeast Michigan. 4K theater-quality projection, 30-foot inflatable screen, Soundboks 4 audio tiers, and SKAA subwoofer support. Veteran-owned, fully insured, serving 40 miles of Canton, MI with travel beyond by quote.",
+      "Outdoor cinema and event rentals for private events in Southeast Michigan. 4K theater-quality projection, 35-foot inflatable screen, Soundboks 4 audio tiers, and SKAA subwoofer support. Veteran-owned, fully insured, serving 40 miles of Canton, MI with travel beyond by quote.",
     url: SITE_URL,
     logo: LOGO_URL,
     image: OG_IMAGE,
@@ -107,7 +107,7 @@ export function buildLocalBusiness(): SchemaObject {
     })),
     knowsAbout: [
       "outdoor cinema",
-      "30 ft inflatable movie screen rental",
+      "35 ft inflatable movie screen rental",
       "backyard movie night",
       "sports watch party outdoor projector",
       "fight night outdoor projection",
@@ -235,7 +235,7 @@ export function buildCityServicePage(city: City): SchemaObject {
     name: `Outdoor Cinema Rental in ${city.name}, MI`,
     serviceType: "Outdoor Cinema Rental",
     provider: { "@id": BUSINESS_ID },
-    description: `After Dusk Events provides outdoor cinema and private event rentals in ${city.name}, ${city.county} County, Michigan. 4K theater-quality projection, a 30 ft inflatable screen, and four audio tiers.`,
+    description: `After Dusk Events provides outdoor cinema and private event rentals in ${city.name}, ${city.county} County, Michigan. 4K theater-quality projection, a 35 ft inflatable screen, and four audio tiers.`,
     areaServed: {
       "@type": "City",
       name: city.name,

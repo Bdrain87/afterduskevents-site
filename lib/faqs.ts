@@ -33,11 +33,11 @@ export const faqs: Faq[] = [
   },
   {
     q: "What audio tiers do you offer?",
-    a: `Four tiers on the same 4K projector and 30 ft screen setup. ${audioTierSummary} In plain terms: clearer voices, stronger bass, cleaner placement, and better coverage for the crowd.`,
+    a: `Four tiers on the same 4K projector and 35 ft screen setup. ${audioTierSummary} In plain terms: clearer voices, stronger bass, cleaner placement, and better coverage for the crowd.`,
   },
   {
     q: "What does the picture setup include?",
-    a: "Every booking includes a 4K theater-quality projector and a 30 ft inflatable cinema screen. The picture side stays premium across every package; the package choice changes the audio coverage and bass.",
+    a: "Every booking includes a 4K theater-quality projector and a 35 ft inflatable cinema screen. The picture side stays premium across every package; the package choice changes the audio coverage and bass.",
   },
   {
     q: "Can we hook up our own console or laptop?",

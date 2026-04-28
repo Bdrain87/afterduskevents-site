@@ -7,7 +7,7 @@ const SIGNALS = [
   "40-Mile Radius",
   "Private Events Only",
   "Starlink Backup",
-  "Real 30 ft Screen",
+  "Real 35 ft Screen",
   "Concert-Grade Audio",
   "Battery Backup",
   "Canton, MI",

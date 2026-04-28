@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Outdoor Movie Rental Cost in Michigan (2026)",
     description:
-      "What outdoor cinema rentals actually cost in Southeast Michigan: 4K projection, one 30 ft screen, four audio tiers.",
+      "What outdoor cinema rentals actually cost in Southeast Michigan: 4K projection, one 35 ft screen, four audio tiers.",
     url: `https://afterduskevents.com${SLUG}`,
   },
 };
@@ -89,7 +89,7 @@ export default function GuidePage() {
 
             <FadeIn delay={0.05}>
               <p className="text-silver text-body-lg leading-relaxed mt-8">
-                After Dusk Events runs one 4K theater-quality projector and one 30 ft inflatable screen with four audio tiers. The
+                After Dusk Events runs one 4K theater-quality projector and one 35 ft inflatable screen with four audio tiers. The
                 pricing axis is audio, not picture quality. Every booking is custom-quoted within
                 24 hours of inquiry. This guide walks through what changes the number.
               </p>
@@ -109,10 +109,10 @@ export default function GuidePage() {
                   </thead>
                   <tbody>
                     {[
-                      { tier: "30 ft + Single Speaker", rec: "Smaller backyards, intimate gatherings" },
-                      { tier: "30 ft + Two Speakers", rec: "Standard outdoor events, most bookings" },
-                      { tier: "30 ft + Two Speakers + Subwoofer", rec: "Fight nights, bass-heavy music, large crowds" },
-                      { tier: "30 ft + Four Speakers + Two Subwoofers", rec: "Large layouts, fields, high-energy events" },
+                      { tier: "35 ft + Single Speaker", rec: "Smaller backyards, intimate gatherings" },
+                      { tier: "35 ft + Two Speakers", rec: "Standard outdoor events, most bookings" },
+                      { tier: "35 ft + Two Speakers + Subwoofer", rec: "Fight nights, bass-heavy music, large crowds" },
+                      { tier: "35 ft + Four Speakers + Two Subwoofers", rec: "Large layouts, fields, high-energy events" },
                     ].map((row, i) => (
                       <tr key={row.tier} className={`border-b border-white/5 ${i % 2 === 1 ? "bg-charcoal/40" : ""}`}>
                         <td className="px-5 py-3.5 text-ember font-semibold">{row.tier}</td>

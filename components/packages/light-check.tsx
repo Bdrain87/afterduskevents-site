@@ -119,7 +119,7 @@ function CoverageDiagram({ slug }: { slug: TierSlug }) {
       <div className="relative">
         <div className="mx-auto mb-2 h-2 w-[78%] bg-projector/80 shadow-[0_0_26px_rgba(245,241,236,0.22)]" />
         <p className="mb-4 text-center text-[10px] tracking-[0.22em] uppercase text-steel">
-          30 ft screen
+          35 ft screen
         </p>
 
         <div className="relative min-h-[238px]">
@@ -189,7 +189,7 @@ export default function LightCheck() {
             PICK YOUR SOUND.
           </h2>
           <p className="text-silver text-body-lg leading-relaxed mt-5 max-w-[50ch]">
-            Same 4K projector and 30-foot screen, four levels of coverage. Tap a tier to see what changes in the yard.
+            Same 4K projector and 35-foot screen, four levels of coverage. Tap a tier to see what changes in the yard.
           </p>
         </div>
 

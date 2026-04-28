@@ -1,6 +1,6 @@
 /**
  * After Dusk Events real offering model:
- *   - Picture: 4K theater-quality projector + 30 ft inflatable screen
+ *   - Picture: 4K theater-quality projector + 35 ft inflatable screen
  *   - Four audio tiers (the pricing axis): Soundboks 4 speakers with optional SKAA Death From Below Mk2 subwoofers
  *   - Content rule: BYO content + logins (Netflix, Disney+, YouTube, gaming consoles, etc.)
  *
@@ -33,7 +33,7 @@ export type AudioTier = {
 export const audioTiers: AudioTier[] = [
   {
     slug: "single-speaker",
-    name: "30 ft + Single Speaker",
+    name: "35 ft + Single Speaker",
     speakerCount: 1,
     subwooferCount: 0,
     plainBenefit: "A real Soundboks 4 speaker for smaller groups seated close to the screen.",
@@ -42,7 +42,7 @@ export const audioTiers: AudioTier[] = [
     recommendedFor: ["Small yards", "Family movie nights", "Groups under 25"],
     includes: [
       "4K theater-quality projector",
-      "30 ft inflatable screen",
+      "35 ft inflatable screen",
       "Soundboks 4 speaker",
       "BYO Content",
       "Ground anchors drilled on site",
@@ -51,7 +51,7 @@ export const audioTiers: AudioTier[] = [
   },
   {
     slug: "two-speakers",
-    name: "30 ft + Two Speakers",
+    name: "35 ft + Two Speakers",
     popular: true,
     speakerCount: 2,
     subwooferCount: 0,
@@ -61,7 +61,7 @@ export const audioTiers: AudioTier[] = [
     recommendedFor: ["Most backyards", "Graduations", "Sports watch parties", "25-75 guests"],
     includes: [
       "4K theater-quality projector",
-      "30 ft inflatable screen",
+      "35 ft inflatable screen",
       "Two Soundboks 4 speakers",
       "BYO Content",
       "Ground anchors drilled on site",
@@ -70,7 +70,7 @@ export const audioTiers: AudioTier[] = [
   },
   {
     slug: "two-speakers-sub",
-    name: "30 ft + Two Speakers + Subwoofer",
+    name: "35 ft + Two Speakers + Subwoofer",
     speakerCount: 2,
     subwooferCount: 1,
     plainBenefit: "Adds a SKAA Death From Below Mk2 subwoofer for events where sound should hit harder.",
@@ -79,7 +79,7 @@ export const audioTiers: AudioTier[] = [
     recommendedFor: ["Fight nights", "Sports", "Music-heavy events", "75-150 guests"],
     includes: [
       "4K theater-quality projector",
-      "30 ft inflatable screen",
+      "35 ft inflatable screen",
       "Two Soundboks 4 speakers",
       "SKAA Death From Below Mk2 subwoofer",
       "BYO Content",
@@ -89,7 +89,7 @@ export const audioTiers: AudioTier[] = [
   },
   {
     slug: "four-speakers-two-subs",
-    name: "30 ft + Four Speakers + Two Subwoofers",
+    name: "35 ft + Four Speakers + Two Subwoofers",
     speakerCount: 4,
     subwooferCount: 2,
     plainBenefit: "Four Soundboks 4 speakers and two SKAA subs for the biggest, highest-energy layouts.",
@@ -98,7 +98,7 @@ export const audioTiers: AudioTier[] = [
     recommendedFor: ["Large yards", "Fields", "150+ guests", "High-energy events"],
     includes: [
       "4K theater-quality projector",
-      "30 ft inflatable screen",
+      "35 ft inflatable screen",
       "Four Soundboks 4 speakers",
       "Two SKAA Death From Below Mk2 subwoofers",
       "BYO Content",
