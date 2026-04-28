@@ -156,7 +156,7 @@ export default async function TierPage({ params }: Params) {
                   <div className="text-right">
                     <p className="text-caption text-steel">Screen</p>
                     <p className="font-display text-display-md leading-none text-projector">
-                      30 ft
+                      35 ft
                     </p>
                   </div>
                 </div>

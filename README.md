@@ -104,7 +104,7 @@ Open `app/packages/page.tsx`. Near the top you will find the `packages` array. E
   name: "Basic Cinema",
   range: "$950 to $1,250",
   highlights: [
-    "30-foot inflatable screen",
+    "35-foot inflatable screen",
     "Projector",
     ...
   ],

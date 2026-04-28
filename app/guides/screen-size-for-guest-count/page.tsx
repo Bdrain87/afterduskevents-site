@@ -17,35 +17,35 @@ const UPDATED = "2026-04-23";
 export const metadata: Metadata = {
   title: "What Size Outdoor Movie Screen Do I Need for My Guest Count? (2026)",
   description:
-    "Answer: 30 ft fits every private event we run, from intimate backyards to 250-guest gatherings. What scales is audio tier, not screen size.",
+    "Answer: 35 ft fits every private event we run, from intimate backyards to 250-guest gatherings. What scales is audio tier, not screen size.",
   alternates: { canonical: SLUG },
 };
 
 const guideFaqs = [
   {
     q: "What size screen do I need for 25 guests?",
-    a: "The 30 ft inflatable screen works for 25 guests and looks cinematic at that scale. For a smaller backyard, the 30 ft + Single Speaker tier usually fits. Audio stays intimate without overpowering the space.",
+    a: "The 35 ft inflatable screen works for 25 guests and looks cinematic at that scale. For a smaller backyard, the 35 ft + Single Speaker tier usually fits. Audio stays intimate without overpowering the space.",
   },
   {
     q: "What size screen do I need for 50 guests?",
-    a: "The 30 ft inflatable screen. With 50 guests, the 30 ft + Two Speakers tier is the standard recommendation so everyone hears cleanly from the back row.",
+    a: "The 35 ft inflatable screen. With 50 guests, the 35 ft + Two Speakers tier is the standard recommendation so everyone hears cleanly from the back row.",
   },
   {
     q: "What size screen do I need for 100 guests?",
-    a: "The 30 ft inflatable screen still handles the visual side. At 100 guests, two speakers plus a subwoofer is usually the call: bass that carries across a wider crowd, clean high-end for dialogue.",
+    a: "The 35 ft inflatable screen still handles the visual side. At 100 guests, two speakers plus a subwoofer is usually the call: bass that carries across a wider crowd, clean high-end for dialogue.",
   },
   {
     q: "What size screen do I need for 200+ guests?",
-    a: "The 30 ft inflatable screen handles visuals for 200+ guests. Sound is the deciding factor: four speakers plus two subwoofers gives larger layouts the coverage they need. Larger crowds also benefit from early setup and late teardown add-ons for smoother flow.",
+    a: "The 35 ft inflatable screen handles visuals for 200+ guests. Sound is the deciding factor: four speakers plus two subwoofers gives larger layouts the coverage they need. Larger crowds also benefit from early setup and late teardown add-ons for smoother flow.",
   },
 ];
 
 const sizingTable = [
-  { guests: "Under 25", tier: "30 ft + Single Speaker", note: "Backyard movie nights, family events" },
-  { guests: "25–50", tier: "30 ft + Two Speakers", note: "Tight backyards, birthdays, smaller gatherings" },
-  { guests: "50–100", tier: "30 ft + Two Speakers + Subwoofer", note: "Block parties, larger backyards, dance-floor events" },
-  { guests: "100–150", tier: "30 ft + Two Speakers + Subwoofer", note: "Community events, fight nights, sports watch parties" },
-  { guests: "150+", tier: "30 ft + Four Speakers + Two Subwoofers", note: "Large yards, fields, high-energy events, bigger crowds" },
+  { guests: "Under 25", tier: "35 ft + Single Speaker", note: "Backyard movie nights, family events" },
+  { guests: "25–50", tier: "35 ft + Two Speakers", note: "Tight backyards, birthdays, smaller gatherings" },
+  { guests: "50–100", tier: "35 ft + Two Speakers + Subwoofer", note: "Block parties, larger backyards, dance-floor events" },
+  { guests: "100–150", tier: "35 ft + Two Speakers + Subwoofer", note: "Community events, fight nights, sports watch parties" },
+  { guests: "150+", tier: "35 ft + Four Speakers + Two Subwoofers", note: "Large yards, fields, high-energy events, bigger crowds" },
 ];
 
 export default function GuidePage() {
@@ -86,7 +86,7 @@ export default function GuidePage() {
 
             <FadeIn delay={0.05}>
               <p className="text-silver text-body-lg leading-relaxed mt-8">
-                Short answer: the 30 ft inflatable screen fits every private event we run, from
+                Short answer: the 35 ft inflatable screen fits every private event we run, from
                 a 25-guest backyard to a 250-guest community night. What scales instead is
                 audio: we offer four tiers so the sound matches your crowd size and event type.
               </p>
@@ -122,7 +122,7 @@ export default function GuidePage() {
                 Why one screen size works
               </h2>
               <p className="text-silver leading-relaxed">
-                A 30 ft inflatable screen is the right visual scale for the entire spectrum of
+                A 35 ft inflatable screen is the right visual scale for the entire spectrum of
                 private events we run. Backyard movie nights feel cinematic at that size without
                 overwhelming the space. Larger community events, fight nights, and sports watch parties all
                 benefit from the same screen. The screen is the &quot;wow&quot; that makes a backyard

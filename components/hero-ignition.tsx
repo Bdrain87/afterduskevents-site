@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 import { DUR, EASE, useReducedMotionLive } from "@/lib/motion";
 
 /**
- * Home hero. The 30 ft studio render fades in from a soft blur after
+ * Home hero. The 35 ft studio render fades in from a soft blur after
  * hydration so SSR users never see a half-rendered "snap." Headline
  * renders letter-by-letter via motion stagger.
  */
@@ -30,7 +30,7 @@ export default function HeroIgnition({ children, mediaAlt }: Props) {
         <div className="lg:col-span-6">{children}</div>
         <div className="lg:col-span-6">
           <motion.div
-            className="relative mx-auto aspect-[4/5] max-w-[560px] overflow-hidden rounded-lg lg:ml-auto"
+            className="relative mx-auto aspect-[4/5] max-w-[560px] overflow-hidden rounded-3xl lg:ml-auto [mask-image:radial-gradient(ellipse_at_center,black_65%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,black_65%,transparent_100%)]"
             // SSR users see the image fully visible. After hydration, motion-
             // permitted clients get a brief brightness sweep.
             initial={!reduced && hydrated ? { opacity: 0, y: 14, filter: "brightness(0.55)" } : false}
@@ -38,7 +38,7 @@ export default function HeroIgnition({ children, mediaAlt }: Props) {
             transition={{ duration: DUR.hero, ease: EASE.snappy, delay: 0.1 }}
           >
             <Image
-              src="/images/setup/30ft-screen-hero.png"
+              src="/images/setup/35ft-screen-hero.png"
               alt={mediaAlt}
               fill
               priority

@@ -33,7 +33,7 @@ type Props = {
 const bringItems = [
   {
     title: "4K picture",
-    body: "A theater-quality 4K projector on a real 30 ft inflatable cinema screen. Big, sharp, and built to be the centerpiece.",
+    body: "A theater-quality 4K projector on a real 35 ft inflatable cinema screen. Big, sharp, and built to be the centerpiece.",
   },
   {
     title: "Sound that fits",
@@ -84,7 +84,7 @@ export default function HomeClient({ geo }: Props = {}) {
     <>
       <Nav />
       <main className="flex-1 pt-16">
-        <HeroIgnition mediaAlt="30 foot inflatable outdoor cinema screen setup">
+        <HeroIgnition mediaAlt="35 foot inflatable outdoor cinema screen setup">
           <h1 className="font-display text-display-xl leading-none text-projector">
             <IgnitedWordmark text="AFTER DUSK EVENTS" className="brand-hero-wordmark wordmark-glow" />
           </h1>
@@ -93,7 +93,7 @@ export default function HomeClient({ geo }: Props = {}) {
             transition={{ duration: DUR.slow, ease: EASE.snappy, delay: reduced ? 0 : 1.05 }}
             className="mt-5 max-w-[52ch] text-body-lg leading-relaxed text-silver"
           >
-            4K outdoor cinema projection, a 30 ft screen, scalable sound, and a setup crew that handles the night from arrival to teardown.
+            4K outdoor cinema projection, a 35 ft screen, scalable sound, and a setup crew that handles the night from arrival to teardown.
           </motion.p>
           <motion.p
             {...fadeUp}
