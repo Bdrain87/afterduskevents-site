@@ -24,8 +24,8 @@ export default function AmbientSky() {
             "radial-gradient(ellipse 120% 90% at 50% 120%, rgba(18, 12, 32, 0.55) 0%, rgba(10, 10, 15, 0.8) 45%, #060608 100%)",
         }}
       />
-      <div className="absolute inset-0" style={{ opacity: "var(--atmo-star-opacity, 0.95)" }}>
-        <Starfield quantity={220} maxSize={1.7} vy={0.012} />
+      <div className="absolute inset-0" style={{ opacity: "var(--atmo-star-opacity, 0.9)" }}>
+        <Starfield quantity={200} maxSize={1.7} vy={0.012} />
       </div>
     </div>
   );

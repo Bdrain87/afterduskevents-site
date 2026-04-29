@@ -99,11 +99,11 @@ export default function Starfield({
         const sizeBias = Math.pow(Math.random(), 2.5);
         const r = Math.max(0.3, sizeBias * maxSize);
         const baseAlpha = 0.25 + Math.random() * 0.75;
-        // ~70% of stars scintillate. Four envelope flavors keep the sky
+        // ~35% of stars scintillate. Four envelope flavors keep the sky
         // randomized — quick blinks, standard flares, slow swells, and
-        // bright bursts with cross-glint spikes.
-        const twinkles = Math.random() < 0.7;
-        const doubleFlare = twinkles && Math.random() < 0.3;
+        // occasional bright bursts with cross-glint spikes.
+        const twinkles = Math.random() < 0.35;
+        const doubleFlare = twinkles && Math.random() < 0.15;
         return {
           x: Math.random() * width,
           y: Math.random() * height,
@@ -191,36 +191,36 @@ export default function Starfield({
 
     function startFlare(s: Star, t: number) {
       s.flareStart = t;
-      // Pick a random envelope flavor: ~20% quick blinks, ~40% standard,
-      // ~10% slow swells, ~30% bright bursts. Bursts pop bigger and
-      // brighter than the rest so the sky has obvious flicker hits.
+      // Pick a random envelope flavor: ~15% quick blinks, ~50% standard,
+      // ~25% slow swells, ~10% bright bursts. Bursts are rare so they
+      // feel like a real event when they happen.
       const pick = Math.random();
-      if (pick < 0.2) {
+      if (pick < 0.15) {
         s.flareKind = 0;
-        s.flareDur = 120 + Math.random() * 140;
-        s.flarePeak = 0.65 + Math.random() * 0.5;
-        s.flareSizeBoost = 0.6 + Math.random() * 0.5;
-      } else if (pick < 0.6) {
+        s.flareDur = 180 + Math.random() * 180;
+        s.flarePeak = 0.55 + Math.random() * 0.4;
+        s.flareSizeBoost = 0.5 + Math.random() * 0.4;
+      } else if (pick < 0.65) {
         s.flareKind = 1;
-        s.flareDur = 280 + Math.random() * 320;
-        s.flarePeak = 0.6 + Math.random() * 0.55;
-        s.flareSizeBoost = 0.5 + Math.random() * 0.6;
-      } else if (pick < 0.7) {
+        s.flareDur = 450 + Math.random() * 400;
+        s.flarePeak = 0.5 + Math.random() * 0.4;
+        s.flareSizeBoost = 0.4 + Math.random() * 0.4;
+      } else if (pick < 0.9) {
         s.flareKind = 2;
-        s.flareDur = 750 + Math.random() * 700;
-        s.flarePeak = 0.4 + Math.random() * 0.45;
-        s.flareSizeBoost = 0.6 + Math.random() * 0.7;
+        s.flareDur = 1100 + Math.random() * 900;
+        s.flarePeak = 0.35 + Math.random() * 0.35;
+        s.flareSizeBoost = 0.5 + Math.random() * 0.5;
       } else {
         s.flareKind = 3;
-        s.flareDur = 180 + Math.random() * 160;
-        s.flarePeak = 0.85 + Math.random() * 0.55;
-        s.flareSizeBoost = 1.0 + Math.random() * 0.9;
+        s.flareDur = 280 + Math.random() * 200;
+        s.flarePeak = 0.75 + Math.random() * 0.4;
+        s.flareSizeBoost = 0.9 + Math.random() * 0.7;
       }
-      // Tighter spacing — 0.4 to 3.4s gap. With 70% of stars active and
-      // bursts firing, the sky reads as a busy, flickering field.
-      s.nextFlareAt = t + s.flareDur + 400 + Math.random() * 3000;
+      // Loose spacing — 3 to 11s gap. With 35% of stars active, the sky
+      // breathes instead of strobes. Bursts are scarce by design.
+      s.nextFlareAt = t + s.flareDur + 3000 + Math.random() * 8000;
       if (s.doubleFlare) {
-        s.secondFlareAt = t + s.flareDur + 50 + Math.random() * 200;
+        s.secondFlareAt = t + s.flareDur + 80 + Math.random() * 260;
       }
     }
 
